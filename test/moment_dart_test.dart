@@ -1,4 +1,3 @@
-import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/mn_MN.dart';
 import 'package:moment_dart/src/moment.dart';

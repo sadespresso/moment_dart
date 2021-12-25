@@ -1,3 +1,4 @@
+import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/moment.dart';
 
 enum RelativeInterval {
@@ -76,6 +77,8 @@ abstract class Localization {
 
   String localizationDefaultDateFormat();
   String localizationDefaultHourFormat();
+
+  String format(DateTime dateTime, FormatterToken formatterToken, Localization localization);
 
   static Moment weekFirstDay(Moment reference, [bool weekStartOnSunday = false]) {
     return Moment(weekStartOnSunday ? reference.lastSunday() : reference.lastMonday());

@@ -1,3 +1,5 @@
+import 'package:moment_dart/src/formatters/token.dart';
+
 import '../localizations.dart';
 import 'package:moment_dart/src/moment.dart';
 
@@ -128,4 +130,193 @@ class LocalizationEnUs extends Localization {
 
   @override
   String localizationDefaultHourFormat() => "hh:mmA";
+
+  String orderedNumber(int n) {
+    final int lastDigit = n % 10;
+    final int lastTwoDigit = n % 100;
+
+    if (!(lastTwoDigit > 10 && lastTwoDigit < 14)) {
+      switch (lastDigit) {
+        case 1:
+          return "${n}st";
+        case 2:
+          return "${n}nd";
+        case 3:
+          return "${n}rd";
+        default:
+          break;
+      }
+    }
+
+    return "${n}th";
+  }
+
+  static const Map<int, String> monthNames = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December",
+  };
+
+  @override
+  String format(DateTime dateTime, FormatterToken formatterToken, Localization localization) {
+    switch (formatterToken) {
+      case FormatterToken.M:
+        return dateTime.month.toString();
+      case FormatterToken.Mo:
+        return orderedNumber(dateTime.month);
+      case FormatterToken.MM:
+        return dateTime.month.toString().padLeft(2, "0");
+      case FormatterToken.MMM:
+        return monthNames[dateTime.month]!.substring(0, 3);
+      case FormatterToken.MMMM:
+        return monthNames[dateTime.month]!;
+      case FormatterToken.Q:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.Qo:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.D:
+        return dateTime.day.toString();
+      case FormatterToken.Do:
+        return orderedNumber(dateTime.day);
+      case FormatterToken.DD:
+        return dateTime.day.toString().padLeft(2, "0");
+      case FormatterToken.DDD:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.DDDo:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.DDDD:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.d:
+        return dateTime.weekday.toString();
+      case FormatterToken.d_o:
+        return orderedNumber(dateTime.weekday);
+      case FormatterToken.dd:
+        return weekdayName(dateTime.weekday).substring(0, 2);
+      case FormatterToken.ddd:
+        return weekdayName(dateTime.weekday).substring(0, 3);
+      case FormatterToken.dddd:
+        return weekdayName(dateTime.weekday);
+      case FormatterToken.e:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.E:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.w:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.wo:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.ww:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.W:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.Wo:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.WW:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.YY:
+        //TODO: Improve the code before 22nd century
+        return dateTime.year.toString().substring(2);
+      case FormatterToken.YYYY:
+        return dateTime.year.toString();
+      case FormatterToken.YYYYYY:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.Y:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.y:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.NN:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.NNNN:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.NNNNN:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.gg:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.gggg:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.GG:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.GGGG:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.A:
+        return dateTime.hour < 12 ? "AM" : "PM";
+      case FormatterToken.a:
+        return dateTime.hour < 12 ? "am" : "pm";
+      case FormatterToken.H:
+        return dateTime.hour.toString();
+      case FormatterToken.HH:
+        return dateTime.hour.toString().padLeft(2, "0");
+
+      case FormatterToken.h:
+        final int _h = dateTime.hour % 12;
+        return _h == 0 ? "12" : _h.toString();
+      case FormatterToken.hh:
+        final int _h = dateTime.hour % 12;
+        return _h == 0 ? "12" : _h.toString().padLeft(2, "0");
+      case FormatterToken.k:
+        return dateTime.hour == 0 ? "24" : dateTime.hour.toString();
+      case FormatterToken.kk:
+        return dateTime.hour == 0 ? "24" : dateTime.hour.toString().padLeft(2, "0");
+      case FormatterToken.m:
+        return dateTime.minute.toString();
+      case FormatterToken.mm:
+        return dateTime.minute.toString().padLeft(2, "0");
+      case FormatterToken.s:
+        return dateTime.second.toString();
+      case FormatterToken.ss:
+        return dateTime.second.toString().padLeft(2, "0");
+      case FormatterToken.S:
+        return (dateTime.millisecond / 100).round().toString().padLeft(2, "0");
+      case FormatterToken.SS:
+        return (dateTime.millisecond / 10).round().toString().padLeft(2, "0");
+      case FormatterToken.SSS:
+        return dateTime.millisecond.toString().padLeft(3, "0");
+      case FormatterToken.SSSS:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.Z:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.ZZ:
+        // TODO: Handle this case.
+        break;
+      case FormatterToken.X:
+        return dateTime.microsecondsSinceEpoch.toString();
+      case FormatterToken.x:
+        return dateTime.millisecondsSinceEpoch.toString();
+    }
+
+    throw Exception("Something went wrong");
+  }
 }
