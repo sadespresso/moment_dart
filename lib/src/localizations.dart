@@ -28,7 +28,7 @@ enum RelativeInterval {
 
 /// Extend this class to create new localization
 abstract class Localization {
-  const Localization();
+  Localization();
 
   static const int maxInt = (double.infinity is int) ? double.infinity as int : ~minInt;
   static const int minInt = (double.infinity is int) ? -double.infinity as int : (-1 << 63);
@@ -78,9 +78,11 @@ abstract class Localization {
   String localizationDefaultDateFormat();
   String localizationDefaultHourFormat();
 
-  String format(DateTime dateTime, FormatterToken formatterToken, Localization localization);
+  Map<FormatterToken, FormatterTokenFn?> formats();
 
   static Moment weekFirstDay(Moment reference, [bool weekStartOnSunday = false]) {
     return Moment(weekStartOnSunday ? reference.lastSunday() : reference.lastMonday());
   }
+
+  final List<FormatterToken> tokens = FormatterToken.values..sort((a, b) => a.toString().length.compareTo(b.toString().length));
 }

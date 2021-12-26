@@ -3,7 +3,7 @@
 import 'package:moment_dart/src/localizations.dart';
 
 typedef FormatterFn = String Function(DateTime, FormatterToken, Localization);
-typedef FormatterTokenFn = String Function(DateTime, Localization);
+typedef FormatterTokenFn = String Function(DateTime);
 
 enum FormatterToken {
   /// [Month]
@@ -303,4 +303,8 @@ enum FormatterToken {
 
   /// [Unix millisecond timestamp]
   x,
+}
+
+extension TokenString on FormatterToken {
+  String get name => toString().split(".").last;
 }

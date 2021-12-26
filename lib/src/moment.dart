@@ -1,3 +1,4 @@
+import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/en_US.dart';
 
@@ -38,7 +39,13 @@ class Moment {
   static const List<SingleFormatFn> formatters = [];
 
   String format(String payload) {
-    throw UnimplementedError();
+    final String value = payload;
+
+    for (FormatterToken token in _localization.tokens) {
+      value.replaceFirst(token.name, _localization.formats()[token]!(dateTime));
+    }
+
+    return value;
   }
 
   Moment parse({required String input, required String format}) {

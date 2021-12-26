@@ -6,7 +6,7 @@ import 'package:moment_dart/src/moment.dart';
 /// Language: English (US)
 /// Country: United States
 class LocalizationEnUs extends Localization {
-  const LocalizationEnUs() : super();
+  LocalizationEnUs() : super();
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
   static const String alpha = "%";
@@ -167,156 +167,72 @@ class LocalizationEnUs extends Localization {
   };
 
   @override
-  String format(DateTime dateTime, FormatterToken formatterToken, Localization localization) {
-    switch (formatterToken) {
-      case FormatterToken.M:
-        return dateTime.month.toString();
-      case FormatterToken.Mo:
-        return orderedNumber(dateTime.month);
-      case FormatterToken.MM:
-        return dateTime.month.toString().padLeft(2, "0");
-      case FormatterToken.MMM:
-        return monthNames[dateTime.month]!.substring(0, 3);
-      case FormatterToken.MMMM:
-        return monthNames[dateTime.month]!;
-      case FormatterToken.Q:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.Qo:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.D:
-        return dateTime.day.toString();
-      case FormatterToken.Do:
-        return orderedNumber(dateTime.day);
-      case FormatterToken.DD:
-        return dateTime.day.toString().padLeft(2, "0");
-      case FormatterToken.DDD:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.DDDo:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.DDDD:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.d:
-        return dateTime.weekday.toString();
-      case FormatterToken.d_o:
-        return orderedNumber(dateTime.weekday);
-      case FormatterToken.dd:
-        return weekdayName(dateTime.weekday).substring(0, 2);
-      case FormatterToken.ddd:
-        return weekdayName(dateTime.weekday).substring(0, 3);
-      case FormatterToken.dddd:
-        return weekdayName(dateTime.weekday);
-      case FormatterToken.e:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.E:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.w:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.wo:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.ww:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.W:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.Wo:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.WW:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.YY:
-        //TODO: Improve the code before 22nd century
-        return dateTime.year.toString().substring(2);
-      case FormatterToken.YYYY:
-        return dateTime.year.toString();
-      case FormatterToken.YYYYYY:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.Y:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.y:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.NN:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.NNNN:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.NNNNN:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.gg:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.gggg:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.GG:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.GGGG:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.A:
-        return dateTime.hour < 12 ? "AM" : "PM";
-      case FormatterToken.a:
-        return dateTime.hour < 12 ? "am" : "pm";
-      case FormatterToken.H:
-        return dateTime.hour.toString();
-      case FormatterToken.HH:
-        return dateTime.hour.toString().padLeft(2, "0");
-
-      case FormatterToken.h:
-        final int _h = dateTime.hour % 12;
-        return _h == 0 ? "12" : _h.toString();
-      case FormatterToken.hh:
-        final int _h = dateTime.hour % 12;
-        return _h == 0 ? "12" : _h.toString().padLeft(2, "0");
-      case FormatterToken.k:
-        return dateTime.hour == 0 ? "24" : dateTime.hour.toString();
-      case FormatterToken.kk:
-        return dateTime.hour == 0 ? "24" : dateTime.hour.toString().padLeft(2, "0");
-      case FormatterToken.m:
-        return dateTime.minute.toString();
-      case FormatterToken.mm:
-        return dateTime.minute.toString().padLeft(2, "0");
-      case FormatterToken.s:
-        return dateTime.second.toString();
-      case FormatterToken.ss:
-        return dateTime.second.toString().padLeft(2, "0");
-      case FormatterToken.S:
-        return (dateTime.millisecond / 100).round().toString().padLeft(2, "0");
-      case FormatterToken.SS:
-        return (dateTime.millisecond / 10).round().toString().padLeft(2, "0");
-      case FormatterToken.SSS:
-        return dateTime.millisecond.toString().padLeft(3, "0");
-      case FormatterToken.SSSS:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.Z:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.ZZ:
-        // TODO: Handle this case.
-        break;
-      case FormatterToken.X:
-        return dateTime.microsecondsSinceEpoch.toString();
-      case FormatterToken.x:
-        return dateTime.millisecondsSinceEpoch.toString();
-    }
-
-    throw Exception("Something went wrong");
-  }
+  Map<FormatterToken, FormatterTokenFn?> formats() => {
+        FormatterToken.M: (DateTime dateTime) => dateTime.month.toString(),
+        FormatterToken.Mo: (DateTime dateTime) => orderedNumber(dateTime.month),
+        FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, "0"),
+        FormatterToken.MMM: (DateTime dateTime) => monthNames[dateTime.month]!.substring(0, 3),
+        FormatterToken.MMMM: (DateTime dateTime) => monthNames[dateTime.month]!,
+        FormatterToken.Q: null,
+        FormatterToken.Qo: null,
+        FormatterToken.D: (DateTime dateTime) => dateTime.day.toString(),
+        FormatterToken.Do: (DateTime dateTime) => orderedNumber(dateTime.day),
+        FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, "0"),
+        FormatterToken.DDD: null,
+        FormatterToken.DDDo: null,
+        FormatterToken.DDDD: null,
+        FormatterToken.d: (DateTime dateTime) => dateTime.weekday.toString(),
+        FormatterToken.d_o: (DateTime dateTime) => orderedNumber(dateTime.weekday),
+        FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 2),
+        FormatterToken.ddd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 3),
+        FormatterToken.dddd: (DateTime dateTime) => weekdayName(dateTime.weekday),
+        FormatterToken.e: null,
+        FormatterToken.E: null,
+        FormatterToken.w: null,
+        FormatterToken.wo: null,
+        FormatterToken.ww: null,
+        FormatterToken.W: null,
+        FormatterToken.Wo: null,
+        FormatterToken.WW: null,
+        FormatterToken.YY:
+            //TODO: Improve the code before 22nd century
+            (DateTime dateTime) => dateTime.year.toString().substring(2),
+        FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
+        FormatterToken.YYYYYY: null,
+        FormatterToken.Y: null,
+        FormatterToken.y: null,
+        FormatterToken.NN: null,
+        FormatterToken.NNNN: null,
+        FormatterToken.NNNNN: null,
+        FormatterToken.gg: null,
+        FormatterToken.gggg: null,
+        FormatterToken.GG: null,
+        FormatterToken.GGGG: null,
+        FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "AM" : "PM",
+        FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "am" : "pm",
+        FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
+        FormatterToken.HH: (DateTime dateTime) => dateTime.hour.toString().padLeft(2, "0"),
+        FormatterToken.h: (DateTime dateTime) {
+          final int _h = dateTime.hour % 12;
+          return _h == 0 ? "12" : _h.toString();
+        },
+        FormatterToken.hh: (DateTime dateTime) {
+          final int _h = dateTime.hour % 12;
+          return _h == 0 ? "12" : _h.toString().padLeft(2, "0");
+        },
+        FormatterToken.k: (DateTime dateTime) => dateTime.hour == 0 ? "24" : dateTime.hour.toString(),
+        FormatterToken.kk: (DateTime dateTime) => dateTime.hour == 0 ? "24" : dateTime.hour.toString().padLeft(2, "0"),
+        FormatterToken.m: (DateTime dateTime) => dateTime.minute.toString(),
+        FormatterToken.mm: (DateTime dateTime) => dateTime.minute.toString().padLeft(2, "0"),
+        FormatterToken.s: (DateTime dateTime) => dateTime.second.toString(),
+        FormatterToken.ss: (DateTime dateTime) => dateTime.second.toString().padLeft(2, "0"),
+        FormatterToken.S: (DateTime dateTime) => (dateTime.millisecond / 100).round().toString().padLeft(2, "0"),
+        FormatterToken.SS: (DateTime dateTime) => (dateTime.millisecond / 10).round().toString().padLeft(2, "0"),
+        FormatterToken.SSS: (DateTime dateTime) => dateTime.millisecond.toString().padLeft(3, "0"),
+        FormatterToken.SSSS: null,
+        FormatterToken.Z: null,
+        FormatterToken.ZZ: null,
+        FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
+        FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+      };
 }
