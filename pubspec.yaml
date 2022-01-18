@@ -1,7 +1,7 @@
 name: moment_dart
 description: moment.js port for dart
 version: 0.0.1
-# homepage: https://www.example.com
+homepage: https://github.com/theirontnt/moment_dart
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
