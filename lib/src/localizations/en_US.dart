@@ -169,7 +169,7 @@ class LocalizationEnUs extends Localization {
   };
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> formats() => {
+  Map<FormatterToken, String Function(DateTime)?> formats() => {
         FormatterToken.M: (DateTime dateTime) => dateTime.month.toString(),
         FormatterToken.Mo: (DateTime dateTime) => orderedNumber(dateTime.month),
         FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, "0"),

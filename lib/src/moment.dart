@@ -113,14 +113,19 @@ class Moment {
   ///
   /// If [this] is tomorrow, will result `"in a day"`
   ///
-  /// moment.js's `toNow()` function has been omitted, since this function prefix/suffixes appropriately.
+  /// moment.js's `toNow()` function has been omitted, since this function prefixes/suffixes appropriately.
   String fromNow([bool dropSuffixOrPrefix = false]) {
     final Duration delta = dateTime.difference(DateTime.now());
 
     return _localization.relative(delta, dropSuffixOrPrefix);
   }
 
-  String calender() => _localization.calendar(this);
+  /// Returns relative string, such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
+  ///
+  /// You can omit the hours using [omitHours] argument.
+  ///
+  /// [reference] is `Moment.now()` by default.
+  String calender({Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => _localization.calendar(this, reference: reference, weekStartOnSunday: weekStartOnSunday, omitHours: omitHours);
 
   bool isBefore(Moment other) => dateTime.isBefore(other.dateTime);
   bool isAfter(Moment other) => dateTime.isAfter(other.dateTime);
