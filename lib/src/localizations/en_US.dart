@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:moment_dart/src/formatters/token.dart';
 
 import '../localizations.dart';
@@ -173,14 +175,14 @@ class LocalizationEnUs extends Localization {
         FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, "0"),
         FormatterToken.MMM: (DateTime dateTime) => monthNames[dateTime.month]!.substring(0, 3),
         FormatterToken.MMMM: (DateTime dateTime) => monthNames[dateTime.month]!,
-        FormatterToken.Q: null,
-        FormatterToken.Qo: null,
+        FormatterToken.Q: (DateTime dateTime) => dateTime.quarter.toString(),
+        FormatterToken.Qo: (DateTime dateTime) => orderedNumber(dateTime.quarter),
         FormatterToken.D: (DateTime dateTime) => dateTime.day.toString(),
         FormatterToken.Do: (DateTime dateTime) => orderedNumber(dateTime.day),
         FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, "0"),
-        FormatterToken.DDD: null,
-        FormatterToken.DDDo: null,
-        FormatterToken.DDDD: null,
+        FormatterToken.DDD: (DateTime dateTime) => dateTime.dayOfYear.toString(),
+        FormatterToken.DDDo: (DateTime dateTime) => orderedNumber(dateTime.dayOfYear),
+        FormatterToken.DDDD: (DateTime dateTime) => dateTime.dayOfYear.toString().padLeft(3, "0"),
         FormatterToken.d: (DateTime dateTime) => dateTime.weekday.toString(),
         FormatterToken.d_o: (DateTime dateTime) => orderedNumber(dateTime.weekday),
         FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 2),
@@ -229,9 +231,12 @@ class LocalizationEnUs extends Localization {
         FormatterToken.S: (DateTime dateTime) => (dateTime.millisecond / 100).round().toString().padLeft(2, "0"),
         FormatterToken.SS: (DateTime dateTime) => (dateTime.millisecond / 10).round().toString().padLeft(2, "0"),
         FormatterToken.SSS: (DateTime dateTime) => dateTime.millisecond.toString().padLeft(3, "0"),
-        FormatterToken.SSSS: null,
-        FormatterToken.Z: null,
-        FormatterToken.ZZ: null,
+        FormatterToken.SSSS: (DateTime dateTime) => (dateTime.microsecond / 100).round().toString().padLeft(3, "0"),
+        FormatterToken.SSSSS: (DateTime dateTime) => (dateTime.microsecond / 10).round().toString().padLeft(3, "0"),
+        FormatterToken.SSSSSS: (DateTime dateTime) => dateTime.microsecond.toString().padLeft(3, "0"),
+        FormatterToken.Z: (DateTime dateTime) => dateTime.timeZoneFormatted(),
+        FormatterToken.ZZ: (DateTime dateTime) => dateTime.timeZoneFormatted(false),
+        FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
       };

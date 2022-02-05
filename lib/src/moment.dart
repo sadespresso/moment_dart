@@ -4,6 +4,61 @@ import 'package:moment_dart/src/localizations/en_US.dart';
 
 typedef SingleFormatFn = String Function(String, Localization);
 
+extension MomentBenefits on DateTime {
+  bool get isLeapYear {
+    if ((year & 3) == 0) return false;
+
+    return year % 100 != 0 || year % 400 == 0;
+  }
+
+  /// Returns quarter of the year.
+  ///
+  /// Jan,Feb,Mar is Q1
+  ///
+  /// Apr,May,Jun is Q2
+  ///
+  /// Jul,Aug,Sep is Q3
+  ///
+  /// Oct,Nov,Dec is Q4
+  int get quarter {
+    return ((month - 1) / 3).floor() + 1;
+  }
+
+  /// Returns [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
+  ///
+  /// [1, 2, 3, ..., 52, 53]
+  int get week {
+    final DateTime date = DateTime(year, month, day).add(Duration(days: day - (day + 3 - (weekday + 6) % 7)));
+    final DateTime firstWeek = DateTime(year, 1, 4);
+
+    final int delta = date.millisecondsSinceEpoch - firstWeek.millisecondsSinceEpoch;
+
+    return ((delta / Duration(days: 1).inMilliseconds - 3 + (firstWeek.weekday + 6) % 7) / 7).round();
+  }
+
+  /// Returns year according to [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
+  int get weekYear => DateTime(year, month, day).add(Duration(days: day - (day + 3 - (weekday + 6) % 7))).year;
+
+  int get dayOfYear {
+    const List<int> dayCount = [0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+
+    int _dayOfYear = dayCount[month] + day;
+
+    if (isLeapYear && month > 2) {
+      _dayOfYear++;
+    }
+
+    return _dayOfYear;
+  }
+
+  String timeZoneFormatted([bool seperateWithColon = true]) {
+    final int hours = timeZoneOffset.inMinutes ~/ 60;
+    final int minutes = timeZoneOffset.inMinutes - (hours * 60);
+
+    return (timeZoneOffset.isNegative ? "-" : "+") + hours.toString() + (seperateWithColon ? ":" : "") + minutes.toString();
+  }
+}
+
 /// Moment is extension to the [DateTime] class
 
 class Moment {

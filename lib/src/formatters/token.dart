@@ -88,7 +88,7 @@ enum FormatterToken {
   ///
   /// Moment.js uses `0-6`. However, we'll be using `1-7` to be in accordance with [DateTime]
   ///
-  /// Please not that `do` is dart language keyword
+  /// Please note that `do` is dart language keyword
   d_o,
 
   /// [Day of Week]
@@ -103,7 +103,7 @@ enum FormatterToken {
 
   /// [Day of Week]
   ///
-  /// Sunday Monday ... Friday Saturday
+  /// Monday ... Saturday Sunday
   dddd,
 
   /// [Day of Week (Locale)]
@@ -278,7 +278,7 @@ enum FormatterToken {
   /// 00 01 ... 98 99
   SS,
 
-  /// [Fractional Second]
+  /// [Fractional Second (Millisecond)]
   ///
   /// 000 001 ... 998 999
   SSS,
@@ -287,6 +287,16 @@ enum FormatterToken {
   ///
   /// 0000 0001 ... 9998,9999
   SSSS,
+
+  /// [Fractional Second]
+  ///
+  /// 00000 00001 ... 99998,99999
+  SSSSS,
+
+  /// [Fractional Second (Microsecond)]
+  ///
+  /// 000000 000001 ... 999998,999999
+  SSSSSS,
 
   /// [Timezone]
   ///
@@ -297,6 +307,11 @@ enum FormatterToken {
   ///
   /// -0700 -0600 ... +0600 +0700
   ZZ,
+
+  /// [Timezone Name]
+  ///
+  /// Returns [DateTime.timeZoneName], result may not be consistent across platforms
+  ZZZ,
 
   /// [Unix timestamp]
   X,

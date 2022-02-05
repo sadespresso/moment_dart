@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:moment_dart/src/formatters/token.dart';
 
 import '../localizations.dart';
