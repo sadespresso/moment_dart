@@ -94,10 +94,14 @@ class Moment {
   static const List<SingleFormatFn> formatters = [];
 
   String format(String payload) {
-    final String value = payload;
+    String value = payload;
 
     for (FormatterToken token in _localization.tokens) {
-      value.replaceFirst(token.name, _localization.formats()[token]!(dateTime));
+      if (_localization.formats()[token] == null) {
+        print("This token is not supported in the localization: '${token.name}'");
+        continue;
+      }
+      value = value.replaceFirst(token.name, _localization.formats()[token]!(dateTime));
     }
 
     return value;
@@ -116,6 +120,13 @@ class Moment {
   /// moment.js's `toNow()` function has been omitted, since this function prefixes/suffixes appropriately.
   String fromNow([bool dropSuffixOrPrefix = false]) {
     final Duration delta = dateTime.difference(DateTime.now());
+
+    return _localization.relative(delta, dropSuffixOrPrefix);
+  }
+
+  /// It can't be static functions since it uses the [Localization]
+  String from(Moment anchor, [bool dropSuffixOrPrefix = false]) {
+    final Duration delta = dateTime.difference(anchor.dateTime);
 
     return _localization.relative(delta, dropSuffixOrPrefix);
   }
@@ -147,4 +158,6 @@ class Moment {
   int get millisecond => dateTime.millisecond;
   int get microsecond => dateTime.microsecond;
   int get weekday => dateTime.weekday;
+
+  bool get isUtc => dateTime.isUtc;
 }

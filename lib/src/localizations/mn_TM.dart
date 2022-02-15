@@ -20,48 +20,53 @@ class LocalizationMongolianTraditional extends Localization {
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
     late final String value;
+    bool isSuffixFeminine = false;
 
     RelativeInterval interval = Localization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
-        value = "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ";
+        value = "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ";
         break;
       case RelativeInterval.aMinute:
-        value = "ᠮᠢᠨᠦ᠋ᠲ᠋ ᠤᠨ";
+        value = "ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()} ᠮᠢᠨᠦ᠋ᠲ᠋ ᠤᠨ";
+        value = "${(duration.inSeconds / 60).round()} ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.anHour:
         value = "ᠴᠠᠭ ᠤᠨ";
         break;
       case RelativeInterval.hours:
-        "${(duration.inMinutes / 60).round()} ᠴᠠᠭ ᠤᠨ";
+        value = "${(duration.inMinutes / 60).round()} ᠴᠠᠭ";
         break;
       case RelativeInterval.aDay:
+        isSuffixFeminine = true;
         value = "ᠡᠳᠦᠷ ᠦᠨ";
         break;
       case RelativeInterval.days:
-        "${(duration.inHours / 24).round()} ᠡᠳᠦᠷ ᠦᠨ";
+        isSuffixFeminine = true;
+        value = "${(duration.inHours / 24).round()} ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.aMonth:
         value = "ᠰᠠᠷ᠎ᠠ ᠤᠨ";
         break;
       case RelativeInterval.months:
-        "${(duration.inDays / 30).round()} ᠰᠠᠷ᠎ᠠ ᠤᠨ";
+        value = "${(duration.inDays / 30).round()} ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.aYear:
-        value = "ᠵᠢᠯ ᠤᠨ";
+        isSuffixFeminine = true;
+        value = "ᠵᠢᠯ";
         break;
       case RelativeInterval.years:
-        "${(duration.inDays / 365).round()} ᠵᠢᠯ ᠤᠨ";
+        isSuffixFeminine = true;
+        value = "${(duration.inDays / 365).round()} ᠵᠢᠯ";
         break;
     }
 
     if (dropPrefixOrSuffix) return value;
 
-    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixFeminine ? " ᠦᠨ" : " ᠤᠨ"));
   }
 
   static const Map<int, String> weekdayNames = {
@@ -86,7 +91,7 @@ class LocalizationMongolianTraditional extends Localization {
     final bool isToday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day == moment.dateTime.day);
 
     if (isToday) {
-      day = "ᠦᠨᠦᠳᠦᠷ";
+      day = "ᠥᠨᠦᠳᠦᠷ";
     }
 
     /// Before the `reference`
@@ -98,7 +103,7 @@ class LocalizationMongolianTraditional extends Localization {
         day = "ᠦᠴᠦᠭᠡᠳᠦᠷ";
       }
       if (isDayBeforeYesterday) {
-        day = "ᠤᠷᠵᠢᠳᠠᠷ";
+        day = "ᠤᠷᠵᠢᠳᠤᠷ";
       } else {
         final Moment startOfLastWeek = Localization.weekFirstDay(reference).subtract(const Duration(days: 7));
 

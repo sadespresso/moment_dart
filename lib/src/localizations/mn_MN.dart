@@ -20,48 +20,60 @@ class LocalizationMongolianCyrillic extends Localization {
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
     late final String value;
+    late final bool isSuffixMasculine;
 
     RelativeInterval interval = Localization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
-        value = "хэдэн хоромын";
+        isSuffixMasculine = true;
+        value = "хэдэн хором";
         break;
       case RelativeInterval.aMinute:
-        value = "минутын";
+        isSuffixMasculine = true;
+        value = "минут";
         break;
       case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()} минутын";
+        isSuffixMasculine = true;
+        value = "${(duration.inSeconds / 60).round()} минут";
         break;
       case RelativeInterval.anHour:
-        value = "цагийн";
+        isSuffixMasculine = false;
+        value = "цаг";
         break;
       case RelativeInterval.hours:
-        "${(duration.inMinutes / 60).round()} цагийн";
+        isSuffixMasculine = false;
+        value = "${(duration.inMinutes / 60).round()} цаг";
         break;
       case RelativeInterval.aDay:
-        value = "өдрийн";
+        isSuffixMasculine = false;
+        value = dropPrefixOrSuffix ? "өдөр" : "өдр"; // Here the letter "ө" will be omitted when
         break;
       case RelativeInterval.days:
-        "${(duration.inHours / 24).round()} өдрийн";
+        isSuffixMasculine = false;
+        value = "${(duration.inHours / 24).round()} " + (dropPrefixOrSuffix ? "өдөр" : "өдр");
         break;
       case RelativeInterval.aMonth:
-        value = "сарын";
+        isSuffixMasculine = true;
+        value = "сар";
         break;
       case RelativeInterval.months:
-        "${(duration.inDays / 30).round()} сарын";
+        isSuffixMasculine = true;
+        value = "${(duration.inDays / 30).round()} сар";
         break;
       case RelativeInterval.aYear:
-        value = "жилийн";
+        isSuffixMasculine = false;
+        value = "жил";
         break;
       case RelativeInterval.years:
-        "${(duration.inDays / 365).round()} жилийн";
+        isSuffixMasculine = false;
+        value = "${(duration.inDays / 365).round()} жил";
         break;
     }
 
     if (dropPrefixOrSuffix) return value;
 
-    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixMasculine ? "ын" : "ийн"));
   }
 
   // Tibet weekday names are here, because it is majorly used in Mongolia

@@ -36,25 +36,25 @@ class LocalizationEnUs extends Localization {
         value = "an hour";
         break;
       case RelativeInterval.hours:
-        "${(duration.inMinutes / 60).round()} hours";
+        value = "${(duration.inMinutes / 60).round()} hours";
         break;
       case RelativeInterval.aDay:
         value = "a day";
         break;
       case RelativeInterval.days:
-        "${(duration.inHours / 24).round()} days";
+        value = "${(duration.inHours / 24).round()} days";
         break;
       case RelativeInterval.aMonth:
         value = "a month";
         break;
       case RelativeInterval.months:
-        "${(duration.inDays / 30).round()} months";
+        value = "${(duration.inDays / 30).round()} months";
         break;
       case RelativeInterval.aYear:
         value = "a year";
         break;
       case RelativeInterval.years:
-        "${(duration.inDays / 365).round()} years";
+        value = "${(duration.inDays / 365).round()} years";
         break;
     }
 

@@ -84,5 +84,5 @@ abstract class Localization {
     return Moment(weekStartOnSunday ? reference.lastSunday() : reference.lastMonday());
   }
 
-  final List<FormatterToken> tokens = [...FormatterToken.values]..sort((a, b) => a.toString().length.compareTo(b.toString().length));
+  final List<FormatterToken> tokens = [...FormatterToken.values]..sort((a, b) => b.toString().length.compareTo(a.toString().length));
 }
