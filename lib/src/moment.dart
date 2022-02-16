@@ -2,8 +2,6 @@ import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/en_US.dart';
 
-typedef SingleFormatFn = String Function(String, Localization);
-
 extension MomentBenefits on DateTime {
   bool get isLeapYear {
     if ((year & 3) == 0) return false;
@@ -90,8 +88,6 @@ class Moment {
 
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
-
-  static const List<SingleFormatFn> formatters = [];
 
   String format(String payload) {
     String value = payload;

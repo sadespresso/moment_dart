@@ -28,14 +28,16 @@ void main() {
     final epochPlusFiveDays = epoch + Duration(days: 5);
     final epochPlusAYear = epoch + Duration(days: 365);
 
-    print(localization.tokens);
+    print(moment.format("dd HH:mm, MMMM/DD/YYYY"));
+    print(epoch.format("dd HH:mm, MMMM/DD/YYYY"));
 
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)), "in a few seconds");
     expect(localization.weekdayName(epoch.weekday), "Thursday");
     expect(epochPlusFiveDays.from(epoch, true), "5 days");
     expect(epochPlusFiveDays.from(epoch), "in 5 days");
-    expect(epoch.calender(reference: epochPlusFiveDays, omitHours: true), "Last Saturday");
+    expect(epoch.calender(reference: epochPlusFiveDays, omitHours: true), "Last Thursday");
+    expect(epochPlusFiveDays.calender(reference: epoch, omitHours: true), "Tuesday");
     expect(epochPlusAYear.from(epoch), "in a year");
   });
 

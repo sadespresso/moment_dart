@@ -109,10 +109,10 @@ class LocalizationEnUs extends Localization {
       if (isTomorrow) {
         day = "Tomorrow";
       } else {
-        final Moment startOfNextWeek = Localization.weekFirstDay(reference).add(const Duration(days: 7));
+        final Moment endOfNextWeek = Localization.weekFirstDay(reference).add(const Duration(days: 13));
 
         /// If it's this week (relative to the reference)
-        if (moment.isBefore(startOfNextWeek)) {
+        if (moment.isBefore(endOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
           day = moment.format(localizationDefaultDateFormat());
@@ -128,7 +128,7 @@ class LocalizationEnUs extends Localization {
   }
 
   @override
-  String localizationDefaultDateFormat() => "MM/DD/yyyy";
+  String localizationDefaultDateFormat() => "MM/DD/YYYY";
 
   @override
   String localizationDefaultHourFormat() => "hh:mmA";
@@ -172,44 +172,46 @@ class LocalizationEnUs extends Localization {
   Map<FormatterToken, String Function(DateTime)?> formats() => {
         FormatterToken.M: (DateTime dateTime) => dateTime.month.toString(),
         FormatterToken.Mo: (DateTime dateTime) => orderedNumber(dateTime.month),
-        FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, "0"),
+        FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, '0'),
         FormatterToken.MMM: (DateTime dateTime) => monthNames[dateTime.month]!.substring(0, 3),
         FormatterToken.MMMM: (DateTime dateTime) => monthNames[dateTime.month]!,
         FormatterToken.Q: (DateTime dateTime) => dateTime.quarter.toString(),
         FormatterToken.Qo: (DateTime dateTime) => orderedNumber(dateTime.quarter),
         FormatterToken.D: (DateTime dateTime) => dateTime.day.toString(),
         FormatterToken.Do: (DateTime dateTime) => orderedNumber(dateTime.day),
-        FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, "0"),
+        FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, '0'),
         FormatterToken.DDD: (DateTime dateTime) => dateTime.dayOfYear.toString(),
         FormatterToken.DDDo: (DateTime dateTime) => orderedNumber(dateTime.dayOfYear),
-        FormatterToken.DDDD: (DateTime dateTime) => dateTime.dayOfYear.toString().padLeft(3, "0"),
+        FormatterToken.DDDD: (DateTime dateTime) => dateTime.dayOfYear.toString().padLeft(3, '0'),
         FormatterToken.d: (DateTime dateTime) => dateTime.weekday.toString(),
         FormatterToken.d_o: (DateTime dateTime) => orderedNumber(dateTime.weekday),
         FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 2),
         FormatterToken.ddd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 3),
         FormatterToken.dddd: (DateTime dateTime) => weekdayName(dateTime.weekday),
-        FormatterToken.e: null,
-        FormatterToken.E: null,
-        FormatterToken.w: null,
-        FormatterToken.wo: null,
-        FormatterToken.ww: null,
-        FormatterToken.W: null,
-        FormatterToken.Wo: null,
-        FormatterToken.WW: null,
+        FormatterToken.e: (DateTime dateTime) => dateTime.weekday.toString(),
+        FormatterToken.w: (DateTime dateTime) => dateTime.week.toString(),
+        FormatterToken.wo: (DateTime dateTime) => orderedNumber(dateTime.week),
+        FormatterToken.ww: (DateTime dateTime) => dateTime.week.toString().padLeft(2, '0'),
         FormatterToken.YY:
             //TODO: Improve the code before 22nd century
-            (DateTime dateTime) => dateTime.year.toString().substring(2),
+            (DateTime dateTime) {
+          if (dateTime.year < 1970) throw Exception("YY formatter doesn't work for years before 1970");
+          if (dateTime.year > 2030) throw Exception("YY formatter doesn't work for years after 2030");
+          return dateTime.year.toString().substring(2);
+        },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: null,
-        FormatterToken.Y: null,
+        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
+        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
         FormatterToken.NNNNN: null,
-        FormatterToken.gg: null,
-        FormatterToken.gggg: null,
-        FormatterToken.GG: null,
-        FormatterToken.GGGG: null,
+        FormatterToken.gg: (DateTime dateTime) {
+          if (dateTime.year < 1970) throw Exception("YY formatter doesn't work for years before 1970");
+          if (dateTime.year > 2030) throw Exception("YY formatter doesn't work for years after 2030");
+          return dateTime.weekYear.toString().substring(2);
+        },
+        FormatterToken.gggg: (DateTime dateTime) => dateTime.weekYear.toString(),
         FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "AM" : "PM",
         FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "am" : "pm",
         FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
