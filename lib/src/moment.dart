@@ -89,18 +89,46 @@ class Moment {
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
 
-  String format(String payload) {
-    String value = payload;
+  List<FormatterToken> get _fts => _localization.tokens;
 
-    for (FormatterToken token in _localization.tokens) {
-      if (_localization.formats()[token] == null) {
-        print("This token is not supported in the localization: '${token.name}'");
-        continue;
+  String format(String payload) {
+    final RegExp latin = RegExp(r"[A-Za-z]");
+
+    List<String> tokenized = [];
+
+    String dummy = "";
+
+    for (int i = 0; i < payload.length; i++) {
+      if (!latin.hasMatch(payload[i])) {
+        tokenized.add(dummy);
+
+        dummy = "";
+
+        tokenized.add(payload[i]);
+      } else {
+        dummy += payload[i];
       }
-      value = value.replaceFirst(token.name, _localization.formats()[token]!(dateTime));
     }
 
-    return value;
+    tokenized.add(dummy);
+
+    for (int j = 0; j < tokenized.length; j++) {
+      try {
+        final FormatterToken token = _fts.firstWhere((element) => tokenized[j].contains(element.name));
+
+        if (_localization.formats()[token] == null) {
+          throw "$token is not supported in this locale [${_localization.runtimeType}]";
+        }
+
+        tokenized[j] = tokenized[j].replaceFirst(token.name, _localization.formats()[token]!(dateTime));
+      } on StateError {
+        // Silent fail
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    return tokenized.join();
   }
 
   /// Uses [DateTime.parse]

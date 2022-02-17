@@ -18,6 +18,10 @@ class LocalizationEnUs extends Localization {
 
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+    final bool past = duration.isNegative;
+
+    duration = duration.abs();
+
     late final String value;
 
     RelativeInterval interval = Localization.relativeThreshold(duration);
@@ -60,7 +64,7 @@ class LocalizationEnUs extends Localization {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
   }
 
   static const Map<int, String> weekdayNames = {

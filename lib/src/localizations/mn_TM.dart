@@ -19,6 +19,10 @@ class LocalizationMongolianTraditional extends Localization {
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+    final bool past = duration.isNegative;
+
+    duration = duration.abs();
+
     late final String value;
     bool isSuffixFeminine = false;
 
@@ -66,7 +70,7 @@ class LocalizationMongolianTraditional extends Localization {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixFeminine ? " ᠦᠨ" : " ᠤᠨ"));
+    return (past ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixFeminine ? " ᠦᠨ" : " ᠤᠨ"));
   }
 
   static const Map<int, String> weekdayNames = {

@@ -19,6 +19,10 @@ class LocalizationMongolianCyrillic extends Localization {
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+    final bool past = duration.isNegative;
+
+    duration = duration.abs();
+
     late final String value;
     late final bool isSuffixMasculine;
 
@@ -73,7 +77,7 @@ class LocalizationMongolianCyrillic extends Localization {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (duration.isNegative ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixMasculine ? "ын" : "ийн"));
+    return (past ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixMasculine ? "ын" : "ийн"));
   }
 
   // Tibet weekday names are here, because it is majorly used in Mongolia
