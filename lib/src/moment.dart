@@ -57,7 +57,7 @@ extension MomentBenefits on DateTime {
   }
 }
 
-/// Moment is extension to the [DateTime] class
+/// Moment is a wrapper for [DateTime] class
 
 class Moment {
   late DateTime dateTime;
@@ -103,9 +103,10 @@ class Moment {
     return value;
   }
 
-  Moment parse({required String input, required String format}) {
-    throw UnimplementedError();
-  }
+  /// Uses [DateTime.parse]
+  ///
+  /// To be updated.
+  Moment parse(String input) => Moment(DateTime.parse(input), localization: _localization);
 
   /// Example when using [LocalizationEnUs]:
   ///
