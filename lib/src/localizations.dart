@@ -71,7 +71,7 @@ abstract class Localization {
 
   /// Please take a look at [Localization.relativeThreshold] function and [Localization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
-  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false});
+  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat});
 
   String weekdayName(int i);
 
@@ -81,7 +81,7 @@ abstract class Localization {
   Map<FormatterToken, FormatterTokenFn?> formats();
 
   static Moment weekFirstDay(Moment reference, [bool weekStartOnSunday = false]) {
-    return Moment(weekStartOnSunday ? reference.lastSunday() : reference.lastMonday());
+    return Moment(weekStartOnSunday ? reference.lastSundayAsDateTime() : reference.lastMondayAsDateTime());
   }
 
   final List<FormatterToken> tokens = [...FormatterToken.values]..sort((a, b) => b.toString().length.compareTo(a.toString().length));

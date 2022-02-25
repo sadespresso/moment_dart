@@ -24,21 +24,19 @@ void main() {
   test('English', () {
     Localization localization = LocalizationEnUs();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
-    final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0), localization: localization);
+    final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true), localization: localization);
     final epochPlusFiveDays = epoch + Duration(days: 5);
     final epochPlusAYear = epoch + Duration(days: 365);
-
-    print(moment.format(r"dddd HH:mm, MMMM/DD/YYYY"));
-    print(epoch.format(r"dddd HH:mm, MMMM/DD/YYYY"));
 
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)), "in a few seconds");
     expect(localization.weekdayName(epoch.weekday), "Thursday");
     expect(epochPlusFiveDays.from(epoch, true), "5 days");
     expect(epochPlusFiveDays.from(epoch), "in 5 days");
-    expect(epoch.calender(reference: epochPlusFiveDays, omitHours: true), "Last Thursday");
-    expect(epochPlusFiveDays.calender(reference: epoch, omitHours: true), "Tuesday");
+    expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true), "Last Thursday");
+    expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "Tuesday");
     expect(epochPlusAYear.from(epoch), "in a year");
+    expect(epochPlusAYear.calendar(reference: epoch), "01/01/1971 at 12:00AM");
   });
 
   test('Traditional Mongolian', () {

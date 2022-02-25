@@ -81,7 +81,7 @@ class LocalizationEnUs extends Localization {
   String weekdayName(int i) => weekdayNames[i]!;
 
   @override
-  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) {
+  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat}) {
     reference ??= Moment.now();
 
     late final String day;
@@ -102,7 +102,7 @@ class LocalizationEnUs extends Localization {
         final Moment startOfLastWeek = Localization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat());
         } else {
           day = "Last ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -119,10 +119,12 @@ class LocalizationEnUs extends Localization {
         if (moment.isBefore(endOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat());
         }
       }
     }
+
+    if (customFormat != null) return day;
 
     if (omitHours) {
       return day;

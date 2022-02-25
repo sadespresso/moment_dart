@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:moment_dart/src/formatters/format_match.dart';
 import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/en_US.dart';
@@ -91,7 +94,7 @@ class Moment {
 
   List<FormatterToken> get _fts => _localization.tokens;
 
-  String format(String payload) {
+  String format_old(String payload) {
     final RegExp latin = RegExp(r"[A-Za-z]");
 
     List<String> tokenized = [];
@@ -112,12 +115,18 @@ class Moment {
 
     tokenized.add(dummy);
 
+    print(tokenized);
+
     for (int j = 0; j < tokenized.length; j++) {
       try {
         final FormatterToken token = _fts.firstWhere((element) => tokenized[j].contains(element.name));
 
         if (_localization.formats()[token] == null) {
           throw "$token is not supported in this locale [${_localization.runtimeType}]";
+        }
+
+        if (token.name == "A") {
+          print("Allakh akbar: ${_localization.formats()[token]!(dateTime)}");
         }
 
         tokenized[j] = tokenized[j].replaceFirst(token.name, _localization.formats()[token]!(dateTime));
@@ -129,6 +138,62 @@ class Moment {
     }
 
     return tokenized.join();
+  }
+
+  String format(String payload) {
+    final List<dynamic> tokens = [];
+
+    bool halt = false;
+
+    while (!halt) {
+      FormatMatch? closestToZero;
+
+      for (FormatterToken token in _fts) {
+        final int _matchIndex = payload.indexOf(token.name);
+
+        if (_matchIndex == -1) continue;
+
+        if (closestToZero != null) {
+          if (_matchIndex > closestToZero.startIndex) {
+            continue;
+          } else if (_matchIndex == closestToZero.startIndex && token.name.length < closestToZero.token.name.length) {
+            continue;
+          }
+        }
+
+        closestToZero = FormatMatch(startIndex: _matchIndex, token: token);
+      }
+
+      if (closestToZero == null) break;
+
+      if (closestToZero.startIndex != 0) {
+        tokens.add(payload.substring(0, closestToZero.startIndex));
+      }
+
+      tokens.add(closestToZero);
+
+      print("We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
+
+      payload = payload.substring(closestToZero.endIndex);
+
+      if (payload.isEmpty) {
+        halt = true;
+      }
+    }
+
+    print(tokens.map((e) => e.toString()));
+
+    String value = "";
+
+    for (var token in tokens) {
+      if (token is FormatMatch) {
+        value += _localization.formats()[token.token]!(dateTime);
+      } else {
+        value += token as String;
+      }
+    }
+
+    return value;
   }
 
   /// Uses [DateTime.parse]
@@ -156,23 +221,28 @@ class Moment {
     return _localization.relative(delta, dropSuffixOrPrefix);
   }
 
-  /// Returns relative string, such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
+  /// Returns calendar string in accordance with the [reference], such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
+  /// Default formats are derived from the current localization.
+  ///
+  /// [reference] is `Moment.now()` by default.
   ///
   /// You can omit the hours using [omitHours] argument.
   ///
-  /// [reference] is `Moment.now()` by default.
-  String calender({Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => _localization.calendar(this, reference: reference, weekStartOnSunday: weekStartOnSunday, omitHours: omitHours);
+  /// You can provide [customFormat]. Which will be used when the date is too far. e.g. when the moment is month away from referene, it'll use the [customFormat]
+  ///
+  /// Using [customFormat] will make [omitHours] ineffective.
+  String calendar({Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat}) => _localization.calendar(this, reference: reference, weekStartOnSunday: weekStartOnSunday, omitHours: omitHours, customFormat: customFormat);
 
   bool isBefore(Moment other) => dateTime.isBefore(other.dateTime);
   bool isAfter(Moment other) => dateTime.isAfter(other.dateTime);
   bool isAtSameMomentAs(Moment other) => dateTime.isAtSameMomentAs(other.dateTime);
   Duration difference(Moment other) => dateTime.difference(other.dateTime);
 
-  DateTime lastMonday() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday - 1));
-  DateTime lastSunday() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday % 7));
+  DateTime lastMondayAsDateTime() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday - 1));
+  DateTime lastSundayAsDateTime() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday % 7));
 
-  Moment lastMondayMoment() => Moment(lastMonday(), localization: _localization);
-  Moment lastSundayMoment() => Moment(lastSunday(), localization: _localization);
+  Moment lastMonday() => Moment(lastMondayAsDateTime(), localization: _localization);
+  Moment lastSunday() => Moment(lastSundayAsDateTime(), localization: _localization);
 
   int get year => dateTime.year;
   int get month => dateTime.month;
