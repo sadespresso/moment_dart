@@ -7,13 +7,13 @@ import 'package:moment_dart/src/moment.dart';
 
 /// Language: English (US)
 /// Country: United States
-class LocalizationEnUs extends MomentLocalization {
-  LocalizationEnUs() : super();
+class LocalizationGermanStandard extends MomentLocalization {
+  LocalizationGermanStandard() : super();
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
   static const String alpha = "%";
 
-  static const String relativePast = "$alpha ago";
+  static const String relativePast = "vor $alpha";
   static const String relativeFuture = "in $alpha";
 
   @override
@@ -68,13 +68,13 @@ class LocalizationEnUs extends MomentLocalization {
   }
 
   static const Map<int, String> weekdayNames = {
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday",
-    7: "Sunday",
+    1: "Montag",
+    2: "Dienstag",
+    3: "Mittwoch",
+    4: "Donnerstag",
+    5: "Freitag",
+    6: "Samstag",
+    7: "Sonntag",
   };
 
   @override
@@ -89,7 +89,7 @@ class LocalizationEnUs extends MomentLocalization {
     final bool isToday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day == moment.dateTime.day);
 
     if (isToday) {
-      day = "Today";
+      day = "heute";
     }
 
     /// Before the `reference`
@@ -97,21 +97,21 @@ class LocalizationEnUs extends MomentLocalization {
       final bool isYesterday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day - 1 == moment.dateTime.day);
 
       if (isYesterday) {
-        day = "Yesterday";
+        day = "gestern";
       } else {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat());
         } else {
-          day = "Last ${weekdayName(moment.dateTime.weekday)}";
+          day = "letzten ${weekdayName(moment.dateTime.weekday)}";
         }
       }
     } else {
       final bool isTomorrow = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day + 1 == moment.dateTime.day);
 
       if (isTomorrow) {
-        day = "Tomorrow";
+        day = "morgen";
       } else {
         final Moment endOfNextWeek = MomentLocalization.weekFirstDay(reference).add(const Duration(days: 13));
 
@@ -130,48 +130,30 @@ class LocalizationEnUs extends MomentLocalization {
       return day;
     }
 
-    return "$day at ${moment.format(localizationDefaultHourFormat())}";
+    return "$day um ${moment.format(localizationDefaultHourFormat())}";
   }
 
   @override
-  String localizationDefaultDateFormat() => "MM/DD/YYYY";
+  String localizationDefaultDateFormat() => "DD/MM/YYYY";
 
   @override
-  String localizationDefaultHourFormat() => "hh:mmA";
+  String localizationDefaultHourFormat() => "kk:mm Uhr";
 
-  String ordinalNumber(int n) {
-    final int lastDigit = n % 10;
-    final int lastTwoDigit = n % 100;
-
-    if (!(lastTwoDigit > 10 && lastTwoDigit < 14)) {
-      switch (lastDigit) {
-        case 1:
-          return "${n}st";
-        case 2:
-          return "${n}nd";
-        case 3:
-          return "${n}rd";
-        default:
-          break;
-      }
-    }
-
-    return "${n}th";
-  }
+  String ordinalNumber(int n) => "$n.";
 
   static const Map<int, String> monthNames = {
-    1: "January",
-    2: "February",
-    3: "March",
+    1: "Januar",
+    2: "Februar",
+    3: "März",
     4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
+    5: "Mai",
+    6: "Juni",
+    7: "Juli",
     8: "August",
     9: "September",
-    10: "October",
+    10: "Oktober",
     11: "November",
-    12: "December",
+    12: "Dezember",
   };
 
   @override

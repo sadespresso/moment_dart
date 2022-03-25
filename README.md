@@ -8,7 +8,7 @@ import "package:moment_dart/moment_dart.dart";
 
 /// If localization is omitted, it defaults to LocalizationEnUs
 ///
-/// Localization argument takes [T extends Localization]. Localization is custom abstract class.  
+/// Localization argument takes [T extends MomentLocalization]. MomentLocalization is custom abstract class.  
 final Moment moment = Moment.now() - Duration(days: 1);
 final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
 final Moment epochPlusFiveDays = epoch + Duration(days: 5);
@@ -47,9 +47,12 @@ moment.format();
 
 ### Available Localization classes:
 
+Localizations are classes that extend `MomentLocalization`
+
 - LocalizationEnUs
 - LocalizationMongolianCyrillic
 - LocalizationMongolianTraditional
+- LocalizationMongolianTraditionalNumbers
 
 ## Creating own Localzation
 
@@ -58,15 +61,15 @@ First, extend the Localization abstract class.
 Almost everything is declared as function, so you can freely achieve the unique features of your language.
 
 ```dart
-  LocalizationMyCustomLanguage extends Localization {
+  CatLanguage extends MomentLocalization {
     @override
-    String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a time to drink a soda ago";
+    String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a two meow ago";
 
     @override
-    String weekdayName(int i) => "Happyday";
+    String weekdayName(int i) => "Meowday";
 
     @override
-    String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Sunday";
+    String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Meowday";
 
     /// Please refer to the [FormatterToken] enum for details.
     /// 
@@ -74,9 +77,9 @@ Almost everything is declared as function, so you can freely achieve the unique 
     Map<FormatterToken, FormatterTokenFn?> formats() => {};
 
     @override
-    String localizationDefaultDateFormat() => "MM/DD/yyyy";
+    String localizationDefaultDateFormat() => "MM/DD/yyyy meow!"; // "meow!" token doesn't exist, therefore the resulting string would be "06/01/2003 meow!".
 
     @override
-    String localizationDefaultHourFormat() => "hh:mmA";
+    String localizationDefaultHourFormat() => "hh:mmA meow!";
   }
 ```

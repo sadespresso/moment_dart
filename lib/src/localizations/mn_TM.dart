@@ -7,7 +7,7 @@ import 'package:moment_dart/src/moment.dart';
 
 /// Language: Traditional Mongolian (Unicode)
 /// Country: Mongolia
-class LocalizationMongolianTraditional extends Localization {
+class LocalizationMongolianTraditional extends MomentLocalization {
   LocalizationMongolianTraditional() : super();
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
@@ -26,7 +26,7 @@ class LocalizationMongolianTraditional extends Localization {
     late final String value;
     bool isSuffixFeminine = false;
 
-    RelativeInterval interval = Localization.relativeThreshold(duration);
+    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
@@ -109,7 +109,7 @@ class LocalizationMongolianTraditional extends Localization {
       if (isDayBeforeYesterday) {
         day = "ᠤᠷᠵᠢᠳᠤᠷ";
       } else {
-        final Moment startOfLastWeek = Localization.weekFirstDay(reference).subtract(const Duration(days: 7));
+        final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat());
@@ -126,7 +126,7 @@ class LocalizationMongolianTraditional extends Localization {
       } else if (isDayAfterTomorrow) {
         day = "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ";
       } else {
-        final Moment startOfNextWeek = Localization.weekFirstDay(reference).add(const Duration(days: 7));
+        final Moment startOfNextWeek = MomentLocalization.weekFirstDay(reference).add(const Duration(days: 7));
 
         /// If it's this week (relative to the reference)
         if (moment.isBefore(startOfNextWeek)) {

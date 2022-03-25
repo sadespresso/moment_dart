@@ -5,17 +5,18 @@ import 'package:moment_dart/src/formatters/token.dart';
 import '../localizations.dart';
 import 'package:moment_dart/src/moment.dart';
 
-/// Language: English (US)
-/// Country: United States
-class LocalizationEnUs extends MomentLocalization {
-  LocalizationEnUs() : super();
+/// Language: Cyrillic Mongolian
+/// Country: Mongolia
+class LocalizationKorean extends MomentLocalization {
+  LocalizationKorean() : super();
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
   static const String alpha = "%";
 
-  static const String relativePast = "$alpha ago";
-  static const String relativeFuture = "in $alpha";
+  static const String relativePast = "$alpha 전";
+  static const String relativeFuture = "$alpha 후";
 
+  /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
     final bool past = duration.isNegative;
@@ -23,62 +24,75 @@ class LocalizationEnUs extends MomentLocalization {
     duration = duration.abs();
 
     late final String value;
+    late final bool isSuffixMasculine;
 
     RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
-        value = "a few seconds";
+        isSuffixMasculine = true;
+        value = "хэдэн хором";
         break;
       case RelativeInterval.aMinute:
-        value = "a minute";
+        isSuffixMasculine = true;
+        value = "분";
         break;
       case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()} minutes";
+        isSuffixMasculine = true;
+        value = "${(duration.inSeconds / 60).round()} минут";
         break;
       case RelativeInterval.anHour:
-        value = "an hour";
+        isSuffixMasculine = false;
+        value = "시간";
         break;
       case RelativeInterval.hours:
-        value = "${(duration.inMinutes / 60).round()} hours";
+        isSuffixMasculine = false;
+        value = "${(duration.inMinutes / 60).round()} 시간";
         break;
       case RelativeInterval.aDay:
-        value = "a day";
+        isSuffixMasculine = false;
+        value = "일";
         break;
       case RelativeInterval.days:
-        value = "${(duration.inHours / 24).round()} days";
+        isSuffixMasculine = false;
+        value = "${(duration.inHours / 24).round()} 일";
         break;
       case RelativeInterval.aMonth:
-        value = "a month";
+        isSuffixMasculine = true;
+        value = "개월";
         break;
       case RelativeInterval.months:
-        value = "${(duration.inDays / 30).round()} months";
+        isSuffixMasculine = true;
+        value = "${(duration.inDays / 30).round()} 개월";
         break;
       case RelativeInterval.aYear:
-        value = "a year";
+        isSuffixMasculine = false;
+        value = "년";
         break;
       case RelativeInterval.years:
-        value = "${(duration.inDays / 365).round()} years";
+        isSuffixMasculine = false;
+        value = "${(duration.inDays / 365).round()} 년";
         break;
     }
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return (past ? relativePast : relativeFuture).replaceAll(alpha, value + (isSuffixMasculine ? "ын" : "ийн"));
   }
 
+  // Tibet weekday names are here, because it is majorly used in Mongolia
   static const Map<int, String> weekdayNames = {
-    1: "Monday",
-    2: "Tuesday",
-    3: "Wednesday",
-    4: "Thursday",
-    5: "Friday",
-    6: "Saturday",
-    7: "Sunday",
+    1: "월요일",
+    2: "화요일",
+    3: "수요일",
+    4: "목요일",
+    5: "금요일",
+    6: "토요일",
+    7: "일요일",
   };
 
   @override
-  String weekdayName(int i) => weekdayNames[i]!;
+  String weekdayName(int i) => weekdayNames[i]!; //평일 이름
 
   @override
   String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat}) {
@@ -89,34 +103,38 @@ class LocalizationEnUs extends MomentLocalization {
     final bool isToday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day == moment.dateTime.day);
 
     if (isToday) {
-      day = "Today";
+      day = "오늘";
     }
 
     /// Before the `reference`
     else if (moment.dateTime.isBefore(reference.dateTime)) {
       final bool isYesterday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day - 1 == moment.dateTime.day);
-
+      final bool isDayBeforeYesterday = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day - 2 == moment.dateTime.day);
       if (isYesterday) {
-        day = "Yesterday";
+        day = "어제";
+      } else if (isDayBeforeYesterday) {
+        day = "그저께";
       } else {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat());
         } else {
-          day = "Last ${weekdayName(moment.dateTime.weekday)}";
+          day = "지난 ${weekdayName(moment.dateTime.weekday)}";
         }
       }
     } else {
       final bool isTomorrow = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day + 1 == moment.dateTime.day);
-
+      final bool isDayAfterTomorrow = (reference.dateTime.year == moment.dateTime.year && reference.dateTime.month == moment.dateTime.month && reference.dateTime.day + 2 == moment.dateTime.day);
       if (isTomorrow) {
-        day = "Tomorrow";
+        day = "내일";
+      } else if (isDayAfterTomorrow) {
+        day = "모레";
       } else {
-        final Moment endOfNextWeek = MomentLocalization.weekFirstDay(reference).add(const Duration(days: 13));
+        final Moment startOfNextWeek = MomentLocalization.weekFirstDay(reference).add(const Duration(days: 7));
 
         /// If it's this week (relative to the reference)
-        if (moment.isBefore(endOfNextWeek)) {
+        if (moment.isBefore(startOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
           day = moment.format(customFormat ?? localizationDefaultDateFormat());
@@ -124,79 +142,57 @@ class LocalizationEnUs extends MomentLocalization {
       }
     }
 
-    if (customFormat != null) return day;
+    if (customFormat != null) {
+      return day;
+    }
 
     if (omitHours) {
       return day;
     }
 
-    return "$day at ${moment.format(localizationDefaultHourFormat())}";
+    return "$day ${moment.format(localizationDefaultHourFormat())}";
   }
 
   @override
-  String localizationDefaultDateFormat() => "MM/DD/YYYY";
+  String localizationDefaultDateFormat() => "YYYY/MM/DD";
 
   @override
-  String localizationDefaultHourFormat() => "hh:mmA";
+  String localizationDefaultHourFormat() => "HH:mm";
 
-  String ordinalNumber(int n) {
-    final int lastDigit = n % 10;
-    final int lastTwoDigit = n % 100;
-
-    if (!(lastTwoDigit > 10 && lastTwoDigit < 14)) {
-      switch (lastDigit) {
-        case 1:
-          return "${n}st";
-        case 2:
-          return "${n}nd";
-        case 3:
-          return "${n}rd";
-        default:
-          break;
-      }
-    }
-
-    return "${n}th";
-  }
-
-  static const Map<int, String> monthNames = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December",
-  };
+  String monthName(int i) => "$i월";
 
   @override
-  Map<FormatterToken, String Function(DateTime)?> formats() => {
+  Map<FormatterToken, FormatterTokenFn?> formats() => {
         FormatterToken.M: (DateTime dateTime) => dateTime.month.toString(),
-        FormatterToken.Mo: (DateTime dateTime) => ordinalNumber(dateTime.month),
+        // TODO: ordinal number confirmation
+        FormatterToken.Mo: (DateTime dateTime) => dateTime.month.toString(),
         FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, '0'),
-        FormatterToken.MMM: (DateTime dateTime) => monthNames[dateTime.month]!.substring(0, 3),
-        FormatterToken.MMMM: (DateTime dateTime) => monthNames[dateTime.month]!,
+        FormatterToken.MMM: (DateTime dateTime) => "${dateTime.month}-р сар",
+        FormatterToken.MMMM: (DateTime dateTime) => monthName(dateTime.month),
         FormatterToken.Q: (DateTime dateTime) => dateTime.quarter.toString(),
-        FormatterToken.Qo: (DateTime dateTime) => ordinalNumber(dateTime.quarter),
+        // FormatterToken.Qo: (DateTime dateTime) => orderedNumber(dateTime.quarter),
         FormatterToken.D: (DateTime dateTime) => dateTime.day.toString(),
-        FormatterToken.Do: (DateTime dateTime) => ordinalNumber(dateTime.day),
+        // TODO: ordinal number confirmation
+        //
+        // FormatterToken.Do: (DateTime dateTime) => orderedNumber(dateTime.day),
         FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, '0'),
         FormatterToken.DDD: (DateTime dateTime) => dateTime.dayOfYear.toString(),
-        FormatterToken.DDDo: (DateTime dateTime) => ordinalNumber(dateTime.dayOfYear),
+        // TODO: ordinal number confirmation
+        //
+        // FormatterToken.DDDo: (DateTime dateTime) => orderedNumber(dateTime.dayOfYear),
         FormatterToken.DDDD: (DateTime dateTime) => dateTime.dayOfYear.toString().padLeft(3, '0'),
         FormatterToken.d: (DateTime dateTime) => dateTime.weekday.toString(),
-        FormatterToken.d_o: (DateTime dateTime) => ordinalNumber(dateTime.weekday),
+        // TODO: ordinal number confirmation
+        //
+        // FormatterToken.d_o: (DateTime dateTime) => orderedNumber(dateTime.weekday),
         FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 2),
         FormatterToken.ddd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 3),
         FormatterToken.dddd: (DateTime dateTime) => weekdayName(dateTime.weekday),
         FormatterToken.e: (DateTime dateTime) => dateTime.weekday.toString(),
         FormatterToken.w: (DateTime dateTime) => dateTime.week.toString(),
-        FormatterToken.wo: (DateTime dateTime) => ordinalNumber(dateTime.week),
+        // TODO: ordinal number confirmation
+        //
+        // FormatterToken.wo: (DateTime dateTime) => orderedNumber(dateTime.week),
         FormatterToken.ww: (DateTime dateTime) => dateTime.week.toString().padLeft(2, '0'),
         FormatterToken.YY:
             //TODO: Improve the code before 22nd century
@@ -218,8 +214,8 @@ class LocalizationEnUs extends MomentLocalization {
           return dateTime.weekYear.toString().substring(2);
         },
         FormatterToken.gggg: (DateTime dateTime) => dateTime.weekYear.toString(),
-        FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "AM" : "PM",
-        FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "am" : "pm",
+        FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "Ү.Ө" : "Ү.Х",
+        FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "ү.ө" : "ү.х",
         FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
         FormatterToken.HH: (DateTime dateTime) => dateTime.hour.toString().padLeft(2, "0"),
         FormatterToken.h: (DateTime dateTime) {

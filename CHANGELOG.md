@@ -1,3 +1,9 @@
+## 0.1.3
+
+- Started work of Korean (ko_KO) and German (de_DE) localizations
+- Renamed `Localization` to `MomentLocalization` for the sake of universe
+- Exported localizations to `localizations/all.dart`, and exposed it in the main file
+
 ## 0.1.2
 
 - Improved `Moment.format` tokenization

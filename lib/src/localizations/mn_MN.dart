@@ -7,7 +7,7 @@ import 'package:moment_dart/src/moment.dart';
 
 /// Language: Cyrillic Mongolian
 /// Country: Mongolia
-class LocalizationMongolianCyrillic extends Localization {
+class LocalizationMongolianCyrillic extends MomentLocalization {
   LocalizationMongolianCyrillic() : super();
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
@@ -26,7 +26,7 @@ class LocalizationMongolianCyrillic extends Localization {
     late final String value;
     late final bool isSuffixMasculine;
 
-    RelativeInterval interval = Localization.relativeThreshold(duration);
+    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
@@ -115,7 +115,7 @@ class LocalizationMongolianCyrillic extends Localization {
       } else if (isDayBeforeYesterday) {
         day = "Уржигдар";
       } else {
-        final Moment startOfLastWeek = Localization.weekFirstDay(reference).subtract(const Duration(days: 7));
+        final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat());
@@ -131,7 +131,7 @@ class LocalizationMongolianCyrillic extends Localization {
       } else if (isDayAfterTomorrow) {
         day = "Нөгөөдөр";
       } else {
-        final Moment startOfNextWeek = Localization.weekFirstDay(reference).add(const Duration(days: 7));
+        final Moment startOfNextWeek = MomentLocalization.weekFirstDay(reference).add(const Duration(days: 7));
 
         /// If it's this week (relative to the reference)
         if (moment.isBefore(startOfNextWeek)) {
@@ -150,7 +150,7 @@ class LocalizationMongolianCyrillic extends Localization {
       return day;
     }
 
-    return "$day ${moment.format(localizationDefaultHourFormat())}д";
+    return "$day ${moment.format(localizationDefaultHourFormat())}";
   }
 
   @override

@@ -1,9 +1,7 @@
-import 'dart:math' as math;
-
 import 'package:moment_dart/src/formatters/format_match.dart';
 import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
-import 'package:moment_dart/src/localizations/en_US.dart';
+import 'package:moment_dart/src/localizations/all.dart';
 
 extension MomentBenefits on DateTime {
   bool get isLeapYear {
@@ -64,17 +62,17 @@ extension MomentBenefits on DateTime {
 
 class Moment {
   late DateTime dateTime;
-  late Localization _localization;
+  late MomentLocalization _localization;
 
   /// Moment created using given `dateTime`;
-  Moment(DateTime _dateTime, {Localization? localization}) {
+  Moment(DateTime _dateTime, {MomentLocalization? localization}) {
     dateTime = _dateTime;
 
     _localization = localization ?? LocalizationEnUs();
   }
 
   /// Moment created using DateTime.now();
-  Moment.now({Localization? localization}) {
+  Moment.now({MomentLocalization? localization}) {
     dateTime = DateTime.now();
 
     _localization = localization ?? LocalizationEnUs();
@@ -93,52 +91,6 @@ class Moment {
   Moment operator -(Duration duration) => subtract(duration);
 
   List<FormatterToken> get _fts => _localization.tokens;
-
-  String format_old(String payload) {
-    final RegExp latin = RegExp(r"[A-Za-z]");
-
-    List<String> tokenized = [];
-
-    String dummy = "";
-
-    for (int i = 0; i < payload.length; i++) {
-      if (!latin.hasMatch(payload[i])) {
-        tokenized.add(dummy);
-
-        dummy = "";
-
-        tokenized.add(payload[i]);
-      } else {
-        dummy += payload[i];
-      }
-    }
-
-    tokenized.add(dummy);
-
-    print(tokenized);
-
-    for (int j = 0; j < tokenized.length; j++) {
-      try {
-        final FormatterToken token = _fts.firstWhere((element) => tokenized[j].contains(element.name));
-
-        if (_localization.formats()[token] == null) {
-          throw "$token is not supported in this locale [${_localization.runtimeType}]";
-        }
-
-        if (token.name == "A") {
-          print("Allakh akbar: ${_localization.formats()[token]!(dateTime)}");
-        }
-
-        tokenized[j] = tokenized[j].replaceFirst(token.name, _localization.formats()[token]!(dateTime));
-      } on StateError {
-        // Silent fail
-      } catch (e) {
-        print(e);
-      }
-    }
-
-    return tokenized.join();
-  }
 
   String format(String payload) {
     final List<dynamic> tokens = [];
@@ -214,7 +166,7 @@ class Moment {
     return _localization.relative(delta, dropSuffixOrPrefix);
   }
 
-  /// It can't be static functions since it uses the [Localization]
+  /// It can't be static functions since it uses the [MomentLocalization]
   String from(Moment anchor, [bool dropSuffixOrPrefix = false]) {
     final Duration delta = dateTime.difference(anchor.dateTime);
 

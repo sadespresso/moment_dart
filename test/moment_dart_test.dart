@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('Mongolian', () {
-    Localization localizationMongolianCyrillic = LocalizationMongolianCyrillic();
+    MomentLocalization localizationMongolianCyrillic = LocalizationMongolianCyrillic();
     final moment = Moment.now(localization: localizationMongolianCyrillic) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0), localization: localizationMongolianCyrillic);
     final epochPlusFiveDays = epoch + Duration(days: 5);
@@ -22,7 +22,7 @@ void main() {
   });
 
   test('English', () {
-    Localization localization = LocalizationEnUs();
+    MomentLocalization localization = LocalizationEnUs();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true), localization: localization);
     final epochPlusFiveDays = epoch + Duration(days: 5);
@@ -40,7 +40,7 @@ void main() {
   });
 
   test('Traditional Mongolian', () {
-    Localization localization = LocalizationMongolianTraditional();
+    MomentLocalization localization = LocalizationMongolianTraditional();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0), localization: localization);
     final epochPlusFiveDays = epoch + Duration(days: 5);

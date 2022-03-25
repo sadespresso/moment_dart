@@ -27,8 +27,8 @@ enum RelativeInterval {
 }
 
 /// Extend this class to create new localization
-abstract class Localization {
-  Localization();
+abstract class MomentLocalization {
+  MomentLocalization();
 
   static const int maxInt = (double.infinity is int) ? double.infinity as int : ~minInt;
   static const int minInt = (double.infinity is int) ? -double.infinity as int : (-1 << 63);
@@ -51,7 +51,7 @@ abstract class Localization {
     RelativeInterval.years: null,
   };
 
-  /// Uses [Localization._relativeThresholds] map. Refer to this table for details:
+  /// Uses [MomentLocalization._relativeThresholds] map. Refer to this table for details:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
   static RelativeInterval relativeThreshold(Duration _duration) {
     final Duration duration = _duration.abs();
@@ -69,7 +69,7 @@ abstract class Localization {
     throw Exception("Something went wrong");
   }
 
-  /// Please take a look at [Localization.relativeThreshold] function and [Localization._relativeThresholds] before implementing. Those will make your life slightly easier
+  /// Please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
   String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat});
 
