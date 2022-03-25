@@ -1,3 +1,7 @@
+## 0.1.4+1
+
+- Exposed the `MomentLocalization`
+
 ## 0.1.4
 
 - Exposed the localization in `Moment` class
