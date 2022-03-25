@@ -1,3 +1,8 @@
+## 0.1.4
+
+- Exposed the localization in `Moment` class
+- Added `DateTime.toMoment({MomentLocalization: localization})` function as extension on `DateTime`
+
 ## 0.1.3+1
 
 - Exported localizations to `localizations/all.dart`, and exposed it in the main file

@@ -56,6 +56,8 @@ extension MomentBenefits on DateTime {
 
     return (timeZoneOffset.isNegative ? "-" : "+") + hours.toString() + (seperateWithColon ? ":" : "") + minutes.toString();
   }
+
+  Moment toMoment({MomentLocalization? localization}) => Moment(this, localization: localization);
 }
 
 /// Moment is a wrapper for [DateTime] class
@@ -63,6 +65,8 @@ extension MomentBenefits on DateTime {
 class Moment {
   late DateTime dateTime;
   late MomentLocalization _localization;
+
+  MomentLocalization get localization => _localization;
 
   /// Moment created using given `dateTime`;
   Moment(DateTime _dateTime, {MomentLocalization? localization}) {
