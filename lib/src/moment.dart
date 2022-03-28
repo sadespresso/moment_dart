@@ -5,9 +5,17 @@ import 'package:moment_dart/src/localizations/all.dart';
 
 extension MomentBenefits on DateTime {
   bool get isLeapYear {
-    if ((year & 3) == 0) return false;
+    if (year & 3 == 0) {
+      if (year % 400 == 0) {
+        return true;
+      } else if (year % 100 == 0) {
+        return false;
+      }
 
-    return year % 100 != 0 || year % 400 == 0;
+      return true;
+    }
+
+    return false;
   }
 
   /// Returns quarter of the year.
@@ -20,31 +28,57 @@ extension MomentBenefits on DateTime {
   ///
   /// Oct,Nov,Dec is Q4
   int get quarter {
-    return ((month - 1) / 3).floor() + 1;
+    return (month - 1) ~/ 3 + 1;
   }
+
+  int get _isoWeekRaw => (10 + dayOfYear - weekday) ~/ 7;
+
+  bool get _isoWeekInNextYear => DateTime(year, 1, 1).weekday != DateTime.thursday && DateTime(year, 12, 31).weekday != DateTime.thursday;
 
   /// Returns [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
   ///
   /// [1, 2, 3, ..., 52, 53]
   int get week {
-    final DateTime date = DateTime(year, month, day).add(Duration(days: day - (day + 3 - (weekday + 6) % 7)));
-    final DateTime firstWeek = DateTime(year, 1, 4);
+    final int w = _isoWeekRaw;
 
-    final int delta = date.millisecondsSinceEpoch - firstWeek.millisecondsSinceEpoch;
+    // Last year may have 52 or 53 weeks, we shall check
+    //
+    // Dec 28 is always in the last week
+    if (w == 0) {
+      return DateTime(year - 1, 12, 28).week;
+    }
 
-    return ((delta / Duration(days: 1).inMilliseconds - 3 + (firstWeek.weekday + 6) % 7) / 7).round();
+    // It might actually be [Week 1] in the next year
+    if (w == 53 && _isoWeekInNextYear) {
+      return 1;
+    }
+
+    return w;
   }
 
   /// Returns year according to [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
-  int get weekYear => DateTime(year, month, day).add(Duration(days: day - (day + 3 - (weekday + 6) % 7))).year;
+  int get weekYear {
+    final int w = _isoWeekRaw;
 
+    if (w == 0) return year - 1;
+
+    if (w == 53 && _isoWeekInNextYear) {
+      return year + 1;
+    }
+
+    return year;
+  }
+
+  /// Returns ordinal day of the year
+  ///
+  /// [1,2,3,...,365,366]
   int get dayOfYear {
     const List<int> dayCount = [0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 
     int _dayOfYear = dayCount[month] + day;
 
     if (isLeapYear && month > 2) {
-      _dayOfYear++;
+      return _dayOfYear + 1;
     }
 
     return _dayOfYear;

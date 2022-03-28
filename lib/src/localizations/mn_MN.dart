@@ -160,14 +160,6 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
   String localizationDefaultHourFormat() => "HH:mm";
 
   String orderedNumber(int i) {
-    int moduloTen = i % 10;
-
-    if (moduloTen == 0) {
-      moduloTen = i - moduloTen;
-      moduloTen ~/= 10;
-      moduloTen %= 10;
-    }
-
     const List<int> feminineUnits = [0, 1, 4, 9];
 
     final bool feminine = feminineUnits.contains(i);

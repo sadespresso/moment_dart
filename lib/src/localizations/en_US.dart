@@ -140,10 +140,11 @@ class LocalizationEnUs extends MomentLocalization {
   String localizationDefaultHourFormat() => "hh:mmA";
 
   String ordinalNumber(int n) {
-    final int lastDigit = n % 10;
     final int lastTwoDigit = n % 100;
 
     if (!(lastTwoDigit > 10 && lastTwoDigit < 14)) {
+      final int lastDigit = n % 10;
+
       switch (lastDigit) {
         case 1:
           return "${n}st";

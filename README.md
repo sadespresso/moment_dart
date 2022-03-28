@@ -45,6 +45,40 @@ moment.fromNow();
 moment.format();
 ```
 
+### Even if you don't use moment, you can use MomentBenefits
+
+```dart
+extension MomentBenefits on DateTime { /*Extension*/ }
+
+// Provides functionalities mentioned below.
+
+  final DateTime date = DateTime(2022,03,29);
+
+  //Returns the ISO Week number of the year
+  //
+  // [1,2,3,...,52,53]
+  date.week == 13; // true
+
+  // Returns the year according to ISO Week
+  date.weekYear == 2022; // true
+
+  // Returns the quarter of the year. [][Jan,Feb,Mar][Apr,May,Jun][Jul,Aug,Sep][Oct,Nov,Dec]
+  //
+  // [1,2,3,4]
+  date.quarter == 1; // true
+
+  // Returns if the [year] is leap year
+  date.isLeapYear == false; // true
+
+  /// Returns ordinal day of the year
+  /// 
+  /// [1,2,3,...,365,366]
+  date.dayOfYear == 88; // true
+}
+```
+
+Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
+
 ### Available Localization classes:
 
 Localizations are classes that extend `MomentLocalization`
@@ -52,7 +86,7 @@ Localizations are classes that extend `MomentLocalization`
 - LocalizationEnUs
 - LocalizationMongolianCyrillic
 - LocalizationMongolianTraditional
-- LocalizationMongolianTraditionalNumbers
+- LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
 
 ## Creating own Localzation
 

@@ -1,6 +1,6 @@
 name: moment_dart
 description: moment.js port for dart
-version: 0.1.4+1
+version: 0.1.5
 homepage: https://github.com/theirontnt/moment_dart
 
 environment:

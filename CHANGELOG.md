@@ -1,3 +1,9 @@
+## 0.1.5
+
+- Added MomentBenefits extenstion usage on README
+- Testing on MomentBenefits extension
+- Bugfixes
+  
 ## 0.1.4+1
 
 - Exposed the `MomentLocalization`
