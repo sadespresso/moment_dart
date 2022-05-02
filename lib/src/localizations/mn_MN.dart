@@ -118,7 +118,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "Өмнөх ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -137,7 +137,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         if (moment.isBefore(startOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }
       }
     }
@@ -150,14 +150,8 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
       return day;
     }
 
-    return "$day ${moment.format(localizationDefaultHourFormat())}";
+    return "$day ${moment.format(localizationDefaultHourFormat)}";
   }
-
-  @override
-  String localizationDefaultDateFormat() => "YYYY/MM/DD";
-
-  @override
-  String localizationDefaultHourFormat() => "HH:mm";
 
   String orderedNumber(int i) {
     const List<int> feminineUnits = [0, 1, 4, 9];
@@ -242,5 +236,21 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+        // Localization aware formats
+        FormatterToken.L: (DateTime dateTime) => reformat(dateTime, "YYYY/MM/DD"),
+        FormatterToken.l: (DateTime dateTime) => reformat(dateTime, "YYYY/M/D"),
+        FormatterToken.LL: (DateTime dateTime) => reformat(dateTime, "YYYY оны MMMMын DD"),
+        FormatterToken.ll: (DateTime dateTime) => reformat(dateTime, "YYYY оны MMMын D"),
+        FormatterToken.LLL: (DateTime dateTime) => reformat(dateTime, "YYYY оны MMMMын DD HH:mm"),
+        FormatterToken.lll: (DateTime dateTime) => reformat(dateTime, "YYYY оны MMMын D HH:mm"),
+        FormatterToken.LLLL: (DateTime dateTime) => reformat(dateTime, "dddd, YYYY оны MMMMын DD HH:mm"),
+        FormatterToken.llll: (DateTime dateTime) => reformat(dateTime, "ddd, YYYY оны MMMын D HH:mm"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "HH:mm"),
+        FormatterToken.LTS: (DateTime dateTime) => reformat(dateTime, "HH:mm:ss"),
       };
+
+  @override
+  String reformat(DateTime dateTime, String payload) {
+    return Moment(dateTime, localization: LocalizationMongolianCyrillic()).format(payload);
+  }
 }

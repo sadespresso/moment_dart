@@ -97,6 +97,8 @@ extension MomentBenefits on DateTime {
 /// Moment is a wrapper for [DateTime] class
 
 class Moment {
+  bool _enableDebugPrint = false;
+
   late DateTime dateTime;
   late MomentLocalization _localization;
 
@@ -127,6 +129,10 @@ class Moment {
 
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
+
+  enableDebugPrint() {
+    _enableDebugPrint = true;
+  }
 
   List<FormatterToken> get _fts => _localization.tokens;
 
@@ -162,7 +168,9 @@ class Moment {
 
       tokens.add(closestToZero);
 
-      print("We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
+      if (_enableDebugPrint) {
+        print("[Moment Dart] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
+      }
 
       payload = payload.substring(closestToZero.endIndex);
 

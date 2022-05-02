@@ -112,7 +112,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "ᠡᠮᠦᠨᠡᠬᠢ ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -132,7 +132,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         if (moment.isBefore(startOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }
       }
     }
@@ -145,14 +145,8 @@ class LocalizationMongolianTraditional extends MomentLocalization {
       return day;
     }
 
-    return "$day ${moment.format(localizationDefaultHourFormat())}";
+    return "$day ${moment.format(localizationDefaultHourFormat)}";
   }
-
-  @override
-  String localizationDefaultDateFormat() => "YYYY/MM/DD";
-
-  @override
-  String localizationDefaultHourFormat() => "HH:mm";
 
   String orderedNumber(int i) {
     int moduloTen = i % 10;
@@ -245,5 +239,21 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+        // Localization aware formats
+        FormatterToken.L: (DateTime dateTime) => reformat(dateTime, "YYYY/MM/DD"),
+        FormatterToken.l: (DateTime dateTime) => reformat(dateTime, "YYYY/M/D"),
+        FormatterToken.LL: (DateTime dateTime) => reformat(dateTime, "YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ DD"),
+        FormatterToken.ll: (DateTime dateTime) => reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D"),
+        FormatterToken.LLL: (DateTime dateTime) => reformat(dateTime, "YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ DD HH:mm"),
+        FormatterToken.lll: (DateTime dateTime) => reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D HH:mm"),
+        FormatterToken.LLLL: (DateTime dateTime) => reformat(dateTime, "dddd, YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ DD HH:mm"),
+        FormatterToken.llll: (DateTime dateTime) => reformat(dateTime, "ddd, YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D HH:mm"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "HH:mm"),
+        FormatterToken.LTS: (DateTime dateTime) => reformat(dateTime, "HH:mm:ss"),
       };
+
+  @override
+  String reformat(DateTime dateTime, String payload) {
+    return Moment(dateTime, localization: LocalizationMongolianTraditional()).format(payload);
+  }
 }

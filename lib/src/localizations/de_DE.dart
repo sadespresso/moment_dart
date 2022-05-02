@@ -5,8 +5,8 @@ import 'package:moment_dart/src/formatters/token.dart';
 import '../localizations.dart';
 import 'package:moment_dart/src/moment.dart';
 
-/// Language: English (US)
-/// Country: United States
+/// Language: German
+/// Country: Germany
 class LocalizationGermanStandard extends MomentLocalization {
   LocalizationGermanStandard() : super();
 
@@ -102,7 +102,7 @@ class LocalizationGermanStandard extends MomentLocalization {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "letzten ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -119,7 +119,7 @@ class LocalizationGermanStandard extends MomentLocalization {
         if (moment.isBefore(endOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }
       }
     }
@@ -130,14 +130,8 @@ class LocalizationGermanStandard extends MomentLocalization {
       return day;
     }
 
-    return "$day um ${moment.format(localizationDefaultHourFormat())}";
+    return "$day um ${moment.format(localizationDefaultHourFormat)}";
   }
-
-  @override
-  String localizationDefaultDateFormat() => "DD/MM/YYYY";
-
-  @override
-  String localizationDefaultHourFormat() => "kk:mm Uhr";
 
   String ordinalNumber(int n) => "$n.";
 
@@ -229,5 +223,21 @@ class LocalizationGermanStandard extends MomentLocalization {
         FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+        // Localization aware formats
+        FormatterToken.L: (DateTime dateTime) => reformat(dateTime, "DD.MM.YYYY"),
+        FormatterToken.l: (DateTime dateTime) => reformat(dateTime, "D.M.YYYY"),
+        FormatterToken.LL: (DateTime dateTime) => reformat(dateTime, "DD. MMMM YYYY"),
+        FormatterToken.ll: (DateTime dateTime) => reformat(dateTime, "D. MMM YYYY"),
+        FormatterToken.LLL: (DateTime dateTime) => reformat(dateTime, "DD. MMMM YYYY HH:mm"),
+        FormatterToken.lll: (DateTime dateTime) => reformat(dateTime, "D. MMM YYYY HH:mm"),
+        FormatterToken.LLLL: (DateTime dateTime) => reformat(dateTime, "dddd, DD. MMMM YYYY HH:mm"),
+        FormatterToken.llll: (DateTime dateTime) => reformat(dateTime, "ddd, D. MMM YYYY HH:mm"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "HH:mm"),
+        FormatterToken.LTS: (DateTime dateTime) => reformat(dateTime, "HH:mm:ss"),
       };
+
+  @override
+  String reformat(DateTime dateTime, String payload) {
+    return Moment(dateTime, localization: LocalizationGermanStandard()).format(payload);
+  }
 }

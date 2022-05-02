@@ -292,6 +292,56 @@ enum FormatterToken {
 
   /// [Unix millisecond timestamp]
   x,
+
+  /// Date (in local format, shorter)
+  ///
+  /// 9/4/1986
+  l,
+
+  /// Date (in local format)
+  ///
+  /// 09/04/1986
+  L,
+
+  /// Month name, day of month, year (shorter)
+  ///
+  /// Sep 4 1986
+  ll,
+
+  /// Month name, day of month, year
+  ///
+  /// September 04 1986
+  LL,
+
+  /// Month name, day of month, year, time
+  ///
+  /// Sep 4 1986 8:30 PM
+  lll,
+
+  /// Month name, day of month, year, time
+  ///
+  /// September 04 1986 08:30 PM
+  LLL,
+
+  /// Day of week, month name, day of month, year, time (shorter)
+  ///
+  /// Thu, Sep 4 1986 8:30 PM
+  llll,
+
+  /// Day of week, month name, day of month, year, time
+  ///
+  /// Thursday, September 04 1986 08:30 PM
+  LLLL,
+
+  /// Time (without seconds)
+  ///
+  /// 8:30 PM
+  LT,
+
+  /// Time (with seconds)
+  ///
+  /// 8:30:00 PM
+  LTS,
 }
 
 extension TokenString on FormatterToken {

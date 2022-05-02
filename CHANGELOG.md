@@ -1,3 +1,11 @@
+## 0.2.0
+
+- Removed debug prints when using `.format(String payload)`. You can re-enable it by calling `.enableDebugPrint()` on the Moment instance
+- Exposed experimental **Korean** (ko_KO), **German** (de_DE) localizations
+- Added **localization aware formatters**: L, LL, LLL, LLLL, LT, LTS
+- Removed `localizationDefaultDateFormat()`, `localizationDefaultHourFormat()` from `MomentLocalization` in favor of **localization aware formatter**
+- Revised some localizations
+
 ## 0.1.5
 
 - Added MomentBenefits extenstion usage on README

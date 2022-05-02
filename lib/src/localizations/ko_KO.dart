@@ -5,8 +5,8 @@ import 'package:moment_dart/src/formatters/token.dart';
 import '../localizations.dart';
 import 'package:moment_dart/src/moment.dart';
 
-/// Language: Cyrillic Mongolian
-/// Country: Mongolia
+/// Language: Korean
+/// Country: South Korea
 class LocalizationKorean extends MomentLocalization {
   LocalizationKorean() : super();
 
@@ -82,14 +82,16 @@ class LocalizationKorean extends MomentLocalization {
 
   // Tibet weekday names are here, because it is majorly used in Mongolia
   static const Map<int, String> weekdayNames = {
-    1: "월요일",
-    2: "화요일",
-    3: "수요일",
-    4: "목요일",
-    5: "금요일",
-    6: "토요일",
-    7: "일요일",
+    1: "월",
+    2: "화",
+    3: "수",
+    4: "목",
+    5: "금",
+    6: "토",
+    7: "일",
   };
+
+  static const String weekdaySuffix = "요일";
 
   @override
   String weekdayName(int i) => weekdayNames[i]!; //평일 이름
@@ -118,7 +120,7 @@ class LocalizationKorean extends MomentLocalization {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "지난 ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -137,7 +139,7 @@ class LocalizationKorean extends MomentLocalization {
         if (moment.isBefore(startOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }
       }
     }
@@ -150,49 +152,35 @@ class LocalizationKorean extends MomentLocalization {
       return day;
     }
 
-    return "$day ${moment.format(localizationDefaultHourFormat())}";
+    return "$day ${moment.format(localizationDefaultHourFormat)}";
   }
-
-  @override
-  String localizationDefaultDateFormat() => "YYYY/MM/DD";
-
-  @override
-  String localizationDefaultHourFormat() => "HH:mm";
 
   String monthName(int i) => "$i월";
 
   @override
   Map<FormatterToken, FormatterTokenFn?> formats() => {
         FormatterToken.M: (DateTime dateTime) => dateTime.month.toString(),
-        // TODO: ordinal number confirmation
-        FormatterToken.Mo: (DateTime dateTime) => dateTime.month.toString(),
+        FormatterToken.Mo: (DateTime dateTime) => "${dateTime.month}월",
         FormatterToken.MM: (DateTime dateTime) => dateTime.month.toString().padLeft(2, '0'),
-        FormatterToken.MMM: (DateTime dateTime) => "${dateTime.month}-р сар",
+        FormatterToken.MMM: (DateTime dateTime) => monthName(dateTime.month),
         FormatterToken.MMMM: (DateTime dateTime) => monthName(dateTime.month),
         FormatterToken.Q: (DateTime dateTime) => dateTime.quarter.toString(),
-        // FormatterToken.Qo: (DateTime dateTime) => orderedNumber(dateTime.quarter),
+        FormatterToken.Qo: (DateTime dateTime) => "${dateTime.quarter}분기",
         FormatterToken.D: (DateTime dateTime) => dateTime.day.toString(),
-        // TODO: ordinal number confirmation
-        //
-        // FormatterToken.Do: (DateTime dateTime) => orderedNumber(dateTime.day),
+        FormatterToken.Do: (DateTime dateTime) => "${dateTime.day}일",
         FormatterToken.DD: (DateTime dateTime) => dateTime.day.toString().padLeft(2, '0'),
         FormatterToken.DDD: (DateTime dateTime) => dateTime.dayOfYear.toString(),
-        // TODO: ordinal number confirmation
-        //
-        // FormatterToken.DDDo: (DateTime dateTime) => orderedNumber(dateTime.dayOfYear),
+        FormatterToken.DDDo: (DateTime dateTime) => "${dateTime.dayOfYear}일",
         FormatterToken.DDDD: (DateTime dateTime) => dateTime.dayOfYear.toString().padLeft(3, '0'),
         FormatterToken.d: (DateTime dateTime) => dateTime.weekday.toString(),
-        // TODO: ordinal number confirmation
-        //
-        // FormatterToken.d_o: (DateTime dateTime) => orderedNumber(dateTime.weekday),
-        FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 2),
-        FormatterToken.ddd: (DateTime dateTime) => weekdayName(dateTime.weekday).substring(0, 3),
-        FormatterToken.dddd: (DateTime dateTime) => weekdayName(dateTime.weekday),
+        FormatterToken.d_o: (DateTime dateTime) => "${dateTime.weekday}일",
+        FormatterToken.dd: (DateTime dateTime) => weekdayName(dateTime.weekday),
+        // Controversial :))
+        FormatterToken.ddd: (DateTime dateTime) => weekdayName(dateTime.weekday),
+        FormatterToken.dddd: (DateTime dateTime) => weekdayName(dateTime.weekday) + weekdaySuffix,
         FormatterToken.e: (DateTime dateTime) => dateTime.weekday.toString(),
         FormatterToken.w: (DateTime dateTime) => dateTime.week.toString(),
-        // TODO: ordinal number confirmation
-        //
-        // FormatterToken.wo: (DateTime dateTime) => orderedNumber(dateTime.week),
+        FormatterToken.wo: (DateTime dateTime) => "${dateTime.week}주째",
         FormatterToken.ww: (DateTime dateTime) => dateTime.week.toString().padLeft(2, '0'),
         FormatterToken.YY:
             //TODO: Improve the code before 22nd century
@@ -214,8 +202,8 @@ class LocalizationKorean extends MomentLocalization {
           return dateTime.weekYear.toString().substring(2);
         },
         FormatterToken.gggg: (DateTime dateTime) => dateTime.weekYear.toString(),
-        FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "Ү.Ө" : "Ү.Х",
-        FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "ү.ө" : "ү.х",
+        FormatterToken.A: (DateTime dateTime) => dateTime.hour < 12 ? "오전" : "오후",
+        FormatterToken.a: (DateTime dateTime) => dateTime.hour < 12 ? "오전" : "오후",
         FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
         FormatterToken.HH: (DateTime dateTime) => dateTime.hour.toString().padLeft(2, "0"),
         FormatterToken.h: (DateTime dateTime) {
@@ -243,5 +231,21 @@ class LocalizationKorean extends MomentLocalization {
         FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+        // Localization aware formats
+        FormatterToken.L: (DateTime dateTime) => reformat(dateTime, "YYYY.MM.DD."),
+        FormatterToken.l: (DateTime dateTime) => reformat(dateTime, "YYYY.M.D."),
+        FormatterToken.LL: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMMM Do"),
+        FormatterToken.ll: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMM Do"),
+        FormatterToken.LLL: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMMM Do A hh:mm"),
+        FormatterToken.lll: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMM Do A hh:mm"),
+        FormatterToken.LLLL: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMMM Do dddd A hh:mm"),
+        FormatterToken.llll: (DateTime dateTime) => reformat(dateTime, "YYYY년 MMM Do ddd A hh:mm"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "A hh:mm"),
+        FormatterToken.LTS: (DateTime dateTime) => reformat(dateTime, "A hh:mm:ss"),
       };
+
+  @override
+  String reformat(DateTime dateTime, String payload) {
+    return Moment(dateTime, localization: LocalizationKorean()).format(payload);
+  }
 }

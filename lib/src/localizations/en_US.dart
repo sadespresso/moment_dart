@@ -2,7 +2,7 @@
 
 import 'package:moment_dart/src/formatters/token.dart';
 
-import '../localizations.dart';
+import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/moment.dart';
 
 /// Language: English (US)
@@ -102,7 +102,7 @@ class LocalizationEnUs extends MomentLocalization {
         final Moment startOfLastWeek = MomentLocalization.weekFirstDay(reference).subtract(const Duration(days: 7));
 
         if (moment.isBefore(startOfLastWeek)) {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "Last ${weekdayName(moment.dateTime.weekday)}";
         }
@@ -119,7 +119,7 @@ class LocalizationEnUs extends MomentLocalization {
         if (moment.isBefore(endOfNextWeek)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
-          day = moment.format(customFormat ?? localizationDefaultDateFormat());
+          day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }
       }
     }
@@ -130,14 +130,8 @@ class LocalizationEnUs extends MomentLocalization {
       return day;
     }
 
-    return "$day at ${moment.format(localizationDefaultHourFormat())}";
+    return "$day at ${moment.format(localizationDefaultHourFormat)}";
   }
-
-  @override
-  String localizationDefaultDateFormat() => "MM/DD/YYYY";
-
-  @override
-  String localizationDefaultHourFormat() => "hh:mmA";
 
   String ordinalNumber(int n) {
     final int lastTwoDigit = n % 100;
@@ -248,5 +242,21 @@ class LocalizationEnUs extends MomentLocalization {
         FormatterToken.ZZZ: (DateTime dateTime) => dateTime.timeZoneName,
         FormatterToken.X: (DateTime dateTime) => dateTime.microsecondsSinceEpoch.toString(),
         FormatterToken.x: (DateTime dateTime) => dateTime.millisecondsSinceEpoch.toString(),
+        // Localization aware formats
+        FormatterToken.L: (DateTime dateTime) => reformat(dateTime, "MM/DD/YYYY"),
+        FormatterToken.l: (DateTime dateTime) => reformat(dateTime, "M/D/YYYY"),
+        FormatterToken.LL: (DateTime dateTime) => reformat(dateTime, "MMMM DD YYYY"),
+        FormatterToken.ll: (DateTime dateTime) => reformat(dateTime, "MMM D YYYY"),
+        FormatterToken.LLL: (DateTime dateTime) => reformat(dateTime, "MMMM DD YYYY hh:mm A"),
+        FormatterToken.lll: (DateTime dateTime) => reformat(dateTime, "MMM D YYYY hh:mm A"),
+        FormatterToken.LLLL: (DateTime dateTime) => reformat(dateTime, "dddd, MMMM DD YYYY hh:mm A"),
+        FormatterToken.llll: (DateTime dateTime) => reformat(dateTime, "ddd, MMM D YYYY hh:mm A"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "hh:mm A"),
+        FormatterToken.LTS: (DateTime dateTime) => reformat(dateTime, "hh:mm:ss A"),
       };
+
+  @override
+  String reformat(DateTime dateTime, String payload) {
+    return Moment(dateTime, localization: LocalizationEnUs()).format(payload);
+  }
 }

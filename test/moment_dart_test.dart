@@ -88,7 +88,9 @@ void main() {
       expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true), "Last Thursday");
       expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "Tuesday");
       expect(epochPlusAYear.from(epoch), "in a year");
-      expect(epochPlusAYear.calendar(reference: epoch), "01/01/1971 at 12:00AM");
+      expect(epochPlusAYear.calendar(reference: epoch), "01/01/1971 at 12:00 AM");
+
+      expect(epochPlusFiveDays.format("L LT"), "01/06/1970 12:00 AM");
     });
 
     test('Traditional Mongolian', () {

@@ -75,9 +75,6 @@ abstract class MomentLocalization {
 
   String weekdayName(int i);
 
-  String localizationDefaultDateFormat();
-  String localizationDefaultHourFormat();
-
   Map<FormatterToken, FormatterTokenFn?> formats();
 
   static Moment weekFirstDay(Moment reference, [bool weekStartOnSunday = false]) {
@@ -85,4 +82,9 @@ abstract class MomentLocalization {
   }
 
   final List<FormatterToken> tokens = [...FormatterToken.values]..sort((a, b) => b.toString().length.compareTo(a.toString().length));
+
+  final String localizationDefaultDateFormat = "L";
+  final String localizationDefaultHourFormat = "LT";
+
+  String reformat(DateTime dateTime, String payload);
 }
