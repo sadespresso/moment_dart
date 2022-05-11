@@ -1,3 +1,7 @@
+## 0.2.0+2
+
+- No longer prints the matched tokens
+
 ## 0.2.0
 
 - Removed debug prints when using `.format(String payload)`. You can re-enable it by calling `.enableDebugPrint()` on the Moment instance

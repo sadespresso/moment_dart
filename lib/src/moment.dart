@@ -179,8 +179,6 @@ class Moment {
       }
     }
 
-    print(tokens.map((e) => e.toString()));
-
     String value = "";
 
     for (var token in tokens) {
