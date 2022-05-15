@@ -31,34 +31,34 @@ class LocalizationGermanStandard extends MomentLocalization {
         value = "a few seconds";
         break;
       case RelativeInterval.aMinute:
-        value = "a minute";
+        value = "einer Minute";
         break;
       case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()} minutes";
+        value = "${(duration.inSeconds / 60).round()} Minuten";
         break;
       case RelativeInterval.anHour:
-        value = "an hour";
+        value = "einer Stunde";
         break;
       case RelativeInterval.hours:
-        value = "${(duration.inMinutes / 60).round()} hours";
+        value = "${(duration.inMinutes / 60).round()} Stunden";
         break;
       case RelativeInterval.aDay:
-        value = "a day";
+        value = "einem Tag";
         break;
       case RelativeInterval.days:
-        value = "${(duration.inHours / 24).round()} days";
+        value = "${(duration.inHours / 24).round()} Tagen";
         break;
       case RelativeInterval.aMonth:
-        value = "a month";
+        value = "einem Monat";
         break;
       case RelativeInterval.months:
-        value = "${(duration.inDays / 30).round()} months";
+        value = "${(duration.inDays / 30).round()} Monaten";
         break;
       case RelativeInterval.aYear:
-        value = "a year";
+        value = "einemJahr";
         break;
       case RelativeInterval.years:
-        value = "${(duration.inDays / 365).round()} years";
+        value = "${(duration.inDays / 365).round()} Jahren";
         break;
     }
 
@@ -182,8 +182,6 @@ class LocalizationGermanStandard extends MomentLocalization {
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
@@ -237,7 +235,14 @@ class LocalizationGermanStandard extends MomentLocalization {
       };
 
   @override
-  String reformat(DateTime dateTime, String payload) {
-    return Moment(dateTime, localization: LocalizationGermanStandard()).format(payload);
-  }
+  String endonym() => "Deutsch";
+
+  @override
+  String languageCodeISO() => "de";
+
+  @override
+  String locale() => "de_DE";
+
+  @override
+  String languageNameInEnglish() => "German (Standard)";
 }

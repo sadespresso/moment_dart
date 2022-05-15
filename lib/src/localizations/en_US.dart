@@ -201,8 +201,6 @@ class LocalizationEnUs extends MomentLocalization {
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
@@ -256,7 +254,14 @@ class LocalizationEnUs extends MomentLocalization {
       };
 
   @override
-  String reformat(DateTime dateTime, String payload) {
-    return Moment(dateTime, localization: LocalizationEnUs()).format(payload);
-  }
+  String endonym() => "English";
+
+  @override
+  String languageCodeISO() => "en";
+
+  @override
+  String locale() => "en_US";
+
+  @override
+  String languageNameInEnglish() => "English (United States)";
 }

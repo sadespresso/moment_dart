@@ -195,8 +195,6 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
@@ -250,7 +248,14 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
       };
 
   @override
-  String reformat(DateTime dateTime, String payload) {
-    return Moment(dateTime, localization: LocalizationMongolianCyrillic()).format(payload);
-  }
+  String endonym() => "Монгол хэл";
+
+  @override
+  String languageCodeISO() => "mn";
+
+  @override
+  String locale() => "mn";
+
+  @override
+  String languageNameInEnglish() => "Mongolian (Cyrillic)";
 }

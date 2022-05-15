@@ -2,93 +2,84 @@ A Moment.js inspired package.
 
 ## Usage
 
+### Import the package
+
 ```dart
-
 import "package:moment_dart/moment_dart.dart";
-
-/// If localization is omitted, it defaults to LocalizationEnUs
-///
-/// Localization argument takes [T extends MomentLocalization]. MomentLocalization is custom abstract class.  
-final Moment moment = Moment.now() - Duration(days: 1);
-final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
-final Moment epochPlusFiveDays = epoch + Duration(days: 5);
-final Moment epochPlusAYear = epoch + Duration(days: 365);
-
-
-localization.relative(const Duration(seconds: 2); //in a few seconds
-localization.weekdayName(epoch.weekday); // "Thursday"
-epochPlusFiveDays.from(epoch, true), "5 days"
-epochPlusFiveDays.from(epoch), "in 5 days"
-epoch.calendar(reference: epochPlusFiveDays, omitHours: true), "Last Thursday"
-epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "Tuesday"
-epochPlusAYear.from(epoch), "in a year"
-epochPlusAYear.calendar(reference: epoch), "01/01/1971 at 12:00AM"
-
-
-/// Returns relative string, such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
-///
-/// You can omit the hours using [omitHours] argument.
-///
-/// [reference] is `Moment.now()` by default.
-moment.calendar();
-
-/// Example when using [LocalizationEnUs]:
-///
-/// If [this] is yesterday, will result `"a day ago"`
-///
-/// If [this] is tomorrow, will result `"in a day"`
-///
-/// moment.js's `toNow()` function has been omitted, since this function prefixes/suffixes appropriately.
-moment.fromNow();
-
-/// Unimplemented
-moment.format();
 ```
 
-### Even if you don't use moment, you can use MomentBenefits
+### Create Moment instance
 
 ```dart
-extension MomentBenefits on DateTime { /*Extension*/ }
+final Moment now = Moment.now();
 
-// Provides functionalities mentioned below.
+final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
 
-  final DateTime date = DateTime(2022,03,29);
+final Moment derived = DateTime(2003,06,01).toMoment();
+```
+-----
 
-  //Returns the ISO Week number of the year
-  //
-  // [1,2,3,...,52,53]
-  date.week == 13; // true
+### Use it!
+```dart
+final Moment moment = Moment.now() - Duration(days: 1); // May 14, 2022
 
-  // Returns the year according to ISO Week
-  date.weekYear == 2022; // true
+moment.calendar(); // Yesterday
 
-  // Returns the quarter of the year. [][Jan,Feb,Mar][Apr,May,Jun][Jul,Aug,Sep][Oct,Nov,Dec]
-  //
-  // [1,2,3,4]
-  date.quarter == 1; // true
+moment.fromNow(); // a day ago
 
-  // Returns if the [year] is leap year
-  date.isLeapYear == false; // true
+// You can omit the prefix/suffix
+moment.from(moment - Duration(days: 365), true); // a year
 
-  /// Returns ordinal day of the year
-  /// 
-  /// [1,2,3,...,365,366]
-  date.dayOfYear == 88; // true
-}
+/// Unmatched strings will be left as is.
+moment.format("YYYY년 MMMM Do dddd hh:mma"); // 2022년 May 14 Saturday 08:09pm
+```
+
+### Change localization
+When localization is omitted, it defaults to English (United States)
+```dart
+final Moment hangulday = Moment(DateTime(2022,10,9), localization: MomentLocalizations.ko());
+
+hangulday.format("ll"); // 2022년 10월 9
+```
+
+You can also take advantage of localization, as it's kinda the main character
+```dart
+final MomentLocalization localization = MomentLocalizations.enUS();
+
+localization.relative(const Duration(seconds: 2)); //in a few seconds
+localization.weekdayName(yesterday.weekday); // "Monday"
+```
+
+### Even if you don't use moment, you can use MomentBenefits extension by importing the package :)
+
+```dart
+final DateTime date = DateTime(2022,03,29);
+
+//Returns the ISO Week number of the year
+//
+// [1,2,3,...,52,53]
+date.week == 13; // true
+
+// Returns the year according to ISO Week
+date.weekYear == 2022; // true
+
+// Returns the quarter of the year. [][Jan,Feb,Mar][Apr,May,Jun][Jul,Aug,Sep][Oct,Nov,Dec]
+//
+// [1,2,3,4]
+date.quarter == 1; // true
+
+// Returns if the [year] is leap year
+date.isLeapYear == false; // true
+
+/// Returns ordinal day of the year
+/// 
+/// [1,2,3,...,365,366]
+date.dayOfYear == 88; // true
 ```
 
 Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
 
-### Available Localization classes:
-
-Localizations are classes that extend `MomentLocalization`
-
-- LocalizationEnUs
-- LocalizationMongolianCyrillic
-- LocalizationMongolianTraditional
-- LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
-
-## Creating own Localzation
+## Creating your own Localzation
 
 First, extend the Localization abstract class.
 
@@ -100,7 +91,7 @@ Almost everything is declared as function, so you can freely achieve the unique 
     String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a two meow ago";
 
     @override
-    String weekdayName(int i) => "Meowday";
+    String weekdayName(int i) => "Meowday #$i";
 
     @override
     String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Meowday";
@@ -111,9 +102,31 @@ Almost everything is declared as function, so you can freely achieve the unique 
     Map<FormatterToken, FormatterTokenFn?> formats() => {};
 
     @override
-    String localizationDefaultDateFormat() => "MM/DD/yyyy meow!"; // "meow!" token doesn't exist, therefore the resulting string would be "06/01/2003 meow!".
+    String languageCodeISO() => "meow";
 
     @override
-    String localizationDefaultHourFormat() => "hh:mmA meow!";
+    String endonym() => "Meow-meow meow";
+
+    @override
+    String locale() => "meow";
+
+    @override
+    String languageNameInEnglish() => "Cat tongue";
   }
 ```
+
+## Available Localization classes:
+
+Localizations are classes that extend `MomentLocalization`
+
+- LocalizationEnUs (English - United States) [en_US]
+- LocalizationKorean (Korean) [ko]
+- LocalizationGermanStandard (German) [de_DE]
+- LocalizationMongolianCyrillic (Mongolian) [mn]
+  - LocalizationMongolianTraditional (Mongolian) [mn]
+  - LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
+
+## TODO
+
+- Add more localizations
+- Implement parsing string produced from `Moment.format($)`

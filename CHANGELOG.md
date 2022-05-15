@@ -1,3 +1,9 @@
+## 0.3.0
+
+- Now localizations are listed as static functions in `MomentLocalizations` class. Providing easier access.
+- Made fixes in `ko_KO`, `de_DE` localizations
+- Includes endonym, language code, locale, English name in localization classes
+
 ## 0.2.0+2
 
 - No longer prints the matched tokens

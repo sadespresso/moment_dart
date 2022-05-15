@@ -86,5 +86,22 @@ abstract class MomentLocalization {
   final String localizationDefaultDateFormat = "L";
   final String localizationDefaultHourFormat = "LT";
 
-  String reformat(DateTime dateTime, String payload);
+  String reformat(DateTime dateTime, String payload) => Moment(dateTime, localization: this).format(payload);
+
+  /// ISO 639-1 standard language codes
+  /// -----
+  ///
+  /// Expect identical codes for same language of different area.
+  ///
+  /// e.g. English - US, English - Canada, English - Australia, etc...
+  String languageCodeISO();
+
+  /// Endonym. Language name in the language itself
+  String endonym();
+
+  /// Localization code. **For now, the standard to follow is pending...**
+  String locale();
+
+  /// Language name in English
+  String languageNameInEnglish();
 }

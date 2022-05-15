@@ -108,14 +108,14 @@ class Moment {
   Moment(DateTime _dateTime, {MomentLocalization? localization}) {
     dateTime = _dateTime;
 
-    _localization = localization ?? LocalizationEnUs();
+    _localization = localization ?? MomentLocalizations.enUS();
   }
 
   /// Moment created using DateTime.now();
   Moment.now({MomentLocalization? localization}) {
     dateTime = DateTime.now();
 
-    _localization = localization ?? LocalizationEnUs();
+    _localization = localization ?? MomentLocalizations.enUS();
   }
 
   /// Adds the `duration` using `DateTime.add(duration)`

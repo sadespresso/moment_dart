@@ -31,7 +31,7 @@ class LocalizationKorean extends MomentLocalization {
     switch (interval) {
       case RelativeInterval.fewSeconds:
         isSuffixMasculine = true;
-        value = "хэдэн хором";
+        value = "몇 초";
         break;
       case RelativeInterval.aMinute:
         isSuffixMasculine = true;
@@ -39,7 +39,7 @@ class LocalizationKorean extends MomentLocalization {
         break;
       case RelativeInterval.minutes:
         isSuffixMasculine = true;
-        value = "${(duration.inSeconds / 60).round()} минут";
+        value = "${(duration.inSeconds / 60).round()} 분";
         break;
       case RelativeInterval.anHour:
         isSuffixMasculine = false;
@@ -190,8 +190,6 @@ class LocalizationKorean extends MomentLocalization {
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
@@ -245,7 +243,14 @@ class LocalizationKorean extends MomentLocalization {
       };
 
   @override
-  String reformat(DateTime dateTime, String payload) {
-    return Moment(dateTime, localization: LocalizationKorean()).format(payload);
-  }
+  String endonym() => "한국어";
+
+  @override
+  String languageCodeISO() => "ko";
+
+  @override
+  String locale() => "ko";
+
+  @override
+  String languageNameInEnglish() => "Korean";
 }

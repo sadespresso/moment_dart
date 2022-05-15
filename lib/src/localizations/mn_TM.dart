@@ -198,8 +198,6 @@ class LocalizationMongolianTraditional extends MomentLocalization {
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.YYYYYY: (DateTime dateTime) => dateTime.year.toString(),
-        FormatterToken.Y: (DateTime dateTime) => dateTime.year.toString(),
         FormatterToken.y: null,
         FormatterToken.NN: null,
         FormatterToken.NNNN: null,
@@ -253,7 +251,14 @@ class LocalizationMongolianTraditional extends MomentLocalization {
       };
 
   @override
-  String reformat(DateTime dateTime, String payload) {
-    return Moment(dateTime, localization: LocalizationMongolianTraditional()).format(payload);
-  }
+  String endonym() => "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ";
+
+  @override
+  String languageCodeISO() => "mn";
+
+  @override
+  String locale() => "mn";
+
+  @override
+  String languageNameInEnglish() => "Mongolian (Traditional Script)";
 }
