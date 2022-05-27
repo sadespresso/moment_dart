@@ -4,8 +4,10 @@ void main() {
   final MomentLocalization localization = MomentLocalizations.enUS();
 
   /// If localization is omitted, it defaults to English (United States)
-  final Moment moment = Moment.now(localization: localization) - Duration(days: 1);
-  final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
+  final Moment moment =
+      Moment.now(localization: localization) - Duration(days: 1);
+  final Moment epoch =
+      Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
   final Moment epochPlusFiveDays = epoch + Duration(days: 5);
   final Moment epochPlusAYear = epoch + Duration(days: 365);
 
@@ -13,7 +15,8 @@ void main() {
   localization.weekdayName(epoch.weekday); // "Thursday"
   epochPlusFiveDays.from(epoch, true); // "5 days"
   epochPlusFiveDays.from(epoch); // "in 5 days"
-  epoch.calendar(reference: epochPlusFiveDays, omitHours: true); // "Last Thursday"
+  epoch.calendar(
+      reference: epochPlusFiveDays, omitHours: true); // "Last Thursday"
   epochPlusFiveDays.calendar(reference: epoch, omitHours: true); // "Tuesday"
   epochPlusAYear.from(epoch); //"in a year"
   epochPlusAYear.calendar(reference: epoch); // "01/01/1971 at 12:00AM"

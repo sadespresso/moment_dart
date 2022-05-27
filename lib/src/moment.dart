@@ -3,6 +3,8 @@ import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/all.dart';
 
+// TODO: delta days instead of yesterday for all locales
+
 extension MomentBenefits on DateTime {
   bool get isLeapYear {
     if (year & 3 == 0) {
@@ -33,7 +35,9 @@ extension MomentBenefits on DateTime {
 
   int get _isoWeekRaw => (10 + dayOfYear - weekday) ~/ 7;
 
-  bool get _isoWeekInNextYear => DateTime(year, 1, 1).weekday != DateTime.thursday && DateTime(year, 12, 31).weekday != DateTime.thursday;
+  bool get _isoWeekInNextYear =>
+      DateTime(year, 1, 1).weekday != DateTime.thursday &&
+      DateTime(year, 12, 31).weekday != DateTime.thursday;
 
   /// Returns [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
   ///
@@ -73,7 +77,21 @@ extension MomentBenefits on DateTime {
   ///
   /// [1,2,3,...,365,366]
   int get dayOfYear {
-    const List<int> dayCount = [0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+    const List<int> dayCount = [
+      0,
+      0,
+      31,
+      59,
+      90,
+      120,
+      151,
+      181,
+      212,
+      243,
+      273,
+      304,
+      334
+    ];
 
     int _dayOfYear = dayCount[month] + day;
 
@@ -88,10 +106,14 @@ extension MomentBenefits on DateTime {
     final int hours = timeZoneOffset.inMinutes ~/ 60;
     final int minutes = timeZoneOffset.inMinutes - (hours * 60);
 
-    return (timeZoneOffset.isNegative ? "-" : "+") + hours.toString() + (seperateWithColon ? ":" : "") + minutes.toString();
+    return (timeZoneOffset.isNegative ? "-" : "+") +
+        hours.toString() +
+        (seperateWithColon ? ":" : "") +
+        minutes.toString();
   }
 
-  Moment toMoment({MomentLocalization? localization}) => Moment(this, localization: localization);
+  Moment toMoment({MomentLocalization? localization}) =>
+      Moment(this, localization: localization);
 }
 
 /// Moment is a wrapper for [DateTime] class
@@ -119,10 +141,12 @@ class Moment {
   }
 
   /// Adds the `duration` using `DateTime.add(duration)`
-  Moment add(Duration duration) => Moment(dateTime.add(duration), localization: _localization);
+  Moment add(Duration duration) =>
+      Moment(dateTime.add(duration), localization: _localization);
 
   /// Subtracts the `duration` using `DateTime.subtract(duration)`
-  Moment subtract(Duration duration) => Moment(dateTime.subtract(duration), localization: _localization);
+  Moment subtract(Duration duration) =>
+      Moment(dateTime.subtract(duration), localization: _localization);
 
   /// Calls `add(duration)`
   Moment operator +(Duration duration) => add(duration);
@@ -152,7 +176,8 @@ class Moment {
         if (closestToZero != null) {
           if (_matchIndex > closestToZero.startIndex) {
             continue;
-          } else if (_matchIndex == closestToZero.startIndex && token.name.length < closestToZero.token.name.length) {
+          } else if (_matchIndex == closestToZero.startIndex &&
+              token.name.length < closestToZero.token.name.length) {
             continue;
           }
         }
@@ -169,7 +194,8 @@ class Moment {
       tokens.add(closestToZero);
 
       if (_enableDebugPrint) {
-        print("[Moment Dart] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
+        print(
+            "[Moment Dart] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
       }
 
       payload = payload.substring(closestToZero.endIndex);
@@ -195,7 +221,8 @@ class Moment {
   /// Uses [DateTime.parse]
   ///
   /// To be updated.
-  Moment parse(String input) => Moment(DateTime.parse(input), localization: _localization);
+  Moment parse(String input) =>
+      Moment(DateTime.parse(input), localization: _localization);
 
   /// Example when using [LocalizationEnUs]:
   ///
@@ -227,18 +254,32 @@ class Moment {
   /// You can provide [customFormat]. Which will be used when the date is too far. e.g. when the moment is month away from referene, it'll use the [customFormat]
   ///
   /// Using [customFormat] will make [omitHours] ineffective.
-  String calendar({Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat}) => _localization.calendar(this, reference: reference, weekStartOnSunday: weekStartOnSunday, omitHours: omitHours, customFormat: customFormat);
+  String calendar(
+          {Moment? reference,
+          bool weekStartOnSunday = false,
+          bool omitHours = false,
+          String? customFormat}) =>
+      _localization.calendar(this,
+          reference: reference,
+          weekStartOnSunday: weekStartOnSunday,
+          omitHours: omitHours,
+          customFormat: customFormat);
 
   bool isBefore(Moment other) => dateTime.isBefore(other.dateTime);
   bool isAfter(Moment other) => dateTime.isAfter(other.dateTime);
-  bool isAtSameMomentAs(Moment other) => dateTime.isAtSameMomentAs(other.dateTime);
+  bool isAtSameMomentAs(Moment other) =>
+      dateTime.isAtSameMomentAs(other.dateTime);
   Duration difference(Moment other) => dateTime.difference(other.dateTime);
 
-  DateTime lastMondayAsDateTime() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday - 1));
-  DateTime lastSundayAsDateTime() => DateTime(dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday % 7));
+  DateTime lastMondayAsDateTime() => DateTime(
+      dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday - 1));
+  DateTime lastSundayAsDateTime() => DateTime(
+      dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday % 7));
 
-  Moment lastMonday() => Moment(lastMondayAsDateTime(), localization: _localization);
-  Moment lastSunday() => Moment(lastSundayAsDateTime(), localization: _localization);
+  Moment lastMonday() =>
+      Moment(lastMondayAsDateTime(), localization: _localization);
+  Moment lastSunday() =>
+      Moment(lastSundayAsDateTime(), localization: _localization);
 
   int get year => dateTime.year;
   int get month => dateTime.month;
@@ -251,4 +292,7 @@ class Moment {
   int get weekday => dateTime.weekday;
 
   bool get isUtc => dateTime.isUtc;
+
+  @override
+  String toString() => dateTime.toIso8601String();
 }

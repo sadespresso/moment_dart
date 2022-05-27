@@ -30,8 +30,10 @@ enum RelativeInterval {
 abstract class MomentLocalization {
   MomentLocalization();
 
-  static const int maxInt = (double.infinity is int) ? double.infinity as int : ~minInt;
-  static const int minInt = (double.infinity is int) ? -double.infinity as int : (-1 << 63);
+  static const int maxInt =
+      (double.infinity is int) ? double.infinity as int : ~minInt;
+  static const int minInt =
+      (double.infinity is int) ? -double.infinity as int : (-1 << 63);
 
   /// Defined intervals' upper-limit has been stored as <String,Duration?> map. Null [Duration] value indicates last possible case.
   ///
@@ -71,22 +73,49 @@ abstract class MomentLocalization {
 
   /// Please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
-  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false, String? customFormat});
+  String calendar(Moment moment,
+      {Moment? reference,
+      bool weekStartOnSunday = false,
+      bool omitHours = false,
+      String? customFormat});
 
   String weekdayName(int i);
 
   Map<FormatterToken, FormatterTokenFn?> formats();
 
-  static Moment weekFirstDay(Moment reference, [bool weekStartOnSunday = false]) {
-    return Moment(weekStartOnSunday ? reference.lastSundayAsDateTime() : reference.lastMondayAsDateTime());
+  /// Difference of days calculated omitting hour, minute, ...
+  ///
+  /// -1 is Yesterday,
+  /// 1 is Tomorrow,
+  /// etc.
+  int deltaDays(Moment a, Moment b) => _deltaDays(a.dateTime, b.dateTime);
+
+  /// Difference of days calculated omitting hour, minute, ...
+  ///
+  /// -1 is Yesterday,
+  /// 1 is Tomorrow,
+  /// etc.
+  int _deltaDays(DateTime a, DateTime b) {
+    return -DateTime(a.year, a.month, a.day)
+        .difference(DateTime(b.year, b.month, b.day))
+        .inDays;
   }
 
-  final List<FormatterToken> tokens = [...FormatterToken.values]..sort((a, b) => b.toString().length.compareTo(a.toString().length));
+  static Moment weekFirstDay(Moment reference,
+      [bool weekStartOnSunday = false]) {
+    return Moment(weekStartOnSunday
+        ? reference.lastSundayAsDateTime()
+        : reference.lastMondayAsDateTime());
+  }
+
+  final List<FormatterToken> tokens = [...FormatterToken.values]
+    ..sort((a, b) => b.toString().length.compareTo(a.toString().length));
 
   final String localizationDefaultDateFormat = "L";
   final String localizationDefaultHourFormat = "LT";
 
-  String reformat(DateTime dateTime, String payload) => Moment(dateTime, localization: this).format(payload);
+  String reformat(DateTime dateTime, String payload) =>
+      Moment(dateTime, localization: this).format(payload);
 
   /// ISO 639-1 standard language codes
   /// -----

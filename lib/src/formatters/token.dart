@@ -2,7 +2,8 @@
 
 import 'package:moment_dart/src/localizations.dart';
 
-typedef FormatterFn = String Function(DateTime, FormatterToken, MomentLocalization);
+typedef FormatterFn = String Function(
+    DateTime, FormatterToken, MomentLocalization);
 typedef FormatterTokenFn = String Function(DateTime);
 
 enum FormatterToken {

@@ -1,6 +1,12 @@
+## 0.4.0
+
+- Exposed localizations' classes
+- Fixed Yesterday/Tomorrow calculation. It was horrible :(((
+- Other major fixes
+
 ## 0.3.0
 
-- Now localizations are listed as static functions in `MomentLocalizations` class. Providing easier access.
+- Now localizations are listed as static functions in `MomentLocalizations` class. Providing easier access
 - Made fixes in `ko_KO`, `de_DE` localizations
 - Includes endonym, language code, locale, English name in localization classes
 

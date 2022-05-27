@@ -5,7 +5,8 @@ import 'package:moment_dart/src/localizations/mn_TM.dart';
 
 /// Language: Traditional Mongolian (Unicode), uses Traditional Numbers
 /// Country: Mongolia
-class LocalizationMongolianTraditionalNumbers extends LocalizationMongolianTraditional {
+class LocalizationMongolianTraditionalNumbers
+    extends LocalizationMongolianTraditional {
   LocalizationMongolianTraditionalNumbers() : super();
 
   static const Map<String, String> mongolianNumbers = {
