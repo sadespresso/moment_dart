@@ -17,7 +17,6 @@ include: package:lints/recommended.yaml
 
 linter:
   rules:
-    curly_braces_in_flow_control_structures: false
     # - camel_case_types
 # analyzer:
 #   exclude:

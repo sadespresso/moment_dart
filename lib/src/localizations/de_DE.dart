@@ -90,9 +90,9 @@ class LocalizationGermanStandard extends MomentLocalization {
 
     late final String day;
 
-    final bool isToday = (reference.dateTime.year == moment.dateTime.year &&
-        reference.dateTime.month == moment.dateTime.month &&
-        reference.dateTime.day == moment.dateTime.day);
+    final int _deltaDays = deltaDays(reference, moment);
+
+    final bool isToday = _deltaDays == 0;
 
     if (isToday) {
       day = "heute";
@@ -100,10 +100,7 @@ class LocalizationGermanStandard extends MomentLocalization {
 
     /// Before the `reference`
     else if (moment.isBefore(reference)) {
-      final bool isYesterday =
-          (reference.dateTime.year == moment.dateTime.year &&
-              reference.dateTime.month == moment.dateTime.month &&
-              reference.dateTime.day - 1 == moment.dateTime.day);
+      final bool isYesterday = _deltaDays == -1;
 
       if (isYesterday) {
         day = "gestern";
@@ -119,10 +116,7 @@ class LocalizationGermanStandard extends MomentLocalization {
         }
       }
     } else {
-      final bool isTomorrow =
-          (reference.dateTime.year == moment.dateTime.year &&
-              reference.dateTime.month == moment.dateTime.month &&
-              reference.dateTime.day + 1 == moment.dateTime.day);
+      final bool isTomorrow = _deltaDays == 1;
 
       if (isTomorrow) {
         day = "morgen";
@@ -204,11 +198,8 @@ class LocalizationGermanStandard extends MomentLocalization {
         FormatterToken.YY:
             //TODO: Improve the code before 22nd century
             (DateTime dateTime) {
-          if (dateTime.year < 1970) {
-            throw Exception("YY formatter doesn't work for years before 1970");
-          }
-          if (dateTime.year > 2030) {
-            throw Exception("YY formatter doesn't work for years after 2030");
+          if (dateTime.year < 1970 || dateTime.year > 2030) {
+            throw Exception("YY formatter only work in range [1970; 2030]");
           }
           return dateTime.year.toString().substring(2);
         },
@@ -218,11 +209,8 @@ class LocalizationGermanStandard extends MomentLocalization {
         FormatterToken.NNNN: null,
         FormatterToken.NNNNN: null,
         FormatterToken.gg: (DateTime dateTime) {
-          if (dateTime.year < 1970) {
-            throw Exception("YY formatter doesn't work for years before 1970");
-          }
-          if (dateTime.year > 2030) {
-            throw Exception("YY formatter doesn't work for years after 2030");
+          if (dateTime.year < 1970 || dateTime.year > 2030) {
+            throw Exception("YY formatter only work in range [1970; 2030]");
           }
           return dateTime.weekYear.toString().substring(2);
         },

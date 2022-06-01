@@ -1,8 +1,14 @@
+## 0.4.1
+
+- Made major fixes in `de_DE` localization
+- Implemented all `DateTime` functions in `Moment` class
+- Implemented `MomentBenefits` extension functions in `Moment` class
+
 ## 0.4.0
 
 - Exposed localizations' classes
 - Fixed Yesterday/Tomorrow calculation. It was horrible :(((
-- Other major fixes
+- Other major fixes in localizations
 
 ## 0.3.0
 

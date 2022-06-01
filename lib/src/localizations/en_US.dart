@@ -217,10 +217,9 @@ class LocalizationEnUs extends MomentLocalization {
         FormatterToken.YY:
             //TODO: Improve the code before 22nd century
             (DateTime dateTime) {
-          if (dateTime.year < 1970)
-            throw Exception("YY formatter doesn't work for years before 1970");
-          if (dateTime.year > 2030)
-            throw Exception("YY formatter doesn't work for years after 2030");
+          if (dateTime.year < 1970 || dateTime.year > 2030) {
+            throw Exception("YY formatter only work in range [1970; 2030]");
+          }
           return dateTime.year.toString().substring(2);
         },
         FormatterToken.YYYY: (DateTime dateTime) => dateTime.year.toString(),
@@ -229,10 +228,9 @@ class LocalizationEnUs extends MomentLocalization {
         FormatterToken.NNNN: null,
         FormatterToken.NNNNN: null,
         FormatterToken.gg: (DateTime dateTime) {
-          if (dateTime.year < 1970)
-            throw Exception("YY formatter doesn't work for years before 1970");
-          if (dateTime.year > 2030)
-            throw Exception("YY formatter doesn't work for years after 2030");
+          if (dateTime.year < 1970 || dateTime.year > 2030) {
+            throw Exception("YY formatter only work in range [1970; 2030]");
+          }
           return dateTime.weekYear.toString().substring(2);
         },
         FormatterToken.gggg: (DateTime dateTime) =>

@@ -3,8 +3,6 @@ import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/all.dart';
 
-// TODO: delta days instead of yesterday for all locales
-
 extension MomentBenefits on DateTime {
   bool get isLeapYear {
     if (year & 3 == 0) {
@@ -118,7 +116,7 @@ extension MomentBenefits on DateTime {
 
 /// Moment is a wrapper for [DateTime] class
 
-class Moment {
+class Moment implements Comparable<Moment> {
   bool _enableDebugPrint = false;
 
   late DateTime dateTime;
@@ -136,9 +134,35 @@ class Moment {
   /// Moment created using DateTime.now();
   Moment.now({MomentLocalization? localization}) {
     dateTime = DateTime.now();
-
     _localization = localization ?? MomentLocalizations.enUS();
   }
+
+  factory Moment.fromMillisecondsSinceEpoch(
+    int millisecondsSinceEpoch, {
+    bool isUtc = false,
+    MomentLocalization? localization,
+  }) {
+    return Moment(
+      DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: isUtc),
+      localization: localization,
+    );
+  }
+
+  factory Moment.fromMicrosecondsSinceEpoch(
+    int microsecondsSinceEpoch, {
+    bool isUtc = false,
+    MomentLocalization? localization,
+  }) {
+    return Moment(
+      DateTime.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch, isUtc: isUtc),
+      localization: localization,
+    );
+  }
+
+  Moment toLocal() => Moment(dateTime.toLocal(), localization: _localization);
+  Moment toUtc() => Moment(dateTime.toUtc(), localization: _localization);
+
+  Duration difference(Moment other) => dateTime.difference(other.dateTime);
 
   /// Adds the `duration` using `DateTime.add(duration)`
   Moment add(Duration duration) =>
@@ -269,7 +293,6 @@ class Moment {
   bool isAfter(Moment other) => dateTime.isAfter(other.dateTime);
   bool isAtSameMomentAs(Moment other) =>
       dateTime.isAtSameMomentAs(other.dateTime);
-  Duration difference(Moment other) => dateTime.difference(other.dateTime);
 
   DateTime lastMondayAsDateTime() => DateTime(
       dateTime.year, dateTime.month, dateTime.day - (dateTime.weekday - 1));
@@ -281,6 +304,8 @@ class Moment {
   Moment lastSunday() =>
       Moment(lastSundayAsDateTime(), localization: _localization);
 
+  // DateTime getters
+  bool get isUtc => dateTime.isUtc;
   int get year => dateTime.year;
   int get month => dateTime.month;
   int get day => dateTime.day;
@@ -291,8 +316,19 @@ class Moment {
   int get microsecond => dateTime.microsecond;
   int get weekday => dateTime.weekday;
 
-  bool get isUtc => dateTime.isUtc;
+  // Moment Benefits getters
+
+  bool get isLeapYear => dateTime.isLeapYear;
+  int get quarter => dateTime.quarter;
+  int get week => dateTime.week;
+  int get weekYear => dateTime.weekYear;
+  int get dayOfYear => dateTime.dayOfYear;
 
   @override
-  String toString() => dateTime.toIso8601String();
+  String toString() => format("LT");
+
+  String toIso8601String() => dateTime.toIso8601String();
+
+  @override
+  int compareTo(Moment other) => dateTime.compareTo(other.dateTime);
 }
