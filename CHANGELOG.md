@@ -1,3 +1,7 @@
+## 0.4.2
+
+- Fixed number word gender-dependent suffix in Mongolian languages. (`mn_MN`, `mn_MN` traditional mongolian)
+
 ## 0.4.1
 
 - Made major fixes in `de_DE` localization

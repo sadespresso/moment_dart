@@ -158,20 +158,35 @@ class LocalizationMongolianTraditional extends MomentLocalization {
     return "$day ${moment.format(localizationDefaultHourFormat)}";
   }
 
-  String orderedNumber(int i) {
-    int moduloTen = i % 10;
+  static bool isFeminine(int i) {
+    late final bool feminine;
 
-    if (moduloTen == 0) {
-      moduloTen = i - moduloTen;
-      moduloTen ~/= 10;
-      moduloTen %= 10;
+    if ([10, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10].contains(i)) {
+      feminine = false;
+    } else {
+      int moduloTen = i % 10;
+
+      // Dealing with 10s. e.g. 40, 90 is feminine.
+      if (moduloTen == 0) {
+        moduloTen = i ~/ 10;
+        moduloTen %= 10;
+
+        const List<int> feminineUnits = [4, 9];
+
+        feminine = feminineUnits.contains(moduloTen);
+      } else {
+        const List<int> feminineUnits = [1, 4, 9];
+
+        feminine = feminineUnits.contains(moduloTen);
+      }
     }
 
-    const List<int> feminineUnits = [0, 1, 4, 9];
+    return feminine;
+  }
 
-    final bool feminine = feminineUnits.contains(i);
-
-    return i.toString() + (feminine ? " ᠳᠦᠭᠡᠷ" : " ᠳᠤᠭᠠᠷ");
+  String orderedNumber(int i) {
+    return i.toString() +
+        (LocalizationMongolianTraditional.isFeminine(i) ? " ᠳᠦᠭᠡᠷ" : " ᠳᠤᠭᠠᠷ");
   }
 
   String monthName(int i) => "${orderedNumber(i)} ᠰᠠᠷ᠎ᠠ";

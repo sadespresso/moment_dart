@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/formatters/token.dart';
 
 import '../localizations.dart';
@@ -169,11 +170,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
   }
 
   String orderedNumber(int i) {
-    const List<int> feminineUnits = [0, 1, 4, 9];
-
-    final bool feminine = feminineUnits.contains(i);
-
-    return i.toString() + (feminine ? "дүгээр" : "дугаар");
+    return "$i ${(LocalizationMongolianTraditional.isFeminine(i) ? "дүгээр" : "дугаар")}";
   }
 
   String monthName(int i) => "${orderedNumber(i)} сар";
