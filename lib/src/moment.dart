@@ -189,7 +189,22 @@ class Moment implements Comparable<Moment> {
 
     bool halt = false;
 
+    final RegExp escaper = RegExp(r"\[(([^\]]+))\]", multiLine: true);
+
     while (!halt) {
+      if (payload.length > 1 && payload.trim()[0] == r"[") {
+        final RegExpMatch? firstMatch = escaper.firstMatch(payload);
+
+        if (firstMatch != null) {
+          if (firstMatch.start != 0) {
+            tokens.add(payload.substring(0, firstMatch.start));
+          }
+          tokens.add(firstMatch.group(1) ?? "");
+          payload = payload.substring(firstMatch.end);
+          continue;
+        }
+      }
+
       FormatMatch? closestToZero;
 
       for (FormatterToken token in _fts) {
@@ -238,6 +253,8 @@ class Moment implements Comparable<Moment> {
         value += token as String;
       }
     }
+
+    print(tokens);
 
     return value;
   }

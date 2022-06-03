@@ -111,7 +111,7 @@ abstract class MomentLocalization {
   final List<FormatterToken> tokens = [...FormatterToken.values]
     ..sort((a, b) => b.toString().length.compareTo(a.toString().length));
 
-  final String localizationDefaultDateFormat = "L";
+  final String localizationDefaultDateFormat = "l";
   final String localizationDefaultHourFormat = "LT";
 
   String reformat(DateTime dateTime, String payload) =>

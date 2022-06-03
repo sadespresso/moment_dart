@@ -78,7 +78,7 @@ void main() {
       expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
           "Мягмар");
       expect(epochPlusAYear.from(epoch), "жилийн дараа");
-      expect(epochPlusAYear.calendar(reference: epoch), "1971/01/01 00:00");
+      expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1 00:00");
 
       expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
     });
@@ -102,8 +102,7 @@ void main() {
       expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
           "Tuesday");
       expect(epochPlusAYear.from(epoch), "in a year");
-      expect(
-          epochPlusAYear.calendar(reference: epoch), "01/01/1971 at 12:00 AM");
+      expect(epochPlusAYear.calendar(reference: epoch), "1/1/1971 at 12:00 AM");
 
       expect(epochPlusFiveDays.format("L LT"), "01/06/1970 12:00 AM");
     });
@@ -128,7 +127,7 @@ void main() {
       expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
           "ᠤᠯᠠᠭᠠᠨ");
       expect(epochPlusAYear.from(epoch), "ᠵᠢᠯ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-      expect(epochPlusAYear.calendar(reference: epoch), "1971/01/01 00:00");
+      expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1 00:00");
 
       expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
     });
@@ -151,49 +150,61 @@ void main() {
       expect(
           epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "화요일");
       expect(epochPlusAYear.from(epoch), "1년 후");
-      expect(epochPlusAYear.calendar(reference: epoch), "1971.01.01 오전 12:00");
+      expect(epochPlusAYear.calendar(reference: epoch), "1971.1.1 오전 12:00");
 
       expect(epochPlusFiveDays.format("L LT"), "1970.01.06 오전 12:00");
     });
-  });
 
-  test("Mongolain Number word gender test", () {
-    // Powers of 10
-    expect(LocalizationMongolianTraditional.isFeminine(1), true);
-    expect(LocalizationMongolianTraditional.isFeminine(10), false);
-    expect(LocalizationMongolianTraditional.isFeminine(100), false);
-    expect(LocalizationMongolianTraditional.isFeminine(1000), false);
-    expect(LocalizationMongolianTraditional.isFeminine(10000), false);
+    test("Mongolain Number word gender test", () {
+      // Powers of 10
+      expect(LocalizationMongolianTraditional.isFeminine(1), true);
+      expect(LocalizationMongolianTraditional.isFeminine(10), false);
+      expect(LocalizationMongolianTraditional.isFeminine(100), false);
+      expect(LocalizationMongolianTraditional.isFeminine(1000), false);
+      expect(LocalizationMongolianTraditional.isFeminine(10000), false);
 
-    // Units
-    expect(LocalizationMongolianTraditional.isFeminine(2), false);
-    expect(LocalizationMongolianTraditional.isFeminine(3), false);
-    expect(LocalizationMongolianTraditional.isFeminine(4), true);
-    expect(LocalizationMongolianTraditional.isFeminine(5), false);
-    expect(LocalizationMongolianTraditional.isFeminine(6), false);
-    expect(LocalizationMongolianTraditional.isFeminine(7), false);
-    expect(LocalizationMongolianTraditional.isFeminine(8), false);
-    expect(LocalizationMongolianTraditional.isFeminine(9), true);
-    expect(LocalizationMongolianTraditional.isFeminine(10), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123452), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123453), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123454), true);
-    expect(LocalizationMongolianTraditional.isFeminine(123455), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123456), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123457), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123458), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123459), true);
-    expect(LocalizationMongolianTraditional.isFeminine(1234510), false);
+      // Units
+      expect(LocalizationMongolianTraditional.isFeminine(2), false);
+      expect(LocalizationMongolianTraditional.isFeminine(3), false);
+      expect(LocalizationMongolianTraditional.isFeminine(4), true);
+      expect(LocalizationMongolianTraditional.isFeminine(5), false);
+      expect(LocalizationMongolianTraditional.isFeminine(6), false);
+      expect(LocalizationMongolianTraditional.isFeminine(7), false);
+      expect(LocalizationMongolianTraditional.isFeminine(8), false);
+      expect(LocalizationMongolianTraditional.isFeminine(9), true);
+      expect(LocalizationMongolianTraditional.isFeminine(10), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123452), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123453), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123454), true);
+      expect(LocalizationMongolianTraditional.isFeminine(123455), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123456), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123457), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123458), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123459), true);
+      expect(LocalizationMongolianTraditional.isFeminine(1234510), false);
 
-    // Tens
-    expect(LocalizationMongolianTraditional.isFeminine(123410), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123420), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123430), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123440), true);
-    expect(LocalizationMongolianTraditional.isFeminine(123450), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123460), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123470), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123480), false);
-    expect(LocalizationMongolianTraditional.isFeminine(123490), true);
+      // Tens
+      expect(LocalizationMongolianTraditional.isFeminine(123410), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123420), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123430), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123440), true);
+      expect(LocalizationMongolianTraditional.isFeminine(123450), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123460), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123470), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123480), false);
+      expect(LocalizationMongolianTraditional.isFeminine(123490), true);
+    });
+
+    test("Text escaping test", () {
+      MomentLocalization localization = LocalizationEnUs();
+      final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
+          localization: localization);
+
+      expect(epoch.format(r"[hellooo]"), "hellooo");
+      expect(epoch.format(r"YYYY [escaped] YYYY"), "1970 escaped 1970");
+      expect(epoch.format(r"L [L] LT [LT]"), "01/01/1970 L 12:00 AM LT");
+      expect(epoch.format(r"YYYY [YYYY] MMMM [MMMM] Do [Do] LT [A]"),
+          "1970 YYYY January MMMM 1st Do 12:00 AM A");
+    });
   });
 }

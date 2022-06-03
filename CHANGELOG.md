@@ -1,3 +1,9 @@
+## 0.5.0
+
+- Now it's possible to escape strings in `Moment.format()`. Encapsulate the text in square brackets ([]) to do so.
+- Fixed calendar relative week miscalculations
+- Changed localization default date format from `L` to `l` (shortened version)
+
 ## 0.4.2
 
 - Fixed number word gender-dependent suffix in Mongolian languages. (`mn_MN`, `mn_MN` traditional mongolian)

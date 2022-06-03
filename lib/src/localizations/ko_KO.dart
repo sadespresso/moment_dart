@@ -112,11 +112,9 @@ class LocalizationKorean extends MomentLocalization {
       } else if (isDayBeforeYesterday) {
         day = "그저께";
       } else {
-        final Moment startOfLastWeek =
-            MomentLocalization.weekFirstDay(reference)
-                .subtract(const Duration(days: 7));
+        final Moment weekBefore = reference.subtract(const Duration(days: 7));
 
-        if (moment.isBefore(startOfLastWeek)) {
+        if (moment.isBefore(weekBefore)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "지난 ${weekdayName(moment.dateTime.weekday)}$weekdaySuffix";
@@ -131,11 +129,10 @@ class LocalizationKorean extends MomentLocalization {
       } else if (isDayAfterTomorrow) {
         day = "모레";
       } else {
-        final Moment endOfNextWeek = MomentLocalization.weekFirstDay(reference)
-            .add(const Duration(days: 13));
+        final Moment weekAfter = reference.add(const Duration(days: 7));
 
         /// If it's this or next week (relative to the reference)
-        if (moment.isBefore(endOfNextWeek)) {
+        if (moment.isBefore(weekAfter)) {
           day = weekdayName(moment.dateTime.weekday) + weekdaySuffix;
         } else {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
@@ -213,17 +210,15 @@ class LocalizationKorean extends MomentLocalization {
             dateTime.hour < 12 ? "오전" : "오후",
         FormatterToken.a: (DateTime dateTime) =>
             dateTime.hour < 12 ? "오전" : "오후",
-        FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
+        FormatterToken.H: (DateTime dateTime) =>
+            dateTime.hour == 0 ? "00" : dateTime.hour.toString(),
         FormatterToken.HH: (DateTime dateTime) =>
             dateTime.hour.toString().padLeft(2, "0"),
-        FormatterToken.h: (DateTime dateTime) {
-          final int _h = dateTime.hour % 12;
-          return _h == 0 ? "12" : _h.toString();
-        },
-        FormatterToken.hh: (DateTime dateTime) {
-          final int _h = dateTime.hour % 12;
-          return _h == 0 ? "12" : _h.toString().padLeft(2, "0");
-        },
+        FormatterToken.h: (DateTime dateTime) =>
+            dateTime.hour == 0 ? "12" : "${dateTime.hour % 12}",
+        FormatterToken.hh: (DateTime dateTime) => dateTime.hour == 0
+            ? "12"
+            : (dateTime.hour % 12).toString().padLeft(2, "0"),
         FormatterToken.k: (DateTime dateTime) =>
             dateTime.hour == 0 ? "24" : dateTime.hour.toString(),
         FormatterToken.kk: (DateTime dateTime) => dateTime.hour == 0
@@ -261,20 +256,20 @@ class LocalizationKorean extends MomentLocalization {
         FormatterToken.l: (DateTime dateTime) =>
             reformat(dateTime, "YYYY.M.D."),
         FormatterToken.LL: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMMM Do"),
+            reformat(dateTime, "YYYY년 MMMM D일"),
         FormatterToken.ll: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMM Do"),
+            reformat(dateTime, "YYYY년 MMM D일"),
         FormatterToken.LLL: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMMM Do A hh:mm"),
+            reformat(dateTime, "YYYY년 MMMM D일 A hh:mm"),
         FormatterToken.lll: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMM Do A hh:mm"),
+            reformat(dateTime, "YYYY년 MMM D일 A h:mm"),
         FormatterToken.LLLL: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMMM Do dddd A hh:mm"),
+            reformat(dateTime, "YYYY년 MMMM D일 dddd A hh:mm"),
         FormatterToken.llll: (DateTime dateTime) =>
-            reformat(dateTime, "YYYY년 MMM Do ddd A hh:mm"),
-        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "A hh:mm"),
+            reformat(dateTime, "YYYY년 MMM D일 ddd A h:mm"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "A h:mm"),
         FormatterToken.LTS: (DateTime dateTime) =>
-            reformat(dateTime, "A hh:mm:ss"),
+            reformat(dateTime, "A h:mm:ss"),
       };
 
   @override

@@ -1,166 +1,69 @@
-> An attempt to port moment.js to Dart.
+A Moment.js inspired package.
 
-## Features
+## Usage
 
-Convert `DateTime` to human-readable text.
-  - Relative duration
-  - Calendar text
-  - Formatted dates
-  - Multiple localizations
+### Import the package
 
-## Getings started
-
-Import the package
 ```dart
-import 'package:moment_dart/moment_dart.dart';
+import "package:moment_dart/moment_dart.dart";
 ```
 
-Create Moment instance
+### Create Moment instance
 
 ```dart
 final Moment now = Moment.now();
 
 final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
 
-final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
+final Moment derived = DateTime(2003,06,01).toMoment();
 ```
 
-## Usage
-
-### Relative durations
+### Enjoy!
 
 ```dart
-final Moment yesterday = Moment.now() - Duration(days: 1);
+final Moment moment = Moment.now() - Duration(days: 1); // May 14, 2022
 
-yesterday.fromNow(); // a day ago
+moment.calendar(); // Yesterday
 
-// You can omit prefix/suffix
-yesterday.fromNow(true); // a day
+moment.fromNow(); // a day ago
 
-yesterday.from(yesterday - Duration(days: 365)); // a year ago
+// You can omit the prefix/suffix by setting the optional argument to true.
+moment.fromNow(true); // a day
+
+moment.from(moment - Duration(days: 365)); // a year ago
+
+/// Unmatched strings will be left as is.
+moment.format("YYYY년 MMMM Do dddd hh:mma"); // 2022년 May 14 Saturday 08:09pm
+
+/// Also, escape strings by encapsulating them in square brackets ([]). 
+moment.format("YYYY [YYYY] MMMM [MMMM] Do [Do] LT A [A]"); // 2022 YYYY June MMMM 3 Do 6:36 PM A
 ```
 
-### Calendar dates
+### Change localization
+When localization is omitted, it defaults to English (United States)
 ```dart
+final Moment hangulday = Moment(DateTime(2022,10,9), localization: MomentLocalizations.ko());
 
-now.subtract(Duration(days: 1)).calendar();  // Yesterday
-now.calendar();                              // Today
-now.subtract(Duration(days: 1)).calendar();  // Tomorrow
+hangulday.format("ll"); // 2022년 10월 9
+hangulday.format("LL"); // 2022년 10월 9
+```
 
-// [reference] - defaults to Moment.now(), acts as an anchor.
-// [omitHours] - omits the hour part. Hour part is formatted by "LT" token.
-now.calendar(
-  reference: (now - Duration(days: 1)),
-  omitHours: true,
-); // Tomorrow
+You can also take advantage of localization, as it's kinda the main character
+```dart
+final MomentLocalization localization = MomentLocalizations.enUS();
 
-// [const] removed to save visual space. Please prefer to use `const Duration()`
+localization.relative(const Duration(seconds: 2)); //in a few seconds
+localization.weekdayName(yesterday.weekday); // "Monday"
 ```
 
 ### Formatting
-```dart
-now.format("YYYY MMMM Do - hh:mm:ssa"); //2003 June 1st - 05:01:00am
-now.format("LTS");                      //5:01:00 AM
-now.format("dddd");                     //Sunday
-now.format("MMM Do YY");                //Jun 1st 03
-```
-
-### Changing localization
-Localization defaults to `MomentLocalizations.enUS()`
 
 ```dart
-final Moment hangulday2022 = Moment(DateTime(2022,10,9), localization: MomentLocalizations.ko());
-
-hangulday2022.format("ll"); // 2022년 10월 9일
-hangulday2022.format("LL"); // 2022년 10월 9일
+  /// All non-token characters will be left as is
+  moment.format("YYYY년 MMM Do ddd A hh:mm"); // 2022년 6월 1일 수요일 오후 02:44
 ```
 
-## Available Localization classes:
-
-Localizations are classes that extend `MomentLocalization`
-
-- LocalizationEnUs (English - United States) [en_US]
-- LocalizationKorean (Korean) [ko]
-- LocalizationGermanStandard (German) [de_DE]
-- LocalizationMongolianCyrillic (Mongolian) [mn]
-  - LocalizationMongolianTraditional (Mongolian) [mn]
-  - LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
-
-### Parsing
-> ***COMING SOON 💫***
-
-## Salt 🧂 and pepper
-
-Moment provides an extension with set of useful functions. **Can be called on either `Moment` or `DateTime` instance**
-
-```dart
-final DateTime date = DateTime(2022,03,29);
-
-//Returns the ISO Week number of the year
-//
-// [1,2,3,...,52,53]
-date.week == 13; // true
-
-// Returns the year according to ISO Week
-date.weekYear == 2022; // true
-
-// Returns the quarter of the year. [][Jan,Feb,Mar][Apr,May,Jun][Jul,Aug,Sep][Oct,Nov,Dec]
-//
-// [1,2,3,4]
-date.quarter == 1; // true
-
-// Returns if the [year] is leap year
-date.isLeapYear == false; // true
-
-/// Returns ordinal day of the year
-/// 
-/// [1,2,3,...,365,366]
-date.dayOfYear == 88; // true
-```
-
-Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
-
-## Creating your own Localzation
-
-Extend `MomentLocalization` class to get started.
-
-Almost everything is declared as function, so you can freely achieve the unique features of your language.
-
-**I highly recommend copying one of the existing implementations then work on top of it!**
-
-```dart
-CatLanguage extends MomentLocalization {
-  @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a two meow ago";
-
-  @override
-  String weekdayName(int i) => "Meowday #$i";
-
-  @override
-  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Meowday";
-
-  /// Please refer to the [FormatterToken] enum for details.
-  /// 
-  /// It contains almost all of the tokens mentioned in https://momentjs.com/docs/#/parsing/string-format/
-  Map<FormatterToken, FormatterTokenFn?> formats() => {};
-
-  @override
-  String languageCodeISO() => "meow";
-
-  @override
-  String endonym() => "Meow-meow meow";
-
-  @override
-  String locale() => "meow";
-
-  @override
-  String languageNameInEnglish() => "Cat tongue";
-}
-```
-
-## Format Tokens
-
-Encapsulate string in square brackets ([]) to escape.
+**Tokens:**
 
 | Type                      | Token  | Examples                               | Description                                                                                   |
 | ------------------------- | ------ | -------------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -228,8 +131,88 @@ Encapsulate string in square brackets ([]) to escape.
 |                           | LT     | 8:30 PM                                | Time (without seconds)                                                                        |
 |                           | LTS    | 8:30:00 PM                             | Time (with seconds)                                                                           |
 
+### Moment introduces a extension with few helpful functions.
+
+**Can be called on `Moment` or `DateTime` instance**
+
+```dart
+final DateTime date = DateTime(2022,03,29);
+
+//Returns the ISO Week number of the year
+//
+// [1,2,3,...,52,53]
+date.week == 13; // true
+
+// Returns the year according to ISO Week
+date.weekYear == 2022; // true
+
+// Returns the quarter of the year. [][Jan,Feb,Mar][Apr,May,Jun][Jul,Aug,Sep][Oct,Nov,Dec]
+//
+// [1,2,3,4]
+date.quarter == 1; // true
+
+// Returns if the [year] is leap year
+date.isLeapYear == false; // true
+
+/// Returns ordinal day of the year
+/// 
+/// [1,2,3,...,365,366]
+date.dayOfYear == 88; // true
+```
+
+Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
+
+## Creating your own Localzation
+
+Extend `MomentLocalization` class to get started.
+
+Almost everything is declared as function, so you can freely achieve the unique features of your language.
+
+**I highly recommend copying one of the existing implementations then work on top of it!**
+
+```dart
+CatLanguage extends MomentLocalization {
+  @override
+  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a two meow ago";
+
+  @override
+  String weekdayName(int i) => "Meowday #$i";
+
+  @override
+  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Meowday";
+
+  /// Please refer to the [FormatterToken] enum for details.
+  /// 
+  /// It contains almost all of the tokens mentioned in https://momentjs.com/docs/#/parsing/string-format/
+  Map<FormatterToken, FormatterTokenFn?> formats() => {};
+
+  @override
+  String languageCodeISO() => "meow";
+
+  @override
+  String endonym() => "Meow-meow meow";
+
+  @override
+  String locale() => "meow";
+
+  @override
+  String languageNameInEnglish() => "Cat tongue";
+}
+```
+
+## Available Localization classes:
+
+Localizations are classes that extend `MomentLocalization`
+
+- LocalizationEnUs (English - United States) [en_US]
+- LocalizationKorean (Korean) [ko]
+- LocalizationGermanStandard (German) [de_DE]
+- LocalizationMongolianCyrillic (Mongolian) [mn]
+  - LocalizationMongolianTraditional (Mongolian) [mn]
+  - LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
 
 ## TODO
 
 - Add more localizations
-- Implement parsing
+- String escaper in `Moment.format()`
+- Implement parsing string produced from `Moment.format($)`

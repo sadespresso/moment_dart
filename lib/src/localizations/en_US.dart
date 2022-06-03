@@ -105,11 +105,9 @@ class LocalizationEnUs extends MomentLocalization {
       if (isYesterday) {
         day = "Yesterday";
       } else {
-        final Moment startOfLastWeek =
-            MomentLocalization.weekFirstDay(reference)
-                .subtract(const Duration(days: 7));
+        final Moment weekBefore = reference.subtract(const Duration(days: 7));
 
-        if (moment.isBefore(startOfLastWeek)) {
+        if (moment.isBefore(weekBefore)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
           day = "Last ${weekdayName(moment.dateTime.weekday)}";
@@ -121,11 +119,10 @@ class LocalizationEnUs extends MomentLocalization {
       if (isTomorrow) {
         day = "Tomorrow";
       } else {
-        final Moment endOfNextWeek = MomentLocalization.weekFirstDay(reference)
-            .add(const Duration(days: 13));
+        final Moment weekAfter = reference.add(const Duration(days: 7));
 
         /// If it's this or next week (relative to the reference)
-        if (moment.isBefore(endOfNextWeek)) {
+        if (moment.isBefore(weekAfter)) {
           day = weekdayName(moment.dateTime.weekday);
         } else {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
@@ -239,17 +236,15 @@ class LocalizationEnUs extends MomentLocalization {
             dateTime.hour < 12 ? "AM" : "PM",
         FormatterToken.a: (DateTime dateTime) =>
             dateTime.hour < 12 ? "am" : "pm",
-        FormatterToken.H: (DateTime dateTime) => dateTime.hour.toString(),
+        FormatterToken.H: (DateTime dateTime) =>
+            dateTime.hour == 0 ? "00" : dateTime.hour.toString(),
         FormatterToken.HH: (DateTime dateTime) =>
             dateTime.hour.toString().padLeft(2, "0"),
-        FormatterToken.h: (DateTime dateTime) {
-          final int _h = dateTime.hour % 12;
-          return _h == 0 ? "12" : _h.toString();
-        },
-        FormatterToken.hh: (DateTime dateTime) {
-          final int _h = dateTime.hour % 12;
-          return _h == 0 ? "12" : _h.toString().padLeft(2, "0");
-        },
+        FormatterToken.h: (DateTime dateTime) =>
+            dateTime.hour == 0 ? "12" : "${dateTime.hour % 12}",
+        FormatterToken.hh: (DateTime dateTime) => dateTime.hour == 0
+            ? "12"
+            : (dateTime.hour % 12).toString().padLeft(2, "0"),
         FormatterToken.k: (DateTime dateTime) =>
             dateTime.hour == 0 ? "24" : dateTime.hour.toString(),
         FormatterToken.kk: (DateTime dateTime) => dateTime.hour == 0
@@ -292,14 +287,14 @@ class LocalizationEnUs extends MomentLocalization {
         FormatterToken.LLL: (DateTime dateTime) =>
             reformat(dateTime, "MMMM DD YYYY hh:mm A"),
         FormatterToken.lll: (DateTime dateTime) =>
-            reformat(dateTime, "MMM D YYYY hh:mm A"),
+            reformat(dateTime, "MMM D YYYY h:mm A"),
         FormatterToken.LLLL: (DateTime dateTime) =>
             reformat(dateTime, "dddd, MMMM DD YYYY hh:mm A"),
         FormatterToken.llll: (DateTime dateTime) =>
-            reformat(dateTime, "ddd, MMM D YYYY hh:mm A"),
-        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "hh:mm A"),
+            reformat(dateTime, "ddd, MMM D YYYY h:mm A"),
+        FormatterToken.LT: (DateTime dateTime) => reformat(dateTime, "h:mm A"),
         FormatterToken.LTS: (DateTime dateTime) =>
-            reformat(dateTime, "hh:mm:ss A"),
+            reformat(dateTime, "h:mm:ss A"),
       };
 
   @override
