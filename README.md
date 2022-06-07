@@ -3,10 +3,10 @@
 ## Features
 
 Convert `DateTime` to human-readable text.
-  - Relative duration
-  - Calendar text
-  - Formatted dates
-  - Multiple localizations
+  - [Relative duration](#relative-durations)
+  - [Calendar text](#calendar-dates)
+  - [Formatted dates](#formatting)
+  - [Multiple localizations](#changing-localization)
 
 ## Getings started
 
@@ -20,9 +20,12 @@ Create Moment instance
 ```dart
 final Moment now = Moment.now();
 
-final Moment epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
+final Moment epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
+/// Using extension
 final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
+/// or from [DateTime]
+final Moment bday = Moment(DateTime(2003, 6, 1, 5, 1));
 ```
 
 ## Usage
@@ -58,12 +61,19 @@ now.calendar(
 ```
 
 ### Formatting
+[See list of format tokens](#format-tokens)
+
 ```dart
 now.format("YYYY MMMM Do - hh:mm:ssa"); //2003 June 1st - 05:01:00am
 now.format("LTS");                      //5:01:00 AM
 now.format("dddd");                     //Sunday
 now.format("MMM Do YY");                //Jun 1st 03
 ```
+
+### Parsing
+Currently uses `DateTime.parse()`
+
+> ***COMING SOON 💫***
 
 ### Changing localization
 Localization defaults to `MomentLocalizations.enUS()`
@@ -79,6 +89,8 @@ hangulday2022.format("LL"); // 2022년 10월 9일
 
 Localizations are classes that extend `MomentLocalization`
 
+[See how you can create your own localization](#Creating-your-own-localzation)
+
 - LocalizationEnUs (English - United States) [en_US]
 - LocalizationKorean (Korean) [ko]
 - LocalizationGermanStandard (German) [de_DE]
@@ -86,14 +98,13 @@ Localizations are classes that extend `MomentLocalization`
   - LocalizationMongolianTraditional (Mongolian) [mn]
   - LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
 
-### Parsing
-> ***COMING SOON 💫***
-
 ## Salt 🧂 and pepper
 
 Moment provides an extension with set of useful functions. **Can be called on either `Moment` or `DateTime` instance**
 
 ```dart
+final Moment date = DateTime(2022,03,29).toMoment();
+// It can also work on [DateTime] too!
 final DateTime date = DateTime(2022,03,29);
 
 //Returns the ISO Week number of the year
@@ -116,6 +127,18 @@ date.isLeapYear == false; // true
 /// 
 /// [1,2,3,...,365,366]
 date.dayOfYear == 88; // true
+```
+
+Comparison can be called on either `Moment` or `DateTime`. Accounts UTC/Local timezone.
+
+Available for all units: year, month, day, hour, minute, second, millisecond, microsecond
+
+```dart
+final DateTime local = DateTime(1972, 1, 1, 7); // Jan 1, 1972 at 7AM @GMT+8
+final DateTime utc = local.toUtc();             // Dec 31, 1971 at 11PM @UTC
+
+local.isAtSameYearAs(utc); // true
+
 ```
 
 Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)

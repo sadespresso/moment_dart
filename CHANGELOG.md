@@ -1,3 +1,9 @@
+## 0.6.0
+
+- Added comparison functions (`isAtSame_As(other)`)
+- Removed unwanted console logs
+- Updated README.md
+
 ## 0.5.0
 
 - Now it's possible to escape strings in `Moment.format()`. Encapsulate the text in square brackets ([]) to do so.

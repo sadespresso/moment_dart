@@ -1,9 +1,4 @@
-import 'package:moment_dart/src/localizations.dart';
-import 'package:moment_dart/src/localizations/en_US.dart';
-import 'package:moment_dart/src/localizations/ko_KO.dart';
-import 'package:moment_dart/src/localizations/mn_MN.dart';
-import 'package:moment_dart/src/localizations/mn_TM.dart';
-import 'package:moment_dart/src/moment.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -205,6 +200,37 @@ void main() {
       expect(epoch.format(r"L [L] LT [LT]"), "01/01/1970 L 12:00 AM LT");
       expect(epoch.format(r"YYYY [YYYY] MMMM [MMMM] Do [Do] LT [A]"),
           "1970 YYYY January MMMM 1st Do 12:00 AM A");
+    });
+
+    group("Comparison", () {
+      test("Comparison Test #1", () {
+        final DateTime local = DateTime(2003, 6, 1, 5, 7, 8, 600);
+        final DateTime utc = DateTime(2003, 6, 1, 5, 7, 8, 600, 1);
+
+        expect(local.isAtSameYearAs(utc), true); // "same year"
+        expect(local.isAtSameMonthAs(utc), true); // "same month"
+        expect(local.isAtSameDayAs(utc), true); // "same day"
+        expect(local.isAtSameHourAs(utc), true); // "same hour"
+        expect(local.isAtSameMinuteAs(utc), true); // "same minute"
+        expect(local.isAtSameSecondAs(utc), true); // "same second"
+        expect(local.isAtSameMillisecondAs(utc), true); // "same millis"
+        expect(local.isAtSameMicrosecondAs(utc), false); // "same microsecond"
+      });
+
+      test("Comparison Test #2", () {
+        final DateTime local =
+            DateTime(1972, 1, 1, 7); // Jan 1, 1972 at 7AM @GMT+8
+        final DateTime utc = local.toUtc(); // Dec 31, 1971 at 11PM @UTC
+
+        expect(local.isAtSameYearAs(utc), true);
+        expect(local.isAtSameMonthAs(utc), true);
+        expect(local.isAtSameDayAs(utc), true);
+        expect(local.isAtSameHourAs(utc), true);
+        expect(local.isAtSameMinuteAs(utc), true);
+        expect(local.isAtSameSecondAs(utc), true);
+        expect(local.isAtSameMillisecondAs(utc), true);
+        expect(local.isAtSameMicrosecondAs(utc), true);
+      });
     });
   });
 }

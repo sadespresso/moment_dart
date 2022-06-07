@@ -1,118 +1,10 @@
+import 'package:moment_dart/src/extension.dart';
+export 'package:moment_dart/src/extension.dart';
+
 import 'package:moment_dart/src/formatters/format_match.dart';
 import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/all.dart';
-
-extension MomentBenefits on DateTime {
-  bool get isLeapYear {
-    if (year & 3 == 0) {
-      if (year % 400 == 0) {
-        return true;
-      } else if (year % 100 == 0) {
-        return false;
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
-  /// Returns quarter of the year.
-  ///
-  /// Jan,Feb,Mar is Q1
-  ///
-  /// Apr,May,Jun is Q2
-  ///
-  /// Jul,Aug,Sep is Q3
-  ///
-  /// Oct,Nov,Dec is Q4
-  int get quarter {
-    return (month - 1) ~/ 3 + 1;
-  }
-
-  int get _isoWeekRaw => (10 + dayOfYear - weekday) ~/ 7;
-
-  bool get _isoWeekInNextYear =>
-      DateTime(year, 1, 1).weekday != DateTime.thursday &&
-      DateTime(year, 12, 31).weekday != DateTime.thursday;
-
-  /// Returns [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
-  ///
-  /// [1, 2, 3, ..., 52, 53]
-  int get week {
-    final int w = _isoWeekRaw;
-
-    // Last year may have 52 or 53 weeks, we shall check
-    //
-    // Dec 28 is always in the last week
-    if (w == 0) {
-      return DateTime(year - 1, 12, 28).week;
-    }
-
-    // It might actually be [Week 1] in the next year
-    if (w == 53 && _isoWeekInNextYear) {
-      return 1;
-    }
-
-    return w;
-  }
-
-  /// Returns year according to [ISO week](https://en.wikipedia.org/wiki/ISO_week_date) number of the year
-  int get weekYear {
-    final int w = _isoWeekRaw;
-
-    if (w == 0) return year - 1;
-
-    if (w == 53 && _isoWeekInNextYear) {
-      return year + 1;
-    }
-
-    return year;
-  }
-
-  /// Returns ordinal day of the year
-  ///
-  /// [1,2,3,...,365,366]
-  int get dayOfYear {
-    const List<int> dayCount = [
-      0,
-      0,
-      31,
-      59,
-      90,
-      120,
-      151,
-      181,
-      212,
-      243,
-      273,
-      304,
-      334
-    ];
-
-    int _dayOfYear = dayCount[month] + day;
-
-    if (isLeapYear && month > 2) {
-      return _dayOfYear + 1;
-    }
-
-    return _dayOfYear;
-  }
-
-  String timeZoneFormatted([bool seperateWithColon = true]) {
-    final int hours = timeZoneOffset.inMinutes ~/ 60;
-    final int minutes = timeZoneOffset.inMinutes - (hours * 60);
-
-    return (timeZoneOffset.isNegative ? "-" : "+") +
-        hours.toString() +
-        (seperateWithColon ? ":" : "") +
-        minutes.toString();
-  }
-
-  Moment toMoment({MomentLocalization? localization}) =>
-      Moment(this, localization: localization);
-}
 
 /// Moment is a wrapper for [DateTime] class
 
@@ -159,8 +51,21 @@ class Moment implements Comparable<Moment> {
     );
   }
 
-  Moment toLocal() => Moment(dateTime.toLocal(), localization: _localization);
-  Moment toUtc() => Moment(dateTime.toUtc(), localization: _localization);
+  Moment copyWith({DateTime? dateTime, MomentLocalization? localization}) {
+    final Moment value = Moment(
+      dateTime ?? this.dateTime,
+      localization: localization ?? _localization,
+    );
+
+    if (_enableDebugPrint) {
+      value.enableDebugPrint();
+    }
+
+    return value;
+  }
+
+  Moment toLocal() => copyWith(dateTime: dateTime.toLocal());
+  Moment toUtc() => copyWith(dateTime: dateTime.toUtc());
 
   Duration difference(Moment other) => dateTime.difference(other.dateTime);
 
@@ -254,8 +159,6 @@ class Moment implements Comparable<Moment> {
       }
     }
 
-    print(tokens);
-
     return value;
   }
 
@@ -340,6 +243,50 @@ class Moment implements Comparable<Moment> {
   int get week => dateTime.week;
   int get weekYear => dateTime.weekYear;
   int get dayOfYear => dateTime.dayOfYear;
+
+  // Comparison functions
+
+  /// Returns if two dates are in same year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameYearAs(Moment other) => dateTime.isAtSameYearAs(other.dateTime);
+
+  /// Returns if two dates are in same month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMonthAs(Moment other) =>
+      dateTime.isAtSameMonthAs(other.dateTime);
+
+  /// Returns if two dates are in same day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameDayAs(Moment other) => dateTime.isAtSameDayAs(other.dateTime);
+
+  /// Returns if two dates are in same hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameHourAs(Moment other) => dateTime.isAtSameHourAs(other.dateTime);
+
+  /// Returns if two dates are in same minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMinuteAs(Moment other) =>
+      dateTime.isAtSameMinuteAs(other.dateTime);
+
+  /// Returns if two dates are in same second, minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameSecondAs(Moment other) =>
+      dateTime.isAtSameSecondAs(other.dateTime);
+
+  /// Returns if two dates are in same millisecond, second, minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMillisecondAs(Moment other) =>
+      dateTime.isAtSameMillisecondAs(other.dateTime);
+
+  /// Returns `this.isAtSameMomentAs(other)`
+  bool isAtSameMicrosecondAs(Moment other) => isAtSameMomentAs(other);
 
   @override
   String toString() => format("LT");
