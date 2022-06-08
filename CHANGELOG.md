@@ -1,3 +1,7 @@
+## 0.6.0+1
+
+- Updated README.md
+
 ## 0.6.0
 
 - Added comparison functions (`isAtSame_As(other)`)

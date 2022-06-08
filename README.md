@@ -46,18 +46,16 @@ yesterday.from(yesterday - Duration(days: 365)); // a year ago
 ### Calendar dates
 ```dart
 
-now.subtract(Duration(days: 1)).calendar();  // Yesterday
-now.calendar();                              // Today
-now.subtract(Duration(days: 1)).calendar();  // Tomorrow
+now.subtract(const Duration(days: 1)).calendar();  // Yesterday at 10:02AM
+now.calendar();                              // Today at 10:02AM
+now.subtract(const Duration(days: 1)).calendar();  // Tomorrow at 10:02AM
 
 // [reference] - defaults to Moment.now(), acts as an anchor.
 // [omitHours] - omits the hour part. Hour part is formatted by "LT" token.
 now.calendar(
-  reference: (now - Duration(days: 1)),
+  reference: (now - const Duration(days: 1)),
   omitHours: true,
 ); // Tomorrow
-
-// [const] removed to save visual space. Please prefer to use `const Duration()`
 ```
 
 ### Formatting
@@ -68,6 +66,18 @@ now.format("YYYY MMMM Do - hh:mm:ssa"); //2003 June 1st - 05:01:00am
 now.format("LTS");                      //5:01:00 AM
 now.format("dddd");                     //Sunday
 now.format("MMM Do YY");                //Jun 1st 03
+```
+
+Escape strings by **encasulating them in square brackets ([])**.
+
+```dart
+epoch.format("YYYY [YYYY] MMMM [MMMM] Do [Do] LT [A]"); // 1970 YYYY January MMMM 1st Do 12:00 AM A
+```
+
+Alternatively, unmatched tokens will be left as is
+
+```dart
+epoch.format("YYYY년 MMM D일 ddd A h:mm"); // 1970년 1월 1일 목 오전 8:00 (Localization: KO)
 ```
 
 ### Parsing
