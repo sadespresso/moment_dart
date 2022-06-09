@@ -1,4 +1,7 @@
-> An attempt to port moment.js to Dart.
+[![pub package](https://img.shields.io/pub/v/moment_dart.svg)](https://pub.dartlang.org/packages/moment_dart)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+> Inspired by moment.js
 
 ## Features
 
@@ -8,7 +11,7 @@ Convert `DateTime` to human-readable text.
   - [Formatted dates](#formatting)
   - [Multiple localizations](#changing-localization)
 
-## Getings started
+## Getting started ✨
 
 Import the package
 ```dart
@@ -28,7 +31,7 @@ final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
 final Moment bday = Moment(DateTime(2003, 6, 1, 5, 1));
 ```
 
-## Usage
+## Usage 🌿
 
 ### Relative durations
 
@@ -85,7 +88,7 @@ Currently uses `DateTime.parse()`
 
 > ***COMING SOON 💫***
 
-### Changing localization
+### Changing localization 🌐
 Localization defaults to `MomentLocalizations.enUS()`
 
 ```dart
@@ -153,7 +156,7 @@ local.isAtSameYearAs(utc); // true
 
 Read more about [ISO week on Wikipedia](https://en.wikipedia.org/wiki/ISO_week_date)
 
-## Creating your own Localzation
+## Creating your own Localization ➕
 
 Extend `MomentLocalization` class to get started.
 
@@ -191,7 +194,7 @@ CatLanguage extends MomentLocalization {
 }
 ```
 
-## Format Tokens
+## Format Tokens 🔑
 
 Encapsulate string in square brackets ([]) to escape.
 
@@ -262,7 +265,7 @@ Encapsulate string in square brackets ([]) to escape.
 |                           | LTS    | 8:30:00 PM                             | Time (with seconds)                                                                           |
 
 
-## TODO
+## TODO ✔️
 
 - Add more localizations
 - Implement parsing
