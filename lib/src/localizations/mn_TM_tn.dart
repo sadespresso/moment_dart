@@ -22,6 +22,11 @@ class LocalizationMongolianTraditionalNumbers
     "9": "᠙",
   };
 
+  @override
+  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+    return toTraditionalNumber(super.relative(duration, dropPrefixOrSuffix));
+  }
+
   String toTraditionalNumber(String input) {
     mongolianNumbers.forEach((key, value) {
       input = input.replaceAll(key, value);

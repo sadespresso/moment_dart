@@ -32,7 +32,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         break;
       case RelativeInterval.aMinute:
         isSuffixMasculine = false;
-        value = "минут";
+        value = "1 минут";
         break;
       case RelativeInterval.minutes:
         isSuffixMasculine = false;
@@ -40,7 +40,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         break;
       case RelativeInterval.anHour:
         isSuffixMasculine = false;
-        value = "цаг";
+        value = "1 цаг";
         break;
       case RelativeInterval.hours:
         isSuffixMasculine = false;
@@ -48,9 +48,10 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         break;
       case RelativeInterval.aDay:
         isSuffixMasculine = false;
-        value = dropPrefixOrSuffix
-            ? "өдөр"
-            : "өдр"; // Here the letter "ө" will be omitted when
+        value = "1 " +
+            (dropPrefixOrSuffix
+                ? "өдөр"
+                : "өдр"); // Here the letter "ө" will be omitted when
         break;
       case RelativeInterval.days:
         isSuffixMasculine = false;
@@ -59,7 +60,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         break;
       case RelativeInterval.aMonth:
         isSuffixMasculine = true;
-        value = "сар";
+        value = "1 сар";
         break;
       case RelativeInterval.months:
         isSuffixMasculine = true;
@@ -67,7 +68,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         break;
       case RelativeInterval.aYear:
         isSuffixMasculine = false;
-        value = "жил";
+        value = "1 жил";
         break;
       case RelativeInterval.years:
         isSuffixMasculine = false;

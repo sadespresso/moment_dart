@@ -1,3 +1,8 @@
+## 0.6.2
+
+- Now Mongolian singular units include number `1` as nature of the language is not similar to English. e.g., `минутын өмнө` => `1 минутын өмнө`
+- Mongolian script with Mongolian numbers (`mn_TM_tn`)'s `.relative(-)` now uses Mongolian numbers
+
 ## 0.6.1
 
 - Fixed Mongolian `mn_MN` and Mongolian Script `mn_TM` suffixes

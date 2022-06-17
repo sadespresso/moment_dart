@@ -36,7 +36,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         break;
       case RelativeInterval.aMinute:
         isSuffixFeminine = true;
-        value = "ᠮᠢᠨᠦ᠋ᠲ᠋";
+        value = "1 ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.minutes:
         isSuffixFeminine = true;
@@ -44,7 +44,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         break;
       case RelativeInterval.anHour:
         isSuffixFeminine = false;
-        value = "ᠴᠠᠭ";
+        value = "1 ᠴᠠᠭ";
         break;
       case RelativeInterval.hours:
         isSuffixFeminine = false;
@@ -52,7 +52,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         break;
       case RelativeInterval.aDay:
         isSuffixFeminine = true;
-        value = "ᠡᠳᠦᠷ";
+        value = "1 ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.days:
         isSuffixFeminine = true;
@@ -60,7 +60,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         break;
       case RelativeInterval.aMonth:
         isSuffixFeminine = false;
-        value = "ᠰᠠᠷ᠎ᠠ";
+        value = "1 ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.months:
         isSuffixFeminine = false;
@@ -68,7 +68,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
         break;
       case RelativeInterval.aYear:
         isSuffixFeminine = false;
-        value = "ᠵᠢᠯ";
+        value = "1 ᠵᠢᠯ";
         break;
       case RelativeInterval.years:
         isSuffixFeminine = false;
