@@ -13,6 +13,7 @@ class LocalizationMongolianTraditional extends MomentLocalization {
   /// Used as placeholder in replacable texts. E.g. `relativePast`
   static const String alpha = "%";
 
+  static const String relativeDeadline = "$alpha ᠳᠣᠳᠤᠷ᠎ᠠ";
   static const String relativePast = "$alpha ᠡᠮᠦᠨ᠎ᠡ";
   static const String relativeFuture = "$alpha ᠳᠠᠷᠠᠭ᠎ᠠ";
 
@@ -24,46 +25,53 @@ class LocalizationMongolianTraditional extends MomentLocalization {
     duration = duration.abs();
 
     late final String value;
-    bool isSuffixFeminine = false;
+    late final bool isSuffixFeminine;
 
     RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
+        isSuffixFeminine = false;
         value = "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ";
         break;
       case RelativeInterval.aMinute:
+        isSuffixFeminine = true;
         value = "ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.minutes:
+        isSuffixFeminine = true;
         value = "${(duration.inSeconds / 60).round()} ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.anHour:
-        value = "ᠴᠠᠭ ᠤᠨ";
+        isSuffixFeminine = false;
+        value = "ᠴᠠᠭ";
         break;
       case RelativeInterval.hours:
+        isSuffixFeminine = false;
         value = "${(duration.inMinutes / 60).round()} ᠴᠠᠭ";
         break;
       case RelativeInterval.aDay:
         isSuffixFeminine = true;
-        value = "ᠡᠳᠦᠷ ᠦᠨ";
+        value = "ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.days:
         isSuffixFeminine = true;
         value = "${(duration.inHours / 24).round()} ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.aMonth:
-        value = "ᠰᠠᠷ᠎ᠠ ᠤᠨ";
+        isSuffixFeminine = false;
+        value = "ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.months:
+        isSuffixFeminine = false;
         value = "${(duration.inDays / 30).round()} ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.aYear:
-        isSuffixFeminine = true;
+        isSuffixFeminine = false;
         value = "ᠵᠢᠯ";
         break;
       case RelativeInterval.years:
-        isSuffixFeminine = true;
+        isSuffixFeminine = false;
         value = "${(duration.inDays / 365).round()} ᠵᠢᠯ";
         break;
     }
@@ -88,11 +96,13 @@ class LocalizationMongolianTraditional extends MomentLocalization {
   String weekdayName(int i) => weekdayNames[i]!;
 
   @override
-  String calendar(Moment moment,
-      {Moment? reference,
-      bool weekStartOnSunday = false,
-      bool omitHours = false,
-      String? customFormat}) {
+  String calendar(
+    Moment moment, {
+    Moment? reference,
+    bool weekStartOnSunday = false,
+    bool omitHours = false,
+    String? customFormat,
+  }) {
     reference ??= Moment.now();
 
     late final String day;

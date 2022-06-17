@@ -81,11 +81,13 @@ class LocalizationGermanStandard extends MomentLocalization {
   String weekdayName(int i) => weekdayNames[i]!;
 
   @override
-  String calendar(Moment moment,
-      {Moment? reference,
-      bool weekStartOnSunday = false,
-      bool omitHours = false,
-      String? customFormat}) {
+  String calendar(
+    Moment moment, {
+    Moment? reference,
+    bool weekStartOnSunday = false,
+    bool omitHours = false,
+    String? customFormat,
+  }) {
     reference ??= Moment.now();
 
     late final String day;

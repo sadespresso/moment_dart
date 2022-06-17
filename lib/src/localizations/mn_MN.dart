@@ -28,14 +28,14 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
     switch (interval) {
       case RelativeInterval.fewSeconds:
         isSuffixMasculine = true;
-        value = "хэдэн хором";
+        value = "хэдэн " + (dropPrefixOrSuffix ? "хором" : "хорм");
         break;
       case RelativeInterval.aMinute:
-        isSuffixMasculine = true;
+        isSuffixMasculine = false;
         value = "минут";
         break;
       case RelativeInterval.minutes:
-        isSuffixMasculine = true;
+        isSuffixMasculine = false;
         value = "${(duration.inSeconds / 60).round()} минут";
         break;
       case RelativeInterval.anHour:
@@ -96,11 +96,13 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
   String weekdayName(int i) => weekdayNames[i]!;
 
   @override
-  String calendar(Moment moment,
-      {Moment? reference,
-      bool weekStartOnSunday = false,
-      bool omitHours = false,
-      String? customFormat}) {
+  String calendar(
+    Moment moment, {
+    Moment? reference,
+    bool weekStartOnSunday = false,
+    bool omitHours = false,
+    String? customFormat,
+  }) {
     reference ??= Moment.now();
 
     late final String day;
@@ -174,7 +176,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization {
         FormatterToken.Mo: (DateTime dateTime) => orderedNumber(dateTime.month),
         FormatterToken.MM: (DateTime dateTime) =>
             dateTime.month.toString().padLeft(2, '0'),
-        FormatterToken.MMM: (DateTime dateTime) => "${dateTime.month}-р сар",
+        FormatterToken.MMM: (DateTime dateTime) => "${dateTime.month} сар",
         FormatterToken.MMMM: (DateTime dateTime) => monthName(dateTime.month),
         FormatterToken.Q: (DateTime dateTime) => dateTime.quarter.toString(),
         FormatterToken.Qo: (DateTime dateTime) =>

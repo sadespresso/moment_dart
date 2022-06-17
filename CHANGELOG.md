@@ -1,3 +1,7 @@
+## 0.6.1
+
+- Fixed Mongolian `mn_MN` and Mongolian Script `mn_TM` suffixes
+
 ## 0.6.0+2
 
 - Updated README.md
