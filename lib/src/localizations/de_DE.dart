@@ -112,7 +112,7 @@ class LocalizationGermanStandard extends MomentLocalization {
         if (moment.isBefore(weekBefore)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
-          day = "letzten ${weekdayName(moment.dateTime.weekday)}";
+          day = "letzten ${weekdayName(moment.weekday)}";
         }
       }
     } else {
@@ -125,7 +125,7 @@ class LocalizationGermanStandard extends MomentLocalization {
 
         /// If it's this or next week (relative to the reference)
         if (moment.isBefore(weekAfter)) {
-          day = weekdayName(moment.dateTime.weekday);
+          day = weekdayName(moment.weekday);
         } else {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }

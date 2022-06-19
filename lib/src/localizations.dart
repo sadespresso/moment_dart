@@ -88,25 +88,24 @@ abstract class MomentLocalization {
   /// -1 is Yesterday,
   /// 1 is Tomorrow,
   /// etc.
-  int deltaDays(Moment a, Moment b) => _deltaDays(a.dateTime, b.dateTime);
-
-  /// Difference of days calculated omitting hour, minute, ...
-  ///
-  /// -1 is Yesterday,
-  /// 1 is Tomorrow,
-  /// etc.
-  int _deltaDays(DateTime a, DateTime b) {
+  int deltaDays(DateTime a, DateTime b) {
     return -DateTime(a.year, a.month, a.day)
         .difference(DateTime(b.year, b.month, b.day))
         .inDays;
   }
 
+  @Deprecated(
+    'Use startOfWeek() instead. '
+    'This feature was deprecated after 0.6.2',
+  )
   static Moment weekFirstDay(Moment reference,
       [bool weekStartOnSunday = false]) {
-    return Moment(weekStartOnSunday
-        ? reference.lastSundayAsDateTime()
-        : reference.lastMondayAsDateTime());
+    return weekStartOnSunday ? reference.lastSunday() : reference.lastMonday();
   }
+
+  static Moment startOfWeek(Moment refernce,
+          [int startingWeekday = DateTime.monday]) =>
+      refernce.lastWeekday(startingWeekday);
 
   final List<FormatterToken> tokens = [...FormatterToken.values]
     ..sort((a, b) => b.toString().length.compareTo(a.toString().length));

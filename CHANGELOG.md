@@ -1,3 +1,11 @@
+## 0.7.0
+
+- ***IMPORTANT CHANGE***: Now `Moment` extends `DateTime` class
+- ***IMPORTANT CHANGE***: Now targets Dart version 2.17.0 and above
+- Implemented 6 operators (+, -, <, <=, >=, >) for `DateTime` and `Moment`. Part of MomentBenefits extension
+- Implemented `.lastWeekday(int weekday)`, and it's children `.lastMonday()`, `.lastTuesday()`, ..., `.lastSunday()`. You can also do same thing to find future weekdays. e.g., `.nextMonday()`. Works on both `Moment` and `DateTime`
+- Implemented `.startOf(DurationUnit unit)`, and it's children `.startOfDay()`. Works on both `Moment` and `DateTime`
+
 ## 0.6.2
 
 - Now Mongolian singular units include number `1` as nature of the language is not similar to English. e.g., `минутын өмнө` => `1 минутын өмнө`

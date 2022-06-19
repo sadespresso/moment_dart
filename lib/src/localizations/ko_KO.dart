@@ -119,7 +119,7 @@ class LocalizationKorean extends MomentLocalization {
         if (moment.isBefore(weekBefore)) {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
-          day = "지난 ${weekdayName(moment.dateTime.weekday)}$weekdaySuffix";
+          day = "지난 ${weekdayName(moment.weekday)}$weekdaySuffix";
         }
       }
     } else {
@@ -135,7 +135,7 @@ class LocalizationKorean extends MomentLocalization {
 
         /// If it's this or next week (relative to the reference)
         if (moment.isBefore(weekAfter)) {
-          day = weekdayName(moment.dateTime.weekday) + weekdaySuffix;
+          day = weekdayName(moment.weekday) + weekdaySuffix;
         } else {
           day = moment.format(customFormat ?? localizationDefaultDateFormat);
         }

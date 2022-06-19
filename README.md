@@ -11,6 +11,11 @@ Convert `DateTime` to human-readable text.
   - [Formatted dates](#formatting)
   - [Multiple localizations](#changing-localization)
 
+Helper classes
+  - [Start of year/month/.../millis](#start-of-yearmonthmoment)
+  - [Find last or next weekday](#find-lastnext-weekday)
+  - [Is same year/month/.../moment as](#is-same-unit-as)
+
 ## Getting started ✨
 
 Import the package
@@ -21,6 +26,7 @@ import 'package:moment_dart/moment_dart.dart';
 Create Moment instance
 
 ```dart
+
 final Moment now = Moment.now();
 
 final Moment epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
@@ -29,6 +35,12 @@ final Moment epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
 /// or from [DateTime]
 final Moment bday = Moment(DateTime(2003, 6, 1, 5, 1));
+```
+
+As of version 0.7.0, DateTime is now superclass of Moment
+
+```dart
+class Moment extends DateTime { ... }
 ```
 
 ## Usage 🌿
@@ -61,7 +73,58 @@ now.calendar(
 ); // Tomorrow
 ```
 
-### Formatting
+### Start of year/month/.../moment
+```dart
+final Moment tada =
+      DateTime(2022, 6, 19, 21, 9, 33).toMoment(); // June 19 2022 09:09 PM
+
+tada.startOf(DurationUnit.day); // June 19 2022 12:00 AM
+// OR
+tada.startOfDay(); // June 19 2022 12:00 AM
+```
+
+### Find last/next weekday
+
+**Works on `DateTime` and `Moment`**
+
+We're always dealing with ***local*** date times here. If the date is UTC, it's converted to local beforehand.
+
+```dart
+final Moment tada =
+      DateTime(2022, 6, 19, 21, 9, 33).toMoment(); // June 19 2022 09:09 PM
+
+tada.nextMonday(); // June 20 2022 09:09 PM
+
+tada.lastMonday(); // June 13 2022 09:09 PM
+
+// Note that "today" is neither last/next Sunday
+tada.lastSunday(); // June 12 2022 09:09 PM
+```
+
+### Is same **unit** as
+
+**Works on `DateTime` and `Moment`**
+
+
+```dart
+final DateTime otherBday = DateTime(2003,6,19);
+final Moment spiritRoverOnMars = DateTime(2003,6,10).toMoment();
+
+otherBday.isAtSameMonthAs(spiritRoverOnMars); // true
+otherBday.isAtSameYearAs(spiritRoverOnMars); // true
+```
+
+⚠️ It takes timezones into account
+
+```dart
+final DateTime bday = DateTime(2003,6,1,5,33); // 2003-05-31 21:33:00.000Z (Local time zone was GMT+08:00)
+final Moment spiritRoverOnMars = DateTime(2003,6,10).toMoment(); // 2003-06-09 16:00:00.000Z
+
+bday.isAtSameMonthAs(spiritRoverOnMars); // false; didn't happen in same month. Bday was in May, Spirit Rover landed in June.
+bday.isAtSameYearAs(spiritRoverOnMars); // true
+```
+
+## Formatting
 [See list of format tokens](#format-tokens)
 
 ```dart
@@ -88,7 +151,7 @@ Currently uses `DateTime.parse()`
 
 > ***COMING SOON 💫***
 
-### Changing localization 🌐
+## Changing localization 🌐
 Localization defaults to `MomentLocalizations.enUS()`
 
 ```dart

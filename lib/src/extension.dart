@@ -1,75 +1,28 @@
 import 'package:moment_dart/moment_dart.dart';
 
+enum DurationUnit {
+  microsecond(0),
+  millisecond(1),
+  second(2),
+  minute(3),
+  hour(4),
+  day(5),
+
+  /// Doesn't take timezone into account.
+  month(6),
+
+  /// Doesn't take timezone into account.
+  year(7);
+
+  final int value;
+
+  const DurationUnit(this.value);
+}
+
 extension MomentBenefits on DateTime {
-  /// [unit]: 0-7
+  /// Returns if [year] is leap year.
   ///
-  /// year,month,day,hour,minute,second,mircos,millis
-  bool _isAtSameUnitAs(DateTime other, int unit) {
-    other = other.toUtc();
-    final DateTime self = toUtc();
-
-    if (other.year != self.year) return false;
-    if (unit == 0) return true;
-
-    if (other.month != self.month) return false;
-    if (unit == 1) return true;
-
-    if (other.day != self.day) return false;
-    if (unit == 2) return true;
-
-    if (other.hour != self.hour) return false;
-    if (unit == 3) return true;
-
-    if (other.minute != self.minute) return false;
-    if (unit == 4) return true;
-
-    if (other.second != self.second) return false;
-    if (unit == 5) return true;
-
-    if (other.millisecond != self.millisecond) return false;
-    if (unit == 6) return true;
-
-    return other.microsecond == self.microsecond;
-  }
-
-  /// Returns if two dates are in same year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameYearAs(DateTime other) => _isAtSameUnitAs(other, 0);
-
-  /// Returns if two dates are in same month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMonthAs(DateTime other) => _isAtSameUnitAs(other, 1);
-
-  /// Returns if two dates are in same day, month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameDayAs(DateTime other) => _isAtSameUnitAs(other, 2);
-
-  /// Returns if two dates are in same hour, day, month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameHourAs(DateTime other) => _isAtSameUnitAs(other, 3);
-
-  /// Returns if two dates are in same minute, hour, day, month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMinuteAs(DateTime other) => _isAtSameUnitAs(other, 4);
-
-  /// Returns if two dates are in same second, minute, hour, day, month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameSecondAs(DateTime other) => _isAtSameUnitAs(other, 5);
-
-  /// Returns if two dates are in same millisecond, second, minute, hour, day, month, year.
-  ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMillisecondAs(DateTime other) => _isAtSameUnitAs(other, 6);
-
-  /// Returns `this.isAtSameMomentAs(other)`
-  bool isAtSameMicrosecondAs(DateTime other) => isAtSameMomentAs(other);
-
+  /// More about leap years: [Leap Year](https://en.wikipedia.org/wiki/Leap_year)
   bool get isLeapYear {
     if (year & 3 == 0) {
       if (year % 400 == 0) {
@@ -166,16 +119,291 @@ extension MomentBenefits on DateTime {
     return _dayOfYear;
   }
 
+  operator +(Duration other) => add(other);
+  operator -(Duration other) => subtract(other);
+  operator >(DateTime other) => isAfter(other);
+  operator <(DateTime other) => isBefore(other);
+  operator >=(DateTime other) => isAfter(other) || isAtSameMomentAs(other);
+  operator <=(DateTime other) => isBefore(other) || isAtSameMomentAs(other);
+
+  /// Returns timezone:
+  ///
+  /// -06:00 => GMT-6
+  ///
+  /// +13:00 => GMT+13
+  ///
+  /// You can disable [seperateWithColon].
+  ///
+  /// -0730 => GMT-7:30
+  ///
+  /// +1300 => GMT+13
   String timeZoneFormatted([bool seperateWithColon = true]) {
     final int hours = timeZoneOffset.inMinutes ~/ 60;
     final int minutes = timeZoneOffset.inMinutes - (hours * 60);
 
     return (timeZoneOffset.isNegative ? "-" : "+") +
-        hours.toString() +
+        hours.toString().padLeft(2, '0') +
         (seperateWithColon ? ":" : "") +
-        minutes.toString();
+        minutes.toString().padLeft(2, '0');
   }
 
   Moment toMoment({MomentLocalization? localization}) =>
       Moment(this, localization: localization);
+}
+
+extension UnitComparision on DateTime {
+  /// [unit]: 0-7
+  ///
+  /// year,month,day,hour,minute,second,mircos,millis
+  bool _isAtSameUnitAs(DateTime other, DurationUnit unit) {
+    if (unit == DurationUnit.microsecond) {
+      return isAtSameMomentAs(other);
+    }
+
+    other = other.toUtc();
+    final DateTime self = toUtc();
+
+    if (other.year != self.year) return false;
+    if (unit == DurationUnit.year) return true;
+
+    if (other.month != self.month) return false;
+    if (unit == DurationUnit.month) return true;
+
+    if (other.day != self.day) return false;
+    if (unit == DurationUnit.day) return true;
+
+    if (other.hour != self.hour) return false;
+    if (unit == DurationUnit.hour) return true;
+
+    if (other.minute != self.minute) return false;
+    if (unit == DurationUnit.minute) return true;
+
+    if (other.second != self.second) return false;
+    if (unit == DurationUnit.second) return true;
+
+    if (other.millisecond != self.millisecond) return false;
+    if (unit == DurationUnit.millisecond) return true;
+
+    return other.microsecond == self.microsecond;
+  }
+
+  /// Returns if two dates are in same year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameYearAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.year);
+
+  /// Returns if two dates are in same month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMonthAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.month);
+
+  /// Returns if two dates are in same day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameDayAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.day);
+
+  /// Returns if two dates are in same hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameHourAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.hour);
+
+  /// Returns if two dates are in same minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMinuteAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.minute);
+
+  /// Returns if two dates are in same second, minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameSecondAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.second);
+
+  /// Returns if two dates are in same millisecond, second, minute, hour, day, month, year.
+  ///
+  /// The comparison takes UTC/local timezone into account.
+  bool isAtSameMillisecondAs(DateTime other) =>
+      _isAtSameUnitAs(other, DurationUnit.millisecond);
+
+  /// Returns `this.isAtSameMomentAs(other)`
+  bool isAtSameMicrosecondAs(DateTime other) => isAtSameMomentAs(other);
+}
+
+extension WeekdayFinder on DateTime {
+  /// Returns new [DateTime] instance of nearest `n`th weekday in the future
+  ///
+  /// If `n`th day is today, will return `7 days in the future`.
+  DateTime nextWeekday(int weekday) {
+    assert(weekday > -1 && weekday < 8,
+        "[Moment Dart] Weekday must be in range `0<=n<=7`");
+
+    final int requiredDelta = (weekday - this.weekday) % 7;
+
+    return this + Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
+  }
+
+  /// Return new [DateTime] instance of nearest Monday in the Future
+  ///
+  /// If [this] is Monday, will return `7 days in the future`
+  DateTime nextMonday() => nextWeekday(DateTime.monday);
+
+  /// Return new [DateTime] instance of nearest Tuesday in the Future
+  ///
+  /// If [this] is Tuesday, will return `7 days in the future`
+  DateTime nextTuesday() => nextWeekday(DateTime.tuesday);
+
+  /// Return new [DateTime] instance of nearest Wednesday in the Future
+  ///
+  /// If [this] is Wednesday, will return `7 days in the future`
+  DateTime nextWednesday() => nextWeekday(DateTime.wednesday);
+
+  /// Return new [DateTime] instance of nearest Thursday in the Future
+  ///
+  /// If [this] is Thursday, will return `7 days in the future`
+  DateTime nextThursday() => nextWeekday(DateTime.thursday);
+
+  /// Return new [DateTime] instance of nearest Friday in the Future
+  ///
+  /// If [this] is Friday, will return `7 days in the future`
+  DateTime nextFriday() => nextWeekday(DateTime.friday);
+
+  /// Return new [DateTime] instance of nearest Saturday in the Future
+  ///
+  /// If [this] is Saturday, will return `7 days in the future`
+  DateTime nextSaturday() => nextWeekday(DateTime.saturday);
+
+  /// Return new [DateTime] instance of nearest Sunday in the Future
+  ///
+  /// If [this] is Sunday, will return `7 days in the future`
+  DateTime nextSunday() => nextWeekday(DateTime.sunday);
+
+  /// Returns new [DateTime] instance of last `n`th weekday
+  ///
+  /// If today is the `n`th day, will return `7 days in the past`
+  DateTime lastWeekday(int weekday) {
+    assert(weekday > -1 && weekday < 8,
+        "[Moment Dart] Weekday must be in range `0<=n<=7`");
+
+    final int requiredDelta = (this.weekday - weekday) % 7;
+
+    return this - Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
+  }
+
+  /// Return new [DateTime] instance of nearest Monday in the past
+  ///
+  /// If [this] is Monday, will return `7 days in the past`
+  DateTime lastMonday() => lastWeekday(DateTime.monday);
+
+  /// Return new [DateTime] instance of nearest Tuesday in the past
+  ///
+  /// If [this] is Tuesday, will return `7 days in the past`
+  DateTime lastTuesday() => lastWeekday(DateTime.tuesday);
+
+  /// Return new [DateTime] instance of nearest Wednesday in the past
+  ///
+  /// If [this] is Wednesday, will return `7 days in the past`
+  DateTime lastWednesday() => lastWeekday(DateTime.wednesday);
+
+  /// Return new [DateTime] instance of nearest Thursday in the past
+  ///
+  /// If [this] is Thursday, will return `7 days in the past`
+  DateTime lastThursday() => lastWeekday(DateTime.thursday);
+
+  /// Return new [DateTime] instance of nearest Friday in the past
+  ///
+  /// If [this] is Friday, will return `7 days in the past`
+  DateTime lastFriday() => lastWeekday(DateTime.friday);
+
+  /// Return new [DateTime] instance of nearest Saturday in the past
+  ///
+  /// If [this] is Saturday, will return `7 days in the past`
+  DateTime lastSaturday() => lastWeekday(DateTime.saturday);
+
+  /// Return new [DateTime] instance of nearest Sunday in the past
+  ///
+  /// If [this] is Sunday, will return `7 days in the past`
+  DateTime lastSunday() => lastWeekday(DateTime.sunday);
+}
+
+extension StartOfUnit on DateTime {
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  ///
+  /// Will throw if [unit] is [DurationUnit.microsecond]
+  DateTime startOf(DurationUnit unit) {
+    if (isUtc) return toLocal().startOf(unit);
+
+    switch (unit) {
+      case DurationUnit.microsecond:
+        throw "Microsecond is the smallest ";
+      case DurationUnit.millisecond:
+        return DateTime(year, month, day, hour, minute, second, millisecond);
+      case DurationUnit.second:
+        return DateTime(year, month, day, hour, minute, second);
+      case DurationUnit.minute:
+        return DateTime(year, month, day, hour, minute);
+      case DurationUnit.hour:
+        return DateTime(year, month, day, hour);
+      case DurationUnit.day:
+        return DateTime(year, month, day);
+      case DurationUnit.month:
+        return DateTime(year, month);
+      case DurationUnit.year:
+        return DateTime(year);
+    }
+  }
+
+  /// Returns start of the millisecond
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfMillisecond() => startOf(DurationUnit.millisecond);
+
+  /// Returns start of the second
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfSecond() => startOf(DurationUnit.second);
+
+  /// Returns start of the minute
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfMinute() => startOf(DurationUnit.minute);
+
+  /// Returns start of the hour
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfHour() => startOf(DurationUnit.hour);
+
+  /// Returns start of the day
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfDay() => startOf(DurationUnit.day);
+
+  /// Returns start of the month
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfMonth() => startOf(DurationUnit.month);
+
+  /// Returns start of the year
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfYear() => startOf(DurationUnit.year);
 }
