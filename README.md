@@ -9,7 +9,7 @@ Convert `DateTime` to human-readable text.
   - [Relative duration](#relative-durations)
   - [Calendar text](#calendar-dates)
   - [Formatted dates](#formatting)
-  - [Multiple localizations](#changing-localization)
+  - [Multiple localizations](#changing-localization-)
 
 Helper classes
   - [Start of year/month/.../millis](#start-of-yearmonthmoment)
@@ -125,7 +125,7 @@ bday.isAtSameYearAs(spiritRoverOnMars); // true
 ```
 
 ## Formatting
-[See list of format tokens](#format-tokens)
+[See list of format tokens](#format-tokens-)
 
 ```dart
 now.format("YYYY MMMM Do - hh:mm:ssa"); //2003 June 1st - 05:01:00am
@@ -165,7 +165,7 @@ hangulday2022.format("LL"); // 2022년 10월 9일
 
 Localizations are classes that extend `MomentLocalization`
 
-[See how you can create your own localization](#Creating-your-own-localzation)
+[See how you can create your own localization](#creating-your-own-localization-)
 
 - LocalizationEnUs (English - United States) [en_US]
 - LocalizationKorean (Korean) [ko]

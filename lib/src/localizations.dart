@@ -71,7 +71,7 @@ abstract class MomentLocalization {
     throw Exception("Something went wrong");
   }
 
-  /// Please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
+  /// When creating your own localization, please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
   String calendar(Moment moment,
       {Moment? reference,
@@ -119,7 +119,7 @@ abstract class MomentLocalization {
   /// ISO 639-1 standard language codes
   /// -----
   ///
-  /// Expect identical codes for same language of different area.
+  /// Expect identical codes for same language of different region.
   ///
   /// e.g. English - US, English - Canada, English - Australia, etc...
   String languageCodeISO();

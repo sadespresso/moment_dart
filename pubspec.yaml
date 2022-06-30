@@ -1,6 +1,6 @@
 name: moment_dart
 description: A package that turns DateTime into human-readable format. Inspired by moment.js. Supports multiple localizations (en_US, ko_KO, mn_MN, de_DE, more to be added..)
-version: 0.7.0
+version: 0.7.2
 homepage: https://github.com/theirontnt/moment_dart
 
 environment:

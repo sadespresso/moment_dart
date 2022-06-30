@@ -80,7 +80,7 @@ class Moment extends DateTime {
 
   List<FormatterToken> get _fts => localization.tokens;
 
-  String format(String payload) {
+  String format([String payload = "l"]) {
     final List<dynamic> tokens = [];
 
     bool halt = false;

@@ -1,3 +1,11 @@
+## 0.7.2
+
+- Updated `README.md`
+
+## 0.7.1
+
+- `Moment.format()` no longer has required positional argument. Optional positional argument defaults to `l`;
+
 ## 0.7.0
 
 - ***IMPORTANT CHANGE***: Now `Moment` extends `DateTime` class
