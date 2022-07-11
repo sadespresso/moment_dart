@@ -246,37 +246,37 @@ extension WeekdayFinder on DateTime {
     return this + Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
   }
 
-  /// Return new [DateTime] instance of nearest Monday in the Future
+  /// Returns new [DateTime] instance of nearest Monday in the Future
   ///
   /// If [this] is Monday, will return `7 days in the future`
   DateTime nextMonday() => nextWeekday(DateTime.monday);
 
-  /// Return new [DateTime] instance of nearest Tuesday in the Future
+  /// Returns new [DateTime] instance of nearest Tuesday in the Future
   ///
   /// If [this] is Tuesday, will return `7 days in the future`
   DateTime nextTuesday() => nextWeekday(DateTime.tuesday);
 
-  /// Return new [DateTime] instance of nearest Wednesday in the Future
+  /// Returns new [DateTime] instance of nearest Wednesday in the Future
   ///
   /// If [this] is Wednesday, will return `7 days in the future`
   DateTime nextWednesday() => nextWeekday(DateTime.wednesday);
 
-  /// Return new [DateTime] instance of nearest Thursday in the Future
+  /// Returns new [DateTime] instance of nearest Thursday in the Future
   ///
   /// If [this] is Thursday, will return `7 days in the future`
   DateTime nextThursday() => nextWeekday(DateTime.thursday);
 
-  /// Return new [DateTime] instance of nearest Friday in the Future
+  /// Returns new [DateTime] instance of nearest Friday in the Future
   ///
   /// If [this] is Friday, will return `7 days in the future`
   DateTime nextFriday() => nextWeekday(DateTime.friday);
 
-  /// Return new [DateTime] instance of nearest Saturday in the Future
+  /// Returns new [DateTime] instance of nearest Saturday in the Future
   ///
   /// If [this] is Saturday, will return `7 days in the future`
   DateTime nextSaturday() => nextWeekday(DateTime.saturday);
 
-  /// Return new [DateTime] instance of nearest Sunday in the Future
+  /// Returns new [DateTime] instance of nearest Sunday in the Future
   ///
   /// If [this] is Sunday, will return `7 days in the future`
   DateTime nextSunday() => nextWeekday(DateTime.sunday);
@@ -293,37 +293,37 @@ extension WeekdayFinder on DateTime {
     return this - Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
   }
 
-  /// Return new [DateTime] instance of nearest Monday in the past
+  /// Returns new [DateTime] instance of nearest Monday in the past
   ///
   /// If [this] is Monday, will return `7 days in the past`
   DateTime lastMonday() => lastWeekday(DateTime.monday);
 
-  /// Return new [DateTime] instance of nearest Tuesday in the past
+  /// Returns new [DateTime] instance of nearest Tuesday in the past
   ///
   /// If [this] is Tuesday, will return `7 days in the past`
   DateTime lastTuesday() => lastWeekday(DateTime.tuesday);
 
-  /// Return new [DateTime] instance of nearest Wednesday in the past
+  /// Returns new [DateTime] instance of nearest Wednesday in the past
   ///
   /// If [this] is Wednesday, will return `7 days in the past`
   DateTime lastWednesday() => lastWeekday(DateTime.wednesday);
 
-  /// Return new [DateTime] instance of nearest Thursday in the past
+  /// Returns new [DateTime] instance of nearest Thursday in the past
   ///
   /// If [this] is Thursday, will return `7 days in the past`
   DateTime lastThursday() => lastWeekday(DateTime.thursday);
 
-  /// Return new [DateTime] instance of nearest Friday in the past
+  /// Returns new [DateTime] instance of nearest Friday in the past
   ///
   /// If [this] is Friday, will return `7 days in the past`
   DateTime lastFriday() => lastWeekday(DateTime.friday);
 
-  /// Return new [DateTime] instance of nearest Saturday in the past
+  /// Returns new [DateTime] instance of nearest Saturday in the past
   ///
   /// If [this] is Saturday, will return `7 days in the past`
   DateTime lastSaturday() => lastWeekday(DateTime.saturday);
 
-  /// Return new [DateTime] instance of nearest Sunday in the past
+  /// Returns new [DateTime] instance of nearest Sunday in the past
   ///
   /// If [this] is Sunday, will return `7 days in the past`
   DateTime lastSunday() => lastWeekday(DateTime.sunday);

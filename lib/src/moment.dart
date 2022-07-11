@@ -16,6 +16,10 @@ class Moment extends DateTime {
     _localization = newLocalization ?? MomentLocalizations.enUS();
   }
 
+  void setLocalization(MomentLocalization? newLocalization) {
+    _localization = newLocalization ?? MomentLocalizations.enUS();
+  }
+
   /// Moment created using given `dateTime`;
   Moment(DateTime dateTime, {MomentLocalization? localization})
       : super.fromMicrosecondsSinceEpoch(dateTime.microsecondsSinceEpoch,
@@ -43,7 +47,7 @@ class Moment extends DateTime {
   @Deprecated(
     'Use localization setter '
     'or create new instance instead. '
-    'Starting from 7.0, Moment extends DateTime. Therefore, only changeable field is _localization',
+    'Starting from 7.0, Moment extends DateTime. Therefore, only mutable field is _localization',
   )
   Moment copyWith({DateTime? dateTime, MomentLocalization? localization}) {
     final Moment value = Moment(
@@ -58,19 +62,27 @@ class Moment extends DateTime {
     return value;
   }
 
+  /// Returns new [Moment] instance with added duration
+  ///
   /// Adds the `duration` using `DateTime.add(duration)`
   @override
   Moment add(Duration duration) =>
       Moment(super.add(duration), localization: localization);
 
+  /// Returns new [Moment] instance with subtracted duration
+  ///
   /// Subtracts the `duration` using `DateTime.subtract(duration)`
   @override
   Moment subtract(Duration duration) =>
       Moment(super.subtract(duration), localization: localization);
 
+  /// Returns new [Moment] instance with added duration
+  ///
   /// Calls `add(duration)`
   Moment operator +(Duration duration) => add(duration);
 
+  /// Returns new [Moment] instance with subtracted duration
+  ///
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
 
@@ -130,7 +142,7 @@ class Moment extends DateTime {
 
       if (_enableDebugPrint) {
         print(
-            "[Moment Dart] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
+            "[Moment Dart] [Format Match] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
       }
 
       payload = payload.substring(closestToZero.endIndex);
@@ -152,6 +164,31 @@ class Moment extends DateTime {
 
     return value;
   }
+
+  /// Localization Default formatters
+  String formatDate() => format("LL");
+  String formatDateShort() => format("ll");
+  String formatDateTime() => format("LLL");
+  String formatDateTimeShort() => format("lll");
+  String formatDateTimeWithWeekday() => format("LLLL");
+  String formatDateTimeWithWeekdayShort() => format("llll");
+  String formatTime() => format("LT");
+  String formatTimeWithSeconds() => format("LTS");
+
+  /// Localization Default formatters
+  // ignore: non_constant_identifier_names
+  String get LL => format("LL");
+  String get ll => format("ll");
+  // ignore: non_constant_identifier_names
+  String get LLL => format("LLL");
+  String get lll => format("lll");
+  // ignore: non_constant_identifier_names
+  String get LLLL => format("LLLL");
+  String get llll => format("llll");
+  // ignore: non_constant_identifier_names
+  String get LT => format("LT");
+  // ignore: non_constant_identifier_names
+  String get LTS => format("LTS");
 
   /// Uses [DateTime.parse]
   ///
@@ -207,37 +244,37 @@ class Moment extends DateTime {
       Moment(_forcedDateTimeType.nextWeekday(weekday),
           localization: localization);
 
-  /// Return new [Moment] instance of nearest Monday in the Future
+  /// Returns new [Moment] instance of nearest Monday in the Future
   ///
   /// If [this] is Monday, will return `7 days in the future`
   Moment nextMonday() => nextWeekday(DateTime.monday);
 
-  /// Return new [Moment] instance of nearest Tuesday in the Future
+  /// Returns new [Moment] instance of nearest Tuesday in the Future
   ///
   /// If [this] is Tuesday, will return `7 days in the future`
   Moment nextTuesday() => nextWeekday(DateTime.tuesday);
 
-  /// Return new [Moment] instance of nearest Wednesday in the Future
+  /// Returns new [Moment] instance of nearest Wednesday in the Future
   ///
   /// If [this] is Wednesday, will return `7 days in the future`
   Moment nextWednesday() => nextWeekday(DateTime.wednesday);
 
-  /// Return new [Moment] instance of nearest Thursday in the Future
+  /// Returns new [Moment] instance of nearest Thursday in the Future
   ///
   /// If [this] is Thursday, will return `7 days in the future`
   Moment nextThursday() => nextWeekday(DateTime.thursday);
 
-  /// Return new [Moment] instance of nearest Friday in the Future
+  /// Returns new [Moment] instance of nearest Friday in the Future
   ///
   /// If [this] is Friday, will return `7 days in the future`
   Moment nextFriday() => nextWeekday(DateTime.friday);
 
-  /// Return new [Moment] instance of nearest Saturday in the Future
+  /// Returns new [Moment] instance of nearest Saturday in the Future
   ///
   /// If [this] is Saturday, will return `7 days in the future`
   Moment nextSaturday() => nextWeekday(DateTime.saturday);
 
-  /// Return new [Moment] instance of nearest Sunday in the Future
+  /// Returns new [Moment] instance of nearest Sunday in the Future
   ///
   /// If [this] is Sunday, will return `7 days in the future`
   Moment nextSunday() => nextWeekday(DateTime.sunday);
@@ -249,37 +286,37 @@ class Moment extends DateTime {
       Moment(_forcedDateTimeType.lastWeekday(weekday),
           localization: localization);
 
-  /// Return new [Moment] instance of nearest Monday in the past
+  /// Returns new [Moment] instance of nearest Monday in the past
   ///
   /// If [this] is Monday, will return `7 days in the past`
   Moment lastMonday() => lastWeekday(DateTime.monday);
 
-  /// Return new [Moment] instance of nearest Tuesday in the past
+  /// Returns new [Moment] instance of nearest Tuesday in the past
   ///
   /// If [this] is Tuesday, will return `7 days in the past`
   Moment lastTuesday() => lastWeekday(DateTime.tuesday);
 
-  /// Return new [Moment] instance of nearest Wednesday in the past
+  /// Returns new [Moment] instance of nearest Wednesday in the past
   ///
   /// If [this] is Wednesday, will return `7 days in the past`
   Moment lastWednesday() => lastWeekday(DateTime.wednesday);
 
-  /// Return new [Moment] instance of nearest Thursday in the past
+  /// Returns new [Moment] instance of nearest Thursday in the past
   ///
   /// If [this] is Thursday, will return `7 days in the past`
   Moment lastThursday() => lastWeekday(DateTime.thursday);
 
-  /// Return new [Moment] instance of nearest Friday in the past
+  /// Returns new [Moment] instance of nearest Friday in the past
   ///
   /// If [this] is Friday, will return `7 days in the past`
   Moment lastFriday() => lastWeekday(DateTime.friday);
 
-  /// Return new [Moment] instance of nearest Saturday in the past
+  /// Returns new [Moment] instance of nearest Saturday in the past
   ///
   /// If [this] is Saturday, will return `7 days in the past`
   Moment lastSaturday() => lastWeekday(DateTime.saturday);
 
-  /// Return new [Moment] instance of nearest Sunday in the past
+  /// Returns new [Moment] instance of nearest Sunday in the past
   ///
   /// If [this] is Sunday, will return `7 days in the past`
   Moment lastSunday() => lastWeekday(DateTime.sunday);

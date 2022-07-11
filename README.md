@@ -37,7 +37,7 @@ final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
 final Moment bday = Moment(DateTime(2003, 6, 1, 5, 1));
 ```
 
-As of version 0.7.0, DateTime is now superclass of Moment
+As of version 0.7.0, `Moment` is subclass of `DateTime`
 
 ```dart
 class Moment extends DateTime { ... }
@@ -96,8 +96,11 @@ final Moment tada =
 tada.nextMonday(); // June 20 2022 09:09 PM
 
 tada.lastMonday(); // June 13 2022 09:09 PM
+```
 
-// Note that "today" is neither last/next Sunday
+Note that ***this Sunday*** is neither last or next Sunday
+
+```dart
 tada.lastSunday(); // June 12 2022 09:09 PM
 ```
 
@@ -146,6 +149,31 @@ Alternatively, unmatched tokens will be left as is
 epoch.format("YYYY년 MMM D일 ddd A h:mm"); // 1970년 1월 1일 목 오전 8:00 (Localization: KO)
 ```
 
+There are functions for few commonly used formatters
+```dart
+// Shorthands
+
+moment.formatDate(); // LL
+moment.formatDateShort(); // ll
+moment.formatDateTime(); // LLL
+moment.formatDateTimeShort(); // lll
+moment.formatDateTimeWithWeekday(); // LLLL
+moment.formatDateTimeWithWeekdayShort(); // llll
+moment.formatTime(); // LT
+moment.formatTimeWithSeconds(); //LTS 
+
+// OR formatter token as getter
+
+moment.LL;
+moment.ll;
+moment.LLL;
+moment.lll;
+moment.LLLL;
+moment.llll;
+moment.LT;
+moment.LTS;
+```
+
 ### Parsing
 Currently uses `DateTime.parse()`
 
@@ -158,7 +186,8 @@ Localization defaults to `MomentLocalizations.enUS()`
 final Moment hangulday2022 = Moment(DateTime(2022,10,9), localization: MomentLocalizations.ko());
 
 hangulday2022.format("ll"); // 2022년 10월 9일
-hangulday2022.format("LL"); // 2022년 10월 9일
+hangulday2022.LL; // 2022년 10월 9일 (same as Moment.format("LL"))
+hangulday2022.formatTime(); // 오전 12:00 (same as Moment.format("LT"))
 ```
 
 ## Available Localization classes:

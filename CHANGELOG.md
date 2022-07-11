@@ -1,3 +1,7 @@
+## 0.7.3
+
+- Added shorthand function for commonly used tokens. e.g., moment.LT, moment.LTS, moment.L, etc.
+
 ## 0.7.2
 
 - Updated `README.md`
