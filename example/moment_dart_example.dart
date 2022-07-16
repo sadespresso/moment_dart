@@ -12,7 +12,6 @@ void main() {
   final Moment epochPlusAYear = epoch + Duration(days: 365);
 
   localization.relative(const Duration(seconds: 2)); //in a few seconds
-  localization.weekdayName(epoch.weekday); // "Thursday"
   epochPlusFiveDays.from(epoch, true); // "5 days"
   epochPlusFiveDays.from(epoch); // "in 5 days"
   epoch.calendar(

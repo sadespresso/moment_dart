@@ -1,4 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/exception.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -244,7 +245,8 @@ void main() {
 
   group("Start of unit", () {
     test("DateTime", () {
-      DateTime m = DateTime(2022, 6, 19, 21, 9, 33, 1, 1);
+      // calling .toUtc() must have no effect since .startOf feature only works on local time zones.
+      DateTime m = DateTime(2022, 6, 19, 21, 9, 33, 1, 1).toUtc();
       expect(m.startOfMillisecond(), DateTime(2022, 6, 19, 21, 9, 33, 1));
       expect(m.startOfSecond(), DateTime(2022, 6, 19, 21, 9, 33));
       expect(m.startOfMinute(), DateTime(2022, 6, 19, 21, 9));
@@ -252,6 +254,9 @@ void main() {
       expect(m.startOfDay(), DateTime(2022, 6, 19));
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
+
+      expect(m.startOf(DurationUnit.microsecond),
+          m.toLocal()); // Must check local value since .startOf returns local DateTime
     });
     test("Moment", () {
       Moment m = DateTime(2003, 6, 1, 21, 9, 33, 1, 1).toMoment().toUtc();
@@ -262,6 +267,37 @@ void main() {
       expect(m.startOfDay(), DateTime(2003, 6));
       expect(m.startOfMonth(), DateTime(2003, 6));
       expect(m.startOfYear(), DateTime(2003));
+
+      expect(m.startOf(DurationUnit.microsecond), m.toLocal());
+    });
+  });
+
+  group("End of unit", () {
+    test("DateTime", () {
+      DateTime m = DateTime(2022, 6, 19, 21, 9, 33, 1, 1);
+      expect(m.endOfMillisecond(), DateTime(2022, 6, 19, 21, 9, 33, 1, 999));
+      expect(m.endOfSecond(), DateTime(2022, 6, 19, 21, 9, 33, 999, 999));
+      expect(m.endOfMinute(), DateTime(2022, 6, 19, 21, 9, 59, 999, 999));
+      expect(m.endOfHour(), DateTime(2022, 6, 19, 21, 59, 59, 999, 999));
+      expect(m.endOfDay(), DateTime(2022, 6, 19, 23, 59, 59, 999, 999));
+      expect(m.endOfMonth(), DateTime(2022, 6, 31, 23, 59, 59, 999, 999));
+      expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
+
+      expect(() => m.endOf(DurationUnit.microsecond),
+          throwsA(isA<MomentException>()));
+    });
+    test("Moment", () {
+      Moment m = DateTime(2003, 6, 1, 21, 9, 33, 247, 1).toMoment().toUtc();
+      expect(m.endOfMillisecond(), DateTime(2003, 6, 1, 21, 9, 33, 247, 999));
+      expect(m.endOfSecond(), DateTime(2003, 6, 1, 21, 9, 33, 999, 999));
+      expect(m.endOfMinute(), DateTime(2003, 6, 1, 21, 9, 59, 999, 999));
+      expect(m.endOfHour(), DateTime(2003, 6, 1, 21, 59, 59, 999, 999));
+      expect(m.endOfDay(), DateTime(2003, 6, 1, 23, 59, 59, 999, 999));
+      expect(m.endOfMonth(), DateTime(2003, 6, 31, 23, 59, 59, 999, 999));
+      expect(m.endOfYear(), DateTime(2003, 12, 31, 23, 59, 59, 999, 999));
+
+      expect(() => m.endOf(DurationUnit.microsecond),
+          throwsA(isA<MomentException>()));
     });
   });
 }

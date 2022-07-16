@@ -15,6 +15,8 @@ enum FormatterToken {
   /// [Month]
   ///
   /// 1st 2nd ... 11th 12th
+  ///
+  /// **Should reimplement**
   Mo,
 
   /// [Month]
@@ -25,11 +27,15 @@ enum FormatterToken {
   /// [Month]
   ///
   /// Jan Feb ... Nov Dec
+  ///
+  /// **Should reimplement**
   MMM,
 
   /// [Month]
   ///
   /// January February ... November December
+  ///
+  /// **Should reimplement**
   MMMM,
 
   /// [Quarter]
@@ -40,6 +46,8 @@ enum FormatterToken {
   /// [Quarter]
   ///
   /// 1st 2nd 3rd 4th
+  ///
+  /// **Should reimplement**
   Qo,
 
   /// [Day of Month]
@@ -50,30 +58,30 @@ enum FormatterToken {
   /// [Day of Month]
   ///
   /// 1st 2nd ... 30th 31st
+  ///
+  /// **Should reimplement**
   Do,
 
   /// [Day of Month]
   ///
   /// 01 02 ... 30 31
-
   DD,
 
   /// [Day of Year]
   ///
   /// 1 2 ... 364 365
-
   DDD,
 
   /// [Day of Year]
   ///
   /// 1st 2nd ... 364th 365th
-
+  ///
+  /// **Should reimplement**
   DDDo,
 
   /// [Day of Year]
   ///
   /// 001 002 ... 364 365
-
   DDDD,
 
   /// [Day of Week]
@@ -90,21 +98,29 @@ enum FormatterToken {
   /// Moment.js uses `0-6`. However, we'll be using `1-7` to be in accordance with [DateTime]
   ///
   /// Please note that `do` is dart language keyword
+  ///
+  /// **Should reimplement**
   d_o,
 
   /// [Day of Week]
   ///
   /// Mo Tu ... Sa Su
+  ///
+  /// **Should reimplement**
   dd,
 
   /// [Day of Week]
   ///
   /// Mon Tue ... Sat Sun
+  ///
+  /// **Should reimplement**
   ddd,
 
   /// [Day of Week]
   ///
   /// Monday ... Saturday Sunday
+  ///
+  /// **Should reimplement**
   dddd,
 
   /// [Day of Week (ISO)]
@@ -122,6 +138,8 @@ enum FormatterToken {
   /// [Week of Year (ISO)]
   ///
   /// 1st 2nd ... 52nd 53rd
+  ///
+  /// **Should reimplement**
   wo,
 
   /// [Week of Year (ISO)]
@@ -138,39 +156,51 @@ enum FormatterToken {
   ///
   /// 1970 1971 ... 2029 2030
   ///
-  /// [DateTime] complies ISO 8601 standard, therefore Moment.js's YYYYYY, Y are not necessary
+  /// [DateTime] complies ISO 8601 standard, therefore Moment.js's YYYYYY, Y are redundant
   YYYY,
 
   /// [Year]
   ///
-  /// -001970 -001971 ... +001907 +001971 Note: Expanded Years (Covering the full time value range of approximately 273,790 years forward or backward from 01 January, 1970)
+  /// -001970 -001971 ... +001907 +001971
+  ///
+  /// Note: Expanded Years (Covering the full time value range of approximately 273,790 years forward or backward from 01 January, 1970)
   @Deprecated("[DateTime] complies ISO 8601 standard, so, please use YYYY")
   YYYYYY,
 
   /// [Year]
   ///
-  /// 1970 1971 ... 9999 +10000 +10001 Note: This complies with the ISO 8601 standard for dates past the year 9999
+  /// 1970 1971 ... 9999 +10000 +10001
+  ///
+  /// Note: This complies with the ISO 8601 standard for dates past the year 9999
   @Deprecated("[DateTime] complies ISO 8601 standard, so, please use YYYY")
   Y,
 
   /// [Era Year]
   ///
   /// 1 2 ... 2020 ...
+  ///
+  /// **Unimplemented by default**
   y,
 
   /// [Era]
   ///
-  /// BC AD Note: Abbr era name
+  /// BC AD
+  ///
+  /// Note: Abbr era name
   NN,
 
   /// [Era]
   ///
-  /// Before Christ, Anno Domini Note: Full era name
+  /// Before Christ, Anno Domini
+  ///
+  /// Note: Full era name
   NNNN,
 
   /// [Era]
   ///
-  /// BC AD Note: Narrow era name
+  /// BC AD
+  ///
+  /// Note: Narrow era name
   NNNNN,
 
   /// [Week Year]
@@ -186,11 +216,15 @@ enum FormatterToken {
   /// [AM/PM]
   ///
   /// AM PM (uppercase)
+  ///
+  /// **Should reimplement**
   A,
 
   /// [AM/PM]
   ///
   /// am pm (lowercase)
+  ///
+  /// **Should reimplement**
   a,
 
   /// [Hour]
@@ -288,11 +322,14 @@ enum FormatterToken {
   /// Returns [DateTime.timeZoneName], result may not be consistent across platforms
   ZZZ,
 
-  /// [Unix timestamp]
+  /// [Unix timestamp (seconds)]
   X,
 
   /// [Unix millisecond timestamp]
   x,
+
+  /// [Unix microsecond timestamp]
+  xx,
 
   /// Date (in local format, shorter)
   ///

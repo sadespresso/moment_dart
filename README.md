@@ -5,16 +5,18 @@
 
 ## Features
 
-Convert `DateTime` to human-readable text.
+Convert `DateTime` to human-readable text ✅
   - [Relative duration](#relative-durations)
   - [Calendar text](#calendar-dates)
   - [Formatted dates](#formatting)
   - [Multiple localizations](#changing-localization-)
 
-Helper classes
+Play with DateTime objects 😎
   - [Start of year/month/.../millis](#start-of-yearmonthmoment)
   - [Find last or next weekday](#find-lastnext-weekday)
   - [Is same year/month/.../moment as](#is-same-unit-as)
+
+> moment_dart provides subclass of DateTime, Moment, and handful of useful extension/functions.
 
 ## Getting started ✨
 
@@ -23,7 +25,7 @@ Import the package
 import 'package:moment_dart/moment_dart.dart';
 ```
 
-Create Moment instance
+Create Moment instance (like its superclass, it's immutable)
 
 ```dart
 
@@ -198,6 +200,7 @@ Localizations are classes that extend `MomentLocalization`
 
 - LocalizationEnUs (English - United States) [en_US]
 - LocalizationKorean (Korean) [ko]
+- LocalizationEs (Spanish - Spain) [es]
 - LocalizationGermanStandard (German) [de_DE]
 - LocalizationMongolianCyrillic (Mongolian) [mn]
   - LocalizationMongolianTraditional (Mongolian) [mn]

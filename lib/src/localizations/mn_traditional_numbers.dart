@@ -1,13 +1,18 @@
 // ignore_for_file: file_names
 
 import 'package:moment_dart/src/formatters/token.dart';
-import 'package:moment_dart/src/localizations/mn_TM.dart';
+import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mn_traditional.dart';
 
 /// Language: Traditional Mongolian (Unicode), uses Traditional Numbers
 /// Country: Mongolia
 class LocalizationMongolianTraditionalNumbers
-    extends LocalizationMongolianTraditional {
+    extends LocalizationMongolianTraditional with Ordinal {
   LocalizationMongolianTraditionalNumbers() : super();
+
+  @override
+  String get languageNameInEnglish =>
+      "Mongolian (Traditional Script with traditional numbers)";
 
   static const Map<String, String> mongolianNumbers = {
     "0": "᠐",
@@ -36,10 +41,10 @@ class LocalizationMongolianTraditionalNumbers
   }
 
   @override
-  String orderedNumber(int i) => toTraditionalNumber(super.orderedNumber(i));
+  String ordinalNumber(int n) => toTraditionalNumber(super.ordinalNumber(n));
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> formats() => super.formats().map(
+  Map<FormatterToken, FormatterTokenFn?> get formatters => super.formatters.map(
         (key, value) => MapEntry(
           key,
           value == null

@@ -13,11 +13,11 @@ void main() {
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)),
         "хэдэн хормын дараа");
-    expect(localization.weekdayName(epoch.weekday), "Пүрэв");
+    expect(localization.weekdayName[epoch.weekday], "Пүрэв");
     expect(epochPlusFiveDays.from(epoch, true), "5 өдөр");
     expect(epochPlusFiveDays.from(epoch), "5 өдрийн дараа");
     expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
-        "Өмнөх Пүрэв");
+        "Өнгөрсөн Пүрэв");
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "Мягмар");
     expect(epochPlusAYear.from(epoch), "1 жилийн дараа");
@@ -37,7 +37,7 @@ void main() {
     expect(moment.lastMonday().weekday, 1);
     expect(
         localization.relative(const Duration(seconds: 2)), "in a few seconds");
-    expect(localization.weekdayName(epoch.weekday), "Thursday");
+    expect(localization.weekdayName[epoch.weekday], "Thursday");
     expect(epochPlusFiveDays.from(epoch, true), "5 days");
     expect(epochPlusFiveDays.from(epoch), "in 5 days");
     expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
@@ -62,11 +62,11 @@ void main() {
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)),
         "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(localization.weekdayName(epoch.weekday), "ᠭᠠᠳᠠᠰᠤ");
+    expect(localization.weekdayName[epoch.weekday], "ᠭᠠᠳᠠᠰᠤ");
     expect(epochPlusFiveDays.from(epoch, true), "5 ᠡᠳᠦᠷ");
     expect(epochPlusFiveDays.from(epoch), "5 ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
     expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
-        "ᠡᠮᠦᠨᠡᠬᠢ ᠭᠠᠳᠠᠰᠤ");
+        "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠭᠠᠳᠠᠰᠤ");
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "ᠤᠯᠠᠭᠠᠨ");
     expect(epochPlusAYear.from(epoch), "1 ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
@@ -85,7 +85,7 @@ void main() {
 
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)), "몇 초 후");
-    expect(localization.weekdayName(epoch.weekday), "목"); //~요일
+    expect(localization.weekdayName[epoch.weekday], "목요일");
     expect(epochPlusFiveDays.from(epoch, true), "5일");
     expect(epochPlusFiveDays.from(epoch), "5일 후");
     expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),

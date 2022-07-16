@@ -1,3 +1,15 @@
+## 0.8.0
+
+- `MomentLocalization` has gotten major updates, making it easier to implmement new localizations:
+  - No longer requires to override `.calendar(...)`
+  - Requires to override these new functions/getters: `relativeDayNames`, `weekdayName`, `keywords`, `overrideFormatters`
+  - Restructured formatters. No need to override formatter for every `FormatterToken`
+- Removed following deprecated methods: `Moment.lastMondayAsDateTime()`, `Moment.lastSundayAsDateTime()`
+- Implemented `.endOf(DurationUnit unit)`, and it's children `.endOf~~~()`. Works on both `Moment` and `DateTime`
+- Added new localizaion: Spanish (es)
+- Minor changes:
+  - No longer produces debug stdouts, deprecating `enableDebugPrint()`
+
 ## 0.7.3
 
 - Added shorthand function for commonly used tokens. e.g., moment.LT, moment.LTS, moment.L, etc.
@@ -16,7 +28,7 @@
 - ***IMPORTANT CHANGE***: Now targets Dart version 2.17.0 and above
 - Implemented 6 operators (+, -, <, <=, >=, >) for `DateTime` and `Moment`. Part of MomentBenefits extension
 - Implemented `.lastWeekday(int weekday)`, and it's children `.lastMonday()`, `.lastTuesday()`, ..., `.lastSunday()`. You can also do same thing to find future weekdays. e.g., `.nextMonday()`. Works on both `Moment` and `DateTime`
-- Implemented `.startOf(DurationUnit unit)`, and it's children `.startOfDay()`. Works on both `Moment` and `DateTime`
+- Implemented `.startOf(DurationUnit unit)`, and it's children `.startOf~~~()`. Works on both `Moment` and `DateTime`
 
 ## 0.6.2
 

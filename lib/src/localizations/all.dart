@@ -1,24 +1,29 @@
 library moment_dart_localizations;
 
-import './en_US.dart';
-export './en_US.dart';
+import 'en_US.dart';
+export 'en_US.dart';
 
-import './mn_MN.dart';
-export './mn_MN.dart';
+import 'mn.dart';
+export 'mn.dart';
 
-import './mn_TM.dart';
-export './mn_TM.dart';
+import 'mn_traditional.dart';
+export 'mn_traditional.dart';
 
-import './mn_TM_tn.dart';
-export './mn_TM_tn.dart';
+import 'mn_traditional_numbers.dart';
+export 'mn_traditional_numbers.dart';
 
-import './ko_KO.dart';
-export './ko_KO.dart';
+import 'ko.dart';
+export 'ko.dart';
 
-import './de_DE.dart';
-export './de_DE.dart';
+import 'de_DE.dart';
+export 'de_DE.dart';
+
+import 'es.dart';
+export 'es.dart';
 
 abstract class MomentLocalizations {
+  MomentLocalizations._();
+
   /// English (United States)
   static LocalizationEnUs enUS() => LocalizationEnUs();
 
@@ -36,6 +41,9 @@ abstract class MomentLocalizations {
   /// Korean (South Korea)
   static LocalizationKorean ko() => LocalizationKorean();
 
-  /// German (Germany, Standard)
+  /// German (Germany - Standard)
   static LocalizationGermanStandard deDE() => LocalizationGermanStandard();
+
+  /// Spanish (Spain)
+  static LocalizationEs es() => LocalizationEs();
 }

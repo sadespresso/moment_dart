@@ -5,8 +5,6 @@ import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// Moment is subclass of DateTime
 class Moment extends DateTime {
-  bool _enableDebugPrint = false;
-
   late MomentLocalization _localization;
 
   MomentLocalization get localization => _localization;
@@ -55,10 +53,6 @@ class Moment extends DateTime {
       localization: localization ?? _localization,
     );
 
-    if (_enableDebugPrint) {
-      value.enableDebugPrint();
-    }
-
     return value;
   }
 
@@ -86,13 +80,14 @@ class Moment extends DateTime {
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
 
-  enableDebugPrint() {
-    _enableDebugPrint = true;
-  }
+  @Deprecated(
+      "Moment no longer prints anything to stdout. This function does nothing as of version 0.8.0")
+  enableDebugPrint() {}
 
   List<FormatterToken> get _fts => localization.tokens;
 
-  String format([String payload = "l"]) {
+  String format(
+      [String payload = MomentLocalization.localizationDefaultDateFormat]) {
     final List<dynamic> tokens = [];
 
     bool halt = false;
@@ -140,11 +135,6 @@ class Moment extends DateTime {
 
       tokens.add(closestToZero);
 
-      if (_enableDebugPrint) {
-        print(
-            "[Moment Dart] [Format Match] We found a match:\n$payload at index ${closestToZero.startIndex}\n${payload.substring(closestToZero.endIndex)} is new payload\n token: ${closestToZero.token}");
-      }
-
       payload = payload.substring(closestToZero.endIndex);
 
       if (payload.isEmpty) {
@@ -156,7 +146,7 @@ class Moment extends DateTime {
 
     for (var token in tokens) {
       if (token is FormatMatch) {
-        value += localization.formats()[token.token]!(this);
+        value += localization.formatters[token.token]!(this);
       } else {
         value += token as String;
       }
@@ -228,173 +218,22 @@ class Moment extends DateTime {
   /// Using [customFormat] will make [omitHours] ineffective.
   String calendar(
           {Moment? reference,
-          bool weekStartOnSunday = false,
+          @Deprecated("This argument is deprecated. Currently unused.")
+              bool weekStartOnSunday = false,
           bool omitHours = false,
           String? customFormat}) =>
       localization.calendar(this,
           reference: reference,
-          weekStartOnSunday: weekStartOnSunday,
           omitHours: omitHours,
           customFormat: customFormat);
 
-  /// Returns new [Moment] instance of nearest `n`th weekday in the future
-  ///
-  /// If `n`th day is today, will return `7 days in the future`.
-  Moment nextWeekday(int weekday) =>
-      Moment(_forcedDateTimeType.nextWeekday(weekday),
-          localization: localization);
-
-  /// Returns new [Moment] instance of nearest Monday in the Future
-  ///
-  /// If [this] is Monday, will return `7 days in the future`
-  Moment nextMonday() => nextWeekday(DateTime.monday);
-
-  /// Returns new [Moment] instance of nearest Tuesday in the Future
-  ///
-  /// If [this] is Tuesday, will return `7 days in the future`
-  Moment nextTuesday() => nextWeekday(DateTime.tuesday);
-
-  /// Returns new [Moment] instance of nearest Wednesday in the Future
-  ///
-  /// If [this] is Wednesday, will return `7 days in the future`
-  Moment nextWednesday() => nextWeekday(DateTime.wednesday);
-
-  /// Returns new [Moment] instance of nearest Thursday in the Future
-  ///
-  /// If [this] is Thursday, will return `7 days in the future`
-  Moment nextThursday() => nextWeekday(DateTime.thursday);
-
-  /// Returns new [Moment] instance of nearest Friday in the Future
-  ///
-  /// If [this] is Friday, will return `7 days in the future`
-  Moment nextFriday() => nextWeekday(DateTime.friday);
-
-  /// Returns new [Moment] instance of nearest Saturday in the Future
-  ///
-  /// If [this] is Saturday, will return `7 days in the future`
-  Moment nextSaturday() => nextWeekday(DateTime.saturday);
-
-  /// Returns new [Moment] instance of nearest Sunday in the Future
-  ///
-  /// If [this] is Sunday, will return `7 days in the future`
-  Moment nextSunday() => nextWeekday(DateTime.sunday);
-
-  /// Returns new [Moment] instance of last `n`th weekday
-  ///
-  /// If today is the `n`th day, will return `7 days in the past`
-  Moment lastWeekday(int weekday) =>
-      Moment(_forcedDateTimeType.lastWeekday(weekday),
-          localization: localization);
-
-  /// Returns new [Moment] instance of nearest Monday in the past
-  ///
-  /// If [this] is Monday, will return `7 days in the past`
-  Moment lastMonday() => lastWeekday(DateTime.monday);
-
-  /// Returns new [Moment] instance of nearest Tuesday in the past
-  ///
-  /// If [this] is Tuesday, will return `7 days in the past`
-  Moment lastTuesday() => lastWeekday(DateTime.tuesday);
-
-  /// Returns new [Moment] instance of nearest Wednesday in the past
-  ///
-  /// If [this] is Wednesday, will return `7 days in the past`
-  Moment lastWednesday() => lastWeekday(DateTime.wednesday);
-
-  /// Returns new [Moment] instance of nearest Thursday in the past
-  ///
-  /// If [this] is Thursday, will return `7 days in the past`
-  Moment lastThursday() => lastWeekday(DateTime.thursday);
-
-  /// Returns new [Moment] instance of nearest Friday in the past
-  ///
-  /// If [this] is Friday, will return `7 days in the past`
-  Moment lastFriday() => lastWeekday(DateTime.friday);
-
-  /// Returns new [Moment] instance of nearest Saturday in the past
-  ///
-  /// If [this] is Saturday, will return `7 days in the past`
-  Moment lastSaturday() => lastWeekday(DateTime.saturday);
-
-  /// Returns new [Moment] instance of nearest Sunday in the past
-  ///
-  /// If [this] is Sunday, will return `7 days in the past`
-  Moment lastSunday() => lastWeekday(DateTime.sunday);
-
-  /// ⚠️ Only works on DateTime of local time zone
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  ///
-  /// Will throw if [unit] is [DurationUnit.microsecond]
-  Moment startOf(DurationUnit unit) =>
-      Moment(_forcedDateTimeType.startOf(unit), localization: localization);
-
-  /// Returns start of the millisecond
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfMillisecond() =>
-      Moment(_forcedDateTimeType.startOf(DurationUnit.millisecond),
-          localization: localization);
-
-  /// Returns start of the second
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfSecond() =>
-      Moment(_forcedDateTimeType.startOf(DurationUnit.second),
-          localization: localization);
-
-  /// Returns start of the minute
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfMinute() =>
-      Moment(_forcedDateTimeType.startOf(DurationUnit.minute),
-          localization: localization);
-
-  /// Returns start of the hour
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfHour() => Moment(_forcedDateTimeType.startOf(DurationUnit.hour),
-      localization: localization);
-
-  /// Returns start of the day
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfDay() => Moment(_forcedDateTimeType.startOf(DurationUnit.day),
-      localization: localization);
-
-  /// Returns start of the month
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfMonth() =>
-      Moment(_forcedDateTimeType.startOf(DurationUnit.month),
-          localization: localization);
-
-  /// Returns start of the year
-  ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
-  Moment startOfYear() => Moment(_forcedDateTimeType.startOf(DurationUnit.year),
-      localization: localization);
-
   @override
   Moment toUtc() => Moment(super.toUtc(), localization: localization);
+
   @override
   Moment toLocal() => Moment(super.toLocal(), localization: localization);
 
-  /// Returns "LLL" formatted string
+  /// Returns "LLL  " formatted string
   @override
   String toString() => format("LLL");
 
@@ -420,6 +259,4 @@ class Moment extends DateTime {
     'This feature was deprecated after 0.6.2',
   )
   DateTime lastSundayAsDateTime() => lastSunday();
-
-  DateTime get _forcedDateTimeType => this;
 }
