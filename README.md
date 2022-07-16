@@ -200,6 +200,7 @@ Localizations are classes that extend `MomentLocalization`
 
 - LocalizationEnUs (English - United States) [en_US]
 - LocalizationKorean (Korean) [ko]
+- LocalizationFr (French) [fr]
 - LocalizationEs (Spanish - Spain) [es]
 - LocalizationGermanStandard (German) [de_DE]
 - LocalizationMongolianCyrillic (Mongolian) [mn]

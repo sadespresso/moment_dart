@@ -2,7 +2,7 @@
 
 - `MomentLocalization` has gotten major updates, making it easier to implmement new localizations:
   - No longer requires to override `.calendar(...)`
-  - Requires to override these new functions/getters: `relativeDayNames`, `weekdayName`, `keywords`, `overrideFormatters`
+  - Requires to override these new functions/getters: `calendarData`, `weekdayName`, `overrideFormatters`
   - Restructured formatters. No need to override formatter for every `FormatterToken`
 - Removed following deprecated methods: `Moment.lastMondayAsDateTime()`, `Moment.lastSundayAsDateTime()`
 - Implemented `.endOf(DurationUnit unit)`, and it's children `.endOf~~~()`. Works on both `Moment` and `DateTime`

@@ -12,16 +12,16 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
   LocalizationFr() : super();
 
   @override
-  String get endonym => "Español (España)";
+  String get endonym => "Français";
 
   @override
-  String get languageCodeISO => "es";
+  String get languageCodeISO => "fr";
 
   @override
-  String get locale => "es";
+  String get locale => "fr";
 
   @override
-  String get languageNameInEnglish => "Spanish (Spain)";
+  String get languageNameInEnglish => "French (France)";
 
   /// Used as placeholder in replacable texts. E.g. `relativePast`
   static const String alpha = "%";
@@ -152,6 +152,8 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
 
   @override
   CalenderLocalizationData get calendarData => calenderLocalizationDataEs;
+
+  /// Tryna keep everything constant
 
   static String last(String weekday) => "$weekday dernier";
   static String at(String date, String time) => "$date à $time";

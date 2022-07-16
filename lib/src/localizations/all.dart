@@ -21,6 +21,9 @@ export 'de_DE.dart';
 import 'es.dart';
 export 'es.dart';
 
+import 'fr.dart';
+export 'fr.dart';
+
 abstract class MomentLocalizations {
   MomentLocalizations._();
 
@@ -46,4 +49,7 @@ abstract class MomentLocalizations {
 
   /// Spanish (Spain)
   static LocalizationEs es() => LocalizationEs();
+
+  /// French (France)
+  static LocalizationFr fr() => LocalizationFr();
 }
