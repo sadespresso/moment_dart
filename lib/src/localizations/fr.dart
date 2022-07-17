@@ -23,11 +23,8 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
   @override
   String get languageNameInEnglish => "French (France)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "il y a $alpha";
-  static const String relativeFuture = "dans $alpha";
+  static String relativePast(String value) => "il y a $value";
+  static String relativeFuture(String value) => "dans $value";
 
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
@@ -77,12 +74,8 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return past ? relativePast(value) : relativeFuture(value);
   }
-
-  @override
-  String calendarTime(Moment moment) =>
-      "la${moment.hour == 1 ? '' : 's'} ${moment.format(MomentLocalization.localizationDefaultHourFormat)}";
 
   @override
   Map<int, String> get monthNames => {
@@ -162,7 +155,7 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
       CalenderLocalizationData(
     relativeDayNames: {
       -1: "Hier",
-      0: "Aujourd’hui",
+      0: "Aujourd'hui",
       1: "Demain",
     },
     keywords: CalenderLocalizationKeywords(

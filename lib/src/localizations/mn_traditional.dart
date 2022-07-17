@@ -21,11 +21,8 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
   @override
   String get languageNameInEnglish => "Mongolian (Traditional Script)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "$alpha ᠡᠮᠦᠨ᠎ᠡ";
-  static const String relativeFuture = "$alpha ᠳᠠᠷᠠᠭ᠎ᠠ";
+  static String relativePast(String alpha) => "$alpha ᠡᠮᠦᠨ᠎ᠡ";
+  static String relativeFuture(String alpha) => "$alpha ᠳᠠᠷᠠᠭ᠎ᠠ";
 
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
@@ -88,7 +85,7 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
 
     if (dropPrefixOrSuffix) return value;
 
-    late final String suffix;
+    late final String suffix; // Language specific stuff
 
     if (interval.unit == DurationUnit.month) {
       suffix = " ᠶᠢᠨ";
@@ -96,8 +93,7 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
       suffix = (isSuffixFeminine ? " ᠦᠨ" : " ᠤᠨ");
     }
 
-    return (past ? relativePast : relativeFuture)
-        .replaceAll(alpha, value + suffix);
+    return past ? relativePast(value + suffix) : relativeFuture(value + suffix);
   }
 
   static bool isFeminine(int i) {

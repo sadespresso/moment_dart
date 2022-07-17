@@ -6,7 +6,9 @@
   - Restructured formatters. No need to override formatter for every `FormatterToken`
 - Removed following deprecated methods: `Moment.lastMondayAsDateTime()`, `Moment.lastSundayAsDateTime()`
 - Implemented `.endOf(DurationUnit unit)`, and it's children `.endOf~~~()`. Works on both `Moment` and `DateTime`
-- Added new localizaion: Spanish (es)
+- Added new locales: 
+  - Spanish (es) (Spain)
+  - French (fr) (France)
 - Minor changes:
   - No longer produces debug stdouts, deprecating `enableDebugPrint()`
 

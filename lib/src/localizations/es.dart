@@ -23,11 +23,8 @@ class LocalizationEs extends MomentLocalization with MonthNames, Ordinal {
   @override
   String get languageNameInEnglish => "Spanish (Spain)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "hace $alpha";
-  static const String relativeFuture = "en $alpha";
+  static String relativePast(String alpha) => "hace $alpha";
+  static String relativeFuture(String alpha) => "en $alpha";
 
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
@@ -77,7 +74,7 @@ class LocalizationEs extends MomentLocalization with MonthNames, Ordinal {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   @override

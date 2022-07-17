@@ -25,11 +25,8 @@ class LocalizationGermanStandard extends MomentLocalization
   @override
   String get languageNameInEnglish => "German (Standard)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "vor $alpha";
-  static const String relativeFuture = "in $alpha";
+  static String relativePast(String alpha) => "vor $alpha";
+  static String relativeFuture(String alpha) => "in $alpha";
 
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
@@ -79,7 +76,7 @@ class LocalizationGermanStandard extends MomentLocalization
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   @override

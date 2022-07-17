@@ -67,6 +67,32 @@ void main() {
     expect(epoch.format("LLLL"), "Donnerstag, 1. Januar 1970 00:00");
   });
 
+  test("fr localization calendar test", () {
+    _setLocalization(MomentLocalizations.fr());
+
+    // A
+    expect(today.calendar(reference: today), "Aujourd'hui à 05:33");
+    expect(tomorrow.calendar(reference: today), "Demain à 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "mardi à 05:33");
+    expect(yesterday.calendar(reference: today), "Hier à 05:33");
+    expect(friOrdayBeforeYesterday.calendar(reference: today),
+        "vendredi dernier à 05:33");
+    // B
+    expect(lastMonday.calendar(reference: today, omitHours: true),
+        "lundi dernier");
+    expect(lastTuesday.calendar(reference: today, omitHours: true),
+        "mardi dernier");
+    expect(lastWednesday.calendar(reference: today, omitHours: true),
+        "mercredi dernier");
+    expect(
+        nextWednesday.calendar(reference: today, omitHours: true), "mercredi");
+    expect(nextThursday.calendar(reference: today, omitHours: true), "jeudi");
+    expect(nextFriday.calendar(reference: today, omitHours: true), "vendredi");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "jeudi 1 janvier 1970 00:00");
+  });
+
   test("es localization calendar test", () {
     _setLocalization(MomentLocalizations.es());
 

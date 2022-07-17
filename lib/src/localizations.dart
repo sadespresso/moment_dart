@@ -86,7 +86,11 @@ abstract class MomentLocalization {
     throw Exception("Something went wrong");
   }
 
-  /// When creating your own localization, please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
+  /// Toggle `dropPrefixOrSuffix` to get spanned duration without any prefix or suffix.
+  ///
+  /// **This will not return precise duration**
+  ///
+  /// Note: When creating your own localization, please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
 
   /// Some language require article before the hours. e.g., la 1:20, las 13:20 (Spanish)
@@ -170,7 +174,7 @@ abstract class MomentLocalization {
     FormatterToken.w: (dateTime) => dateTime.week.toString(),
     FormatterToken.ww: (dateTime) => dateTime.week.padZero(),
     FormatterToken.YY:
-        //TODO: Improve the code before 22nd century
+        // TODO: this should be updated before 2031 hits
         (dateTime) {
       if (dateTime.year < 1970 || dateTime.year > 2030) {
         throw Exception("YY formatter only work in range [1970; 2030]");

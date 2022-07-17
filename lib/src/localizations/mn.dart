@@ -21,11 +21,8 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
   @override
   String get languageNameInEnglish => "Mongolian (Cyrillic)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "$alpha өмнө";
-  static const String relativeFuture = "$alpha дараа";
+  static String relativePast(String alpha) => "$alpha өмнө";
+  static String relativeFuture(String alpha) => "$alpha дараа";
 
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
@@ -92,8 +89,9 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture)
-        .replaceAll(alpha, value + (isSuffixMasculine ? "ын" : "ийн"));
+    final String suffix = (isSuffixMasculine ? "ын" : "ийн");
+
+    return past ? relativePast(value + suffix) : relativeFuture(value + suffix);
   }
 
   String monthName(int i) => "${ordinalNumber(i)} сар";

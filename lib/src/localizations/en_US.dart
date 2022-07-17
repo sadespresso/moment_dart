@@ -25,11 +25,8 @@ class LocalizationEnUs extends MomentLocalization
   @override
   String get languageNameInEnglish => "English (United States)";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "$alpha ago";
-  static const String relativeFuture = "in $alpha";
+  static String relativePast(String alpha) => "$alpha ago";
+  static String relativeFuture(String alpha) => "in $alpha";
 
   @override
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
@@ -79,7 +76,7 @@ class LocalizationEnUs extends MomentLocalization
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   @override

@@ -90,6 +90,44 @@ void main() {
     expect(threeYearsAgo.from(now, true), "3 Jahren");
   });
 
+  test("fr localization relative time test", () {
+    _setLocalization(MomentLocalizations.fr());
+
+    expect(fewMomentsAhead.from(now), "dans quelques secondes");
+    expect(fewMomentsAgo.from(now), "il y a quelques secondes");
+    expect(fewMomentsAgo.from(now, true), "quelques secondes");
+    expect(aMinuteAhead.from(now), "dans une minute");
+    expect(aMinuteAgo.from(now), "il y a une minute");
+    expect(aMinuteAgo.from(now, true), "une minute");
+    expect(fiveMinutesAhead.from(now), "dans 5 minutes");
+    expect(fiveMinutesAgo.from(now), "il y a 5 minutes");
+    expect(fiveMinutesAgo.from(now, true), "5 minutes");
+    expect(anHourAhead.from(now), "dans une heure");
+    expect(anHourAgo.from(now), "il y a une heure");
+    expect(anHourAgo.from(now, true), "une heure");
+    expect(sixHoursAhead.from(now), "dans 6 heures");
+    expect(sixHoursAgo.from(now), "il y a 6 heures");
+    expect(sixHoursAgo.from(now, true), "6 heures");
+    expect(aDayAhead.from(now), "dans un jour");
+    expect(aDayAgo.from(now), "il y a un jour");
+    expect(aDayAgo.from(now, true), "un jour");
+    expect(twoDaysAhead.from(now), "dans 2 jours");
+    expect(twoDaysAgo.from(now), "il y a 2 jours");
+    expect(twoDaysAgo.from(now, true), "2 jours");
+    expect(aMonthAhead.from(now), "dans un mois");
+    expect(aMonthAgo.from(now), "il y a un mois");
+    expect(aMonthAgo.from(now, true), "un mois");
+    expect(fourMonthsAhead.from(now), "dans 4 mois");
+    expect(fourMonthsAgo.from(now), "il y a 4 mois");
+    expect(fourMonthsAgo.from(now, true), "4 mois");
+    expect(aYearAhead.from(now), "dans un an");
+    expect(aYearAgo.from(now), "il y a un an");
+    expect(aYearAgo.from(now, true), "un an");
+    expect(threeYearsAhead.from(now), "dans 3 ans");
+    expect(threeYearsAgo.from(now), "il y a 3 ans");
+    expect(threeYearsAgo.from(now, true), "3 ans");
+  });
+
   test("es localization relative time test", () {
     _setLocalization(MomentLocalizations.es());
 

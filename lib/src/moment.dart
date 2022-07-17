@@ -233,7 +233,7 @@ class Moment extends DateTime {
   @override
   Moment toLocal() => Moment(super.toLocal(), localization: localization);
 
-  /// Returns "LLL  " formatted string
+  /// Returns "LLL" formatted string
   @override
   String toString() => format("LLL");
 
@@ -251,8 +251,6 @@ class Moment extends DateTime {
     'Use lastMonday() instead. '
     'This feature was deprecated after 0.6.2',
   )
-
-  /// Please use lastMonday()
   DateTime lastMondayAsDateTime() => lastMonday();
   @Deprecated(
     'Use lastSunday() instead. '

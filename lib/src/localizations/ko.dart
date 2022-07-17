@@ -23,11 +23,8 @@ class LocalizationKorean extends MomentLocalization {
   @override
   String get languageNameInEnglish => "Korean";
 
-  /// Used as placeholder in replacable texts. E.g. `relativePast`
-  static const String alpha = "%";
-
-  static const String relativePast = "$alpha 전";
-  static const String relativeFuture = "$alpha 후";
+  static String relativePast(String alpha) => "$alpha 전";
+  static String relativeFuture(String alpha) => "$alpha 후";
 
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
@@ -78,7 +75,7 @@ class LocalizationKorean extends MomentLocalization {
 
     if (dropPrefixOrSuffix) return value;
 
-    return (past ? relativePast : relativeFuture).replaceAll(alpha, value);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   // 평일 이름
