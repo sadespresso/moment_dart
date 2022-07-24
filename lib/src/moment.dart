@@ -111,20 +111,20 @@ class Moment extends DateTime {
       FormatMatch? closestToZero;
 
       for (FormatterToken token in _fts) {
-        final int _matchIndex = payload.indexOf(token.name);
+        final int matchIndex = payload.indexOf(token.name);
 
-        if (_matchIndex == -1) continue;
+        if (matchIndex == -1) continue;
 
         if (closestToZero != null) {
-          if (_matchIndex > closestToZero.startIndex) {
+          if (matchIndex > closestToZero.startIndex) {
             continue;
-          } else if (_matchIndex == closestToZero.startIndex &&
+          } else if (matchIndex == closestToZero.startIndex &&
               token.name.length < closestToZero.token.name.length) {
             continue;
           }
         }
 
-        closestToZero = FormatMatch(startIndex: _matchIndex, token: token);
+        closestToZero = FormatMatch(startIndex: matchIndex, token: token);
       }
 
       if (closestToZero == null) break;

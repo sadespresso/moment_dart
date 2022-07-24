@@ -39,7 +39,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
     switch (interval) {
       case RelativeInterval.fewSeconds:
         isSuffixMasculine = true;
-        value = "хэдэн " + (dropPrefixOrSuffix ? "хором" : "хорм");
+        value = "хэдэн ${dropPrefixOrSuffix ? "хором" : "хорм"}";
         break;
       case RelativeInterval.aMinute:
         isSuffixMasculine = true;
@@ -59,15 +59,13 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
         break;
       case RelativeInterval.aDay:
         isSuffixMasculine = false;
-        value = "1 " +
-            (dropPrefixOrSuffix
-                ? "өдөр"
-                : "өдр"); // Here the letter "ө" will be omitted when
+        value =
+            "1 ${dropPrefixOrSuffix ? "өдөр" : "өдр"}"; // Here the letter "ө" will be omitted when
         break;
       case RelativeInterval.days:
         isSuffixMasculine = false;
-        value = "${(duration.inHours / 24).round()} " +
-            (dropPrefixOrSuffix ? "өдөр" : "өдр");
+        value =
+            "${(duration.inHours / 24).round()} ${dropPrefixOrSuffix ? "өдөр" : "өдр"}";
         break;
       case RelativeInterval.aMonth:
         isSuffixMasculine = true;

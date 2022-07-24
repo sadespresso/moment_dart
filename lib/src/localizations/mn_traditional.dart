@@ -157,7 +157,7 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
       FormatterToken.dd: (dateTime) => weekdayNameShort[dateTime.weekday]!,
       FormatterToken.ddd: (dateTime) => weekdayName[dateTime.weekday]!,
       FormatterToken.dddd: (dateTime) =>
-          weekdayName[dateTime.weekday]! + " ᠡᠳᠦᠷ",
+          "${weekdayName[dateTime.weekday]!} ᠡᠳᠦᠷ",
     };
   }
 

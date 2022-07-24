@@ -70,15 +70,15 @@ abstract class MomentLocalization {
 
   /// Uses [MomentLocalization._relativeThresholds] map. Refer to this table for details:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
-  static RelativeInterval relativeThreshold(Duration _duration) {
-    final Duration duration = _duration.abs();
+  static RelativeInterval relativeThreshold(Duration duration) {
+    final Duration absoluteDuration = duration.abs();
 
     for (RelativeInterval key in _relativeThresholds.keys) {
       final Duration? maxDuration = _relativeThresholds[key];
 
       if (maxDuration == null) return key;
 
-      if (duration < maxDuration) {
+      if (absoluteDuration < maxDuration) {
         return key;
       }
     }
@@ -116,11 +116,11 @@ abstract class MomentLocalization {
 
     late final String dateString;
 
-    final int _deltaDays = deltaDays(reference, moment);
-    final String? _deltaDaysName = _calendarData.relativeDayNames[_deltaDays];
+    final int deltaDays = MomentLocalization.deltaDays(reference, moment);
+    final String? deltaDaysName = _calendarData.relativeDayNames[deltaDays];
 
-    if (_deltaDaysName != null) {
-      dateString = _deltaDaysName;
+    if (deltaDaysName != null) {
+      dateString = deltaDaysName;
     } else {
       /// If it occured before [reference]
       if (moment < reference) {
@@ -269,7 +269,7 @@ abstract class MomentLocalization {
   /// -1 is Yesterday,
   /// 1 is Tomorrow,
   /// etc.
-  int deltaDays(DateTime a, DateTime b) {
+  static int deltaDays(DateTime a, DateTime b) {
     return -DateTime(a.year, a.month, a.day)
         .difference(DateTime(b.year, b.month, b.day))
         .inDays;

@@ -92,13 +92,13 @@ extension MomentBenefits on DateTime {
       334
     ];
 
-    int _dayOfYear = dayCount[month] + day;
+    int dayOfTheYear = dayCount[month] + day;
 
     if (isLeapYear && month > 2) {
-      return _dayOfYear + 1;
+      return dayOfTheYear + 1;
     }
 
-    return _dayOfYear;
+    return dayOfTheYear;
   }
 
   operator +(Duration other) => add(other);
