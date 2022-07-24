@@ -90,6 +90,44 @@ void main() {
     expect(threeYearsAgo.from(now, true), "3 Jahren");
   });
 
+  test("it localization relative time test", () {
+    _setLocalization(MomentLocalizations.it());
+
+    expect(fewMomentsAhead.from(now), "tra alcuni secondi");
+    expect(fewMomentsAgo.from(now), "alcuni secondi fa");
+    expect(fewMomentsAgo.from(now, true), "alcuni secondi");
+    expect(aMinuteAhead.from(now), "tra un minuto");
+    expect(aMinuteAgo.from(now), "un minuto fa");
+    expect(aMinuteAgo.from(now, true), "un minuto");
+    expect(fiveMinutesAhead.from(now), "tra 5 minuti");
+    expect(fiveMinutesAgo.from(now), "5 minuti fa");
+    expect(fiveMinutesAgo.from(now, true), "5 minuti");
+    expect(anHourAhead.from(now), "tra un'ora");
+    expect(anHourAgo.from(now), "un'ora fa");
+    expect(anHourAgo.from(now, true), "un'ora");
+    expect(sixHoursAhead.from(now), "tra 6 ore");
+    expect(sixHoursAgo.from(now), "6 ore fa");
+    expect(sixHoursAgo.from(now, true), "6 ore");
+    expect(aDayAhead.from(now), "tra un giorno");
+    expect(aDayAgo.from(now), "un giorno fa");
+    expect(aDayAgo.from(now, true), "un giorno");
+    expect(twoDaysAhead.from(now), "tra 2 giorni");
+    expect(twoDaysAgo.from(now), "2 giorni fa");
+    expect(twoDaysAgo.from(now, true), "2 giorni");
+    expect(aMonthAhead.from(now), "tra un mese");
+    expect(aMonthAgo.from(now), "un mese fa");
+    expect(aMonthAgo.from(now, true), "un mese");
+    expect(fourMonthsAhead.from(now), "tra 4 mesi");
+    expect(fourMonthsAgo.from(now), "4 mesi fa");
+    expect(fourMonthsAgo.from(now, true), "4 mesi");
+    expect(aYearAhead.from(now), "tra un anno");
+    expect(aYearAgo.from(now), "un anno fa");
+    expect(aYearAgo.from(now, true), "un anno");
+    expect(threeYearsAhead.from(now), "tra 3 anni");
+    expect(threeYearsAgo.from(now), "3 anni fa");
+    expect(threeYearsAgo.from(now, true), "3 anni");
+  });
+
   test("fr localization relative time test", () {
     _setLocalization(MomentLocalizations.fr());
 

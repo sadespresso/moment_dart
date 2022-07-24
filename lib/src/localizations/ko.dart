@@ -1,14 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:moment_dart/src/calendar.dart';
+import 'package:moment_dart/src/extension.dart';
 import 'package:moment_dart/src/formatters/token.dart';
-
-import '../localizations.dart';
-import 'package:moment_dart/src/moment.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
+import 'package:moment_dart/src/localizations.dart';
 
 /// Language: Korean
 /// Country: South Korea
-class LocalizationKorean extends MomentLocalization {
+class LocalizationKorean extends MomentLocalization with SimpleRelative {
   LocalizationKorean() : super();
 
   @override
@@ -23,60 +23,10 @@ class LocalizationKorean extends MomentLocalization {
   @override
   String get languageNameInEnglish => "Korean";
 
-  static String relativePast(String alpha) => "$alpha 전";
-  static String relativeFuture(String alpha) => "$alpha 후";
-
-  /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
-    final bool past = duration.isNegative;
-
-    duration = duration.abs();
-
-    late final String value;
-
-    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
-
-    switch (interval) {
-      case RelativeInterval.fewSeconds:
-        value = "몇 초";
-        break;
-      case RelativeInterval.aMinute:
-        value = "1분";
-        break;
-      case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()}분";
-        break;
-      case RelativeInterval.anHour:
-        value = "1시간";
-        break;
-      case RelativeInterval.hours:
-        value = "${(duration.inMinutes / 60).round()}시간";
-        break;
-      case RelativeInterval.aDay:
-        value = "1일";
-        break;
-      case RelativeInterval.days:
-        value = "${(duration.inHours / 24).round()}일";
-        break;
-      case RelativeInterval.aMonth:
-        value = "1개월";
-        break;
-      case RelativeInterval.months:
-        value = "${(duration.inDays / 30).round()}개월";
-        break;
-      case RelativeInterval.aYear:
-        value = "1년";
-        break;
-      case RelativeInterval.years:
-        value = "${(duration.inDays / 365).round()}년";
-        break;
-    }
-
-    if (dropPrefixOrSuffix) return value;
-
-    return past ? relativePast(value) : relativeFuture(value);
-  }
+  String relativePast(String unit) => "$unit 전";
+  @override
+  String relativeFuture(String unit) => "$unit 후";
 
   // 평일 이름
   @override
@@ -163,4 +113,21 @@ class LocalizationKorean extends MomentLocalization {
 
   @override
   int get weekStart => DateTime.sunday;
+
+  @override
+  Map<RelativeInterval, String> get relativeUnits => {
+        RelativeInterval.fewSeconds: "몇 초",
+        RelativeInterval.aSecond: "1초",
+        RelativeInterval.seconds: "$srDelta초",
+        RelativeInterval.aMinute: "1분",
+        RelativeInterval.minutes: "$srDelta분",
+        RelativeInterval.anHour: "1시간",
+        RelativeInterval.hours: "$srDelta시간",
+        RelativeInterval.aDay: "1일",
+        RelativeInterval.days: "$srDelta일",
+        RelativeInterval.aMonth: "1개월",
+        RelativeInterval.months: "$srDelta개월",
+        RelativeInterval.aYear: "1년",
+        RelativeInterval.years: "$srDelta년",
+      };
 }

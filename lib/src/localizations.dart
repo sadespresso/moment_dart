@@ -13,32 +13,40 @@ extension _StringUtils on num {
 enum RelativeInterval {
   //"(in) a few seconds (ago)"
   fewSeconds(0, unit: DurationUnit.second, singular: false),
+  //"(in) a second (ago)"
+  aSecond(1, unit: DurationUnit.second, singular: true),
+  //"(in) X seconds (ago)"
+  seconds(2, unit: DurationUnit.second, singular: false),
   //"(in) a minute (ago)"
-  aMinute(1, unit: DurationUnit.minute, singular: true),
+  aMinute(3, unit: DurationUnit.minute, singular: true),
   //"(in) X minutes (ago)"
-  minutes(2, unit: DurationUnit.minute, singular: false),
+  minutes(4, unit: DurationUnit.minute, singular: false),
   //"(in) an hour (ago)"
-  anHour(3, unit: DurationUnit.hour, singular: true),
+  anHour(5, unit: DurationUnit.hour, singular: true),
   //"(in) X hours (ago)"
-  hours(4, unit: DurationUnit.hour, singular: false),
+  hours(6, unit: DurationUnit.hour, singular: false),
   //"(in) a day (ago)"
-  aDay(5, unit: DurationUnit.day, singular: true),
+  aDay(7, unit: DurationUnit.day, singular: true),
   //"(in) X days (ago)"
-  days(6, unit: DurationUnit.day, singular: false),
+  days(8, unit: DurationUnit.day, singular: false),
   //"(in) a month (ago)"
-  aMonth(7, unit: DurationUnit.month, singular: true),
+  aMonth(9, unit: DurationUnit.month, singular: true),
   //"(in) X months (ago)"
-  months(8, unit: DurationUnit.month, singular: false),
+  months(10, unit: DurationUnit.month, singular: false),
   //"(in) a year (ago)"
-  aYear(9, unit: DurationUnit.year, singular: true),
+  aYear(11, unit: DurationUnit.year, singular: true),
   //"(in) X years (ago)"
-  years(10, unit: DurationUnit.year, singular: false);
+  years(12, unit: DurationUnit.year, singular: false);
 
   final int value;
-  final DurationUnit? unit;
+  final DurationUnit unit;
   final bool singular;
 
-  const RelativeInterval(this.value, {this.unit, this.singular = false});
+  const RelativeInterval(
+    this.value, {
+    required this.unit,
+    this.singular = false,
+  });
 }
 
 /// Extend this class to create new localization
@@ -88,10 +96,14 @@ abstract class MomentLocalization {
 
   /// Toggle `dropPrefixOrSuffix` to get spanned duration without any prefix or suffix.
   ///
-  /// **This will not return precise duration**
+  /// **This will not return precise duration**, for precise durations, see [duration]
   ///
   /// Note: When creating your own localization, please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
   String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
+
+  /// This will return precise durations
+  ///
+  // String duration(Duration duration);
 
   /// Some language require article before the hours. e.g., la 1:20, las 13:20 (Spanish)
   String calendarTime(Moment moment) =>
@@ -116,7 +128,7 @@ abstract class MomentLocalization {
 
     late final String dateString;
 
-    final int deltaDays = MomentLocalization.deltaDays(reference, moment);
+    final int deltaDays = moment.differenceInDays(reference);
     final String? deltaDaysName = _calendarData.relativeDayNames[deltaDays];
 
     if (deltaDaysName != null) {
@@ -263,17 +275,6 @@ abstract class MomentLocalization {
         ...nonFinalFormatters,
         ...overrideFormatters(),
       };
-
-  /// Difference of days calculated omitting hour, minute, ...
-  ///
-  /// -1 is Yesterday,
-  /// 1 is Tomorrow,
-  /// etc.
-  static int deltaDays(DateTime a, DateTime b) {
-    return -DateTime(a.year, a.month, a.day)
-        .difference(DateTime(b.year, b.month, b.day))
-        .inDays;
-  }
 
   @Deprecated(
     'Use startOfWeek() instead. '

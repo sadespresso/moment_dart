@@ -32,54 +32,65 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
     duration = duration.abs();
 
     late final String value;
-    late final bool isSuffixFeminine;
+    late final bool useFeminineSuffix;
 
     RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
 
     switch (interval) {
       case RelativeInterval.fewSeconds:
-        isSuffixFeminine = false;
+        useFeminineSuffix = false;
         value = "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ";
         break;
+      case RelativeInterval.aSecond:
+        useFeminineSuffix = false;
+        value = "1 ᠬᠣᠷᠤᠮ";
+        break;
+      case RelativeInterval.seconds:
+        useFeminineSuffix = false;
+        value = "${duration.inSeconds} ᠬᠣᠷᠤᠮ";
+        break;
       case RelativeInterval.aMinute:
-        isSuffixFeminine = true;
+        useFeminineSuffix = true;
         value = "1 ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.minutes:
-        isSuffixFeminine = true;
-        value = "${(duration.inSeconds / 60).round()} ᠮᠢᠨᠦ᠋ᠲ᠋";
+        useFeminineSuffix = true;
+        value =
+            "${(duration.inSeconds / Duration.secondsPerMinute).round()} ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
       case RelativeInterval.anHour:
-        isSuffixFeminine = false;
+        useFeminineSuffix = false;
         value = "1 ᠴᠠᠭ";
         break;
       case RelativeInterval.hours:
-        isSuffixFeminine = false;
-        value = "${(duration.inMinutes / 60).round()} ᠴᠠᠭ";
+        useFeminineSuffix = false;
+        value = "${(duration.inMinutes / Duration.minutesPerHour).round()} ᠴᠠᠭ";
         break;
       case RelativeInterval.aDay:
-        isSuffixFeminine = true;
+        useFeminineSuffix = true;
         value = "1 ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.days:
-        isSuffixFeminine = true;
-        value = "${(duration.inHours / 24).round()} ᠡᠳᠦᠷ";
+        useFeminineSuffix = true;
+        value = "${(duration.inHours / Duration.hoursPerDay).round()} ᠡᠳᠦᠷ";
         break;
       case RelativeInterval.aMonth:
-        isSuffixFeminine = false;
+        useFeminineSuffix = false;
         value = "1 ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.months:
-        isSuffixFeminine = false;
-        value = "${(duration.inDays / 30).round()} ᠰᠠᠷ᠎ᠠ";
+        useFeminineSuffix = false;
+        value =
+            "${(duration.inDays / DurationExtra.daysPerMonthPrecise).round()} ᠰᠠᠷ᠎ᠠ";
         break;
       case RelativeInterval.aYear:
-        isSuffixFeminine = false;
+        useFeminineSuffix = false;
         value = "1 ᠵᠢᠯ";
         break;
       case RelativeInterval.years:
-        isSuffixFeminine = false;
-        value = "${(duration.inDays / 365).round()} ᠵᠢᠯ";
+        useFeminineSuffix = false;
+        value =
+            "${(duration.inDays / DurationExtra.daysPerYearPrecise).round()} ᠵᠢᠯ";
         break;
     }
 
@@ -90,7 +101,7 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
     if (interval.unit == DurationUnit.month) {
       suffix = " ᠶᠢᠨ";
     } else {
-      suffix = (isSuffixFeminine ? " ᠦᠨ" : " ᠤᠨ");
+      suffix = (useFeminineSuffix ? " ᠦᠨ" : " ᠤᠨ");
     }
 
     return past ? relativePast(value + suffix) : relativeFuture(value + suffix);

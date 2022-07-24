@@ -46,10 +46,10 @@ void main() {
     expect(today.calendar(reference: today), "heute um 5:33");
     expect(tomorrow.calendar(reference: today), "morgen um 5:33");
     expect(
-        tueOrDayAfterTomorrow.calendar(reference: today), "Dienstag um 5:33");
+        tueOrDayAfterTomorrow.calendar(reference: today), "übermorgen um 5:33");
     expect(yesterday.calendar(reference: today), "gestern um 5:33");
     expect(friOrdayBeforeYesterday.calendar(reference: today),
-        "letzten Freitag um 5:33");
+        "vorgestern um 5:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "letzten Montag");
@@ -65,6 +65,57 @@ void main() {
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "Donnerstag, 1. Januar 1970 00:00");
+  });
+
+  test("it localization calendar test", () {
+    _setLocalization(MomentLocalizations.it());
+
+    // A
+    expect(today.calendar(reference: today), "oggi alle 05:33");
+    expect(tomorrow.calendar(reference: today), "domani alle 05:33");
+    expect(
+        tueOrDayAfterTomorrow.calendar(reference: today), "martedì alle 05:33");
+    expect(yesterday.calendar(reference: today), "ieri alle 05:33");
+    expect(friOrdayBeforeYesterday.calendar(reference: today),
+        "Lo scorso venerdì alle 05:33");
+    // B
+    expect(lastMonday.calendar(reference: today, omitHours: true),
+        "Lo scorso lunedì");
+    expect(lastTuesday.calendar(reference: today, omitHours: true),
+        "Lo scorso martedì");
+    expect(lastWednesday.calendar(reference: today, omitHours: true),
+        "Lo scorso mercoledì");
+    expect(
+        nextWednesday.calendar(reference: today, omitHours: true), "mercoledì");
+    expect(nextThursday.calendar(reference: today, omitHours: true), "giovedì");
+    expect(nextFriday.calendar(reference: today, omitHours: true), "venerdì");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "giovedì 1 gennaio 1970 00:00");
+
+    // Sunday
+    expect(
+      lastMonday.subtract(const Duration(days: 1)).calendar(
+            reference: today,
+            omitHours: true,
+          ),
+      "La scorsa domenica",
+    );
+
+    // at zero
+    expect(
+      today.startOfDay().calendar(
+            reference: today,
+          ),
+      "oggi a 00:00",
+    );
+    // at 1
+    expect(
+      today.startOfDay().add(const Duration(hours: 1)).calendar(
+            reference: today,
+          ),
+      "oggi all'01:00",
+    );
   });
 
   test("fr localization calendar test", () {

@@ -25,7 +25,7 @@ class Moment extends DateTime {
     this.localization = localization;
   }
 
-  /// Moment created using DateTime.now();
+  /// An instance created using DateTime.now(), in Local timezone
   Moment.now({MomentLocalization? localization}) : super.now() {
     this.localization = localization;
   }
@@ -192,14 +192,14 @@ class Moment extends DateTime {
   ///
   /// If [this] is tomorrow, will result `"in a day"`
   ///
-  /// moment.js's `toNow()` function has been omitted, since this function prefixes/suffixes appropriately.
+  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold]**
   String fromNow([bool dropSuffixOrPrefix = false]) {
     final Duration delta = difference(DateTime.now());
 
     return localization.relative(delta, dropSuffixOrPrefix);
   }
 
-  /// It can't be static functions since it uses the [MomentLocalization]
+  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold]**
   String from(Moment anchor, [bool dropSuffixOrPrefix = false]) {
     final Duration delta = difference(anchor);
 

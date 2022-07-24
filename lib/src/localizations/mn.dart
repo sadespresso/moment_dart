@@ -31,63 +31,58 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
 
     duration = duration.abs();
 
-    late final String value;
-    late final bool isSuffixMasculine;
+    final RelativeInterval interval =
+        MomentLocalization.relativeThreshold(duration);
 
-    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
+    late final String unit;
 
-    switch (interval) {
-      case RelativeInterval.fewSeconds:
-        isSuffixMasculine = true;
-        value = "хэдэн ${dropPrefixOrSuffix ? "хором" : "хорм"}";
+    if (interval == RelativeInterval.fewSeconds) {
+      unit = "хэдэн";
+    } else if (interval.singular) {
+      unit = "1";
+    } else {
+      unit = DurationUnit.relativeDuration(duration, interval.unit).toString();
+    }
+
+    late final bool useMasculineSuffix;
+    late final String unitName;
+
+    switch (interval.unit) {
+      case DurationUnit.second:
+        unitName = dropPrefixOrSuffix ? "хором" : "хорм";
+        useMasculineSuffix = true;
         break;
-      case RelativeInterval.aMinute:
-        isSuffixMasculine = true;
-        value = "1 минут";
+      case DurationUnit.minute:
+        unitName = "минут";
+        useMasculineSuffix = true;
         break;
-      case RelativeInterval.minutes:
-        isSuffixMasculine = true;
-        value = "${(duration.inSeconds / 60).round()} минут";
+      case DurationUnit.hour:
+        unitName = "цаг";
+        useMasculineSuffix = false;
         break;
-      case RelativeInterval.anHour:
-        isSuffixMasculine = false;
-        value = "1 цаг";
+      case DurationUnit.day:
+        unitName = dropPrefixOrSuffix ? "өдөр" : "өдр";
+        useMasculineSuffix = false;
         break;
-      case RelativeInterval.hours:
-        isSuffixMasculine = false;
-        value = "${(duration.inMinutes / 60).round()} цаг";
+      case DurationUnit.month:
+        unitName = "сар";
+        useMasculineSuffix = true;
         break;
-      case RelativeInterval.aDay:
-        isSuffixMasculine = false;
-        value =
-            "1 ${dropPrefixOrSuffix ? "өдөр" : "өдр"}"; // Here the letter "ө" will be omitted when
+      case DurationUnit.year:
+        unitName = "жил";
+        useMasculineSuffix = false;
         break;
-      case RelativeInterval.days:
-        isSuffixMasculine = false;
-        value =
-            "${(duration.inHours / 24).round()} ${dropPrefixOrSuffix ? "өдөр" : "өдр"}";
+      case DurationUnit.microsecond:
         break;
-      case RelativeInterval.aMonth:
-        isSuffixMasculine = true;
-        value = "1 сар";
-        break;
-      case RelativeInterval.months:
-        isSuffixMasculine = true;
-        value = "${(duration.inDays / 30).round()} сар";
-        break;
-      case RelativeInterval.aYear:
-        isSuffixMasculine = false;
-        value = "1 жил";
-        break;
-      case RelativeInterval.years:
-        isSuffixMasculine = false;
-        value = "${(duration.inDays / 365).round()} жил";
+      case DurationUnit.millisecond:
         break;
     }
 
+    final String value = "$unit $unitName";
+
     if (dropPrefixOrSuffix) return value;
 
-    final String suffix = (isSuffixMasculine ? "ын" : "ийн");
+    final String suffix = useMasculineSuffix ? "ын" : "ийн";
 
     return past ? relativePast(value + suffix) : relativeFuture(value + suffix);
   }

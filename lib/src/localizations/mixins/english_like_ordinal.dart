@@ -1,7 +1,7 @@
 import 'package:moment_dart/moment_dart.dart';
 
 mixin EnglishLikeOrdinal on MomentLocalization {
-  List<String> get suffixes;
+  List<String> get ordinalSuffixes;
 
   String ordinalNumber(int n) {
     final int lastTwoDigit = n % 100;
@@ -11,17 +11,17 @@ mixin EnglishLikeOrdinal on MomentLocalization {
 
       switch (lastDigit) {
         case 1:
-          return "$n${suffixes[1]}";
+          return "$n${ordinalSuffixes[1]}";
         case 2:
-          return "$n${suffixes[2]}";
+          return "$n${ordinalSuffixes[2]}";
         case 3:
-          return "$n${suffixes[3]}";
+          return "$n${ordinalSuffixes[3]}";
         default:
           break;
       }
     }
 
-    return "$n${suffixes[0]}";
+    return "$n${ordinalSuffixes[0]}";
   }
 
   Map<FormatterToken, FormatterTokenFn> get formattersWithOrdinal => {

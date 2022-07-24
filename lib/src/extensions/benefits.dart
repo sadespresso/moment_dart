@@ -101,6 +101,27 @@ extension MomentBenefits on DateTime {
     return dayOfTheYear;
   }
 
+  /// Difference calculated after omitting hour, minute, ..., microsecond
+  ///
+  /// Uses DateTime.difference(), therefore behaves same.
+  /// So, be careful with UTC and local timezones.
+  ///
+  /// -------
+  ///
+  /// If [other] occured after [this], result is negative
+  ///
+  /// ```dart
+  /// today.differenceInDays(tomorrow); // -1
+  /// tomorrow.differenceInDays(today); // 1
+  ///
+  /// // 0 means [this] and [other] occured at the same day.
+  /// ```
+  int differenceInDays(DateTime other) {
+    return DateTime(year, month, day)
+        .difference(DateTime(other.year, other.month, other.day))
+        .inDays;
+  }
+
   operator +(Duration other) => add(other);
   operator -(Duration other) => subtract(other);
   operator >(DateTime other) => isAfter(other);
@@ -149,4 +170,25 @@ extension MomentBenefitsPlus on Moment {
             year, month, day, hour, minute, second, millisecond, microsecond),
         localization: localization);
   }
+}
+
+extension DurationExtra on Duration {
+  static int daysPerWeek = 7;
+
+  int get inWeeks => inDays ~/ daysPerWeek;
+
+  static int daysPerMonth = 30;
+  static double daysPerMonthPrecise = 30.4368499;
+
+  int get inMonths => inDays ~/ daysPerMonthPrecise;
+
+  static int daysPerYear = 365;
+  static double daysPerYearPrecise = 365.242199;
+
+  int get inYears => inDays ~/ daysPerYearPrecise;
+
+  static int weeksPerYear = 52;
+  static double weeksPerYearPrecise = 52.177457;
+
+  static int monthsPerYear = 12;
 }

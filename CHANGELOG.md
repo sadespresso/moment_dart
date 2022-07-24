@@ -1,3 +1,10 @@
+## 0.8.1
+
+- Added `.differenceInDays(other)` function
+- *`DurationExtra`* extension on `Duration`
+- Added new locale: Italian (it) (Italy)
+- Refactored relative times in Indo-European languages, and bunch of other stuff
+
 ## 0.8.0
 
 - `MomentLocalization` has gotten major updates, making it easier to implmement new localizations:

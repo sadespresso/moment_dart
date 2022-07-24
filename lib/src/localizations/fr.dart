@@ -5,10 +5,12 @@ import 'package:moment_dart/src/calendar.dart';
 
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 
 /// Language: French
 /// Country: France
-class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
+class LocalizationFr extends MomentLocalization
+    with MonthNames, Ordinal, SimpleRelative {
   LocalizationFr() : super();
 
   @override
@@ -23,59 +25,10 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
   @override
   String get languageNameInEnglish => "French (France)";
 
-  static String relativePast(String value) => "il y a $value";
-  static String relativeFuture(String value) => "dans $value";
-
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
-    final bool past = duration.isNegative;
-
-    duration = duration.abs();
-
-    late final String value;
-
-    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
-
-    switch (interval) {
-      case RelativeInterval.fewSeconds:
-        value = "quelques secondes";
-        break;
-      case RelativeInterval.aMinute:
-        value = "une minute";
-        break;
-      case RelativeInterval.minutes:
-        value = "${(duration.inSeconds / 60).round()} minutes";
-        break;
-      case RelativeInterval.anHour:
-        value = "une heure";
-        break;
-      case RelativeInterval.hours:
-        value = "${(duration.inMinutes / 60).round()} heures";
-        break;
-      case RelativeInterval.aDay:
-        value = "un jour";
-        break;
-      case RelativeInterval.days:
-        value = "${(duration.inHours / 24).round()} jours";
-        break;
-      case RelativeInterval.aMonth:
-        value = "un mois";
-        break;
-      case RelativeInterval.months:
-        value = "${(duration.inDays / 30).round()} mois";
-        break;
-      case RelativeInterval.aYear:
-        value = "un an";
-        break;
-      case RelativeInterval.years:
-        value = "${(duration.inDays / 365).round()} ans";
-        break;
-    }
-
-    if (dropPrefixOrSuffix) return value;
-
-    return past ? relativePast(value) : relativeFuture(value);
-  }
+  String relativePast(String unit) => "il y a $unit";
+  @override
+  String relativeFuture(String unit) => "dans $unit";
 
   @override
   Map<int, String> get monthNames => {
@@ -172,4 +125,21 @@ class LocalizationFr extends MomentLocalization with MonthNames, Ordinal {
 
     return "${n}e";
   }
+
+  @override
+  Map<RelativeInterval, String> get relativeUnits => {
+        RelativeInterval.fewSeconds: "quelques secondes",
+        RelativeInterval.aSecond: "une seconde",
+        RelativeInterval.seconds: "$srDelta secondes",
+        RelativeInterval.aMinute: "une minute",
+        RelativeInterval.minutes: "$srDelta minutes",
+        RelativeInterval.anHour: "une heure",
+        RelativeInterval.hours: "$srDelta heures",
+        RelativeInterval.aDay: "un jour",
+        RelativeInterval.days: "$srDelta jours",
+        RelativeInterval.aMonth: "un mois",
+        RelativeInterval.months: "$srDelta mois",
+        RelativeInterval.aYear: "un an",
+        RelativeInterval.years: "$srDelta ans",
+      };
 }

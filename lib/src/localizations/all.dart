@@ -1,5 +1,8 @@
 library moment_dart_localizations;
 
+import 'it.dart';
+export 'it.dart';
+
 import 'en_US.dart';
 export 'en_US.dart';
 
@@ -52,4 +55,7 @@ abstract class MomentLocalizations {
 
   /// French (France)
   static LocalizationFr fr() => LocalizationFr();
+
+  /// Italian (Italy)
+  static LocalizationIt it() => LocalizationIt();
 }
