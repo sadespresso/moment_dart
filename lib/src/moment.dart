@@ -181,10 +181,12 @@ class Moment extends DateTime {
   String get LTS => format("LTS");
 
   /// Uses [DateTime.parse]
-  ///
-  /// To be updated.
   static Moment parse(String input, {MomentLocalization? localization}) =>
-      Moment(DateTime.parse(input), localization: localization);
+      DateTime.parse(input).toMoment(localization: localization);
+
+  /// Uses [DateTime.tryParse]
+  static Moment? tryParse(String input, {MomentLocalization? localization}) =>
+      DateTime.tryParse(input)?.toMoment(localization: localization);
 
   /// Example when using [LocalizationEnUs]:
   ///

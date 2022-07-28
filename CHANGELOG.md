@@ -1,3 +1,7 @@
+## 0.8.2
+
+- Added static method `Moment.tryParse()`
+
 ## 0.8.1
 
 - Added `.differenceInDays(other)` function
