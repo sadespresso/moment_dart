@@ -1,3 +1,7 @@
+## 0.9.0+1
+
+- Added en_US in MomentLocalizations.locales
+
 ## 0.9.0
 
 - Added demo. [Check it out](https://theironbatka.github.io/moment_dart_demo/#/)

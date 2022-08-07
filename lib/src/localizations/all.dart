@@ -35,6 +35,7 @@ abstract class MomentLocalizations {
   MomentLocalizations._();
 
   static Map<String, LocalizationFn> locales = {
+    "en_US": () => LocalizationEnUs(),
     "mn_MN": () => LocalizationMnMn(),
     "mn_Mong_MN": () => LocalizationMnMongMn(),
     "mn_Qaaq_MN": () => LocalizationMnQaaqMn(),
