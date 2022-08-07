@@ -16,7 +16,11 @@ Play with DateTime objects 😎
   - [Find last or next weekday](#find-lastnext-weekday)
   - [Is same year/month/.../moment as](#is-same-unit-as)
 
-> moment_dart provides subclass of DateTime, Moment, and handful of useful extension/functions.
+Handful of other useful extension/functions
+
+## Demo 👁️
+
+### [🔗 A Flutter web demo](https://theironbatka.github.io/moment_dart_demo/#/)
 
 ## Getting started ✨
 
@@ -200,14 +204,17 @@ Localizations are classes that extend `MomentLocalization`
 
 [See how you can create your own localization](#creating-your-own-localization-)
 
-- LocalizationEnUs (English - United States) [en_US]
-- LocalizationKorean (Korean) [ko]
-- LocalizationFr (French) [fr]
-- LocalizationEs (Spanish - Spain) [es]
-- LocalizationGermanStandard (German) [de_DE]
-- LocalizationMongolianCyrillic (Mongolian) [mn]
-  - LocalizationMongolianTraditional (Mongolian) [mn]
-  - LocalizationMongolianTraditionalNumbers (Uses traditional Mongolian numbers)
+| Class                | LCID     | Language                                       | Country       |
+| -------------------- | -------- | ---------------------------------------------- | ------------- |
+| LocalizationEnUs     | EnUs     | English                                        | United States |
+| LocalizationKoKr     | KoKr     | Korean                                         | South Korea   |
+| LocalizationFrFr     | FrFr     | French                                         | France        |
+| LocalizationEsEs     | EsEs     | Spanish                                        | France        |
+| LocalizationItIt     | ItIt     | Italian                                        | France        |
+| LocalizationDeDe     | DeDe     | German                                         | France        |
+| LocalizationMnMn     | MnMn     | Mongolian                                      | France        |
+| LocalizationMnMongMn | MnMongMn | Traditional Mongolian                          | France        |
+| LocalizationMnQaaqMn | MnQaaqMn | Traditional Mongolian with Traditional Numbers | France        |
 
 ## Salt 🧂 and pepper
 
@@ -263,32 +270,103 @@ Almost everything is declared as function, so you can freely achieve the unique 
 **I highly recommend copying one of the existing implementations then work on top of it!**
 
 ```dart
-CatLanguage extends MomentLocalization {
+import 'package:moment_dart/src/formatters/token.dart';
+import 'package:moment_dart/src/calendar.dart';
+import 'package:moment_dart/src/localizations.dart';
+
+class LocalizationEnMeowKC extends MomentLocalization {
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) => "a two meow ago";
+  CalenderLocalizationData get calendarData => CalenderLocalizationData(
+        keywords: CalenderLocalizationKeywords(
+          at: (date, time) => "meow $time",
+          lastWeekday: (weekday) => "Last meow $weekday",
+          nextWeekday: (weekday) => weekday,
+        ),
+        relativeDayNames: {
+          -1: "Yestermeow",
+          0: "Meowday",
+          1: "Tomeowow",
+        },
+      );
 
   @override
-  String weekdayName(int i) => "Meowday #$i";
+  String? get countryCode => "KC"; // Kingdom of Cats
 
   @override
-  String calendar(Moment moment, {Moment? reference, bool weekStartOnSunday = false, bool omitHours = false}) => "Last Meowday";
-
-  /// Please refer to the [FormatterToken] enum for details.
-  /// 
-  /// It contains almost all of the tokens mentioned in https://momentjs.com/docs/#/parsing/string-format/
-  Map<FormatterToken, FormatterTokenFn?> formats() => {};
+  String get endonym => "Meow!";
 
   @override
-  String languageCodeISO() => "meow";
+  String get languageCode => "en";
 
   @override
-  String endonym() => "Meow-meow meow";
+  String get languageNameInEnglish => "Meowlish!";
 
   @override
-  String locale() => "meow";
+  String get locale => "en_Meow_KC"; // You may want to override this one
 
   @override
-  String languageNameInEnglish() => "Cat tongue";
+  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() => {
+        // Localization aware formats - Highly recommend implementing these :)
+        FormatterToken.L: (dateTime) => reformat(dateTime, "YYYY/MM/DD"),
+        FormatterToken.l: (dateTime) => reformat(dateTime, "YYYY/M/D"),
+        FormatterToken.LL: (dateTime) =>
+            reformat(dateTime, "MMMM D, [meow] YYYY"),
+        FormatterToken.ll: (dateTime) =>
+            reformat(dateTime, "MMM D, [meow] YYYY"),
+        FormatterToken.LLL: (dateTime) =>
+            reformat(dateTime, "MMMM D, [meow] YYYY, HH:mm [meow!]"),
+        FormatterToken.lll: (dateTime) =>
+            reformat(dateTime, "MMM D, [meow] YYYY, HH:mm [meow!]"),
+        FormatterToken.LLLL: (dateTime) =>
+            reformat(dateTime, "dddd, MMMM D, [meow] YYYY, HH:mm [meow!]"),
+        FormatterToken.llll: (dateTime) =>
+            reformat(dateTime, "ddd, MMM D, [meow] YYYY, HH:mm [meow!]"),
+        FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
+        FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
+      };
+
+  @override
+  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) =>
+      "(in) Meow $duration (ago)";
+
+  @override
+  Map<int, String> get weekdayName => {
+        DateTime.monday: "Meowday #1",
+        ...,
+        DateTime.sunday: "Meowday #7",
+      };
+}
+```
+
+
+You may want to use mixins to make your experience easier. Take a look at other localization implementations, but I'll provide an example anyways:
+
+```dart
+class MewLocale extends MomentLocalization with Ordinal, MonthNames {
+  /* ... folded code ... */
+
+  @override
+  Map<int, String> get monthNames => {
+    DateTime.january: "Janmeow",
+    ...,
+    DateTime.december: "Decemeow",
+  };
+
+  @override
+  Map<int, String> get monthNamesShort => monthNames.map((key, value) => MapEntry(key, value.substring(0,3)));
+
+  @override
+  String ordinalNumber(int n) => "meow $nº";
+
+  @override
+  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() => {
+        // From [EnglishLikeOrdinal] mixin
+        ...formattersWithOrdinal, // Provided by mixin `Ordinal`
+        // From [MonthNames] mixin
+        ...formattersForMonthNames, // Provided by mixin MonthNames
+        
+        /* Other formatters */
+      };
 }
 ```
 

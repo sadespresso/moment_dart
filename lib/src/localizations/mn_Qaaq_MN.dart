@@ -2,17 +2,20 @@
 
 import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
-import 'package:moment_dart/src/localizations/mn_traditional.dart';
+import 'package:moment_dart/src/localizations/mn_Mong_MN.dart';
 
-/// Language: Traditional Mongolian (Unicode), uses Traditional Numbers
+/// Language: Traditional Mongolian with Traditional Numbers
 /// Country: Mongolia
-class LocalizationMongolianTraditionalNumbers
-    extends LocalizationMongolianTraditional with Ordinal {
-  LocalizationMongolianTraditionalNumbers() : super();
+class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
+  LocalizationMnQaaqMn() : super();
 
   @override
   String get languageNameInEnglish =>
       "Mongolian (Traditional Script with traditional numbers)";
+
+  @override
+  String get locale =>
+      "mn_Qaaq_MN"; // Here, 'Qaaq' is reserved private use script code
 
   static const Map<String, String> mongolianNumbers = {
     "0": "᠐",

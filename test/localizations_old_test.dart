@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('Mongolian', () {
-    MomentLocalization localization = LocalizationMongolianCyrillic();
+    MomentLocalization localization = LocalizationMnMn();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
         localization: localization);
@@ -51,7 +51,7 @@ void main() {
   });
 
   test('Traditional Mongolian', () {
-    MomentLocalization localization = LocalizationMongolianTraditional();
+    MomentLocalization localization = LocalizationMnMongMn();
 
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
@@ -76,7 +76,7 @@ void main() {
   });
 
   test('Korean', () {
-    MomentLocalization localization = LocalizationKorean();
+    MomentLocalization localization = LocalizationKo();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
         localization: localization);

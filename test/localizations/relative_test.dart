@@ -281,7 +281,7 @@ void main() {
   });
 
   test("mn (Traditional) localization relative time test", () {
-    _setLocalization(MomentLocalizations.mnTM());
+    _setLocalization(MomentLocalizations.mnMong());
 
     expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
     expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");

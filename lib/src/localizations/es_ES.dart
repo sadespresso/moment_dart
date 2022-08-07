@@ -9,18 +9,18 @@ import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 
 /// Language: Spanish
 /// Country: Spain
-class LocalizationEs extends MomentLocalization
+class LocalizationEsEs extends MomentLocalization
     with MonthNames, Ordinal, SimpleRelative {
-  LocalizationEs() : super();
+  LocalizationEsEs() : super();
 
   @override
   String get endonym => "Espanol (Espana)";
 
   @override
-  String get languageCodeISO => "es";
+  String get languageCode => "es";
 
   @override
-  String get locale => "es";
+  String get countryCode => "ES";
 
   @override
   String get languageNameInEnglish => "Spanish (Spain)";

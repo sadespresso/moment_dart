@@ -305,19 +305,30 @@ abstract class MomentLocalization {
   /// Weekdays range from 1-7
   Map<int, String> get weekdayName;
 
-  /// ISO 639-1 standard language codes
-  /// -----
-  ///
-  /// Expect identical codes for same language of different region.
-  ///
-  /// e.g. English - US, English - Canada, English - Australia, etc...
-  String get languageCodeISO;
+  /// Language code defined in [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1)
+  String get languageCode;
 
-  /// Endonym. Language name in the language itself
+  /// Language name in the language itself
+  ///
+  /// e.g.,
+  /// * Français (in English - French)
+  /// * Italiano (in English - Italian)
+  /// * ᠮᠣᠩᠭᠤᠯ ᠬᠯᠡ (in English - Mongolian)
   String get endonym;
 
-  /// Localization code. **For now, the standard to follow is pending...**
-  String get locale;
+  /// Country code as defined in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+  String? get countryCode;
+
+  /// Locale ID
+  ///
+  /// See [Unicode Language Identifier](https://www.unicode.org/reports/tr35/#Unicode_language_identifier) for more info
+  String get locale {
+    if (countryCode == null) {
+      return languageCode;
+    }
+
+    return "${languageCode}_$countryCode";
+  }
 
   /// Language name in English
   String get languageNameInEnglish;

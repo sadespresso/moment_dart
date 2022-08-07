@@ -18,10 +18,10 @@ class LocalizationEnUs extends MomentLocalization
   String get endonym => "English";
 
   @override
-  String get languageCodeISO => "en";
+  String get languageCode => "en";
 
   @override
-  String get locale => "en_US";
+  String get countryCode => "US";
 
   @override
   String get languageNameInEnglish => "English (United States)";

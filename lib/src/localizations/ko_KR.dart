@@ -8,17 +8,17 @@ import 'package:moment_dart/src/localizations.dart';
 
 /// Language: Korean
 /// Country: South Korea
-class LocalizationKorean extends MomentLocalization with SimpleRelative {
-  LocalizationKorean() : super();
+class LocalizationKo extends MomentLocalization with SimpleRelative {
+  LocalizationKo() : super();
 
   @override
   String get endonym => "한국어";
 
   @override
-  String get languageCodeISO => "ko";
+  String get languageCode => "ko";
 
   @override
-  String get locale => "ko";
+  String get countryCode => "KR";
 
   @override
   String get languageNameInEnglish => "Korean";

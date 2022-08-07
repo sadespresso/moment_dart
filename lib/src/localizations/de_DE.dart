@@ -9,18 +9,18 @@ import 'package:moment_dart/src/localizations.dart';
 
 /// Language: German
 /// Country: Germany
-class LocalizationGermanStandard extends MomentLocalization
+class LocalizationDeDe extends MomentLocalization
     with Ordinal, MonthNames, SimpleRelative {
-  LocalizationGermanStandard() : super();
+  LocalizationDeDe() : super();
 
   @override
   String get endonym => "Deutsch";
 
   @override
-  String get languageCodeISO => "de";
+  String get languageCode => "de";
 
   @override
-  String get locale => "de_DE";
+  String get countryCode => "DE";
 
   @override
   String get languageNameInEnglish => "German (Standard)";

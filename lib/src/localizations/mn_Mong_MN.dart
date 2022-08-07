@@ -4,19 +4,22 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 
-/// Language: Traditional Mongolian (Unicode)
+/// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
-class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
-  LocalizationMongolianTraditional() : super();
+class LocalizationMnMongMn extends MomentLocalization with Ordinal {
+  LocalizationMnMongMn() : super();
 
   @override
   String get endonym => "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ";
 
   @override
-  String get languageCodeISO => "mn";
+  String get languageCode => "mn";
 
   @override
-  String get locale => "mn";
+  String get countryCode => "MN";
+
+  @override
+  String get locale => "mn_Mong_MN";
 
   @override
   String get languageNameInEnglish => "Mongolian (Traditional Script)";
@@ -195,7 +198,7 @@ class LocalizationMongolianTraditional extends MomentLocalization with Ordinal {
   @override
   String ordinalNumber(int n) {
     return n.toString() +
-        (LocalizationMongolianTraditional.isFeminine(n) ? " ᠳᠦᠭᠡᠷ" : " ᠳᠤᠭᠠᠷ");
+        (LocalizationMnMongMn.isFeminine(n) ? " ᠳᠦᠭᠡᠷ" : " ᠳᠤᠭᠠᠷ");
   }
 
   @override

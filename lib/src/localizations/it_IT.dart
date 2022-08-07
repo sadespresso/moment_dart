@@ -11,18 +11,18 @@ import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 
 /// Language: Italian
 /// Country: Italy
-class LocalizationIt extends MomentLocalization
+class LocalizationItIt extends MomentLocalization
     with MonthNames, Ordinal, SimpleRelative, ComplexCalendar {
-  LocalizationIt() : super();
+  LocalizationItIt() : super();
 
   @override
-  String get endonym => "Italy";
+  String get endonym => "Italiano";
 
   @override
-  String get languageCodeISO => "Italiano";
+  String get languageCode => "it";
 
   @override
-  String get locale => "it";
+  String get countryCode => "IT";
 
   @override
   String get languageNameInEnglish => "Italian";

@@ -4,22 +4,22 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 
-/// Language: Cyrillic Mongolian
+/// Language: Mongolian - Cyrillic
 /// Country: Mongolia
-class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
-  LocalizationMongolianCyrillic() : super();
+class LocalizationMnMn extends MomentLocalization with Ordinal {
+  LocalizationMnMn() : super();
 
   @override
   String get endonym => "Монгол хэл";
 
   @override
-  String get languageCodeISO => "mn";
+  String get languageCode => "mn";
 
   @override
-  String get locale => "mn";
+  String get countryCode => "MN";
 
   @override
-  String get languageNameInEnglish => "Mongolian (Cyrillic)";
+  String get languageNameInEnglish => "Mongolian";
 
   static String relativePast(String alpha) => "$alpha өмнө";
   static String relativeFuture(String alpha) => "$alpha дараа";
@@ -142,7 +142,7 @@ class LocalizationMongolianCyrillic extends MomentLocalization with Ordinal {
 
   @override
   String ordinalNumber(int n) {
-    return "$n ${(LocalizationMongolianTraditional.isFeminine(n) ? "дүгээр" : "дугаар")}";
+    return "$n ${(LocalizationMnMongMn.isFeminine(n) ? "дүгээр" : "дугаар")}";
   }
 
   @override

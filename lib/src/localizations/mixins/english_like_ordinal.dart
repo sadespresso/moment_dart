@@ -1,5 +1,6 @@
 import 'package:moment_dart/moment_dart.dart';
 
+/// Provides set of formatters named `formattersWithOrdinal`
 mixin EnglishLikeOrdinal on MomentLocalization {
   List<String> get ordinalSuffixes;
 

@@ -1,3 +1,12 @@
+## 0.9.0
+
+- Added demo. [Check it out](https://theironbatka.github.io/moment_dart_demo/#/)
+- Localization
+  - Renamed all localization files to their corresponding localization ID
+  - Renamed all localization classes to their corresponding localization ID
+  - Added static method `MomentLocalizations.byLanguage()` and `MomentLocalizations.byLocale()`
+- Fixed Italian localization data
+
 ## 0.8.2+1
 
 - Updated README.md

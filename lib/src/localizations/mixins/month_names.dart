@@ -1,5 +1,6 @@
 import 'package:moment_dart/moment_dart.dart';
 
+/// Provides set of formatters named `formattersForMonthNames`
 mixin MonthNames on MomentLocalization {
   /// Month name from month number (1-12)
   Map<int, String> get monthNames;

@@ -9,18 +9,18 @@ import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 
 /// Language: French
 /// Country: France
-class LocalizationFr extends MomentLocalization
+class LocalizationFrFr extends MomentLocalization
     with MonthNames, Ordinal, SimpleRelative {
-  LocalizationFr() : super();
+  LocalizationFrFr() : super();
 
   @override
   String get endonym => "Français";
 
   @override
-  String get languageCodeISO => "fr";
+  String get languageCode => "fr";
 
   @override
-  String get locale => "fr";
+  String get countryCode => "FR";
 
   @override
   String get languageNameInEnglish => "French (France)";

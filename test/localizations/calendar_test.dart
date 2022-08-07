@@ -224,7 +224,7 @@ void main() {
   });
 
   test("mn (Traditional) localization calendar test", () {
-    _setLocalization(MomentLocalizations.mnTM());
+    _setLocalization(MomentLocalizations.mnMong());
 
     // A
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ 5:33");
