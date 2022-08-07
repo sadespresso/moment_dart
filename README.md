@@ -25,24 +25,26 @@ Import the package
 import 'package:moment_dart/moment_dart.dart';
 ```
 
-Create Moment instance (like its superclass, it's immutable)
+Create Moment instance
 
 ```dart
 
-final Moment now = Moment.now();
+final now = Moment.now();
 
-final Moment epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
+final epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
-/// Using extension
-final Moment bday = DateTime(2003, 6, 1, 5, 1).toMoment();
+/// Using extension (DateTime.toMoment())
+final bday = DateTime(2003, 6, 1, 5, 1).toMoment();
 /// or from [DateTime]
-final Moment bday = Moment(DateTime(2003, 6, 1, 5, 1));
+final bday = Moment(DateTime(2003, 6, 1, 5, 1));
 ```
 
-As of version 0.7.0, `Moment` is subclass of `DateTime`
-
+Please note that `Moment` is subclass of `DateTime`. (It is **immutable**, like its superclass)
 ```dart
-class Moment extends DateTime { ... }
+final now = Moment.now();
+
+assert(now is DateTime); // true
+assert(now is Moment); // true
 ```
 
 ## Usage 🌿

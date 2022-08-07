@@ -1,3 +1,7 @@
+## 0.8.2+1
+
+- Updated README.md
+
 ## 0.8.2
 
 - Added static method `Moment.tryParse()`
