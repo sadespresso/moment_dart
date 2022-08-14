@@ -4,39 +4,41 @@ import 'package:test/scaffolding.dart';
 
 void main() {
   // A
-  final today = Moment.parse("2003-06-01T05:33:00.000Z"); // Sunday
-  final tomorrow = today.add(const Duration(days: 1));
-  final tueOrDayAfterTomorrow = today.add(const Duration(days: 2));
-  final yesterday = today.subtract(const Duration(days: 1));
-  final friOrdayBeforeYesterday = today.subtract(const Duration(days: 2));
+  var today = Moment.parse("2003-06-01T05:33:00.000Z"); // Sunday
+  var tomorrow = today.add(const Duration(days: 1));
+  var tueOrDayAfterTomorrow = today.add(const Duration(days: 2));
+  var yesterday = today.subtract(const Duration(days: 1));
+  var friOrdayBeforeYesterday = today.subtract(const Duration(days: 2));
 
   // B
-  final lastMonday = today.lastMonday();
-  final lastTuesday = today.lastTuesday();
-  final lastWednesday = today.lastWednesday();
-  final nextWednesday = today.nextWednesday();
-  final nextThursday = today.nextThursday();
-  final nextFriday = today.nextFriday();
+  var lastMonday = today.lastMonday();
+  var lastTuesday = today.lastTuesday();
+  var lastWednesday = today.lastWednesday();
+  var nextWednesday = today.nextWednesday();
+  var nextThursday = today.nextThursday();
+  var nextFriday = today.nextFriday();
 
   // C
-  final epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
+  var epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
   void _setLocalization(MomentLocalization localization) {
     // A
-    today.setLocalization(localization);
-    tomorrow.setLocalization(localization);
-    tueOrDayAfterTomorrow.setLocalization(localization);
-    yesterday.setLocalization(localization);
-    friOrdayBeforeYesterday.setLocalization(localization);
+    today = today.copyWith(localization: localization);
+    tomorrow = tomorrow.copyWith(localization: localization);
+    tueOrDayAfterTomorrow =
+        tueOrDayAfterTomorrow.copyWith(localization: localization);
+    yesterday = yesterday.copyWith(localization: localization);
+    friOrdayBeforeYesterday =
+        friOrdayBeforeYesterday.copyWith(localization: localization);
     // B
-    lastMonday.setLocalization(localization);
-    lastTuesday.setLocalization(localization);
-    lastWednesday.setLocalization(localization);
-    nextWednesday.setLocalization(localization);
-    nextThursday.setLocalization(localization);
-    nextFriday.setLocalization(localization);
+    lastMonday = lastMonday.copyWith(localization: localization);
+    lastTuesday = lastTuesday.copyWith(localization: localization);
+    lastWednesday = lastWednesday.copyWith(localization: localization);
+    nextWednesday = nextWednesday.copyWith(localization: localization);
+    nextThursday = nextThursday.copyWith(localization: localization);
+    nextFriday = nextFriday.copyWith(localization: localization);
     // C
-    epoch.setLocalization(localization);
+    epoch = epoch.copyWith(localization: localization);
   }
 
   test("de_DE localization calendar test", () {
@@ -249,7 +251,7 @@ void main() {
   });
 
   test("mn (Traditional with numbers) localization calendar test", () {
-    _setLocalization(MomentLocalizations.mnTMtn());
+    _setLocalization(MomentLocalizations.mnMongtn());
 
     // A
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ ᠕:᠓᠓");

@@ -1,18 +1,23 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/calendar.dart';
-import 'package:moment_dart/src/formatters/token.dart';
-
 import 'package:moment_dart/src/localizations.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Language: Italian
 /// Country: Italy
 class LocalizationItIt extends MomentLocalization
-    with MonthNames, Ordinal, SimpleRelative, ComplexCalendar {
+    with
+        MonthNames,
+        Ordinal,
+        SimpleUnits,
+        SimpleRelative,
+        SimpleDuration,
+        ComplexCalendar {
   LocalizationItIt() : super();
 
   @override
@@ -106,20 +111,82 @@ class LocalizationItIt extends MomentLocalization
   int get weekStart => DateTime.monday;
 
   @override
-  Map<RelativeInterval, String> get relativeUnits => {
-        RelativeInterval.fewSeconds: "alcuni secondi",
-        RelativeInterval.aSecond: "un secondo",
-        RelativeInterval.seconds: "$srDelta secondi",
-        RelativeInterval.aMinute: "un minuto",
-        RelativeInterval.minutes: "$srDelta minuti",
-        RelativeInterval.anHour: "un'ora",
-        RelativeInterval.hours: "$srDelta ore",
-        RelativeInterval.aDay: "un giorno",
-        RelativeInterval.days: "$srDelta giorni",
-        RelativeInterval.aMonth: "un mese",
-        RelativeInterval.months: "$srDelta mesi",
-        RelativeInterval.aYear: "un anno",
-        RelativeInterval.years: "$srDelta anni",
+  Map<DurationInterval, UnitString> get units => {
+        DurationInterval.fewSeconds: UnitString(
+          "alcuni secondi",
+          "alcuni secondi",
+          "alcuni secondi",
+        ),
+        DurationInterval.aSecond: UnitString(
+          "un secondo",
+          "un secondo",
+          "un secondo",
+        ),
+        DurationInterval.seconds: UnitString(
+          "$srDelta secondi",
+          "$srDelta secondi",
+          "$srDelta secondi",
+        ),
+        DurationInterval.aMinute: UnitString(
+          "un minuto",
+          "un minuto",
+          "un minuto",
+        ),
+        DurationInterval.minutes: UnitString(
+          "$srDelta minuti",
+          "$srDelta minuti",
+          "$srDelta minuti",
+        ),
+        DurationInterval.anHour: UnitString(
+          "un'ora",
+          "un'ora",
+          "un'ora",
+        ),
+        DurationInterval.hours: UnitString(
+          "$srDelta ore",
+          "$srDelta ore",
+          "$srDelta ore",
+        ),
+        DurationInterval.aDay: UnitString(
+          "un giorno",
+          "un giorno",
+          "un giorno",
+        ),
+        DurationInterval.days: UnitString(
+          "$srDelta giorni",
+          "$srDelta giorni",
+          "$srDelta giorni",
+        ),
+        DurationInterval.aWeek: UnitString(
+          "una settimana",
+          "una settimana",
+          "una settimana",
+        ),
+        DurationInterval.weeks: UnitString(
+          "$srDelta settimane",
+          "$srDelta settimane",
+          "$srDelta settimane",
+        ),
+        DurationInterval.aMonth: UnitString(
+          "un mese",
+          "un mese",
+          "un mese",
+        ),
+        DurationInterval.months: UnitString(
+          "$srDelta mesi",
+          "$srDelta mesi",
+          "$srDelta mesi",
+        ),
+        DurationInterval.aYear: UnitString(
+          "un anno",
+          "un anno",
+          "un anno",
+        ),
+        DurationInterval.years: UnitString(
+          "$srDelta anni",
+          "$srDelta anni",
+          "$srDelta anni",
+        ),
       };
 
   @override

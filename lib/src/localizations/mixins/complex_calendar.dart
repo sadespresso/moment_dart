@@ -1,6 +1,11 @@
-import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/calendar.dart';
+import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/moment.dart';
 
+/// This mixin provides:
+///
+/// * [complexCalendarData] - custom data getter
+///
+/// And **overrides** [MomentLocalization.calendar]
 mixin ComplexCalendar on MomentLocalization {
   @override
   CalenderLocalizationData? get calendarData => null;
@@ -68,7 +73,7 @@ mixin ComplexCalendar on MomentLocalization {
 class ComplexCalenderLocalizationData {
   /// Relative days on calendar.
   ///
-  /// e.g., -1 is Yestderday, 0 is Today, 1 is Tomorrow
+  /// For example, -1 is Yestderday, 0 is Today, 1 is Tomorrow
   ///
   /// Some language have words for
   /// day before yesterday (-2)

@@ -173,22 +173,22 @@ extension MomentBenefitsPlus on Moment {
 }
 
 extension DurationExtra on Duration {
-  static int daysPerWeek = 7;
+  static const int daysPerWeek = 7;
 
   int get inWeeks => inDays ~/ daysPerWeek;
 
-  static int daysPerMonth = 30;
-  static double daysPerMonthPrecise = 30.4368499;
+  static const int daysPerMonth = 30;
+  static const double daysPerMonthPrecise = 30.4368499;
 
-  int get inMonths => inDays ~/ daysPerMonthPrecise;
+  int get inMonths => inDays ~/ daysPerMonth;
 
-  static int daysPerYear = 365;
-  static double daysPerYearPrecise = 365.242199;
+  static const int daysPerYear = 365;
+  static const double daysPerYearPrecise = 365.242199;
 
-  int get inYears => inDays ~/ daysPerYearPrecise;
+  int get inYears => inDays ~/ daysPerYear;
 
-  static int weeksPerYear = 52;
-  static double weeksPerYearPrecise = 52.177457;
+  static const int weeksPerYear = 52;
+  static const double weeksPerYearPrecise = 52.177457;
 
-  static int monthsPerYear = 12;
+  static const int monthsPerYear = 12;
 }

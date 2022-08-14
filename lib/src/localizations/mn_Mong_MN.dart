@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
@@ -29,73 +28,64 @@ class LocalizationMnMongMn extends MomentLocalization with Ordinal {
 
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+  String relative(Duration duration,
+      {bool dropPrefixOrSuffix = false,
+      UnitStringForm form = UnitStringForm.full}) {
     final bool past = duration.isNegative;
 
     duration = duration.abs();
 
-    late final String value;
+    DurationInterval interval = MomentLocalization.relativeThreshold(duration);
+
+    late final String unit;
+
+    if (interval == DurationInterval.fewSeconds) {
+      unit = "ᠬᠡᠳᠦᠨ";
+    } else if (interval.singular) {
+      unit = "1";
+    } else {
+      unit = DurationUnit.relativeDuration(duration, interval.unit).toString();
+    }
+
+    late final String unitName;
     late final bool useFeminineSuffix;
 
-    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
-
-    switch (interval) {
-      case RelativeInterval.fewSeconds:
+    switch (interval.unit) {
+      case DurationUnit.second:
+        unitName = "ᠬᠣᠷᠤᠮ";
         useFeminineSuffix = false;
-        value = "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ";
         break;
-      case RelativeInterval.aSecond:
-        useFeminineSuffix = false;
-        value = "1 ᠬᠣᠷᠤᠮ";
-        break;
-      case RelativeInterval.seconds:
-        useFeminineSuffix = false;
-        value = "${duration.inSeconds} ᠬᠣᠷᠤᠮ";
-        break;
-      case RelativeInterval.aMinute:
+      case DurationUnit.minute:
+        unitName = "ᠮᠢᠨᠦ᠋ᠲ᠋";
         useFeminineSuffix = true;
-        value = "1 ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
-      case RelativeInterval.minutes:
+      case DurationUnit.hour:
+        unitName = "ᠴᠠᠭ";
+        useFeminineSuffix = false;
+        break;
+      case DurationUnit.day:
+        unitName = "ᠡᠳᠦᠷ";
         useFeminineSuffix = true;
-        value =
-            "${(duration.inSeconds / Duration.secondsPerMinute).round()} ᠮᠢᠨᠦ᠋ᠲ᠋";
         break;
-      case RelativeInterval.anHour:
+      case DurationUnit.week:
+        unitName = "ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ";
         useFeminineSuffix = false;
-        value = "1 ᠴᠠᠭ";
         break;
-      case RelativeInterval.hours:
+      case DurationUnit.month:
+        unitName = "ᠰᠠᠷ᠎ᠠ";
+        useFeminineSuffix = false; // doesn't matter
+        break;
+      case DurationUnit.year:
+        unitName = "ᠵᠢᠯ";
         useFeminineSuffix = false;
-        value = "${(duration.inMinutes / Duration.minutesPerHour).round()} ᠴᠠᠭ";
         break;
-      case RelativeInterval.aDay:
-        useFeminineSuffix = true;
-        value = "1 ᠡᠳᠦᠷ";
+      case DurationUnit.microsecond:
         break;
-      case RelativeInterval.days:
-        useFeminineSuffix = true;
-        value = "${(duration.inHours / Duration.hoursPerDay).round()} ᠡᠳᠦᠷ";
-        break;
-      case RelativeInterval.aMonth:
-        useFeminineSuffix = false;
-        value = "1 ᠰᠠᠷ᠎ᠠ";
-        break;
-      case RelativeInterval.months:
-        useFeminineSuffix = false;
-        value =
-            "${(duration.inDays / DurationExtra.daysPerMonthPrecise).round()} ᠰᠠᠷ᠎ᠠ";
-        break;
-      case RelativeInterval.aYear:
-        useFeminineSuffix = false;
-        value = "1 ᠵᠢᠯ";
-        break;
-      case RelativeInterval.years:
-        useFeminineSuffix = false;
-        value =
-            "${(duration.inDays / DurationExtra.daysPerYearPrecise).round()} ᠵᠢᠯ";
+      case DurationUnit.millisecond:
         break;
     }
+
+    final String value = "$unit $unitName";
 
     if (dropPrefixOrSuffix) return value;
 
@@ -220,4 +210,19 @@ class LocalizationMnMongMn extends MomentLocalization with Ordinal {
       lastWeekday: last,
     ),
   );
+
+  @override
+  String duration(
+    Duration duration, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = false,
+    UnitStringForm form = UnitStringForm.full,
+    String delimiter = " ",
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) {
+    // TODO: implement duration
+    throw UnimplementedError();
+  }
 }

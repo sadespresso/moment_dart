@@ -1,12 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mn_MN/units.dart';
 
 /// Language: Mongolian - Cyrillic
 /// Country: Mongolia
-class LocalizationMnMn extends MomentLocalization with Ordinal {
+class LocalizationMnMn extends MomentLocalization
+    with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration {
   LocalizationMnMn() : super();
 
   @override
@@ -21,22 +24,23 @@ class LocalizationMnMn extends MomentLocalization with Ordinal {
   @override
   String get languageNameInEnglish => "Mongolian";
 
-  static String relativePast(String alpha) => "$alpha өмнө";
-  static String relativeFuture(String alpha) => "$alpha дараа";
-
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+  String relative(
+    Duration duration, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) {
     final bool past = duration.isNegative;
 
     duration = duration.abs();
 
-    final RelativeInterval interval =
+    final DurationInterval interval =
         MomentLocalization.relativeThreshold(duration);
 
     late final String unit;
 
-    if (interval == RelativeInterval.fewSeconds) {
+    if (interval == DurationInterval.fewSeconds) {
       unit = "хэдэн";
     } else if (interval.singular) {
       unit = "1";
@@ -62,6 +66,10 @@ class LocalizationMnMn extends MomentLocalization with Ordinal {
         break;
       case DurationUnit.day:
         unitName = dropPrefixOrSuffix ? "өдөр" : "өдр";
+        useMasculineSuffix = false;
+        break;
+      case DurationUnit.week:
+        unitName = "долоо хоног";
         useMasculineSuffix = false;
         break;
       case DurationUnit.month:

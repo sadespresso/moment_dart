@@ -1,28 +1,30 @@
 import 'package:moment_dart/src/extension.dart';
 import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
-mixin SimpleRelative on MomentLocalization {
-  /// This is used as a placeholder for unit in plural expressions
-  String get srDelta => "%";
-
-  Map<RelativeInterval, String> get relativeUnits;
-
-  String relativePast(String unit);
-  String relativeFuture(String unit);
-
+/// Depends on [SimpleUnits]
+///
+/// This mixin **overrides** [MomentLocalization.relative]
+mixin SimpleRelative on SimpleUnits {
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
+  String relative(
+    Duration duration, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) {
     final bool past = duration.isNegative;
 
     duration = duration.abs();
 
-    RelativeInterval interval = MomentLocalization.relativeThreshold(duration);
+    DurationInterval interval = MomentLocalization.relativeThreshold(duration);
 
-    String value = (relativeUnits[interval] ?? "¯\\_(ツ)_/¯");
+    String value = (units[interval]?[form] ?? "¯\\_(ツ)_/¯");
 
     if (!interval.singular) {
-      value = value.replaceAll(srDelta,
-          DurationUnit.relativeDuration(duration, interval.unit).toString());
+      value = value.replaceAll(
+        srDelta,
+        DurationUnit.relativeDuration(duration, interval.unit).toString(),
+      );
     }
 
     if (dropPrefixOrSuffix) return value;

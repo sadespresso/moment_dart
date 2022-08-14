@@ -1,53 +1,22 @@
 import 'package:moment_dart/src/exception.dart';
+export 'package:moment_dart/src/exception.dart';
+
 import 'package:moment_dart/src/formatters/token.dart';
+export 'package:moment_dart/src/formatters/token.dart';
+
+import 'package:moment_dart/src/localizations/utils/duration_format.dart';
+export 'package:moment_dart/src/localizations/utils/duration_format.dart';
+
+import 'package:moment_dart/src/localizations/utils/relative_interval.dart';
+export 'package:moment_dart/src/localizations/utils/relative_interval.dart';
+
+import 'package:moment_dart/src/localizations/utils/unit_form.dart';
+export 'package:moment_dart/src/localizations/utils/unit_form.dart';
+
+import 'package:moment_dart/src/calendar.dart';
+export 'package:moment_dart/src/calendar.dart';
+
 import 'package:moment_dart/src/moment.dart';
-
-import 'calendar.dart';
-
-extension _StringUtils on num {
-  String padZero([int width = 2]) {
-    return toString().padLeft(width, '0');
-  }
-}
-
-enum RelativeInterval {
-  //"(in) a few seconds (ago)"
-  fewSeconds(0, unit: DurationUnit.second, singular: false),
-  //"(in) a second (ago)"
-  aSecond(1, unit: DurationUnit.second, singular: true),
-  //"(in) X seconds (ago)"
-  seconds(2, unit: DurationUnit.second, singular: false),
-  //"(in) a minute (ago)"
-  aMinute(3, unit: DurationUnit.minute, singular: true),
-  //"(in) X minutes (ago)"
-  minutes(4, unit: DurationUnit.minute, singular: false),
-  //"(in) an hour (ago)"
-  anHour(5, unit: DurationUnit.hour, singular: true),
-  //"(in) X hours (ago)"
-  hours(6, unit: DurationUnit.hour, singular: false),
-  //"(in) a day (ago)"
-  aDay(7, unit: DurationUnit.day, singular: true),
-  //"(in) X days (ago)"
-  days(8, unit: DurationUnit.day, singular: false),
-  //"(in) a month (ago)"
-  aMonth(9, unit: DurationUnit.month, singular: true),
-  //"(in) X months (ago)"
-  months(10, unit: DurationUnit.month, singular: false),
-  //"(in) a year (ago)"
-  aYear(11, unit: DurationUnit.year, singular: true),
-  //"(in) X years (ago)"
-  years(12, unit: DurationUnit.year, singular: false);
-
-  final int value;
-  final DurationUnit unit;
-  final bool singular;
-
-  const RelativeInterval(
-    this.value, {
-    required this.unit,
-    this.singular = false,
-  });
-}
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
@@ -62,26 +31,26 @@ abstract class MomentLocalization {
   ///
   /// Used this table as guide:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
-  static const Map<RelativeInterval, Duration?> _relativeThresholds = {
-    RelativeInterval.fewSeconds: Duration(seconds: 45),
-    RelativeInterval.aMinute: Duration(seconds: 90),
-    RelativeInterval.minutes: Duration(minutes: 45),
-    RelativeInterval.anHour: Duration(minutes: 90),
-    RelativeInterval.hours: Duration(hours: 22),
-    RelativeInterval.aDay: Duration(hours: 36),
-    RelativeInterval.days: Duration(days: 26),
-    RelativeInterval.aMonth: Duration(days: 45),
-    RelativeInterval.months: Duration(days: 320),
-    RelativeInterval.aYear: Duration(days: 548),
-    RelativeInterval.years: null,
+  static const Map<DurationInterval, Duration?> _relativeThresholds = {
+    DurationInterval.fewSeconds: Duration(seconds: 45),
+    DurationInterval.aMinute: Duration(seconds: 90),
+    DurationInterval.minutes: Duration(minutes: 45),
+    DurationInterval.anHour: Duration(minutes: 90),
+    DurationInterval.hours: Duration(hours: 22),
+    DurationInterval.aDay: Duration(hours: 36),
+    DurationInterval.days: Duration(days: 26),
+    DurationInterval.aMonth: Duration(days: 45),
+    DurationInterval.months: Duration(days: 320),
+    DurationInterval.aYear: Duration(days: 548),
+    DurationInterval.years: null,
   };
 
   /// Uses [MomentLocalization._relativeThresholds] map. Refer to this table for details:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
-  static RelativeInterval relativeThreshold(Duration duration) {
+  static DurationInterval relativeThreshold(Duration duration) {
     final Duration absoluteDuration = duration.abs();
 
-    for (RelativeInterval key in _relativeThresholds.keys) {
+    for (DurationInterval key in _relativeThresholds.keys) {
       final Duration? maxDuration = _relativeThresholds[key];
 
       if (maxDuration == null) return key;
@@ -96,16 +65,44 @@ abstract class MomentLocalization {
 
   /// Toggle `dropPrefixOrSuffix` to get spanned duration without any prefix or suffix.
   ///
-  /// **This will not return precise duration**, for precise durations, see [duration]
+  /// **This will not return precise duration**, for precise durations, use [duration()]
   ///
   /// Note: When creating your own localization, please take a look at [MomentLocalization.relativeThreshold] function and [MomentLocalization._relativeThresholds] before implementing. Those will make your life slightly easier
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]);
-
-  /// This will return precise durations
   ///
-  // String duration(Duration duration);
+  /// [form] - Unit string form. For example, minute would look like "18 minutes ago", "18 min ago", "18m ago" in full, mid, short forms, respectively.
+  String relative(
+    Duration duration, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  });
 
-  /// Some language require article before the hours. e.g., la 1:20, las 13:20 (Spanish)
+  /// This will return **precise** durations. For imprecise durations, use [relative()]
+  ///
+  /// e.g.:
+  /// * 2 minutes 39 seconds
+  /// * 2m39s
+  ///
+  /// Params:
+  ///
+  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
+  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
+  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
+  /// * [round] - rounds the smallest unit if set true. If false, truncates. Defaults to true.
+  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
+  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
+  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
+  String duration(
+    Duration duration, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = false,
+    UnitStringForm form = UnitStringForm.full,
+    String delimiter = " ",
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  });
+
+  /// Some language require article before the hours. For example, la 1:20, las 13:20 (Spanish)
   String calendarTime(Moment moment) =>
       moment.format(localizationDefaultHourFormat);
 
@@ -310,7 +307,7 @@ abstract class MomentLocalization {
 
   /// Language name in the language itself
   ///
-  /// e.g.,
+  /// For example,
   /// * Français (in English - French)
   /// * Italiano (in English - Italian)
   /// * ᠮᠣᠩᠭᠤᠯ ᠬᠯᠡ (in English - Mongolian)
@@ -333,6 +330,12 @@ abstract class MomentLocalization {
   /// Language name in English
   String get languageNameInEnglish;
 
-  /// Start of week. e.g., Monday for most countries, Sunday for weird ones
+  /// Start of week. For example, Monday for most countries, Sunday for weird ones
   int get weekStart => DateTime.monday;
+}
+
+extension _StringUtils on num {
+  String padZero([int width = 2]) {
+    return toString().padLeft(width, '0');
+  }
 }

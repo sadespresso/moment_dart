@@ -5,77 +5,64 @@ import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// Moment is subclass of DateTime
 class Moment extends DateTime {
-  late MomentLocalization _localization;
+  static MomentLocalization defaultLocalization = MomentLocalizations.enUS();
 
-  MomentLocalization get localization => _localization;
+  late final MomentLocalization localization;
 
-  /// Falls back to English (United States) if [newLocalization] is null
-  set localization(MomentLocalization? newLocalization) {
-    _localization = newLocalization ?? MomentLocalizations.enUS();
-  }
-
-  void setLocalization(MomentLocalization? newLocalization) {
-    _localization = newLocalization ?? MomentLocalizations.enUS();
-  }
-
-  /// Moment created using given `dateTime`;
+  /// A [Moment] created using given `dateTime`;
   Moment(DateTime dateTime, {MomentLocalization? localization})
       : super.fromMicrosecondsSinceEpoch(dateTime.microsecondsSinceEpoch,
             isUtc: dateTime.isUtc) {
-    this.localization = localization;
+    this.localization = localization ?? defaultLocalization;
   }
 
-  /// An instance created using DateTime.now(), in Local timezone
+  /// A [Moment] created using DateTime.now(), in Local timezone
   Moment.now({MomentLocalization? localization}) : super.now() {
-    this.localization = localization;
+    this.localization = localization ?? defaultLocalization;
   }
 
   Moment.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch,
       {bool isUtc = false, MomentLocalization? localization})
       : super.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: isUtc) {
-    this.localization = localization;
+    this.localization = localization ?? defaultLocalization;
   }
 
   Moment.fromMicrosecondsSinceEpoch(int microsecondsSinceEpoch,
       {bool isUtc = false, MomentLocalization? localization})
       : super.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch, isUtc: isUtc) {
-    this.localization = localization;
+    this.localization = localization ?? defaultLocalization;
   }
 
-  @Deprecated(
-    'Use localization setter '
-    'or create new instance instead. '
-    'Starting from 7.0, Moment extends DateTime. Therefore, only mutable field is _localization',
-  )
+  /// Returns new [Moment] with new values
   Moment copyWith({DateTime? dateTime, MomentLocalization? localization}) {
     final Moment value = Moment(
       dateTime ?? this,
-      localization: localization ?? _localization,
+      localization: localization ?? this.localization,
     );
 
     return value;
   }
 
-  /// Returns new [Moment] instance with added duration
+  /// Returns new [Moment] with added duration
   ///
   /// Adds the `duration` using `DateTime.add(duration)`
   @override
   Moment add(Duration duration) =>
       Moment(super.add(duration), localization: localization);
 
-  /// Returns new [Moment] instance with subtracted duration
+  /// Returns new [Moment] with subtracted duration
   ///
   /// Subtracts the `duration` using `DateTime.subtract(duration)`
   @override
   Moment subtract(Duration duration) =>
       Moment(super.subtract(duration), localization: localization);
 
-  /// Returns new [Moment] instance with added duration
+  /// Returns new [Moment] with added duration
   ///
   /// Calls `add(duration)`
   Moment operator +(Duration duration) => add(duration);
 
-  /// Returns new [Moment] instance with subtracted duration
+  /// Returns new [Moment] with subtracted duration
   ///
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
@@ -188,25 +175,155 @@ class Moment extends DateTime {
   static Moment? tryParse(String input, {MomentLocalization? localization}) =>
       DateTime.tryParse(input)?.toMoment(localization: localization);
 
+  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold] for details**
+  ///
+  /// Use [fromPrecise] if you need precise output
+  String from(
+    DateTime anchor, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) {
+    final Duration delta = difference(anchor);
+
+    return localization.relative(
+      delta,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+      form: form,
+    );
+  }
+
   /// Example when using [LocalizationEnUs]:
   ///
   /// If [this] is yesterday, will result `"a day ago"`
   ///
   /// If [this] is tomorrow, will result `"in a day"`
   ///
-  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold]**
-  String fromNow([bool dropSuffixOrPrefix = false]) {
-    final Duration delta = difference(DateTime.now());
+  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold] for details**
+  ///
+  /// Use [fromNowPrecise]
+  String fromNow({
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) =>
+      from(
+        DateTime.now(),
+        dropPrefixOrSuffix: dropPrefixOrSuffix,
+        form: form,
+      );
 
-    return localization.relative(delta, dropSuffixOrPrefix);
-  }
-
-  /// **This will not return precise duration. See [MomentLocalization.relativeThreshold]**
-  String from(Moment anchor, [bool dropSuffixOrPrefix = false]) {
+  /// This will return **precise** durations. For imprecise durations, use [from()]
+  ///
+  /// e.g.:
+  /// * 2 minutes 39 seconds ago
+  /// * in 2m 39s
+  ///
+  /// Params:
+  ///
+  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
+  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
+  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
+  /// * [round] - rounds the smallest unit if true, or truncates. Defaults to true.
+  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
+  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
+  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
+  String fromPrecise(
+    DateTime anchor, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = true,
+    UnitStringForm form = UnitStringForm.full,
+    String delimiter = " ",
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) {
     final Duration delta = difference(anchor);
 
-    return localization.relative(delta, dropSuffixOrPrefix);
+    return localization.duration(
+      delta,
+      round: round,
+      omitZeros: omitZeros,
+      includeWeeks: includeWeeks,
+      form: form,
+      delimiter: delimiter,
+      format: format,
+    );
   }
+
+  /// Example when using [LocalizationEnUs]:
+  ///
+  /// If [this] is yesterday, will result `"1 day ago"`
+  ///
+  /// If [this] is tomorrow, will result `"in 1 day"`
+  ///
+  /// This will return **precise** durations. For imprecise durations, use [from()]
+  ///
+  /// e.g.:
+  /// * 2 minutes 39 seconds ago
+  /// * in 2m 39s
+  ///
+  /// Params:
+  ///
+  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
+  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
+  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
+  /// * [round] - rounds the smallest unit if true, or truncates. Defaults to true.
+  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
+  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
+  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
+  String fromNowPrecise({
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = true,
+    UnitStringForm form = UnitStringForm.full,
+    String delimiter = " ",
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) =>
+      fromPrecise(
+        DateTime.now(),
+        round: round,
+        omitZeros: omitZeros,
+        includeWeeks: includeWeeks,
+        form: form,
+        delimiter: delimiter,
+        format: format,
+        dropPrefixOrSuffix: dropPrefixOrSuffix,
+      );
+
+  /// This will return **precise** durations. For imprecise durations, use [from()]
+  ///
+  /// e.g.:
+  /// * 2 minutes 39 seconds
+  /// * 2m39s
+  ///
+  /// Params:
+  ///
+  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
+  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
+  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
+  /// * [round] - rounds the smallest unit if true, or truncates. Defaults to true.
+  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
+  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
+  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
+  String elapsed(
+    DateTime since, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = true,
+    UnitStringForm form = UnitStringForm.full,
+    String delimiter = " ",
+    DurationFormat format = DurationFormat.auto,
+  }) =>
+      fromPrecise(
+        DateTime.now(),
+        round: round,
+        omitZeros: omitZeros,
+        includeWeeks: includeWeeks,
+        form: form,
+        delimiter: delimiter,
+        format: format,
+        dropPrefixOrSuffix: true,
+      );
 
   /// Returns calendar string in accordance with the [reference], such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
   /// Default formats are derived from the current localization.

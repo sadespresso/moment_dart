@@ -14,6 +14,8 @@ extension EndOfUnit on DateTime {
       case DurationUnit.microsecond:
         throw MomentException(
             "Illegally called moment.endOf(DurationUnit.microsecond) when microsecond is the smallest unit");
+      case DurationUnit.week:
+        throw MomentException("endOf(DurationUnit.week) is not supported");
       case DurationUnit.millisecond:
         return DateTime(
             year, month, day, hour, minute, second, millisecond, 999);

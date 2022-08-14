@@ -1,14 +1,15 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/calendar.dart';
 import 'package:moment_dart/src/extension.dart';
-import 'package:moment_dart/src/formatters/token.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Language: Korean
 /// Country: South Korea
-class LocalizationKo extends MomentLocalization with SimpleRelative {
+class LocalizationKo extends MomentLocalization
+    with SimpleUnits, SimpleRelative, SimpleDuration {
   LocalizationKo() : super();
 
   @override
@@ -114,20 +115,23 @@ class LocalizationKo extends MomentLocalization with SimpleRelative {
   @override
   int get weekStart => DateTime.sunday;
 
+  // Korean hangul is compact enough
   @override
-  Map<RelativeInterval, String> get relativeUnits => {
-        RelativeInterval.fewSeconds: "몇 초",
-        RelativeInterval.aSecond: "1초",
-        RelativeInterval.seconds: "$srDelta초",
-        RelativeInterval.aMinute: "1분",
-        RelativeInterval.minutes: "$srDelta분",
-        RelativeInterval.anHour: "1시간",
-        RelativeInterval.hours: "$srDelta시간",
-        RelativeInterval.aDay: "1일",
-        RelativeInterval.days: "$srDelta일",
-        RelativeInterval.aMonth: "1개월",
-        RelativeInterval.months: "$srDelta개월",
-        RelativeInterval.aYear: "1년",
-        RelativeInterval.years: "$srDelta년",
+  Map<DurationInterval, UnitString> get units => {
+        DurationInterval.fewSeconds: UnitString.single("몇 초"),
+        DurationInterval.aSecond: UnitString.single("1초"),
+        DurationInterval.seconds: UnitString.single("$srDelta초"),
+        DurationInterval.aMinute: UnitString.single("1분"),
+        DurationInterval.minutes: UnitString.single("$srDelta분"),
+        DurationInterval.anHour: UnitString.single("1시간"),
+        DurationInterval.hours: UnitString.single("$srDelta시간"),
+        DurationInterval.aDay: UnitString.single("1일"),
+        DurationInterval.days: UnitString.single("$srDelta일"),
+        DurationInterval.aWeek: UnitString.single("1주"),
+        DurationInterval.weeks: UnitString.single("$srDelta주"),
+        DurationInterval.aMonth: UnitString.single("1개월"),
+        DurationInterval.months: UnitString.single("$srDelta개월"),
+        DurationInterval.aYear: UnitString.single("1년"),
+        DurationInterval.years: UnitString.single("$srDelta년"),
       };
 }

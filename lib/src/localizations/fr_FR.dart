@@ -1,16 +1,17 @@
 // ignore_for_file: file_names
 
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/calendar.dart';
 
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Language: French
 /// Country: France
 class LocalizationFrFr extends MomentLocalization
-    with MonthNames, Ordinal, SimpleRelative {
+    with MonthNames, Ordinal, SimpleUnits, SimpleRelative, SimpleDuration {
   LocalizationFrFr() : super();
 
   @override
@@ -127,19 +128,81 @@ class LocalizationFrFr extends MomentLocalization
   }
 
   @override
-  Map<RelativeInterval, String> get relativeUnits => {
-        RelativeInterval.fewSeconds: "quelques secondes",
-        RelativeInterval.aSecond: "une seconde",
-        RelativeInterval.seconds: "$srDelta secondes",
-        RelativeInterval.aMinute: "une minute",
-        RelativeInterval.minutes: "$srDelta minutes",
-        RelativeInterval.anHour: "une heure",
-        RelativeInterval.hours: "$srDelta heures",
-        RelativeInterval.aDay: "un jour",
-        RelativeInterval.days: "$srDelta jours",
-        RelativeInterval.aMonth: "un mois",
-        RelativeInterval.months: "$srDelta mois",
-        RelativeInterval.aYear: "un an",
-        RelativeInterval.years: "$srDelta ans",
+  Map<DurationInterval, UnitString> get units => {
+        DurationInterval.fewSeconds: UnitString(
+          "quelques secondes",
+          "quelques secondes",
+          "quelques secondes",
+        ),
+        DurationInterval.aSecond: UnitString(
+          "une seconde",
+          "une seconde",
+          "une seconde",
+        ),
+        DurationInterval.seconds: UnitString(
+          "$srDelta secondes",
+          "$srDelta secondes",
+          "$srDelta secondes",
+        ),
+        DurationInterval.aMinute: UnitString(
+          "une minute",
+          "une minute",
+          "une minute",
+        ),
+        DurationInterval.minutes: UnitString(
+          "$srDelta minutes",
+          "$srDelta minutes",
+          "$srDelta minutes",
+        ),
+        DurationInterval.anHour: UnitString(
+          "une heure",
+          "une heure",
+          "une heure",
+        ),
+        DurationInterval.hours: UnitString(
+          "$srDelta heures",
+          "$srDelta heures",
+          "$srDelta heures",
+        ),
+        DurationInterval.aDay: UnitString(
+          "un jour",
+          "un jour",
+          "un jour",
+        ),
+        DurationInterval.days: UnitString(
+          "$srDelta jours",
+          "$srDelta jours",
+          "$srDelta jours",
+        ),
+        DurationInterval.aWeek: UnitString(
+          "une semaine",
+          "une semaine",
+          "une semaine",
+        ),
+        DurationInterval.weeks: UnitString(
+          "$srDelta semaines",
+          "$srDelta semaines",
+          "$srDelta semaines",
+        ),
+        DurationInterval.aMonth: UnitString(
+          "un mois",
+          "un mois",
+          "un mois",
+        ),
+        DurationInterval.months: UnitString(
+          "$srDelta mois",
+          "$srDelta mois",
+          "$srDelta mois",
+        ),
+        DurationInterval.aYear: UnitString(
+          "un an",
+          "un an",
+          "un an",
+        ),
+        DurationInterval.years: UnitString(
+          "$srDelta ans",
+          "$srDelta ans",
+          "$srDelta ans",
+        ),
       };
 }

@@ -1,6 +1,6 @@
 export 'package:moment_dart/src/extensions/benefits.dart';
 
-export 'package:moment_dart/src/extensions/duration_unit.dart';
+export 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 
 export 'package:moment_dart/src/extensions/start_of.dart';
 

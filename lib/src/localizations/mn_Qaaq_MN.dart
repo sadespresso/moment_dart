@@ -3,6 +3,7 @@
 import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mn_Mong_MN.dart';
+import 'package:moment_dart/src/localizations/utils/unit_form.dart';
 
 /// Language: Traditional Mongolian with Traditional Numbers
 /// Country: Mongolia
@@ -31,8 +32,13 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
   };
 
   @override
-  String relative(Duration duration, [bool dropPrefixOrSuffix = false]) {
-    return toTraditionalNumber(super.relative(duration, dropPrefixOrSuffix));
+  String relative(
+    Duration duration, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) {
+    return toTraditionalNumber(
+        super.relative(duration, dropPrefixOrSuffix: dropPrefixOrSuffix));
   }
 
   String toTraditionalNumber(String input) {

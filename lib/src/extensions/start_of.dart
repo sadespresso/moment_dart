@@ -1,3 +1,4 @@
+import 'package:moment_dart/src/exception.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension StartOfUnit on DateTime {
@@ -12,6 +13,8 @@ extension StartOfUnit on DateTime {
     switch (unit) {
       case DurationUnit.microsecond:
         return clone();
+      case DurationUnit.week:
+        throw MomentException("endOf(DurationUnit.week) is not supported");
       case DurationUnit.millisecond:
         return DateTime(year, month, day, hour, minute, second, millisecond);
       case DurationUnit.second:

@@ -1,3 +1,7 @@
+## 0.10.0
+
+- Introduced concept of `UnitString`, a wrapper class for unit translations. For example, UnitString for minute may look like "19 minutes", "19 min", "19m" depending on the `UnitStringForm` (full, mid, short respectively)
+
 ## 0.9.0+1
 
 - Added en_US in MomentLocalizations.locales
@@ -42,7 +46,7 @@
 
 ## 0.7.3
 
-- Added shorthand function for commonly used tokens. e.g., moment.LT, moment.LTS, moment.L, etc.
+- Added shorthand function for commonly used tokens. For example, moment.LT, moment.LTS, moment.L, etc.
 
 ## 0.7.2
 
@@ -57,12 +61,12 @@
 - ***IMPORTANT CHANGE***: Now `Moment` extends `DateTime` class
 - ***IMPORTANT CHANGE***: Now targets Dart version 2.17.0 and above
 - Implemented 6 operators (+, -, <, <=, >=, >) for `DateTime` and `Moment`. Part of MomentBenefits extension
-- Implemented `.lastWeekday(int weekday)`, and it's children `.lastMonday()`, `.lastTuesday()`, ..., `.lastSunday()`. You can also do same thing to find future weekdays. e.g., `.nextMonday()`. Works on both `Moment` and `DateTime`
+- Implemented `.lastWeekday(int weekday)`, and it's children `.lastMonday()`, `.lastTuesday()`, ..., `.lastSunday()`. You can also do same thing to find future weekdays. For example, `.nextMonday()`. Works on both `Moment` and `DateTime`
 - Implemented `.startOf(DurationUnit unit)`, and it's children `.startOf~~~()`. Works on both `Moment` and `DateTime`
 
 ## 0.6.2
 
-- Now Mongolian singular units include number `1` as nature of the language is not similar to English. e.g., `минутын өмнө` => `1 минутын өмнө`
+- Now Mongolian singular units include number `1` as nature of the language is not similar to English. For example, `минутын өмнө` => `1 минутын өмнө`
 - Mongolian script with Mongolian numbers (`mn_TM_tn`)'s `.relative(-)` now uses Mongolian numbers
 
 ## 0.6.1

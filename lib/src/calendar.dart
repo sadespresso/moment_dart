@@ -1,7 +1,7 @@
 class CalenderLocalizationData {
   /// Relative days on calendar.
   ///
-  /// e.g., -1 is Yestderday, 0 is Today, 1 is Tomorrow
+  /// For example, -1 is Yestderday, 0 is Today, 1 is Tomorrow
   ///
   /// Some language have words for
   /// day before yesterday (-2)

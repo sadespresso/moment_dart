@@ -11,8 +11,8 @@ void main() {
   final Moment epochPlusFiveDays = epoch + Duration(days: 5);
   final Moment epochPlusAYear = epoch + Duration(days: 365);
 
-  localization.relative(const Duration(seconds: 2)); //in a few seconds
-  epochPlusFiveDays.from(epoch, true); // "5 days"
+  localization.relative(const Duration(seconds: 2)); // "in a few seconds"
+  epochPlusFiveDays.from(epoch, dropPrefixOrSuffix: true); // "5 days"
   epochPlusFiveDays.from(epoch); // "in 5 days"
   epoch.calendar(
       reference: epochPlusFiveDays, omitHours: true); // "Last Thursday"
@@ -27,15 +27,18 @@ void main() {
   /// [reference] is `Moment.now()` by default.
   moment.calendar();
 
+  /// Equivalent to `moment.from(Moment.now())`
+  ///
   /// Example when using [LocalizationEnUs]:
   ///
   /// If [this] is yesterday, will result `"a day ago"`
   ///
   /// If [this] is tomorrow, will result `"in a day"`
-  ///
-  /// moment.js's `toNow()` function has been omitted, since this function prefixes/suffixes appropriately.
   moment.fromNow();
 
   /// Unmatched strings will be left as is.
   moment.format("YYYY년 MMMM Do dddd A hh:mm");
+
+  /// String encapsulated in square brackets will be escaped.
+  moment.format("[YEAR:] YYYY, [MONTH:] MMMM, Do dddd A hh:mm");
 }

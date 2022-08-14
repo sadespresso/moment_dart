@@ -1,4 +1,4 @@
-import 'package:moment_dart/src/extensions/duration_unit.dart';
+import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 
 extension UnitComparision on DateTime {
   /// [unit]: 0-7
