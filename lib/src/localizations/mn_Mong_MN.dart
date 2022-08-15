@@ -2,10 +2,13 @@
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mn_Mong_MN/units.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
-class LocalizationMnMongMn extends MomentLocalization with Ordinal {
+class LocalizationMnMongMn extends MomentLocalization
+    with Ordinal, SimpleUnits, MnMongMnUnits {
   LocalizationMnMongMn() : super();
 
   @override
@@ -23,9 +26,6 @@ class LocalizationMnMongMn extends MomentLocalization with Ordinal {
   @override
   String get languageNameInEnglish => "Mongolian (Traditional Script)";
 
-  static String relativePast(String alpha) => "$alpha ᠡᠮᠦᠨ᠎ᠡ";
-  static String relativeFuture(String alpha) => "$alpha ᠳᠠᠷᠠᠭ᠎ᠠ";
-
   /// Please note that Mongolian language string is not in it's base form. A suffix has been added to work with `relativePast`, `relativeFuture`.
   @override
   String relative(Duration duration,
@@ -37,67 +37,21 @@ class LocalizationMnMongMn extends MomentLocalization with Ordinal {
 
     DurationInterval interval = MomentLocalization.relativeThreshold(duration);
 
-    late final String unit;
+    String value =
+        getUnit(interval, form, dropPrefixOrSuffix: dropPrefixOrSuffix);
 
-    if (interval == DurationInterval.fewSeconds) {
-      unit = "ᠬᠡᠳᠦᠨ";
-    } else if (interval.singular) {
-      unit = "1";
-    } else {
-      unit = DurationUnit.relativeDuration(duration, interval.unit).toString();
+    if (!interval.singular) {
+      value = value.replaceAll(
+        srDelta,
+        DurationUnit.relativeDuration(duration, interval.unit).toString(),
+      );
     }
 
-    late final String unitName;
-    late final bool useFeminineSuffix;
-
-    switch (interval.unit) {
-      case DurationUnit.second:
-        unitName = "ᠬᠣᠷᠤᠮ";
-        useFeminineSuffix = false;
-        break;
-      case DurationUnit.minute:
-        unitName = "ᠮᠢᠨᠦ᠋ᠲ᠋";
-        useFeminineSuffix = true;
-        break;
-      case DurationUnit.hour:
-        unitName = "ᠴᠠᠭ";
-        useFeminineSuffix = false;
-        break;
-      case DurationUnit.day:
-        unitName = "ᠡᠳᠦᠷ";
-        useFeminineSuffix = true;
-        break;
-      case DurationUnit.week:
-        unitName = "ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ";
-        useFeminineSuffix = false;
-        break;
-      case DurationUnit.month:
-        unitName = "ᠰᠠᠷ᠎ᠠ";
-        useFeminineSuffix = false; // doesn't matter
-        break;
-      case DurationUnit.year:
-        unitName = "ᠵᠢᠯ";
-        useFeminineSuffix = false;
-        break;
-      case DurationUnit.microsecond:
-        break;
-      case DurationUnit.millisecond:
-        break;
+    if (dropPrefixOrSuffix) {
+      return value;
     }
 
-    final String value = "$unit $unitName";
-
-    if (dropPrefixOrSuffix) return value;
-
-    late final String suffix; // Language specific stuff
-
-    if (interval.unit == DurationUnit.month) {
-      suffix = " ᠶᠢᠨ";
-    } else {
-      suffix = (useFeminineSuffix ? " ᠦᠨ" : " ᠤᠨ");
-    }
-
-    return past ? relativePast(value + suffix) : relativeFuture(value + suffix);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   static bool isFeminine(int i) {

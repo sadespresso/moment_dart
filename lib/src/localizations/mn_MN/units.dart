@@ -16,38 +16,17 @@ mixin MnMnUnits on SimpleUnits {
 
   String getUnit(DurationInterval interval, UnitStringForm form,
       {bool dropPrefixOrSuffix = false}) {
-    late final String unit;
-
-    late final bool aFewSec;
-
-    if (interval == DurationInterval.fewSeconds) {
-      aFewSec = true;
-      unit = "хэдэн";
-    } else if (interval.singular) {
-      aFewSec = false;
-      unit = "1";
-    } else {
-      aFewSec = false;
-      unit = srDelta;
-    }
-
-    if (!dropPrefixOrSuffix || aFewSec) {
-      final bool useMasculineSuffix = aFewSec ||
+    if (!dropPrefixOrSuffix) {
+      final bool useMasculineSuffix = interval == DurationInterval.fewSeconds ||
           interval.unit == DurationUnit.minute ||
           interval.unit == DurationUnit.month;
 
       final String suffix = useMasculineSuffix ? "ын" : "ийн";
 
-      return (interval.singular
-              ? unitsWithSuffixConsidered[interval]![form]
-              : unitsWithSuffixConsidered[interval]![form]
-                  .replaceAll(srDelta, unit)) +
-          suffix;
+      return unitsWithSuffixConsidered[interval]![form] + suffix;
     }
 
-    return interval.singular
-        ? units[interval]![form]
-        : units[interval]![form].replaceAll(srDelta, unit);
+    return units[interval]![form];
   }
 
   @override

@@ -37,8 +37,11 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
     bool dropPrefixOrSuffix = false,
     UnitStringForm form = UnitStringForm.full,
   }) {
-    return toTraditionalNumber(
-        super.relative(duration, dropPrefixOrSuffix: dropPrefixOrSuffix));
+    return toTraditionalNumber(super.relative(
+      duration,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+      form: form,
+    ));
   }
 
   String toTraditionalNumber(String input) {

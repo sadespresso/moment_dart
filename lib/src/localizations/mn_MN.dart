@@ -35,64 +35,24 @@ class LocalizationMnMn extends MomentLocalization
 
     duration = duration.abs();
 
-    final DurationInterval interval =
-        MomentLocalization.relativeThreshold(duration);
+    DurationInterval interval = MomentLocalization.relativeThreshold(duration);
 
-    late final String unit;
+    String value = getUnit(
+      interval,
+      form,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+    );
 
-    if (interval == DurationInterval.fewSeconds) {
-      unit = "хэдэн";
-    } else if (interval.singular) {
-      unit = "1";
-    } else {
-      unit = DurationUnit.relativeDuration(duration, interval.unit).toString();
+    if (!interval.singular) {
+      value = value.replaceAll(
+        srDelta,
+        DurationUnit.relativeDuration(duration, interval.unit).toString(),
+      );
     }
-
-    late final bool useMasculineSuffix;
-    late final String unitName;
-
-    switch (interval.unit) {
-      case DurationUnit.second:
-        unitName = dropPrefixOrSuffix ? "хором" : "хорм";
-        useMasculineSuffix = true;
-        break;
-      case DurationUnit.minute:
-        unitName = "минут";
-        useMasculineSuffix = true;
-        break;
-      case DurationUnit.hour:
-        unitName = "цаг";
-        useMasculineSuffix = false;
-        break;
-      case DurationUnit.day:
-        unitName = dropPrefixOrSuffix ? "өдөр" : "өдр";
-        useMasculineSuffix = false;
-        break;
-      case DurationUnit.week:
-        unitName = "долоо хоног";
-        useMasculineSuffix = false;
-        break;
-      case DurationUnit.month:
-        unitName = "сар";
-        useMasculineSuffix = true;
-        break;
-      case DurationUnit.year:
-        unitName = "жил";
-        useMasculineSuffix = false;
-        break;
-      case DurationUnit.microsecond:
-        break;
-      case DurationUnit.millisecond:
-        break;
-    }
-
-    final String value = "$unit $unitName";
 
     if (dropPrefixOrSuffix) return value;
 
-    final String suffix = useMasculineSuffix ? "ын" : "ийн";
-
-    return past ? relativePast(value + suffix) : relativeFuture(value + suffix);
+    return past ? relativePast(value) : relativeFuture(value);
   }
 
   String monthName(int i) => "${ordinalNumber(i)} сар";
