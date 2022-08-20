@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/moment_localization.dart';
 
 typedef FormatterFn = String Function(
     DateTime, FormatterToken, MomentLocalization);

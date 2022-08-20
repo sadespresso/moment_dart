@@ -5,7 +5,7 @@ import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/moment_localization.dart';
 
 /// Language: German
 /// Country: Germany
@@ -114,77 +114,77 @@ class LocalizationDeDe extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "wenigen Sekunden",
           "wenigen Sekunden",
           "wenigen Sekunden",
         ),
-        DurationInterval.aSecond: UnitString(
+        DurationInterval.aSecond: UnitString.withForm(
           "eine Sekunde",
           "eine Sekunde",
           "eine Sekunde",
         ),
-        DurationInterval.seconds: UnitString(
+        DurationInterval.seconds: UnitString.withForm(
           "$srDelta Sekunden",
           "$srDelta Sekunden",
           "$srDelta Sekunden",
         ),
-        DurationInterval.aMinute: UnitString(
+        DurationInterval.aMinute: UnitString.withForm(
           "einer Minute",
           "einer Minute",
           "einer Minute",
         ),
-        DurationInterval.minutes: UnitString(
+        DurationInterval.minutes: UnitString.withForm(
           "$srDelta Minuten",
           "$srDelta Minuten",
           "$srDelta Minuten",
         ),
-        DurationInterval.anHour: UnitString(
+        DurationInterval.anHour: UnitString.withForm(
           "einer Stunde",
           "einer Stunde",
           "einer Stunde",
         ),
-        DurationInterval.hours: UnitString(
+        DurationInterval.hours: UnitString.withForm(
           "$srDelta Stunden",
           "$srDelta Stunden",
           "$srDelta Stunden",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "einem Tag",
           "einem Tag",
           "einem Tag",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta Tagen",
           "$srDelta Tagen",
           "$srDelta Tagen",
         ),
-        DurationInterval.aWeek: UnitString(
+        DurationInterval.aWeek: UnitString.withForm(
           "eine Woche",
           "eine Woche",
           "eine Woche",
         ),
-        DurationInterval.weeks: UnitString(
+        DurationInterval.weeks: UnitString.withForm(
           "$srDelta Wochen",
           "$srDelta Wochen",
           "$srDelta Wochen",
         ),
-        DurationInterval.aMonth: UnitString(
+        DurationInterval.aMonth: UnitString.withForm(
           "einem Monat",
           "einem Monat",
           "einem Monat",
         ),
-        DurationInterval.months: UnitString(
+        DurationInterval.months: UnitString.withForm(
           "$srDelta Monaten",
           "$srDelta Monaten",
           "$srDelta Monaten",
         ),
-        DurationInterval.aYear: UnitString(
+        DurationInterval.aYear: UnitString.withForm(
           "einem Jahr",
           "einem Jahr",
           "einem Jahr",
         ),
-        DurationInterval.years: UnitString(
+        DurationInterval.years: UnitString.withForm(
           "$srDelta Jahren",
           "$srDelta Jahren",
           "$srDelta Jahren",

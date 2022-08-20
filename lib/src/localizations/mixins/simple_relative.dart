@@ -1,5 +1,5 @@
 import 'package:moment_dart/src/extension.dart';
-import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/moment_localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Depends on [SimpleUnits]

@@ -46,77 +46,77 @@ mixin MnMongMnUnits on SimpleUnits {
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ",
           "ᠬᠣᠷᠤᠮ",
           "ᠬᠣᠷᠤᠮ",
         ),
-        DurationInterval.aSecond: UnitString(
+        DurationInterval.aSecond: UnitString.withForm(
           "1 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
           "1 ᠰᠧᠻ᠊᠍",
           "1ᠰ",
         ),
-        DurationInterval.seconds: UnitString(
+        DurationInterval.seconds: UnitString.withForm(
           "$srDelta ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
           "$srDelta ᠰᠧᠻ᠍᠊᠍",
           "$srDeltaᠰ",
         ),
-        DurationInterval.aMinute: UnitString(
+        DurationInterval.aMinute: UnitString.withForm(
           "1 ᠮᠢᠨᠦᠢᠲ",
           "1 ᠮᠢᠨ᠊᠍",
           "1ᠮ",
         ),
-        DurationInterval.minutes: UnitString(
+        DurationInterval.minutes: UnitString.withForm(
           "$srDelta ᠮᠢᠨᠦᠢᠲ",
           "$srDelta ᠮᠢᠨ᠊᠍",
           "$srDeltaᠮ",
         ),
-        DurationInterval.anHour: UnitString(
+        DurationInterval.anHour: UnitString.withForm(
           "1 ᠴᠠᠭ",
           "1 ᠴᠠᠭ",
           "1ᠴ",
         ),
-        DurationInterval.hours: UnitString(
+        DurationInterval.hours: UnitString.withForm(
           "$srDelta ᠴᠠᠭ",
           "$srDelta ᠴᠠᠭ",
           "$srDeltaᠴ",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "1 ᠡᠳᠦᠷ",
           "1 ᠡᠳᠦᠷ",
           "1ᠥ",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta ᠡᠳᠦᠷ",
           "$srDelta ᠡᠳᠦᠷ",
           "$srDeltaᠥ",
         ),
-        DurationInterval.aWeek: UnitString(
+        DurationInterval.aWeek: UnitString.withForm(
           "1 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
           "1 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
           "1ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
         ),
-        DurationInterval.weeks: UnitString(
+        DurationInterval.weeks: UnitString.withForm(
           "$srDelta ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
           "$srDelta ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
           "$srDeltaᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
         ),
-        DurationInterval.aMonth: UnitString(
+        DurationInterval.aMonth: UnitString.withForm(
           "1 ᠰᠠᠷ᠎ᠠ",
           "1 ᠰᠠ᠊᠍",
           "1ᠰᠠ᠊᠍",
         ),
-        DurationInterval.months: UnitString(
+        DurationInterval.months: UnitString.withForm(
           "$srDelta ᠰᠠᠷ᠎ᠠ",
           "$srDelta ᠰᠠ᠊᠍",
           "$srDeltaᠰᠠ᠊᠍",
         ),
-        DurationInterval.aYear: UnitString(
+        DurationInterval.aYear: UnitString.withForm(
           "1 ᠵᠢᠯ",
           "1 ᠵᠢᠯ",
           "1ᠵᠢᠯ",
         ),
-        DurationInterval.years: UnitString(
+        DurationInterval.years: UnitString.withForm(
           "$srDelta ᠵᠢᠯ",
           "$srDelta ᠵᠢᠯ",
           "$srDeltaᠵᠢᠯ",

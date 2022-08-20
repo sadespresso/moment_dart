@@ -16,17 +16,28 @@ mixin SimpleUnits on MomentLocalization {
   String relativeFuture(String unit);
 }
 
+abstract class UnitString {
+  const UnitString();
+
+  String operator [](UnitStringForm form);
+
+  factory UnitString.withForm(String full, String mid, String short) =>
+      UnitStringWithForm._default(full, mid, short);
+  factory UnitString.single(String value) => UnitStringSingle._default(value);
+}
+
 /// Unit string in full, mid, short forms.
 ///
 /// An example:
 /// * full: "16 minutes"
 /// * mid: "16 mins"
 /// * short: "16m"
-class UnitString {
+class UnitStringWithForm extends UnitString {
   final String full;
   final String mid;
   final String short;
 
+  @override
   String operator [](UnitStringForm form) {
     switch (form) {
       case UnitStringForm.full:
@@ -38,14 +49,18 @@ class UnitString {
     }
   }
 
-  const UnitString(
+  const UnitStringWithForm._default(
     this.full,
     this.mid,
     this.short,
-  );
+  ) : super();
+}
 
-  const UnitString.single(String expression)
-      : full = expression,
-        mid = expression,
-        short = expression;
+class UnitStringSingle extends UnitString {
+  final String value;
+
+  const UnitStringSingle._default(this.value) : super();
+
+  @override
+  String operator [](UnitStringForm form) => value;
 }

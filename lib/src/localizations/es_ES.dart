@@ -121,77 +121,77 @@ class LocalizationEsEs extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "unos segundos",
           "unos segundos",
           "unos segundos",
         ),
-        DurationInterval.aSecond: UnitString(
+        DurationInterval.aSecond: UnitString.withForm(
           "un segundo",
           "un segundo",
           "un segundo",
         ),
-        DurationInterval.seconds: UnitString(
+        DurationInterval.seconds: UnitString.withForm(
           "$srDelta segundos",
           "$srDelta segundos",
           "$srDelta segundos",
         ),
-        DurationInterval.aMinute: UnitString(
+        DurationInterval.aMinute: UnitString.withForm(
           "un minuto",
           "un minuto",
           "un minuto",
         ),
-        DurationInterval.minutes: UnitString(
+        DurationInterval.minutes: UnitString.withForm(
           "$srDelta minutos",
           "$srDelta minutos",
           "$srDelta minutos",
         ),
-        DurationInterval.anHour: UnitString(
+        DurationInterval.anHour: UnitString.withForm(
           "un hora",
           "un hora",
           "un hora",
         ),
-        DurationInterval.hours: UnitString(
+        DurationInterval.hours: UnitString.withForm(
           "$srDelta horas",
           "$srDelta horas",
           "$srDelta horas",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "un día",
           "un día",
           "un día",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta días",
           "$srDelta días",
           "$srDelta días",
         ),
-        DurationInterval.aWeek: UnitString(
+        DurationInterval.aWeek: UnitString.withForm(
           "una semana",
           "una semana",
           "una semana",
         ),
-        DurationInterval.weeks: UnitString(
+        DurationInterval.weeks: UnitString.withForm(
           "$srDelta semanas",
           "$srDelta semanas",
           "$srDelta semanas",
         ),
-        DurationInterval.aMonth: UnitString(
+        DurationInterval.aMonth: UnitString.withForm(
           "un mes",
           "un mes",
           "un mes",
         ),
-        DurationInterval.months: UnitString(
+        DurationInterval.months: UnitString.withForm(
           "$srDelta meses",
           "$srDelta meses",
           "$srDelta meses",
         ),
-        DurationInterval.aYear: UnitString(
+        DurationInterval.aYear: UnitString.withForm(
           "un año",
           "un año",
           "un año",
         ),
-        DurationInterval.years: UnitString(
+        DurationInterval.years: UnitString.withForm(
           "$srDelta años",
           "$srDelta años",
           "$srDelta años",

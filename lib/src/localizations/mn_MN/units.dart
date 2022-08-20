@@ -36,77 +36,77 @@ mixin MnMnUnits on SimpleUnits {
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "хэдэн хором",
           "хором",
           "хором",
         ),
-        DurationInterval.aSecond: UnitString(
+        DurationInterval.aSecond: UnitString.withForm(
           "1 секунд",
           "1 сек",
           "1с",
         ),
-        DurationInterval.seconds: UnitString(
+        DurationInterval.seconds: UnitString.withForm(
           "$srDelta секунд",
           "$srDelta сек",
           "$srDeltaс",
         ),
-        DurationInterval.aMinute: UnitString(
+        DurationInterval.aMinute: UnitString.withForm(
           "1 минут",
           "1 мин",
           "1м",
         ),
-        DurationInterval.minutes: UnitString(
+        DurationInterval.minutes: UnitString.withForm(
           "$srDelta минут",
           "$srDelta мин",
           "$srDeltaм",
         ),
-        DurationInterval.anHour: UnitString(
+        DurationInterval.anHour: UnitString.withForm(
           "1 цаг",
           "1 цаг",
           "1ц",
         ),
-        DurationInterval.hours: UnitString(
+        DurationInterval.hours: UnitString.withForm(
           "$srDelta цаг",
           "$srDelta цаг",
           "$srDeltaц",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "1 өдөр",
           "1 өдөр",
           "1ө",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta өдөр",
           "$srDelta өдөр",
           "$srDeltaө",
         ),
-        DurationInterval.aWeek: UnitString(
+        DurationInterval.aWeek: UnitString.withForm(
           "1 долоо хоног",
           "1 долоо хон",
           "1дол.хон",
         ),
-        DurationInterval.weeks: UnitString(
+        DurationInterval.weeks: UnitString.withForm(
           "$srDelta долоо хоног",
           "$srDelta долоо хон",
           "$srDeltaдол.хон",
         ),
-        DurationInterval.aMonth: UnitString(
+        DurationInterval.aMonth: UnitString.withForm(
           "1 сар",
           "1 сар",
           "1сар",
         ),
-        DurationInterval.months: UnitString(
+        DurationInterval.months: UnitString.withForm(
           "$srDelta сар",
           "$srDelta сар",
           "$srDeltaсар",
         ),
-        DurationInterval.aYear: UnitString(
+        DurationInterval.aYear: UnitString.withForm(
           "1 жил",
           "1 жил",
           "1жил",
         ),
-        DurationInterval.years: UnitString(
+        DurationInterval.years: UnitString.withForm(
           "$srDelta жил",
           "$srDelta жил",
           "$srDeltaжил",
@@ -115,17 +115,17 @@ mixin MnMnUnits on SimpleUnits {
 
   Map<DurationInterval, UnitString> get unitsWithSuffixConsidered => {
         ...units,
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "хэдэн хорм",
           "хорм",
           "хорм",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "1 өдр",
           "1 өдөр",
           "1ө",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta өдр",
           "$srDelta өдөр",
           "$srDeltaө",

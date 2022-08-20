@@ -129,77 +129,77 @@ class LocalizationFrFr extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString(
+        DurationInterval.fewSeconds: UnitString.withForm(
           "quelques secondes",
           "quelques secondes",
           "quelques secondes",
         ),
-        DurationInterval.aSecond: UnitString(
+        DurationInterval.aSecond: UnitString.withForm(
           "une seconde",
           "une seconde",
           "une seconde",
         ),
-        DurationInterval.seconds: UnitString(
+        DurationInterval.seconds: UnitString.withForm(
           "$srDelta secondes",
           "$srDelta secondes",
           "$srDelta secondes",
         ),
-        DurationInterval.aMinute: UnitString(
+        DurationInterval.aMinute: UnitString.withForm(
           "une minute",
           "une minute",
           "une minute",
         ),
-        DurationInterval.minutes: UnitString(
+        DurationInterval.minutes: UnitString.withForm(
           "$srDelta minutes",
           "$srDelta minutes",
           "$srDelta minutes",
         ),
-        DurationInterval.anHour: UnitString(
+        DurationInterval.anHour: UnitString.withForm(
           "une heure",
           "une heure",
           "une heure",
         ),
-        DurationInterval.hours: UnitString(
+        DurationInterval.hours: UnitString.withForm(
           "$srDelta heures",
           "$srDelta heures",
           "$srDelta heures",
         ),
-        DurationInterval.aDay: UnitString(
+        DurationInterval.aDay: UnitString.withForm(
           "un jour",
           "un jour",
           "un jour",
         ),
-        DurationInterval.days: UnitString(
+        DurationInterval.days: UnitString.withForm(
           "$srDelta jours",
           "$srDelta jours",
           "$srDelta jours",
         ),
-        DurationInterval.aWeek: UnitString(
+        DurationInterval.aWeek: UnitString.withForm(
           "une semaine",
           "une semaine",
           "une semaine",
         ),
-        DurationInterval.weeks: UnitString(
+        DurationInterval.weeks: UnitString.withForm(
           "$srDelta semaines",
           "$srDelta semaines",
           "$srDelta semaines",
         ),
-        DurationInterval.aMonth: UnitString(
+        DurationInterval.aMonth: UnitString.withForm(
           "un mois",
           "un mois",
           "un mois",
         ),
-        DurationInterval.months: UnitString(
+        DurationInterval.months: UnitString.withForm(
           "$srDelta mois",
           "$srDelta mois",
           "$srDelta mois",
         ),
-        DurationInterval.aYear: UnitString(
+        DurationInterval.aYear: UnitString.withForm(
           "un an",
           "un an",
           "un an",
         ),
-        DurationInterval.years: UnitString(
+        DurationInterval.years: UnitString.withForm(
           "$srDelta ans",
           "$srDelta ans",
           "$srDelta ans",

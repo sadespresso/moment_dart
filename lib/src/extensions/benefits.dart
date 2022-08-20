@@ -1,4 +1,4 @@
-import 'package:moment_dart/src/localizations.dart';
+import 'package:moment_dart/src/moment_localization.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension MomentBenefits on DateTime {
