@@ -5,6 +5,9 @@ import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 class DurationFormat {
   final List<DurationUnit> units;
 
+  /// [units] should be provi ded in descending order
+  ///
+  /// If not, result produced with [this] format is unexpected
   const DurationFormat(this.units);
 
   int get length => units.length;
@@ -21,16 +24,14 @@ class DurationFormat {
     bool includeWeeks = false,
   ]) {
     // I don't really want to deal with minus sign when making comparisons.
-    if (duration.isNegative) {
-      duration = duration.abs();
-    }
+    duration = duration.abs();
 
     if (duration.inYears >= 1) {
       return DurationFormat.ym;
     } else if (duration.inMonths >= 1) {
       return DurationFormat.md;
     } else if (includeWeeks && duration.inWeeks >= 1) {
-      return DurationFormat.w;
+      return DurationFormat.wd;
     } else if (duration.inDays >= 1) {
       return DurationFormat.dh;
     } else if (duration.inHours >= 1) {
@@ -53,8 +54,9 @@ class DurationFormat {
   static const DurationFormat md =
       DurationFormat([DurationUnit.month, DurationUnit.day]);
 
-  /// X week(s)
-  static const DurationFormat w = DurationFormat([DurationUnit.week]);
+  /// X week(s) y day(s)
+  static const DurationFormat wd =
+      DurationFormat([DurationUnit.week, DurationUnit.day]);
 
   /// X day(s) y hour(s)
   static const DurationFormat dh =

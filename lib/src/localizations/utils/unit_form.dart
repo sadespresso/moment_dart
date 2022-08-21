@@ -1,5 +1,1 @@
-enum UnitStringForm {
-  full,
-  mid,
-  short,
-}
+enum UnitStringForm { full, mid, short }

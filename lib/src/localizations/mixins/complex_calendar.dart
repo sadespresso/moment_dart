@@ -15,13 +15,12 @@ mixin ComplexCalendar on MomentLocalization {
 
   /// Calendar string
   String calendar(
-      Moment moment,
-      {Moment? reference,
-      @Deprecated("This argument is deprecated. Currently unused.")
-          bool weekStartOnSunday = false,
-      int startOfWeek = DateTime.monday,
-      bool omitHours = false,
-      String? customFormat}) {
+    Moment moment, {
+    Moment? reference,
+    int startOfWeek = DateTime.monday,
+    bool omitHours = false,
+    String? customFormat,
+  }) {
     reference ??= Moment.now();
 
     late final String dateString;

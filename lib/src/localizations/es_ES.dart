@@ -93,11 +93,11 @@ class LocalizationEsEs extends MomentLocalization
     };
   }
 
-  @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataEs;
-
   static String last(String weekday) => "el $weekday";
   static String at(String date, String time) => "$date a $time";
+
+  @override
+  CalenderLocalizationData get calendarData => calenderLocalizationDataEs;
 
   static const CalenderLocalizationData calenderLocalizationDataEs =
       CalenderLocalizationData(
@@ -115,41 +115,43 @@ class LocalizationEsEs extends MomentLocalization
   );
 
   @override
-  String ordinalNumber(int n) {
-    return "$nº";
-  }
+  String ordinalNumber(int n) => "$nº";
 
+  @override
+  String get delimeterConnector => "y";
+
+  // TODO: finish es_ES units
   @override
   Map<DurationInterval, UnitString> get units => {
         DurationInterval.fewSeconds: UnitString.withForm(
           "unos segundos",
-          "unos segundos",
-          "unos segundos",
+          "unos seg.",
+          "unos s",
         ),
         DurationInterval.aSecond: UnitString.withForm(
           "un segundo",
-          "un segundo",
-          "un segundo",
+          "1 seg.",
+          "1 s",
         ),
         DurationInterval.seconds: UnitString.withForm(
           "$srDelta segundos",
-          "$srDelta segundos",
-          "$srDelta segundos",
+          "$srDelta seg.",
+          "$srDelta s",
         ),
         DurationInterval.aMinute: UnitString.withForm(
           "un minuto",
-          "un minuto",
-          "un minuto",
+          "1 min",
+          "1 min",
         ),
         DurationInterval.minutes: UnitString.withForm(
           "$srDelta minutos",
-          "$srDelta minutos",
-          "$srDelta minutos",
+          "$srDelta min",
+          "$srDelta min",
         ),
         DurationInterval.anHour: UnitString.withForm(
           "un hora",
-          "un hora",
-          "un hora",
+          "1 hora",
+          "1 hora",
         ),
         DurationInterval.hours: UnitString.withForm(
           "$srDelta horas",
@@ -158,18 +160,18 @@ class LocalizationEsEs extends MomentLocalization
         ),
         DurationInterval.aDay: UnitString.withForm(
           "un día",
-          "un día",
-          "un día",
+          "1 día",
+          "1 d",
         ),
         DurationInterval.days: UnitString.withForm(
           "$srDelta días",
           "$srDelta días",
-          "$srDelta días",
+          "$srDelta d",
         ),
         DurationInterval.aWeek: UnitString.withForm(
           "una semana",
-          "una semana",
-          "una semana",
+          "1 semana",
+          "1 semana",
         ),
         DurationInterval.weeks: UnitString.withForm(
           "$srDelta semanas",
@@ -178,8 +180,8 @@ class LocalizationEsEs extends MomentLocalization
         ),
         DurationInterval.aMonth: UnitString.withForm(
           "un mes",
-          "un mes",
-          "un mes",
+          "1 mes",
+          "1 mes",
         ),
         DurationInterval.months: UnitString.withForm(
           "$srDelta meses",
@@ -188,8 +190,8 @@ class LocalizationEsEs extends MomentLocalization
         ),
         DurationInterval.aYear: UnitString.withForm(
           "un año",
-          "un año",
-          "un año",
+          "1 año",
+          "1 año",
         ),
         DurationInterval.years: UnitString.withForm(
           "$srDelta años",

@@ -1,5 +1,8 @@
 import 'package:moment_dart/moment_dart.dart';
 
+/// [units] defined here is used by `simple_relative` and `simple_duration`.
+///
+///
 /// This mixin provides:
 ///
 /// * [srDelta] - string getter;
@@ -19,10 +22,12 @@ mixin SimpleUnits on MomentLocalization {
 abstract class UnitString {
   const UnitString();
 
-  String operator [](UnitStringForm form);
+  String get(UnitStringForm form, bool dropPrefixOrSuffix);
 
   factory UnitString.withForm(String full, String mid, String short) =>
       UnitStringWithForm._default(full, mid, short);
+
+  /// Use same text for all forms.
   factory UnitString.single(String value) => UnitStringSingle._default(value);
 }
 
@@ -37,8 +42,14 @@ class UnitStringWithForm extends UnitString {
   final String mid;
   final String short;
 
+  const UnitStringWithForm._default(
+    this.full,
+    this.mid,
+    this.short,
+  ) : super();
+
   @override
-  String operator [](UnitStringForm form) {
+  String get(UnitStringForm form, bool dropPrefixOrSuffix) {
     switch (form) {
       case UnitStringForm.full:
         return full;
@@ -48,12 +59,6 @@ class UnitStringWithForm extends UnitString {
         return short;
     }
   }
-
-  const UnitStringWithForm._default(
-    this.full,
-    this.mid,
-    this.short,
-  ) : super();
 }
 
 class UnitStringSingle extends UnitString {
@@ -62,5 +67,5 @@ class UnitStringSingle extends UnitString {
   const UnitStringSingle._default(this.value) : super();
 
   @override
-  String operator [](UnitStringForm form) => value;
+  String get(UnitStringForm form, bool dropPrefixOrSuffix) => value;
 }

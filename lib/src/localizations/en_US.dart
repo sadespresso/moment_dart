@@ -144,12 +144,12 @@ class LocalizationEnUs extends MomentLocalization
         ),
         DurationInterval.anHour: UnitString.withForm(
           "an hour",
-          "1 hour",
+          "1 hr",
           "1h",
         ),
         DurationInterval.hours: UnitString.withForm(
           "$srDelta hours",
-          "$srDelta hours",
+          "$srDelta hr",
           "${srDelta}h",
         ),
         DurationInterval.aDay: UnitString.withForm(
@@ -164,12 +164,12 @@ class LocalizationEnUs extends MomentLocalization
         ),
         DurationInterval.aWeek: UnitString.withForm(
           "a week",
-          "1 week",
+          "1 wk",
           "1w",
         ),
         DurationInterval.weeks: UnitString.withForm(
           "$srDelta weeks",
-          "$srDelta week",
+          "$srDelta wk",
           "${srDelta}w",
         ),
         DurationInterval.aMonth: UnitString.withForm(
@@ -184,12 +184,12 @@ class LocalizationEnUs extends MomentLocalization
         ),
         DurationInterval.aYear: UnitString.withForm(
           "a year",
-          "1 year",
+          "1 yr",
           "1y",
         ),
         DurationInterval.years: UnitString.withForm(
           "$srDelta years",
-          "$srDelta years",
+          "$srDelta yr",
           "${srDelta}y",
         ),
       };

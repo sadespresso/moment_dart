@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:moment_dart/src/localizations/de_DE/units.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -57,6 +58,11 @@ class LocalizationDeDe extends MomentLocalization
       // Missing formatters
       FormatterToken.A: (dateTime) => dateTime.hour < 12 ? "AM" : "PM",
       FormatterToken.a: (dateTime) => dateTime.hour < 12 ? "am" : "pm",
+      // Overrides
+      FormatterToken.dd: (dateTime) =>
+          weekdayName[dateTime.weekday]!.substring(0, 2),
+      FormatterToken.ddd: (dateTime) =>
+          "${weekdayName[dateTime.weekday]!.substring(0, 2)}.",
     };
   }
 
@@ -77,8 +83,20 @@ class LocalizationDeDe extends MomentLocalization
       };
 
   @override
-  Map<int, String> get monthNamesShort =>
-      monthNames.map((key, value) => MapEntry(key, value.substring(0, 3)));
+  Map<int, String> get monthNamesShort => {
+        1: "Jan.",
+        2: "Feb.",
+        3: "März",
+        4: "Apr.",
+        5: "Mai",
+        6: "Juni",
+        7: "Juli",
+        8: "Aug.",
+        9: "Sep.",
+        10: "Okt.",
+        11: "Nov.",
+        12: "Dez.",
+      };
 
   @override
   Map<int, String> get weekdayName => {
@@ -113,81 +131,91 @@ class LocalizationDeDe extends MomentLocalization
   );
 
   @override
-  Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.withForm(
-          "wenigen Sekunden",
-          "wenigen Sekunden",
-          "wenigen Sekunden",
+  Map<DurationInterval, UnitStringDeDe> get units => {
+        DurationInterval.fewSeconds: UnitStringDeDe(
+          "ein paar Sekunden",
+          "ein paar Sek.",
+          "ein paar Sek.",
         ),
-        DurationInterval.aSecond: UnitString.withForm(
-          "eine Sekunde",
-          "eine Sekunde",
-          "eine Sekunde",
+        DurationInterval.aSecond: UnitStringDeDe(
+          "einer Sekunde",
+          "1 Sek.",
+          "1s",
+          standalone: "eine Sekunde",
         ),
-        DurationInterval.seconds: UnitString.withForm(
+        DurationInterval.seconds: UnitStringDeDe(
           "$srDelta Sekunden",
-          "$srDelta Sekunden",
-          "$srDelta Sekunden",
+          "$srDelta Sek.",
+          "${srDelta}s",
         ),
-        DurationInterval.aMinute: UnitString.withForm(
+        DurationInterval.aMinute: UnitStringDeDe(
           "einer Minute",
-          "einer Minute",
-          "einer Minute",
+          "1 Min.",
+          "1m",
+          standalone: "eine Minute",
         ),
-        DurationInterval.minutes: UnitString.withForm(
+        DurationInterval.minutes: UnitStringDeDe(
           "$srDelta Minuten",
-          "$srDelta Minuten",
-          "$srDelta Minuten",
+          "$srDelta Min.",
+          "${srDelta}m",
         ),
-        DurationInterval.anHour: UnitString.withForm(
+        DurationInterval.anHour: UnitStringDeDe(
           "einer Stunde",
-          "einer Stunde",
-          "einer Stunde",
+          "1 Std.",
+          "1h",
+          standalone: "eine Stunde",
         ),
-        DurationInterval.hours: UnitString.withForm(
+        DurationInterval.hours: UnitStringDeDe(
           "$srDelta Stunden",
-          "$srDelta Stunden",
-          "$srDelta Stunden",
+          "$srDelta Std.",
+          "${srDelta}h",
         ),
-        DurationInterval.aDay: UnitString.withForm(
+        DurationInterval.aDay: UnitStringDeDe(
           "einem Tag",
-          "einem Tag",
-          "einem Tag",
+          "einem Tg.",
+          "1d",
+          standalone: "ein Tag",
         ),
-        DurationInterval.days: UnitString.withForm(
+        DurationInterval.days: UnitStringDeDe(
           "$srDelta Tagen",
-          "$srDelta Tagen",
-          "$srDelta Tagen",
+          "$srDelta Tg.",
+          "${srDelta}d",
+          standalone: "$srDelta Tage",
         ),
-        DurationInterval.aWeek: UnitString.withForm(
-          "eine Woche",
-          "eine Woche",
-          "eine Woche",
+        DurationInterval.aWeek: UnitStringDeDe(
+          "einer Woche",
+          "1 Woche",
+          "1w",
+          standalone: "eine Woche",
         ),
-        DurationInterval.weeks: UnitString.withForm(
+        DurationInterval.weeks: UnitStringDeDe(
           "$srDelta Wochen",
           "$srDelta Wochen",
-          "$srDelta Wochen",
+          "${srDelta}w",
         ),
-        DurationInterval.aMonth: UnitString.withForm(
+        DurationInterval.aMonth: UnitStringDeDe(
           "einem Monat",
-          "einem Monat",
-          "einem Monat",
+          "1 Mo.",
+          "1mo",
+          standalone: "ein Monat",
         ),
-        DurationInterval.months: UnitString.withForm(
+        DurationInterval.months: UnitStringDeDe(
           "$srDelta Monaten",
-          "$srDelta Monaten",
-          "$srDelta Monaten",
+          "$srDelta Mo.",
+          "${srDelta}mo",
+          standalone: "$srDelta Monate",
         ),
-        DurationInterval.aYear: UnitString.withForm(
+        DurationInterval.aYear: UnitStringDeDe(
           "einem Jahr",
-          "einem Jahr",
-          "einem Jahr",
+          "1 Jr.",
+          "1y",
+          standalone: "ein Jahr",
         ),
-        DurationInterval.years: UnitString.withForm(
+        DurationInterval.years: UnitStringDeDe(
           "$srDelta Jahren",
-          "$srDelta Jahren",
-          "$srDelta Jahren",
+          "$srDelta Jr.",
+          "${srDelta}y",
+          standalone: "$srDelta Jahre",
         ),
       };
 }

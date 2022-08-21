@@ -8,6 +8,9 @@ mixin MonthNames on MomentLocalization {
   /// Short month name from month number (1-12)
   Map<int, String> get monthNamesShort;
 
+  /// Overrides:
+  ///
+  /// `MMM` and `MMMM`
   Map<FormatterToken, FormatterTokenFn> get formattersForMonthNames => {
         FormatterToken.MMM: (dateTime) => monthNamesShort[dateTime.month]!,
         FormatterToken.MMMM: (dateTime) => monthNames[dateTime.month]!,

@@ -87,7 +87,7 @@ class LocalizationMnMn extends MomentLocalization
           weekdayName[dateTime.weekday]!.substring(0, 3),
       FormatterToken.ddd: (dateTime) => weekdayName[dateTime.weekday]!,
       FormatterToken.dddd: (dateTime) =>
-          "${weekdayName[dateTime.weekday]!} гараг",
+          "${weekdayName[dateTime.weekday]} гараг",
       // Era
       FormatterToken.NN: (dateTime) => dateTime.year < 1 ? "НТӨ" : "НТ",
       FormatterToken.NNNN: (dateTime) =>

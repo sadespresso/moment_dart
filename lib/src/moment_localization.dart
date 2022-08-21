@@ -97,7 +97,7 @@ abstract class MomentLocalization {
     bool omitZeros = true,
     bool includeWeeks = false,
     UnitStringForm form = UnitStringForm.full,
-    String delimiter = " ",
+    String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
   });
@@ -108,13 +108,12 @@ abstract class MomentLocalization {
 
   /// Calendar string
   String calendar(
-      Moment moment,
-      {Moment? reference,
-      @Deprecated("This argument is deprecated. Currently unused.")
-          bool weekStartOnSunday = false,
-      int startOfWeek = DateTime.monday,
-      bool omitHours = false,
-      String? customFormat}) {
+    Moment moment, {
+    Moment? reference,
+    int startOfWeek = DateTime.monday,
+    bool omitHours = false,
+    String? customFormat,
+  }) {
     // After this check, we can use `_calendarData` for non-null data
     if (calendarData == null) {
       throw MomentException(
@@ -272,15 +271,6 @@ abstract class MomentLocalization {
         ...nonFinalFormatters,
         ...overrideFormatters(),
       };
-
-  @Deprecated(
-    'Use startOfWeek() instead. '
-    'This feature was deprecated after 0.6.2',
-  )
-  static Moment weekFirstDay(Moment reference,
-      [bool weekStartOnSunday = false]) {
-    return weekStartOnSunday ? reference.lastSunday() : reference.lastMonday();
-  }
 
   static Moment startOfWeek(Moment refernce,
           [int startingWeekday = DateTime.monday]) =>

@@ -3,12 +3,13 @@
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mn_Mong_MN/duration.dart';
 import 'package:moment_dart/src/localizations/mn_Mong_MN/units.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
 class LocalizationMnMongMn extends MomentLocalization
-    with Ordinal, SimpleUnits, MnMongMnUnits {
+    with Ordinal, SimpleUnits, MnMongMnUnits, MnMongMnDuration {
   LocalizationMnMongMn() : super();
 
   @override
@@ -164,19 +165,4 @@ class LocalizationMnMongMn extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @override
-  String duration(
-    Duration duration, {
-    bool round = true,
-    bool omitZeros = true,
-    bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
-    String delimiter = " ",
-    DurationFormat format = DurationFormat.auto,
-    bool dropPrefixOrSuffix = false,
-  }) {
-    // TODO: implement duration
-    throw UnimplementedError();
-  }
 }

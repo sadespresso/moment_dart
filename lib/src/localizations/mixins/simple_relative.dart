@@ -18,7 +18,8 @@ mixin SimpleRelative on SimpleUnits {
 
     DurationInterval interval = MomentLocalization.relativeThreshold(duration);
 
-    String value = (units[interval]?[form] ?? "¯\\_(ツ)_/¯");
+    String value =
+        (units[interval]?.get(form, dropPrefixOrSuffix) ?? "¯\\_(ツ)_/¯");
 
     if (!interval.singular) {
       value = value.replaceAll(

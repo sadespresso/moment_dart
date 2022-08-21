@@ -1,6 +1,7 @@
 ## 0.10.0
 
 - Introduced concept of `UnitString`, a wrapper class for unit translations. For example, UnitString for minute may look like "19 minutes", "19 min", "19m" depending on the `UnitStringForm` (full, mid, short respectively)
+- `Moment.from(...)` and `Moment.fromNow(...)` now takes `form` argument, which can alter the output. Defaults to `UnitStringForm.full`
 
 ## 0.9.0+1
 

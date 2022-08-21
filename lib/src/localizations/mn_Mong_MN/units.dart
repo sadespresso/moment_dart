@@ -19,7 +19,8 @@ mixin MnMongMnUnits on SimpleUnits {
     UnitStringForm form, {
     bool dropPrefixOrSuffix = false,
   }) {
-    final String result = units[interval]![form];
+    final String result =
+        units[interval]?.get(form, dropPrefixOrSuffix) ?? "¯\\_(ツ)_/¯";
 
     if (dropPrefixOrSuffix) return result;
 

@@ -1,31 +1,13 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mn_Mong_MN/units.dart';
 
-/// Depends on [SimpleUnits]
-///
-/// This mixin provides:
-///
-/// * [durationDelimiter] - getter for delimeters of each [UnitStringForm]
-///
-/// And overrides [MomentLocalization.duration]
-mixin SimpleDuration on SimpleUnits {
+mixin MnMongMnDuration on MnMongMnUnits {
   /// If overriden, must implement for all [UnitStringForm]s
   Map<UnitStringForm, String> get durationDelimiter => {
         UnitStringForm.full: " ",
         UnitStringForm.mid: " ",
         UnitStringForm.short: " ",
       };
-
-  /// "and" keyword.
-  ///
-  /// Used to connect last two elements of duration list items. Will be appended after [durationDelimiter] For example:
-  ///
-  /// When null:
-  /// 2 minutes 3 seconds
-  ///
-  /// When equal to 'and'
-  /// 2 minutes and 3 seconds
-  String? get delimeterConnector => null;
 
   @override
   String duration(
@@ -60,17 +42,11 @@ mixin SimpleDuration on SimpleUnits {
       final DurationInterval interval =
           DurationInterval.findByUnit(unitValue, unit);
 
-      final UnitString? unitString = units[interval];
-
-      if (unitString == null) {
-        throw MomentException(
-            "UnitString implementation is missing for $interval in localization $locale");
-      }
+      final String unitString = getUnit(interval, form,
+          dropPrefixOrSuffix: dropPrefixOrSuffix && last);
 
       if (!(omitZeros && unitValue == 0)) {
-        result.add(unitString
-            .get(form, dropPrefixOrSuffix)
-            .replaceAll(srDelta, unitValue.toString()));
+        result.add(unitString.replaceAll(srDelta, unitValue.toString()));
       }
 
       left -= Duration(microseconds: unit.microseconds * unitValue);
@@ -79,14 +55,10 @@ mixin SimpleDuration on SimpleUnits {
     late final String value;
 
     if (result.isEmpty) {
-      final UnitString? unitString = units[DurationInterval.fewSeconds];
+      final String unitString = getUnit(DurationInterval.fewSeconds, form,
+          dropPrefixOrSuffix: dropPrefixOrSuffix);
 
-      if (unitString == null) {
-        throw MomentException(
-            "UnitString implementation is missing for ${DurationInterval.fewSeconds} in localization $locale");
-      }
-
-      value = unitString.get(form, dropPrefixOrSuffix);
+      value = unitString;
     } else {
       value = result.join(delimiter ?? durationDelimiter[form]!);
     }

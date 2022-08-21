@@ -67,10 +67,6 @@ class Moment extends DateTime {
   /// Calls `subtract(duration)`
   Moment operator -(Duration duration) => subtract(duration);
 
-  @Deprecated(
-      "Moment no longer prints anything to stdout. This function does nothing as of version 0.8.0")
-  enableDebugPrint() {}
-
   List<FormatterToken> get _fts => localization.tokens;
 
   String format(
@@ -232,7 +228,7 @@ class Moment extends DateTime {
     bool omitZeros = true,
     bool includeWeeks = true,
     UnitStringForm form = UnitStringForm.full,
-    String delimiter = " ",
+    String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
   }) {
@@ -275,7 +271,7 @@ class Moment extends DateTime {
     bool omitZeros = true,
     bool includeWeeks = true,
     UnitStringForm form = UnitStringForm.full,
-    String delimiter = " ",
+    String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
   }) =>
@@ -311,7 +307,7 @@ class Moment extends DateTime {
     bool omitZeros = true,
     bool includeWeeks = true,
     UnitStringForm form = UnitStringForm.full,
-    String delimiter = " ",
+    String? delimiter,
     DurationFormat format = DurationFormat.auto,
   }) =>
       fromPrecise(
@@ -325,6 +321,43 @@ class Moment extends DateTime {
         dropPrefixOrSuffix: true,
       );
 
+  /// Returns precise duration for [duration] in [localization]
+  ///
+  /// e.g.:
+  /// * 2 minutes 39 seconds
+  /// * 2m39s
+  ///
+  /// Params:
+  ///
+  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
+  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
+  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
+  /// * [round] - rounds the smallest unit if true, or truncates. Defaults to true.
+  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
+  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
+  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
+  static String duration(
+    Duration duration, {
+    required MomentLocalization localization,
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = false,
+    UnitStringForm form = UnitStringForm.full,
+    String? delimiter,
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) =>
+      localization.duration(
+        duration,
+        round: round,
+        omitZeros: omitZeros,
+        includeWeeks: includeWeeks,
+        form: form,
+        format: format,
+        delimiter: delimiter,
+        dropPrefixOrSuffix: dropPrefixOrSuffix,
+      );
+
   /// Returns calendar string in accordance with the [reference], such as `Yesterday`, `Last Sunday`, or default date format concatenated with default hour format.
   /// Default formats are derived from the current localization.
   ///
@@ -335,12 +368,11 @@ class Moment extends DateTime {
   /// You can provide [customFormat]. Which will be used when the date is too far. e.g. when the moment is month away from referene, it'll use the [customFormat]
   ///
   /// Using [customFormat] will make [omitHours] ineffective.
-  String calendar(
-          {Moment? reference,
-          @Deprecated("This argument is deprecated. Currently unused.")
-              bool weekStartOnSunday = false,
-          bool omitHours = false,
-          String? customFormat}) =>
+  String calendar({
+    Moment? reference,
+    bool omitHours = false,
+    String? customFormat,
+  }) =>
       localization.calendar(this,
           reference: reference,
           omitHours: omitHours,
@@ -365,15 +397,4 @@ class Moment extends DateTime {
         (seperateWithColon ? ":" : "") +
         minutes.toString();
   }
-
-  @Deprecated(
-    'Use lastMonday() instead. '
-    'This feature was deprecated after 0.6.2',
-  )
-  DateTime lastMondayAsDateTime() => lastMonday();
-  @Deprecated(
-    'Use lastSunday() instead. '
-    'This feature was deprecated after 0.6.2',
-  )
-  DateTime lastSundayAsDateTime() => lastSunday();
 }

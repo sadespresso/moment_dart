@@ -23,10 +23,12 @@ mixin MnMnUnits on SimpleUnits {
 
       final String suffix = useMasculineSuffix ? "ын" : "ийн";
 
-      return unitsWithSuffixConsidered[interval]![form] + suffix;
+      return unitsWithSuffixConsidered[interval]!
+              .get(form, dropPrefixOrSuffix) +
+          suffix;
     }
 
-    return units[interval]![form];
+    return units[interval]?.get(form, dropPrefixOrSuffix) ?? "¯\\_(ツ)_/¯";
   }
 
   @override

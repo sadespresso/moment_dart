@@ -1,9 +1,25 @@
 import 'package:moment_dart/moment_dart.dart';
 
 /// This mixin provides set of formatters named `formattersWithOrdinal`
+///
+/// And a function named `ordinalNumber`, which returns ordinal number string of any `int`
 mixin EnglishLikeOrdinal on MomentLocalization {
+  /// Ordinal suffixes in order:
+  ///
+  /// 1, 2, 3, other
+  ///
+  /// For example: ["st", "nd", "rd", "th"]
   List<String> get ordinalSuffixes;
 
+  /// Returns ordinal number string.
+  ///
+  /// An example in English (US):
+  ///
+  /// * 1st
+  /// * 12th
+  /// * 2602nd
+  /// * 303rd
+  /// * 1000th
   String ordinalNumber(int n) {
     final int lastTwoDigit = n % 100;
 
@@ -25,6 +41,9 @@ mixin EnglishLikeOrdinal on MomentLocalization {
     return "$n${ordinalSuffixes[0]}";
   }
 
+  /// Overrides:
+  ///
+  /// `Mo`, `Qo`, `Do`, `DDDo`, `d_o`, and `wo`
   Map<FormatterToken, FormatterTokenFn> get formattersWithOrdinal => {
         FormatterToken.Mo: (DateTime dateTime) => ordinalNumber(dateTime.month),
         FormatterToken.Qo: (DateTime dateTime) =>
