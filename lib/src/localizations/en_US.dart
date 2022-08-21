@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/moment_localization.dart';
+import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/english_like_ordinal.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -117,7 +117,7 @@ class LocalizationEnUs extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.withForm(
+        DurationInterval.lessThanASecond: UnitString.withForm(
           "a few seconds",
           "a few sec",
           "a sec",

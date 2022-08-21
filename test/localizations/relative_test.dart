@@ -55,40 +55,40 @@ void main() {
   test("de_DE localization relative time test", () {
     _setLocalization(MomentLocalizations.deDE());
 
-    expect(fewMomentsAhead.from(now), "in wenigen Sekunden");
-    expect(fewMomentsAgo.from(now), "vor wenigen Sekunden");
+    expect(fewMomentsAhead.from(now), "in ein paar Sekunden");
+    expect(fewMomentsAgo.from(now), "vor ein paar Sekunden");
     expect(
-        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "wenigen Sekunden");
+        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "ein paar Sekunden");
     expect(aMinuteAhead.from(now), "in einer Minute");
     expect(aMinuteAgo.from(now), "vor einer Minute");
-    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "einer Minute");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "eine Minute");
     expect(fiveMinutesAhead.from(now), "in 5 Minuten");
     expect(fiveMinutesAgo.from(now), "vor 5 Minuten");
     expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 Minuten");
     expect(anHourAhead.from(now), "in einer Stunde");
     expect(anHourAgo.from(now), "vor einer Stunde");
-    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "einer Stunde");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "eine Stunde");
     expect(sixHoursAhead.from(now), "in 6 Stunden");
     expect(sixHoursAgo.from(now), "vor 6 Stunden");
     expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 Stunden");
     expect(aDayAhead.from(now), "in einem Tag");
     expect(aDayAgo.from(now), "vor einem Tag");
-    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "einem Tag");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "ein Tag");
     expect(twoDaysAhead.from(now), "in 2 Tagen");
     expect(twoDaysAgo.from(now), "vor 2 Tagen");
-    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 Tagen");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 Tage");
     expect(aMonthAhead.from(now), "in einem Monat");
     expect(aMonthAgo.from(now), "vor einem Monat");
-    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "einem Monat");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "ein Monat");
     expect(fourMonthsAhead.from(now), "in 4 Monaten");
     expect(fourMonthsAgo.from(now), "vor 4 Monaten");
-    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 Monaten");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 Monate");
     expect(aYearAhead.from(now), "in einem Jahr");
     expect(aYearAgo.from(now), "vor einem Jahr");
-    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "einem Jahr");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "ein Jahr");
     expect(threeYearsAhead.from(now), "in 3 Jahren");
     expect(threeYearsAgo.from(now), "vor 3 Jahren");
-    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 Jahren");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 Jahre");
   });
 
   test("it localization relative time test", () {

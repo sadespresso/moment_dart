@@ -4,7 +4,7 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localizations/mn_MN/units.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_MN/units.dart';
 
 /// Language: Mongolian - Cyrillic
 /// Country: Mongolia

@@ -36,7 +36,7 @@ void main() {
 
     expect(
       l10n.duration(t1, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "einem Jahr 2 Monaten",
+      "ein Jahr 2 Monate",
     );
     expect(
       l10n.duration(t1, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
@@ -49,7 +49,7 @@ void main() {
 
     expect(
       l10n.duration(t2, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "3 Jahren",
+      "3 Jahre",
     );
     expect(
       l10n.duration(t2, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
@@ -62,7 +62,7 @@ void main() {
 
     expect(
       l10n.duration(t3, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "3 Monaten 17 Tagen",
+      "3 Monate 17 Tage",
     );
     expect(
       l10n.duration(t3, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
@@ -75,7 +75,7 @@ void main() {
 
     expect(
       l10n.duration(t4, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "4 Monaten",
+      "4 Monate",
     );
     expect(
       l10n.duration(t4, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
@@ -93,7 +93,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.full,
       ),
-      "3 Wochen 2 Tagen",
+      "3 Wochen 2 Tage",
     );
     expect(
       l10n.duration(
@@ -1466,7 +1466,7 @@ void main() {
     );
   });
   test("mn_Mong_MN localization duration test", () {
-    final MomentLocalization l10n = LocalizationDeDe();
+    final MomentLocalization l10n = LocalizationMnMongMn();
 
     expect(
       l10n.duration(t1, dropPrefixOrSuffix: true, form: UnitStringForm.full),

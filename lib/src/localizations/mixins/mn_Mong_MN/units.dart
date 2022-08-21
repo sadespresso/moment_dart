@@ -24,7 +24,7 @@ mixin MnMongMnUnits on SimpleUnits {
 
     if (dropPrefixOrSuffix) return result;
 
-    final useFeminineSuffix = interval != DurationInterval.fewSeconds &&
+    final useFeminineSuffix = interval != DurationInterval.lessThanASecond &&
         (interval.unit == DurationUnit.minute ||
             interval.unit == DurationUnit.second ||
             interval.unit == DurationUnit.day);
@@ -47,7 +47,7 @@ mixin MnMongMnUnits on SimpleUnits {
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.withForm(
+        DurationInterval.lessThanASecond: UnitString.withForm(
           "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ",
           "ᠬᠣᠷᠤᠮ",
           "ᠬᠣᠷᠤᠮ",

@@ -1,12 +1,12 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/localizations/de_DE/units.dart';
+import 'package:moment_dart/src/localizations/mixins/de_DE/units.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/moment_localization.dart';
+import 'package:moment_dart/src/localization.dart';
 
 /// Language: German
 /// Country: Germany
@@ -132,7 +132,7 @@ class LocalizationDeDe extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitStringDeDe> get units => {
-        DurationInterval.fewSeconds: UnitStringDeDe(
+        DurationInterval.lessThanASecond: UnitStringDeDe(
           "ein paar Sekunden",
           "ein paar Sek.",
           "ein paar Sek.",

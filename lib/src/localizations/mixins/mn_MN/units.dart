@@ -17,9 +17,10 @@ mixin MnMnUnits on SimpleUnits {
   String getUnit(DurationInterval interval, UnitStringForm form,
       {bool dropPrefixOrSuffix = false}) {
     if (!dropPrefixOrSuffix) {
-      final bool useMasculineSuffix = interval == DurationInterval.fewSeconds ||
-          interval.unit == DurationUnit.minute ||
-          interval.unit == DurationUnit.month;
+      final bool useMasculineSuffix =
+          interval == DurationInterval.lessThanASecond ||
+              interval.unit == DurationUnit.minute ||
+              interval.unit == DurationUnit.month;
 
       final String suffix = useMasculineSuffix ? "ын" : "ийн";
 
@@ -38,7 +39,7 @@ mixin MnMnUnits on SimpleUnits {
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.withForm(
+        DurationInterval.lessThanASecond: UnitString.withForm(
           "хэдэн хором",
           "хором",
           "хором",
@@ -117,7 +118,7 @@ mixin MnMnUnits on SimpleUnits {
 
   Map<DurationInterval, UnitString> get unitsWithSuffixConsidered => {
         ...units,
-        DurationInterval.fewSeconds: UnitString.withForm(
+        DurationInterval.lessThanASecond: UnitString.withForm(
           "хэдэн хорм",
           "хорм",
           "хорм",

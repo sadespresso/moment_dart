@@ -127,18 +127,21 @@ class LocalizationFrFr extends MomentLocalization
     return "${n}e";
   }
 
-  // TODO: finish fr_FR units
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.single("quelques secondes"),
+        DurationInterval.lessThanASecond: UnitString.withForm(
+          "quelques secondes",
+          "quelques sec.",
+          "quelques sec.",
+        ),
         DurationInterval.aSecond: UnitString.withForm(
           "une seconde",
-          "1 sec",
+          "1 sec.",
           "1 s",
         ),
         DurationInterval.seconds: UnitString.withForm(
           "$srDelta secondes",
-          "$srDelta sec",
+          "$srDelta sec.",
           "$srDelta s",
         ),
         DurationInterval.aMinute: UnitString.withForm(
@@ -153,43 +156,43 @@ class LocalizationFrFr extends MomentLocalization
         ),
         DurationInterval.anHour: UnitString.withForm(
           "une heure",
-          "1 hr", // TODO: Reclarify
+          "1 heure",
           "1 h",
         ),
         DurationInterval.hours: UnitString.withForm(
           "$srDelta heures",
-          "$srDelta hr", // TODO: Reclarify
+          "$srDelta heures",
           "$srDelta h",
         ),
         DurationInterval.aDay: UnitString.withForm(
           "un jour",
-          "1 jour", // TODO: Reclarify
+          "1 jour",
           "1 j",
         ),
         DurationInterval.days: UnitString.withForm(
           "$srDelta jours",
-          "$srDelta jours", // TODO: Reclarify
+          "$srDelta jours",
           "$srDelta j",
         ),
         DurationInterval.aWeek: UnitString.withForm(
           "une semaine",
-          "1 sem",
-          "1 sem",
+          "1 sem.",
+          "1 sem.",
         ),
         DurationInterval.weeks: UnitString.withForm(
           "$srDelta semaines",
-          "$srDelta sem",
-          "$srDelta sem",
+          "$srDelta sem.",
+          "$srDelta sem.",
         ),
         DurationInterval.aMonth: UnitString.withForm(
           "un mois",
           "1 mois",
-          "1 mo",
+          "1 mois",
         ),
         DurationInterval.months: UnitString.withForm(
           "$srDelta mois",
           "$srDelta mois",
-          "$srDelta mo",
+          "$srDelta mois",
         ),
         DurationInterval.aYear: UnitString.withForm(
           "un an",

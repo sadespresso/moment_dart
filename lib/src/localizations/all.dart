@@ -1,6 +1,6 @@
 library moment_dart_localizations;
 
-import '../moment_localization.dart';
+import '../localization.dart';
 
 import 'it_IT.dart';
 export 'it_IT.dart';

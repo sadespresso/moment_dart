@@ -1,4 +1,4 @@
-export 'package:moment_dart/src/extension.dart';
+export 'package:moment_dart/src/extensions.dart';
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';

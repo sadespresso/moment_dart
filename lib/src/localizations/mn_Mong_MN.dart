@@ -3,8 +3,8 @@
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localizations/mn_Mong_MN/duration.dart';
-import 'package:moment_dart/src/localizations/mn_Mong_MN/units.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/duration.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia

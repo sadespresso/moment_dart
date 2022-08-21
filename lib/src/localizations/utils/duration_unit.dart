@@ -1,4 +1,4 @@
-import 'package:moment_dart/src/extension.dart';
+import 'package:moment_dart/src/extensions.dart';
 
 /// Does not take account for timezone
 enum DurationUnit {

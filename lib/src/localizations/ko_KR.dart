@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/extension.dart';
+import 'package:moment_dart/src/extensions.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
-import 'package:moment_dart/src/moment_localization.dart';
+import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Language: Korean
@@ -118,7 +118,7 @@ class LocalizationKo extends MomentLocalization
   // Korean hangul is compact enough
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.single("몇 초"),
+        DurationInterval.lessThanASecond: UnitString.single("몇 초"),
         DurationInterval.aSecond: UnitString.single("1초"),
         DurationInterval.seconds: UnitString.single("$srDelta초"),
         DurationInterval.aMinute: UnitString.single("1분"),

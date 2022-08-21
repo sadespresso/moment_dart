@@ -120,10 +120,9 @@ class LocalizationEsEs extends MomentLocalization
   @override
   String get delimeterConnector => "y";
 
-  // TODO: finish es_ES units
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.fewSeconds: UnitString.withForm(
+        DurationInterval.lessThanASecond: UnitString.withForm(
           "unos segundos",
           "unos seg.",
           "unos s",
@@ -140,23 +139,23 @@ class LocalizationEsEs extends MomentLocalization
         ),
         DurationInterval.aMinute: UnitString.withForm(
           "un minuto",
-          "1 min",
-          "1 min",
+          "1 min.",
+          "1 min.",
         ),
         DurationInterval.minutes: UnitString.withForm(
           "$srDelta minutos",
-          "$srDelta min",
+          "$srDelta min.",
           "$srDelta min",
         ),
         DurationInterval.anHour: UnitString.withForm(
           "un hora",
           "1 hora",
-          "1 hora",
+          "1 h",
         ),
         DurationInterval.hours: UnitString.withForm(
           "$srDelta horas",
           "$srDelta horas",
-          "$srDelta horas",
+          "$srDelta h",
         ),
         DurationInterval.aDay: UnitString.withForm(
           "un día",
@@ -171,22 +170,22 @@ class LocalizationEsEs extends MomentLocalization
         DurationInterval.aWeek: UnitString.withForm(
           "una semana",
           "1 semana",
-          "1 semana",
+          "1 sem.",
         ),
         DurationInterval.weeks: UnitString.withForm(
           "$srDelta semanas",
           "$srDelta semanas",
-          "$srDelta semanas",
+          "$srDelta sem.",
         ),
         DurationInterval.aMonth: UnitString.withForm(
           "un mes",
           "1 mes",
-          "1 mes",
+          "1 ms.",
         ),
         DurationInterval.months: UnitString.withForm(
           "$srDelta meses",
           "$srDelta meses",
-          "$srDelta meses",
+          "$srDelta ms.",
         ),
         DurationInterval.aYear: UnitString.withForm(
           "un año",

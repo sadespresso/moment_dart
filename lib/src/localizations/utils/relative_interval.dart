@@ -2,7 +2,7 @@ import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 
 enum DurationInterval {
   //"(in) a few seconds (ago)"
-  fewSeconds(0, unit: DurationUnit.second, singular: false),
+  lessThanASecond(0, unit: DurationUnit.second, singular: false),
   //"(in) a second (ago)"
   aSecond(1, unit: DurationUnit.second, singular: true),
   //"(in) X seconds (ago)"
@@ -51,7 +51,7 @@ enum DurationInterval {
     switch (unit) {
       case DurationUnit.microsecond:
       case DurationUnit.millisecond:
-        return DurationInterval.fewSeconds;
+        return DurationInterval.lessThanASecond;
       case DurationUnit.second:
         return singular ? DurationInterval.aSecond : DurationInterval.seconds;
       case DurationUnit.minute:

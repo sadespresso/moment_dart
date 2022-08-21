@@ -32,7 +32,7 @@ abstract class MomentLocalization {
   /// Used this table as guide:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
   static const Map<DurationInterval, Duration?> _relativeThresholds = {
-    DurationInterval.fewSeconds: Duration(seconds: 45),
+    DurationInterval.lessThanASecond: Duration(seconds: 45),
     DurationInterval.aMinute: Duration(seconds: 90),
     DurationInterval.minutes: Duration(minutes: 45),
     DurationInterval.anHour: Duration(minutes: 90),
@@ -60,7 +60,7 @@ abstract class MomentLocalization {
       }
     }
 
-    throw Exception("Something went wrong");
+    throw MomentException("Something went wrong");
   }
 
   /// Toggle `dropPrefixOrSuffix` to get spanned duration without any prefix or suffix.

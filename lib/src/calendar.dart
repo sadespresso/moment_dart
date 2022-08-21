@@ -4,8 +4,8 @@ class CalenderLocalizationData {
   /// For example, -1 is Yestderday, 0 is Today, 1 is Tomorrow
   ///
   /// Some language have words for
-  /// day before yesterday (-2)
-  /// or day after tomorrow (2)
+  /// day before yesterday (-2: ereyesterday)
+  /// or day after tomorrow (2: overmorrow)
   final Map<int, String> relativeDayNames;
 
   /// Time keywords. If value is absent or null for [CalendarKeyword], Moment will assume the language doesn't require the keyword.

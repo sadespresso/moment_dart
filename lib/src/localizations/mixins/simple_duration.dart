@@ -79,11 +79,11 @@ mixin SimpleDuration on SimpleUnits {
     late final String value;
 
     if (result.isEmpty) {
-      final UnitString? unitString = units[DurationInterval.fewSeconds];
+      final UnitString? unitString = units[DurationInterval.lessThanASecond];
 
       if (unitString == null) {
         throw MomentException(
-            "UnitString implementation is missing for ${DurationInterval.fewSeconds} in localization $locale");
+            "UnitString implementation is missing for ${DurationInterval.lessThanASecond} in localization $locale");
       }
 
       value = unitString.get(form, dropPrefixOrSuffix);

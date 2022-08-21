@@ -1,5 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/localizations/mn_Mong_MN/units.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 
 mixin MnMongMnDuration on MnMongMnUnits {
   /// If overriden, must implement for all [UnitStringForm]s
@@ -55,7 +55,7 @@ mixin MnMongMnDuration on MnMongMnUnits {
     late final String value;
 
     if (result.isEmpty) {
-      final String unitString = getUnit(DurationInterval.fewSeconds, form,
+      final String unitString = getUnit(DurationInterval.lessThanASecond, form,
           dropPrefixOrSuffix: dropPrefixOrSuffix);
 
       value = unitString;
