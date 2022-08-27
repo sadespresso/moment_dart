@@ -31,7 +31,9 @@ mixin MnMongMnUnits on SimpleUnits {
 
     late final String suffix; // Language specific stuff
 
-    if (interval.unit == DurationUnit.month) {
+    if (form != UnitStringForm.full) {
+      suffix = "";
+    } else if (interval.unit == DurationUnit.month) {
       suffix = " ᠶᠢᠨ";
     } else {
       suffix = (useFeminineSuffix ? " ᠦᠨ" : " ᠤᠨ");

@@ -1827,59 +1827,59 @@ void main() {
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "1 ᠵᠢᠯ ᠤᠨ 2 ᠰᠠᠷ᠎ᠠ",
+      "1 ᠵᠢᠯ 2 ᠰᠠᠷ᠎ᠠ",
     );
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "1 ᠵᠢᠯ ᠤᠨ 2 ᠰᠠ᠊᠍",
+      "1 ᠵᠢᠯ 2 ᠰᠠ᠊᠍",
     );
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "1ᠵᠢᠯ ᠤᠨ 2ᠰᠠ᠊᠍",
+      "1ᠵᠢᠯ 2ᠰᠠ᠊᠍",
     );
 
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "3 ᠵᠢᠯ ᠤᠨ",
+      "3 ᠵᠢᠯ",
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "3 ᠵᠢᠯ ᠤᠨ",
+      "3 ᠵᠢᠯ",
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "3ᠵᠢᠯ ᠤᠨ",
+      "3ᠵᠢᠯ",
     );
 
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "3 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ 17 ᠡᠳᠦᠷ",
+      "3 ᠰᠠᠷ᠎ᠠ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "3 ᠰᠠ᠊᠍ ᠶᠢᠨ 17 ᠡᠳᠦᠷ",
+      "3 ᠰᠠ᠊᠍ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "3ᠰᠠ᠊᠍ ᠶᠢᠨ 17ᠥ",
+      "3ᠰᠠ᠊᠍ 17ᠥ",
     );
 
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "4 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ",
+      "4 ᠰᠠᠷ᠎ᠠ",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "4 ᠰᠠ᠊᠍ ᠶᠢᠨ",
+      "4 ᠰᠠ᠊᠍",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "4ᠰᠠ᠊᠍ ᠶᠢᠨ",
+      "4ᠰᠠ᠊᠍",
     );
 
     expect(
@@ -1889,7 +1889,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.full,
       ),
-      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠤᠨ 2 ᠡᠳᠦᠷ",
+      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ 2 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -1898,7 +1898,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.mid,
       ),
-      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠤᠨ 2 ᠡᠳᠦᠷ",
+      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ 2 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -1907,22 +1907,22 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.short,
       ),
-      "3ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠤᠨ 2ᠥ",
+      "3ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ 2ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "23 ᠡᠳᠦᠷ ᠦᠨ",
+      "23 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "23 ᠡᠳᠦᠷ ᠦᠨ",
+      "23 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "23ᠥ ᠦᠨ",
+      "23ᠥ",
     );
 
     expect(
@@ -1932,7 +1932,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.full,
       ),
-      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠤᠨ",
+      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
     );
     expect(
       l10n.duration(
@@ -1941,7 +1941,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.mid,
       ),
-      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠤᠨ",
+      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(
@@ -1950,107 +1950,107 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.short,
       ),
-      "4ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠤᠨ",
+      "4ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "28 ᠡᠳᠦᠷ ᠦᠨ",
+      "28 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "28 ᠡᠳᠦᠷ ᠦᠨ",
+      "28 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "28ᠥ ᠦᠨ",
+      "28ᠥ",
     );
 
     expect(
       l10n.duration(_6d_7h,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "6 ᠡᠳᠦᠷ ᠦᠨ 7 ᠴᠠᠭ",
+      "6 ᠡᠳᠦᠷ 7 ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "6 ᠡᠳᠦᠷ ᠦᠨ 7 ᠴᠠᠭ",
+      "6 ᠡᠳᠦᠷ 7 ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_6d_7h,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "6ᠥ ᠦᠨ 7ᠴ",
+      "6ᠥ 7ᠴ",
     );
 
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "6 ᠡᠳᠦᠷ ᠦᠨ",
+      "6 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "6 ᠡᠳᠦᠷ ᠦᠨ",
+      "6 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "6ᠥ ᠦᠨ",
+      "6ᠥ",
     );
 
     expect(
       l10n.duration(_8h_8m,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "8 ᠴᠠᠭ ᠤᠨ 8 ᠮᠢᠨᠦᠢᠲ",
+      "8 ᠴᠠᠭ 8 ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "8 ᠴᠠᠭ ᠤᠨ 8 ᠮᠢᠨ᠊᠍",
+      "8 ᠴᠠᠭ 8 ᠮᠢᠨ᠊᠍",
     );
     expect(
       l10n.duration(_8h_8m,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "8ᠴ ᠤᠨ 8ᠮ",
+      "8ᠴ 8ᠮ",
     );
 
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "8 ᠴᠠᠭ ᠤᠨ",
+      "8 ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "8 ᠴᠠᠭ ᠤᠨ",
+      "8 ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "8ᠴ ᠤᠨ",
+      "8ᠴ",
     );
 
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "48 ᠮᠢᠨᠦᠢᠲ ᠦᠨ 42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "48 ᠮᠢᠨᠦᠢᠲ 42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "48 ᠮᠢᠨ᠊᠍ ᠦᠨ 42 ᠰᠧᠻ᠍᠊᠍",
+      "48 ᠮᠢᠨ᠊᠍ 42 ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "48ᠮ ᠦᠨ 42ᠰ",
+      "48ᠮ 42ᠰ",
     );
 
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "35 ᠮᠢᠨᠦᠢᠲ ᠦᠨ",
+      "35 ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "35 ᠮᠢᠨ᠊᠍ ᠦᠨ",
+      "35 ᠮᠢᠨ᠊᠍",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "35ᠮ ᠦᠨ",
+      "35ᠮ",
     );
 
     expect(
@@ -2086,59 +2086,59 @@ void main() {
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠑ ᠵᠢᠯ ᠤᠨ ᠒ ᠰᠠᠷ᠎ᠠ",
+      "᠑ ᠵᠢᠯ ᠒ ᠰᠠᠷ᠎ᠠ",
     );
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠑ ᠵᠢᠯ ᠤᠨ ᠒ ᠰᠠ᠊᠍",
+      "᠑ ᠵᠢᠯ ᠒ ᠰᠠ᠊᠍",
     );
     expect(
       l10n.duration(_1y_2mo,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠑ᠵᠢᠯ ᠤᠨ ᠒ᠰᠠ᠊᠍",
+      "᠑ᠵᠢᠯ ᠒ᠰᠠ᠊᠍",
     );
 
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠓ ᠵᠢᠯ ᠤᠨ",
+      "᠓ ᠵᠢᠯ",
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠓ ᠵᠢᠯ ᠤᠨ",
+      "᠓ ᠵᠢᠯ",
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠓ᠵᠢᠯ ᠤᠨ",
+      "᠓ᠵᠢᠯ",
     );
 
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠓ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠑᠗ ᠡᠳᠦᠷ",
+      "᠓ ᠰᠠᠷ᠎ᠠ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠓ ᠰᠠ᠊᠍ ᠶᠢᠨ ᠑᠗ ᠡᠳᠦᠷ",
+      "᠓ ᠰᠠ᠊᠍ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠓ᠰᠠ᠊᠍ ᠶᠢᠨ ᠑᠗ᠥ",
+      "᠓ᠰᠠ᠊᠍ ᠑᠗ᠥ",
     );
 
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠔ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ",
+      "᠔ ᠰᠠᠷ᠎ᠠ",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠔ ᠰᠠ᠊᠍ ᠶᠢᠨ",
+      "᠔ ᠰᠠ᠊᠍",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠔ᠰᠠ᠊᠍ ᠶᠢᠨ",
+      "᠔ᠰᠠ᠊᠍",
     );
 
     expect(
@@ -2148,7 +2148,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.full,
       ),
-      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠤᠨ ᠒ ᠡᠳᠦᠷ",
+      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠒ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2157,7 +2157,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.mid,
       ),
-      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠤᠨ ᠒ ᠡᠳᠦᠷ",
+      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠒ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2166,22 +2166,22 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.short,
       ),
-      "᠓ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠤᠨ ᠒ᠥ",
+      "᠓ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠒ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠒᠓ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠒᠓ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠒᠓ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠒᠓ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠒᠓ᠥ ᠦᠨ",
+      "᠒᠓ᠥ",
     );
 
     expect(
@@ -2191,7 +2191,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.full,
       ),
-      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠤᠨ",
+      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
     );
     expect(
       l10n.duration(
@@ -2200,7 +2200,7 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.mid,
       ),
-      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠤᠨ",
+      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(
@@ -2209,107 +2209,107 @@ void main() {
         includeWeeks: true,
         form: UnitStringForm.short,
       ),
-      "᠔ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠤᠨ",
+      "᠔ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠒᠘ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠒᠘ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠒᠘ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠒᠘ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠒᠘ᠥ ᠦᠨ",
+      "᠒᠘ᠥ",
     );
 
     expect(
       l10n.duration(_6d_7h,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠖ ᠡᠳᠦᠷ ᠦᠨ ᠗ ᠴᠠᠭ",
+      "᠖ ᠡᠳᠦᠷ ᠗ ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠖ ᠡᠳᠦᠷ ᠦᠨ ᠗ ᠴᠠᠭ",
+      "᠖ ᠡᠳᠦᠷ ᠗ ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_6d_7h,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠖ᠥ ᠦᠨ ᠗ᠴ",
+      "᠖ᠥ ᠗ᠴ",
     );
 
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠖ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠖ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠖ ᠡᠳᠦᠷ ᠦᠨ",
+      "᠖ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠖ᠥ ᠦᠨ",
+      "᠖ᠥ",
     );
 
     expect(
       l10n.duration(_8h_8m,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠘ ᠴᠠᠭ ᠤᠨ ᠘ ᠮᠢᠨᠦᠢᠲ",
+      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠘ ᠴᠠᠭ ᠤᠨ ᠘ ᠮᠢᠨ᠊᠍",
+      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨ᠊᠍",
     );
     expect(
       l10n.duration(_8h_8m,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠘ᠴ ᠤᠨ ᠘ᠮ",
+      "᠘ᠴ ᠘ᠮ",
     );
 
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠘ ᠴᠠᠭ ᠤᠨ",
+      "᠘ ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠘ ᠴᠠᠭ ᠤᠨ",
+      "᠘ ᠴᠠᠭ",
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠘ᠴ ᠤᠨ",
+      "᠘ᠴ",
     );
 
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠔᠘ ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "᠔᠘ ᠮᠢᠨᠦᠢᠲ ᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠔᠘ ᠮᠢᠨ᠊᠍ ᠦᠨ ᠔᠒ ᠰᠧᠻ᠍᠊᠍",
+      "᠔᠘ ᠮᠢᠨ᠊᠍ ᠔᠒ ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠔᠘ᠮ ᠦᠨ ᠔᠒ᠰ",
+      "᠔᠘ᠮ ᠔᠒ᠰ",
     );
 
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
-      "᠓᠕ ᠮᠢᠨᠦᠢᠲ ᠦᠨ",
+      "᠓᠕ ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
-      "᠓᠕ ᠮᠢᠨ᠊᠍ ᠦᠨ",
+      "᠓᠕ ᠮᠢᠨ᠊᠍",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
-      "᠓᠕ᠮ ᠦᠨ",
+      "᠓᠕ᠮ",
     );
 
     expect(

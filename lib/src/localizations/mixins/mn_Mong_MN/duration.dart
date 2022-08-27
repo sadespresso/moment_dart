@@ -43,7 +43,7 @@ mixin MnMongMnDuration on MnMongMnUnits {
           DurationInterval.findByUnit(unitValue, unit);
 
       final String unitString = getUnit(interval, form,
-          dropPrefixOrSuffix: dropPrefixOrSuffix && last);
+          dropPrefixOrSuffix: !last || dropPrefixOrSuffix);
 
       if (!(omitZeros && unitValue == 0)) {
         result.add(unitString.replaceAll(srDelta, unitValue.toString()));

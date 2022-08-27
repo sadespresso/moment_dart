@@ -22,7 +22,9 @@ mixin MnMnUnits on SimpleUnits {
               interval.unit == DurationUnit.minute ||
               interval.unit == DurationUnit.month;
 
-      final String suffix = useMasculineSuffix ? "ын" : "ийн";
+      final String suffix = form != UnitStringForm.full
+          ? ""
+          : (useMasculineSuffix ? "ын" : "ийн");
 
       return unitsWithSuffixConsidered[interval]!
               .get(form, dropPrefixOrSuffix) +

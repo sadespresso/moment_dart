@@ -1,3 +1,7 @@
+## 0.10.1
+
+- Fixed duration suffix in `mn_MN`, `mn_Mong_MN`, `mn_Qaaq_MN`
+
 ## 0.10.0
 
 - Introduced concept of `UnitString`, a wrapper class for unit translations. For example, UnitString for minute may look like "19 minutes", "19 min", "19m" depending on the `UnitStringForm` (full, mid, short respectively)
