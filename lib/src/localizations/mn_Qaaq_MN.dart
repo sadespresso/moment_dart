@@ -5,6 +5,8 @@ import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mn_Mong_MN.dart';
 import 'package:moment_dart/src/localizations/utils/unit_form.dart';
 
+import 'utils/duration_format.dart';
+
 /// Language: Traditional Mongolian with Traditional Numbers
 /// Country: Mongolia
 class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
@@ -30,6 +32,29 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
     "8": "᠘",
     "9": "᠙",
   };
+
+  @override
+  String duration(
+    Duration duration, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = false,
+    UnitStringForm form = UnitStringForm.full,
+    String? delimiter,
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) {
+    return toTraditionalNumber(super.duration(
+      duration,
+      round: round,
+      omitZeros: omitZeros,
+      includeWeeks: includeWeeks,
+      form: form,
+      delimiter: delimiter,
+      format: format,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+    ));
+  }
 
   @override
   String relative(
