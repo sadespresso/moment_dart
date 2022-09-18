@@ -209,14 +209,14 @@ Localizations are classes that extend `MomentLocalization`
 | LocalizationEnUs     | EnUs     | English                                        | United States |
 | LocalizationKoKr     | KoKr     | Korean                                         | South Korea   |
 | LocalizationFrFr     | FrFr     | French                                         | France        |
-| LocalizationEsEs     | EsEs     | Spanish                                        | France        |
-| LocalizationItIt     | ItIt     | Italian                                        | France        |
-| LocalizationDeDe     | DeDe     | German                                         | France        |
-| LocalizationMnMn     | MnMn     | Mongolian                                      | France        |
-| LocalizationMnMongMn | MnMongMn | Traditional Mongolian                          | France        |
-| LocalizationMnQaaqMn | MnQaaqMn | Traditional Mongolian with Traditional Numbers | France        |
+| LocalizationEsEs     | EsEs     | Spanish                                        | Spain         |
+| LocalizationItIt     | ItIt     | Italian                                        | Italy         |
+| LocalizationDeDe     | DeDe     | German                                         | Germany       |
+| LocalizationMnMn     | MnMn     | Mongolian                                      | Mongolia      |
+| LocalizationMnMongMn | MnMongMn | Traditional Mongolian                          | Mongolia      |
+| LocalizationMnQaaqMn | MnQaaqMn | Traditional Mongolian with Traditional Numbers | Mongolia      |
 
-## Salt 🧂 and pepper
+## Batteries included 🔋
 
 Moment provides an extension with set of useful functions. **Can be called on either `Moment` or `DateTime` instance**
 
@@ -255,7 +255,7 @@ Available for all units: year, month, day, hour, minute, second, millisecond, mi
 final DateTime local = DateTime(1972, 1, 1, 7); // Jan 1, 1972 at 7AM @GMT+8
 final DateTime utc = local.toUtc();             // Dec 31, 1971 at 11PM @UTC
 
-local.isAtSameYearAs(utc); // true
+local.isAtSameYearAs(utc); // true;
 
 ```
 
