@@ -1,3 +1,7 @@
+## 0.10.2
+
+- Fixed endOfMonth() having extra days
+
 ## 0.10.1
 
 - Fixed duration suffix in `mn_MN`, `mn_Mong_MN`, `mn_Qaaq_MN`

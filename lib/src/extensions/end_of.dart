@@ -28,7 +28,33 @@ extension EndOfUnit on DateTime {
       case DurationUnit.day:
         return DateTime(year, month, day, 23, 59, 59, 999, 999);
       case DurationUnit.month:
-        return DateTime(year, month, 31, 23, 59, 59, 999, 999);
+        const daysInMonths = [
+          0,
+          31,
+          28,
+          31,
+          30,
+          31,
+          30,
+          31,
+          31,
+          30,
+          31,
+          30,
+          31
+        ];
+
+        final bool extraFebDay = month == DateTime.february && isLeapYear;
+        return DateTime(
+          year,
+          month,
+          daysInMonths[month] + (extraFebDay ? 1 : 0),
+          23,
+          59,
+          59,
+          999,
+          999,
+        );
       case DurationUnit.year:
         return DateTime(year, 12, 31, 23, 59, 59, 999, 999);
     }
