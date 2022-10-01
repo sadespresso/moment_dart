@@ -69,9 +69,9 @@ yesterday.from(yesterday - Duration(days: 365)); // a year ago
 ### Calendar dates
 ```dart
 
-now.subtract(const Duration(days: 1)).calendar();  // Yesterday at 10:02AM
-now.calendar();                              // Today at 10:02AM
-now.subtract(const Duration(days: 1)).calendar();  // Tomorrow at 10:02AM
+now.subtract(const Duration(days: 1)).calendar(); // Yesterday at 10:02AM
+now.calendar();                                   // Today at 10:02AM
+now.subtract(const Duration(days: 1)).calendar(); // Tomorrow at 10:02AM
 
 // [reference] - defaults to Moment.now(), acts as an anchor.
 // [omitHours] - omits the hour part. Hour part is formatted by "LT" token.
@@ -139,10 +139,10 @@ bday.isAtSameYearAs(spiritRoverOnMars); // true
 [See list of format tokens](#format-tokens-)
 
 ```dart
-now.format("YYYY MMMM Do - hh:mm:ssa"); //2003 June 1st - 05:01:00am
-now.format("LTS");                      //5:01:00 AM
-now.format("dddd");                     //Sunday
-now.format("MMM Do YY");                //Jun 1st 03
+now.format("YYYY MMMM Do - hh:mm:ssa");   //2003 June 1st - 05:01:00am
+now.format("LTS", true);                  //5:01:00 AM (Converted to Local first)
+now.format("dddd");                       //Sunday
+DateTime.now().format("MMM Do YY", true); //Jun 1st 03 (Converted to Local first)
 ```
 
 Escape strings by **encasulating them in square brackets ([])**.

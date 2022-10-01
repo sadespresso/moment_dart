@@ -69,8 +69,10 @@ class Moment extends DateTime {
 
   List<FormatterToken> get _fts => localization.tokens;
 
-  String format(
-      [String payload = MomentLocalization.localizationDefaultDateFormat]) {
+  String format([
+    String payload = MomentLocalization.localizationDefaultDateFormat,
+    bool forceLocal = false,
+  ]) {
     final List<dynamic> tokens = [];
 
     bool halt = false;
@@ -127,9 +129,11 @@ class Moment extends DateTime {
 
     String value = "";
 
+    final DateTime data = forceLocal ? toLocal() : this;
+
     for (var token in tokens) {
       if (token is FormatMatch) {
-        value += localization.formatters[token.token]!(this);
+        value += localization.formatters[token.token]!(data);
       } else {
         value += token as String;
       }
@@ -139,14 +143,18 @@ class Moment extends DateTime {
   }
 
   /// Localization Default formatters
-  String formatDate() => format("LL");
-  String formatDateShort() => format("ll");
-  String formatDateTime() => format("LLL");
-  String formatDateTimeShort() => format("lll");
-  String formatDateTimeWithWeekday() => format("LLLL");
-  String formatDateTimeWithWeekdayShort() => format("llll");
-  String formatTime() => format("LT");
-  String formatTimeWithSeconds() => format("LTS");
+  String formatDate([bool forceLocal = false]) => format("LL", forceLocal);
+  String formatDateShort([bool forceLocal = false]) => format("ll", forceLocal);
+  String formatDateTime([bool forceLocal = false]) => format("LLL", forceLocal);
+  String formatDateTimeShort([bool forceLocal = false]) =>
+      format("lll", forceLocal);
+  String formatDateTimeWithWeekday([bool forceLocal = false]) =>
+      format("LLLL", forceLocal);
+  String formatDateTimeWithWeekdayShort([bool forceLocal = false]) =>
+      format("llll", forceLocal);
+  String formatTime([bool forceLocal = false]) => format("LT", forceLocal);
+  String formatTimeWithSeconds([bool forceLocal = false]) =>
+      format("LTS", forceLocal);
 
   /// Localization Default formatters
   // ignore: non_constant_identifier_names

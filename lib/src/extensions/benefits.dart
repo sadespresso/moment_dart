@@ -159,6 +159,22 @@ extension MomentBenefits on DateTime {
 
   Moment toMoment({MomentLocalization? localization}) =>
       Moment(this, localization: localization);
+
+  String format([
+    String payload = MomentLocalization.localizationDefaultDateFormat,
+    bool forceLocal = false,
+    MomentLocalization? localization,
+  ]) {
+    if (this is Moment) {
+      return localization == null
+          ? (this as Moment).format(payload, forceLocal)
+          : (this as Moment)
+              .copyWith(localization: localization)
+              .format(payload, forceLocal);
+    }
+
+    return toMoment(localization: localization).format(payload, forceLocal);
+  }
 }
 
 extension MomentBenefitsPlus on Moment {

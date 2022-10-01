@@ -279,7 +279,7 @@ void main() {
       expect(m.endOfMinute(), DateTime(2022, 6, 19, 21, 9, 59, 999, 999));
       expect(m.endOfHour(), DateTime(2022, 6, 19, 21, 59, 59, 999, 999));
       expect(m.endOfDay(), DateTime(2022, 6, 19, 23, 59, 59, 999, 999));
-      expect(m.endOfMonth(), DateTime(2022, 6, 31, 23, 59, 59, 999, 999));
+      expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
 
       expect(() => m.endOf(DurationUnit.microsecond),
@@ -292,7 +292,7 @@ void main() {
       expect(m.endOfMinute(), DateTime(2003, 6, 1, 21, 9, 59, 999, 999));
       expect(m.endOfHour(), DateTime(2003, 6, 1, 21, 59, 59, 999, 999));
       expect(m.endOfDay(), DateTime(2003, 6, 1, 23, 59, 59, 999, 999));
-      expect(m.endOfMonth(), DateTime(2003, 6, 31, 23, 59, 59, 999, 999));
+      expect(m.endOfMonth(), DateTime(2003, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2003, 12, 31, 23, 59, 59, 999, 999));
 
       expect(() => m.endOf(DurationUnit.microsecond),

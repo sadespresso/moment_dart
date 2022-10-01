@@ -1,3 +1,8 @@
+## 0.10.3
+
+- Added `.format()` and other functions as extension on `DateTime` objects
+- `.format()` now takes another optional argument `forceLocal`, to convert the DateTime before formatting.
+
 ## 0.10.2
 
 - Fixed endOfMonth() having extra days
