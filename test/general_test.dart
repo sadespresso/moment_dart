@@ -58,7 +58,8 @@ void main() {
   group("Is At Same _ As Test", () {
     test("#1", () {
       final Moment local = DateTime(2003, 6, 1, 5, 7, 8, 600).toMoment();
-      final Moment utc = DateTime(2003, 6, 1, 5, 7, 8, 600, 1).toMoment();
+      final Moment utc =
+          DateTime(2003, 6, 1, 5, 7, 8, 600, 1).toMoment().toUtc();
 
       expect(local.isAtSameYearAs(utc), true); // "same year"
       expect(local.isAtSameMonthAs(utc), true); // "same month"

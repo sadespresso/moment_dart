@@ -9,8 +9,14 @@ extension UnitComparision on DateTime {
       return isAtSameMomentAs(other);
     }
 
-    other = other.toUtc();
-    final DateTime self = toUtc();
+    late final DateTime self;
+
+    if (other.isUtc) {
+      self = toUtc();
+    } else {
+      self = toUtc().add(other.timeZoneOffset);
+      other = other.toUtc();
+    }
 
     if (other.year != self.year) return false;
     if (unit == DurationUnit.year) return true;

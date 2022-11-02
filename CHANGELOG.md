@@ -1,3 +1,7 @@
+## 0.10.4
+
+- isSameAs_() functions timezone now depend on `other` argument. If `other` is UTC, `this` will be converted to UTC, else `this` will be adjusted with `other.timeZoneOffset`
+
 ## 0.10.3
 
 - Added `.format()` and other functions as extension on `DateTime` objects
