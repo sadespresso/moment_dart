@@ -1,6 +1,6 @@
 name: moment_dart
 description: Immutable DateTime subclass for easier interaction with DateTime objects. Supports multiple localizations to convert DateTime into human-readable format
-version: 0.10.4
+version: 0.10.5
 homepage: https://github.com/theironbatka/moment_dart
 issue_tracker: https://github.com/theironbatka/moment_dart/issues
 

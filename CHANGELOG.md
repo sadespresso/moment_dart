@@ -1,3 +1,7 @@
+## 0.10.5
+
+- Fixed am/pm suffixes for `mn_Mong_MN` and `mn_Qaaq_MN`
+
 ## 0.10.4
 
 - isSameAs_() functions timezone now depend on `other` argument. If `other` is UTC, `this` will be converted to UTC, else `this` will be adjusted with `other.timeZoneOffset`

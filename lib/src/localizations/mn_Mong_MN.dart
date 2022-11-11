@@ -109,9 +109,9 @@ class LocalizationMnMongMn extends MomentLocalization
       FormatterToken.MMM: (dateTime) => "${dateTime.month} ᠰᠠᠷ᠎ᠠ",
       FormatterToken.MMMM: (dateTime) => monthName(dateTime.month),
       FormatterToken.A: (dateTime) =>
-          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ" : "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ",
+          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ" : "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
       FormatterToken.a: (dateTime) =>
-          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ" : "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ",
+          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ" : "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
 
       FormatterToken.dd: (dateTime) => weekdayNameShort[dateTime.weekday]!,
       FormatterToken.ddd: (dateTime) => weekdayName[dateTime.weekday]!,
