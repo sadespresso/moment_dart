@@ -22,16 +22,16 @@ class LocalizationItIt extends MomentLocalization
   LocalizationItIt() : super();
 
   @override
-  String get endonym => "Italiano";
+  String get endonym => "中文";
 
   @override
-  String get languageCode => "it";
+  String get languageCode => "zn";
 
   @override
-  String get countryCode => "IT";
+  String get countryCode => "CN";
 
   @override
-  String get languageNameInEnglish => "Italian";
+  String get languageNameInEnglish => "Chinese (China)";
 
   @override
   String relativePast(String unit) => "$unit fa";
@@ -40,33 +40,34 @@ class LocalizationItIt extends MomentLocalization
 
   @override
   Map<int, String> get monthNames => {
-        1: "gennaio",
-        2: "febbraio",
-        3: "marzo",
-        4: "aprile",
-        5: "maggio",
-        6: "giugno",
-        7: "luglio",
-        8: "agosto",
-        9: "settembre",
-        10: "ottobre",
-        11: "novembre",
-        12: "dicembre",
+        1: "一月",
+        2: "二月",
+        3: "三月",
+        4: "四月",
+        5: "五月",
+        6: "六月",
+        7: "七月",
+        8: "八月",
+        9: "九月",
+        10: "十月",
+        11: "十一月",
+        12: "十二月",
       };
 
   @override
   Map<int, String> get monthNamesShort =>
-      monthNames.map((key, value) => MapEntry(key, value.substring(0, 3)));
+      Map.fromEntries(List.generate(12, (i) => i + 1)
+          .map((i) => MapEntry<int, String>(i, "$i月")));
 
   @override
   Map<int, String> get weekdayName => {
-        1: "lunedì",
-        2: "martedì",
-        3: "mercoledì",
-        4: "giovedì",
-        5: "venerdì",
-        6: "sabato",
-        7: "domenica",
+        1: "星期日",
+        2: "星期一",
+        3: "星期二",
+        4: "星期三",
+        5: "星期四",
+        6: "星期五",
+        7: "星期六",
       };
 
   @override

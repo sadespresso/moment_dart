@@ -6,6 +6,7 @@ import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Language: English (US)
 /// Country: United States
@@ -67,7 +68,7 @@ class LocalizationEnUs extends MomentLocalization
       };
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() {
+  FormatSetOptional overrideFormatters() {
     return {
       // From [EnglishLikeOrdinal] mixin
       ...formattersWithOrdinal,

@@ -7,6 +7,7 @@ import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Language: French
 /// Country: France
@@ -75,7 +76,7 @@ class LocalizationFrFr extends MomentLocalization
       };
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() {
+  FormatSetOptional overrideFormatters() {
     return {
       // From [EnglishLikeOrdinal] mixin
       ...formattersWithOrdinal,

@@ -17,6 +17,7 @@ import 'package:moment_dart/src/calendar.dart';
 export 'package:moment_dart/src/calendar.dart';
 
 import 'package:moment_dart/src/moment.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
@@ -169,7 +170,7 @@ abstract class MomentLocalization {
     );
   }
 
-  final Map<FormatterToken, FormatterTokenFn?> defaultFormatters = {
+  final FormatSetOptional defaultFormatters = {
     FormatterToken.M: (dateTime) => dateTime.month.toString(),
     FormatterToken.MM: (dateTime) => dateTime.month.toString().padLeft(2, '0'),
     FormatterToken.Q: (dateTime) => dateTime.quarter.toString(),
@@ -265,8 +266,8 @@ abstract class MomentLocalization {
         FormatterToken.dddd: (dateTime) => weekdayName[dateTime.weekday]!,
       };
 
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters();
-  Map<FormatterToken, FormatterTokenFn?> get formatters => {
+  FormatSetOptional overrideFormatters();
+  FormatSetOptional get formatters => {
         ...defaultFormatters,
         ...nonFinalFormatters,
         ...overrideFormatters(),

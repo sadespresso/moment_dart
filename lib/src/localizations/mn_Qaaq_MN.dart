@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:moment_dart/src/formatters/token.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mn_Mong_MN.dart';
 import 'package:moment_dart/src/localizations/utils/unit_form.dart';
+import 'package:moment_dart/src/types.dart';
 
 import 'utils/duration_format.dart';
 
@@ -81,7 +81,7 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
   String ordinalNumber(int n) => toTraditionalNumber(super.ordinalNumber(n));
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> get formatters => super.formatters.map(
+  FormatSetOptional get formatters => super.formatters.map(
         (key, value) => MapEntry(
           key,
           value == null

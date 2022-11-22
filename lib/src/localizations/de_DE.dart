@@ -7,6 +7,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localization.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Language: German
 /// Country: Germany
@@ -35,7 +36,7 @@ class LocalizationDeDe extends MomentLocalization
   String ordinalNumber(int n) => "$n.";
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() {
+  FormatSetOptional overrideFormatters() {
     return {
       // From [Ordinal] mixin
       ...formattersWithOrdinal,

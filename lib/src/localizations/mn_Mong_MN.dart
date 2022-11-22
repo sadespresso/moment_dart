@@ -5,6 +5,7 @@ import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/duration.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
@@ -84,7 +85,7 @@ class LocalizationMnMongMn extends MomentLocalization
   String monthName(int i) => "${ordinalNumber(i)} ᠰᠠᠷ᠎ᠠ";
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() {
+  FormatSetOptional overrideFormatters() {
     return {
       // From [Ordinal] mixin
       ...formattersWithOrdinal,

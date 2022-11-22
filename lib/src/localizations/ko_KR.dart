@@ -5,6 +5,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/types.dart';
 
 /// Language: Korean
 /// Country: South Korea
@@ -55,7 +56,7 @@ class LocalizationKo extends MomentLocalization
   String monthName(int i) => "$i월";
 
   @override
-  Map<FormatterToken, FormatterTokenFn?> overrideFormatters() {
+  FormatSetOptional overrideFormatters() {
     return {
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "YYYY.MM.DD."),
