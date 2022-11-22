@@ -63,5 +63,9 @@ void main() {
       MomentLocalizations.byLocale("it"),
       TypeMatcher<LocalizationItIt>(),
     );
+    expect(
+      MomentLocalizations.byLocale("zn_CN"),
+      TypeMatcher<LocalizationZnCn>(),
+    );
   });
 }

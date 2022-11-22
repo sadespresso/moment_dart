@@ -92,22 +92,6 @@ class LocalizationItIt extends MomentLocalization
     };
   }
 
-  static String last(String weekday) => "Last $weekday";
-  static String at(String date, String time) => "$date a' $time";
-
-  static const CalenderLocalizationData calenderLocalizationDataEnUs =
-      CalenderLocalizationData(
-    relativeDayNames: {
-      -1: "Ieri",
-      0: "Oggi",
-      1: "Domani",
-    },
-    keywords: CalenderLocalizationKeywords(
-      at: at,
-      lastWeekday: last,
-    ),
-  );
-
   @override
   int get weekStart => DateTime.monday;
 

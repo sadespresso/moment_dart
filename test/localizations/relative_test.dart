@@ -396,4 +396,42 @@ void main() {
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3년");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3년");
   });
+
+  test("zn_CN localization relative time test", () {
+    _setLocalization(MomentLocalizations.znCn());
+
+    expect(fewMomentsAhead.from(now), "几秒后");
+    expect(fewMomentsAgo.from(now), "几秒前");
+    expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "几秒");
+    expect(aMinuteAhead.from(now), "1 分钟后");
+    expect(aMinuteAgo.from(now), "1 分钟前");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 分钟");
+    expect(fiveMinutesAhead.from(now), "5 分钟后");
+    expect(fiveMinutesAgo.from(now), "5 分钟前");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 分钟");
+    expect(anHourAhead.from(now), "1 小时后");
+    expect(anHourAgo.from(now), "1 小时前");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "1 小时");
+    expect(sixHoursAhead.from(now), "6 小时后");
+    expect(sixHoursAgo.from(now), "6 小时前");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 小时");
+    expect(aDayAhead.from(now), "1 天后");
+    expect(aDayAgo.from(now), "1 天前");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "1 天");
+    expect(twoDaysAhead.from(now), "2 天后");
+    expect(twoDaysAgo.from(now), "2 天前");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 天");
+    expect(aMonthAhead.from(now), "1 个月后");
+    expect(aMonthAgo.from(now), "1 个月前");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "1 个月");
+    expect(fourMonthsAhead.from(now), "4 个月后");
+    expect(fourMonthsAgo.from(now), "4 个月前");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 个月");
+    expect(aYearAhead.from(now), "1 年后");
+    expect(aYearAgo.from(now), "1 年前");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "1 年");
+    expect(threeYearsAhead.from(now), "3 年后");
+    expect(threeYearsAgo.from(now), "3 年前");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 年");
+  });
 }

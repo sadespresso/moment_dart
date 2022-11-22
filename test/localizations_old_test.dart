@@ -21,7 +21,7 @@ void main() {
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "Мягмар");
     expect(epochPlusAYear.from(epoch), "1 жилийн дараа");
-    expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1 00:00");
+    expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1");
 
     expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
   });
@@ -45,7 +45,7 @@ void main() {
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "Tuesday");
     expect(epochPlusAYear.from(epoch), "in a year");
-    expect(epochPlusAYear.calendar(reference: epoch), "1/1/1971 at 12:00 AM");
+    expect(epochPlusAYear.calendar(reference: epoch), "1/1/1971");
 
     expect(epochPlusFiveDays.format("L LT"), "01/06/1970 12:00 AM");
   });
@@ -70,7 +70,7 @@ void main() {
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "ᠤᠯᠠᠭᠠᠨ");
     expect(epochPlusAYear.from(epoch), "1 ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1 00:00");
+    expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1");
 
     expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
   });
@@ -93,7 +93,7 @@ void main() {
     expect(
         epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "화요일");
     expect(epochPlusAYear.from(epoch), "1년 후");
-    expect(epochPlusAYear.calendar(reference: epoch), "1971.1.1 오전 12:00");
+    expect(epochPlusAYear.calendar(reference: epoch), "1971.1.1");
 
     expect(epochPlusFiveDays.format("L LT"), "1970.01.06 오전 12:00");
   });

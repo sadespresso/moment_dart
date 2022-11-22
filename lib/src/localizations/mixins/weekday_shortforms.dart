@@ -8,10 +8,10 @@ mixin WeekdayShortForms on MomentLocalization {
   Map<int, String>? get weekdayNameMin => null;
 
   FormatSet get formattersForWeekdayShortForms => {
-        FormatterToken.DDD: (DateTime dateTime) =>
+        FormatterToken.ddd: (DateTime dateTime) =>
             weekdayNameShort[dateTime.weekday]!,
         if (weekdayNameMin != null)
-          FormatterToken.DD: (DateTime dateTime) =>
+          FormatterToken.dd: (DateTime dateTime) =>
               weekdayNameMin![dateTime.weekday]!,
       };
 }

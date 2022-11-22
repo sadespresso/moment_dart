@@ -252,6 +252,10 @@ void main() {
       expect(m.startOfMinute(), DateTime(2022, 6, 19, 21, 9));
       expect(m.startOfHour(), DateTime(2022, 6, 19, 21));
       expect(m.startOfDay(), DateTime(2022, 6, 19));
+      expect(
+        m.startOfLocalWeek(),
+        DateTime(2022, 6, 13),
+      ); // Monday as start of week
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
 
@@ -265,6 +269,10 @@ void main() {
       expect(m.startOfMinute(), DateTime(2003, 6, 1, 21, 9));
       expect(m.startOfHour(), DateTime(2003, 6, 1, 21));
       expect(m.startOfDay(), DateTime(2003, 6));
+      expect(
+        m.startOfLocalWeek(),
+        DateTime(2003, 6, 1),
+      ); // Sunday as start of week, dervied from en_US locale
       expect(m.startOfMonth(), DateTime(2003, 6));
       expect(m.startOfYear(), DateTime(2003));
 
@@ -280,6 +288,10 @@ void main() {
       expect(m.endOfMinute(), DateTime(2022, 6, 19, 21, 9, 59, 999, 999));
       expect(m.endOfHour(), DateTime(2022, 6, 19, 21, 59, 59, 999, 999));
       expect(m.endOfDay(), DateTime(2022, 6, 19, 23, 59, 59, 999, 999));
+      expect(
+        m.endOfLocalWeek(),
+        DateTime(2022, 6, 19, 23, 59, 59, 999, 999),
+      ); // Week start on Monday by default
       expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
 
@@ -293,6 +305,10 @@ void main() {
       expect(m.endOfMinute(), DateTime(2003, 6, 1, 21, 9, 59, 999, 999));
       expect(m.endOfHour(), DateTime(2003, 6, 1, 21, 59, 59, 999, 999));
       expect(m.endOfDay(), DateTime(2003, 6, 1, 23, 59, 59, 999, 999));
+      expect(
+        m.endOfLocalWeek(),
+        DateTime(2003, 6, 7, 23, 59, 59, 999, 999),
+      ); // Week start on Sunday, derived from en_US locale
       expect(m.endOfMonth(), DateTime(2003, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2003, 12, 31, 23, 59, 59, 999, 999));
 

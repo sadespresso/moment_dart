@@ -295,4 +295,25 @@ void main() {
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "1970년 1월 1일 목요일 오전 12:00");
   });
+
+  test("zn_CN localization calendar test", () {
+    _setLocalization(MomentLocalizations.znCn());
+
+    // A
+    expect(today.calendar(reference: today), "今天 05:33");
+    expect(tomorrow.calendar(reference: today), "明天 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "后天 05:33");
+    expect(yesterday.calendar(reference: today), "昨天 05:33");
+    expect(friOrdayBeforeYesterday.calendar(reference: today), "前天 05:33");
+    // B
+    expect(lastMonday.calendar(reference: today, omitHours: true), "上星期一");
+    expect(lastTuesday.calendar(reference: today, omitHours: true), "上星期二");
+    expect(lastWednesday.calendar(reference: today, omitHours: true), "上星期三");
+    expect(nextWednesday.calendar(reference: today, omitHours: true), "下星期三");
+    expect(nextThursday.calendar(reference: today, omitHours: true), "下星期四");
+    expect(nextFriday.calendar(reference: today, omitHours: true), "下星期五");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "1970年1月1日星期四凌晨12点00");
+  });
 }

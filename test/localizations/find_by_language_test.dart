@@ -36,6 +36,14 @@ void main() {
       MomentLocalizations.byLanguage('it'),
       TypeMatcher<LocalizationItIt>(),
     );
+    expect(
+      MomentLocalizations.byLanguage('en'),
+      TypeMatcher<LocalizationEnUs>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage('zn'),
+      TypeMatcher<LocalizationZnCn>(),
+    );
   });
 
   test("MomentLocalizations.byLanguage strict test", () {
@@ -163,6 +171,36 @@ void main() {
         strict: true,
       ),
       TypeMatcher<LocalizationItIt>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'en',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationEnUs>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'en',
+        countryCode: 'US',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationEnUs>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'zn',
+        countryCode: 'CN',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationZnCn>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'zn',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationZnCn>(),
     );
   });
 }

@@ -29,6 +29,9 @@ export 'es_ES.dart';
 import 'fr_FR.dart';
 export 'fr_FR.dart';
 
+import 'zn_CN.dart';
+export 'zn_CN.dart';
+
 typedef LocalizationFn = MomentLocalization Function();
 
 abstract class MomentLocalizations {
@@ -44,6 +47,7 @@ abstract class MomentLocalizations {
     "es_ES": () => LocalizationEsEs(),
     "fr_FR": () => LocalizationFrFr(),
     "it_IT": () => LocalizationItIt(),
+    "zn_CN": () => LocalizationZnCn(),
   };
 
   /// Retreives locale
@@ -155,4 +159,7 @@ abstract class MomentLocalizations {
 
   /// Italian (Italy)
   static LocalizationItIt it() => LocalizationItIt();
+
+  /// Chinese (China)
+  static LocalizationZnCn znCn() => LocalizationZnCn();
 }

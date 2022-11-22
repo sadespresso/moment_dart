@@ -2427,4 +2427,98 @@ void main() {
       "몇 초",
     );
   });
+
+  test("zn_CN localization duration test", () {
+    final MomentLocalization l10n = LocalizationZnCn();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true),
+      "1 年 2 个月",
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true),
+      "3 年",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d, dropPrefixOrSuffix: true),
+      "3 个月 17 天",
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true),
+      "4 个月",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+      ),
+      "3 周 2 天",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, dropPrefixOrSuffix: true),
+      "23 天",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: UnitStringForm.mid,
+      ),
+      "4 周",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "28 天",
+    );
+
+    expect(
+      l10n.duration(_6d_7h,
+          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "6 天 7 小时",
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "6 天",
+    );
+
+    expect(
+      l10n.duration(_8h_8m,
+          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "8 小时 8 分钟",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "8 小时",
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      "48 分钟 42 秒",
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true),
+      "35 分钟",
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true),
+      "42 秒",
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true),
+      "几秒",
+    );
+  });
 }

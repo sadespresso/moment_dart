@@ -18,8 +18,9 @@ mixin ComplexCalendar on MomentLocalization {
     Moment moment, {
     Moment? reference,
     int startOfWeek = DateTime.monday,
-    bool omitHours = false,
     String? customFormat,
+    bool omitHours = false,
+    bool omitHoursIfDistant = true,
   }) {
     reference ??= Moment.now();
 
@@ -37,6 +38,10 @@ mixin ComplexCalendar on MomentLocalization {
         final Moment weekBefore = reference.subtract(const Duration(days: 7));
 
         if (moment.isBefore(weekBefore)) {
+          if (omitHoursIfDistant) {
+            omitHours = true;
+          }
+
           dateString = moment.format(
               customFormat ?? MomentLocalization.localizationDefaultDateFormat);
         } else {
@@ -52,6 +57,10 @@ mixin ComplexCalendar on MomentLocalization {
         if (moment.isBefore(weekAfter)) {
           dateString = complexCalendarData.keywords.nextWeekday(moment);
         } else {
+          if (omitHoursIfDistant) {
+            omitHours = true;
+          }
+
           dateString = moment.format(
               customFormat ?? MomentLocalization.localizationDefaultDateFormat);
         }

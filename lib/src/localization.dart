@@ -112,8 +112,9 @@ abstract class MomentLocalization {
     Moment moment, {
     Moment? reference,
     int startOfWeek = DateTime.monday,
-    bool omitHours = false,
     String? customFormat,
+    bool omitHours = false,
+    bool omitHoursIfDistant = true,
   }) {
     // After this check, we can use `_calendarData` for non-null data
     if (calendarData == null) {
@@ -136,6 +137,9 @@ abstract class MomentLocalization {
         final Moment weekBefore = reference.subtract(const Duration(days: 7));
 
         if (moment.isBefore(weekBefore)) {
+          if (omitHoursIfDistant) {
+            omitHours = true;
+          }
           dateString =
               moment.format(customFormat ?? localizationDefaultDateFormat);
         } else {
@@ -152,6 +156,9 @@ abstract class MomentLocalization {
         if (moment.isBefore(weekAfter)) {
           dateString = weekdayName[moment.weekday]!;
         } else {
+          if (omitHoursIfDistant) {
+            omitHours = true;
+          }
           dateString =
               moment.format(customFormat ?? localizationDefaultDateFormat);
         }
