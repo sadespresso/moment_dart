@@ -14,7 +14,8 @@ extension StartOfUnit on DateTime {
       case DurationUnit.microsecond:
         return clone();
       case DurationUnit.week:
-        throw MomentException("endOf(DurationUnit.week) is not supported");
+        throw MomentException(
+            "endOf(DurationUnit.week) is not supported on DateTime. You can use Moment(...).startOf(DurationUnit.week)");
       case DurationUnit.millisecond:
         return DateTime(year, month, day, hour, minute, second, millisecond);
       case DurationUnit.second:
@@ -66,6 +67,23 @@ extension StartOfUnit on DateTime {
   ///
   /// When UTC DateTime is passed, it's converted into Local DateTime first.
   DateTime startOfDay() => startOf(DurationUnit.day);
+
+  /// Returns start of the week based on [weekStart]
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime startOfLocalWeek([int weekStart = DateTime.monday]) {
+    if (isUtc) return toLocal().startOfLocalWeek(weekStart);
+
+    int delta = weekday - weekStart;
+
+    if (delta < 0) {
+      delta += 7;
+    }
+
+    return subtract(Duration(days: delta)).startOfDay();
+  }
 
   /// Returns start of the month
   ///
@@ -125,6 +143,17 @@ extension StartOfUnitMoment on Moment {
   ///
   /// When UTC DateTime is passed, it's converted into Local DateTime first.
   Moment startOfDay() => startOf(DurationUnit.day);
+
+  /// Returns start of the week based on [localization.weekStart]
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  Moment startOfLocalWeek() {
+    return forcedSuperType
+        .startOfLocalWeek(localization.weekStart)
+        .toMoment(localization: localization);
+  }
 
   /// Returns start of the month
   ///

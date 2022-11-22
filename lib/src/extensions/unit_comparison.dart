@@ -1,4 +1,4 @@
-import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
+import 'package:moment_dart/moment_dart.dart';
 
 extension UnitComparision on DateTime {
   /// [unit]: 0-7
@@ -86,4 +86,20 @@ extension UnitComparision on DateTime {
 
   /// Returns `this.isAtSameMomentAs(other)`
   bool isAtSameMicrosecondAs(DateTime other) => isAtSameMomentAs(other);
+
+  /// Returns whether [this] and [other] is in same **local** week. Local week is determined by [weekStart], defaults to [DateTime.monday]
+  bool isSameLocalWeekAs(DateTime other, [int weekStart = DateTime.monday]) {
+    final DateTime startOfWeek = startOfLocalWeek(weekStart);
+    if (other < startOfWeek) return false;
+
+    final DateTime endOfWeek = endOfLocalWeek(weekStart);
+    return other <= endOfWeek;
+  }
+}
+
+extension UnitComparisonMoment on Moment {
+  /// Returns whether [this] and [other] is in same **local** week. Local week is determined by [localization.weekStart], defaults to [DateTime.monday]
+  bool isSameLocalWeekAs(DateTime other) {
+    return forcedSuperType.isSameLocalWeekAs(other, localization.weekStart);
+  }
 }

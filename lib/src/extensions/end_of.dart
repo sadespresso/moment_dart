@@ -15,7 +15,8 @@ extension EndOfUnit on DateTime {
         throw MomentException(
             "Illegally called moment.endOf(DurationUnit.microsecond) when microsecond is the smallest unit");
       case DurationUnit.week:
-        throw MomentException("endOf(DurationUnit.week) is not supported");
+        throw MomentException(
+            "endOf(DurationUnit.week) is not supported on DateTime object. You can use it on Moment objects");
       case DurationUnit.millisecond:
         return DateTime(
             year, month, day, hour, minute, second, millisecond, 999);
@@ -95,6 +96,22 @@ extension EndOfUnit on DateTime {
   /// When UTC DateTime is passed, it's converted into Local DateTime first.
   DateTime endOfDay() => endOf(DurationUnit.day);
 
+  /// Returns start of the week based on [weekStart]
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  DateTime endOfLocalWeek([int weekStart = DateTime.monday]) {
+    if (isUtc) return toLocal().endOfLocalWeek(weekStart);
+
+    int delta = (weekStart + 6) - weekday;
+    if (delta > 7) {
+      delta -= 7;
+    }
+
+    return add(Duration(days: delta)).endOfDay();
+  }
+
   /// Returns end of the month
   ///
   /// ⚠️ Only works on local time zone dates
@@ -153,6 +170,17 @@ extension EndOfUnitMoment on Moment {
   ///
   /// When UTC DateTime is passed, it's converted into Local DateTime first.
   Moment endOfDay() => endOf(DurationUnit.day);
+
+  /// Returns end of the week based on [localization.weekStart]
+  ///
+  /// ⚠️ Only works on local time zone dates
+  ///
+  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  Moment endOfLocalWeek() {
+    return forcedSuperType
+        .endOfLocalWeek(localization.weekStart)
+        .toMoment(localization: localization);
+  }
 
   /// Returns end of the month
   ///
