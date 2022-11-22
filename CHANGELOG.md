@@ -1,3 +1,9 @@
+## 0.11.0
+
+- Calendar no longer includes time when the date is too distant (distant that it's formatted with 'l' token)
+- Added localization `zn_CN`
+- Added `DateTime.startOfLocalWeek(int weekStart)`, `Moment.startOfLocalWeek()`, endOf counterparts
+
 ## 0.10.5
 
 - Fixed am/pm suffixes for `mn_Mong_MN` and `mn_Qaaq_MN`
