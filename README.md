@@ -125,7 +125,7 @@ otherBday.isAtSameMonthAs(spiritRoverOnMars); // true
 otherBday.isAtSameYearAs(spiritRoverOnMars); // true
 ```
 
-⚠️ It takes timezones into account
+⚠️ It converts both `Moment`s to UTC beforehand
 
 ```dart
 final DateTime bday = DateTime(2003,6,1,5,33); // 2003-05-31 21:33:00.000Z (Local time zone was GMT+08:00)
@@ -206,15 +206,15 @@ Localizations are classes that extend `MomentLocalization`
 
 | Class                | LCID     | Language                                       | Country       |
 | -------------------- | -------- | ---------------------------------------------- | ------------- |
-| LocalizationEnUs     | EnUs     | English                                        | United States |
-| LocalizationKoKr     | KoKr     | Korean                                         | South Korea   |
-| LocalizationFrFr     | FrFr     | French                                         | France        |
-| LocalizationEsEs     | EsEs     | Spanish                                        | Spain         |
-| LocalizationItIt     | ItIt     | Italian                                        | Italy         |
-| LocalizationDeDe     | DeDe     | German                                         | Germany       |
-| LocalizationMnMn     | MnMn     | Mongolian                                      | Mongolia      |
-| LocalizationMnMongMn | MnMongMn | Traditional Mongolian                          | Mongolia      |
-| LocalizationMnQaaqMn | MnQaaqMn | Traditional Mongolian with Traditional Numbers | Mongolia      |
+| LocalizationEnUs     | enUS     | English                                        | United States |
+| LocalizationKoKr     | koKR     | Korean                                         | South Korea   |
+| LocalizationFrFr     | frFR     | French                                         | France        |
+| LocalizationEsEs     | esES     | Spanish                                        | Spain         |
+| LocalizationItIt     | itIT     | Italian                                        | Italy         |
+| LocalizationDeDe     | deDE     | German                                         | Germany       |
+| LocalizationMnMn     | mnMN     | Mongolian                                      | Mongolia      |
+| LocalizationMnMongMn | mnMongMN | Traditional Mongolian                          | Mongolia      |
+| LocalizationMnQaaqMn | mnQaaqMN | Traditional Mongolian with Traditional Numbers | Mongolia      |
 
 ## Batteries included 🔋
 
