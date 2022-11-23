@@ -9,10 +9,6 @@ extension UnitComparision on DateTime {
     DurationUnit unit, {
     bool enforceUTC = false,
   }) {
-    if (unit == DurationUnit.microsecond) {
-      return isAtSameMomentAs(other);
-    }
-
     late final DateTime self;
 
     if (enforceUTC) {

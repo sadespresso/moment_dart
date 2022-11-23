@@ -1,6 +1,6 @@
 ## 0.12.0
 
-> This release has breaking change!
+> This release has breaking changes!
 - [BREAKING] `isAtSameUnit___As(other)` now doesn't take timezones into account. If you want the old behaviour, use `isAtSameUnit___As(other, enforceUTC: true)`
 - [BREAKING] Renamed `MomentLocalizations.deDE()` to `.de()`
 - [BREAKING] Removed `Moment().elapsed()` for sake of `Moment().fromPrecise()`

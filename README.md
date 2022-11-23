@@ -33,6 +33,7 @@ import 'package:moment_dart/moment_dart.dart';
 Create Moment instance
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
 
 final now = Moment.now();
 
@@ -41,7 +42,7 @@ final epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 /// Using extension (DateTime.toMoment())
 final bday = DateTime(2003, 6, 1, 5, 1).toMoment();
 /// or from [DateTime]
-final bday = Moment(DateTime(2003, 6, 1, 5, 1));
+final bday2 = Moment(DateTime(2003, 6, 1, 5, 1));
 ```
 
 Please note that `Moment` is subclass of `DateTime`. (It is **immutable**, like its superclass)
@@ -57,6 +58,8 @@ assert(now is Moment); // true
 ### Relative durations
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 Moment yesterday = Moment.now() - Duration(days: 1, hours: 2); // -26 hours
 Moment in2h47m =
     Moment.now() + Duration(hours: 2, minutes: 47, seconds: 15);
@@ -76,6 +79,8 @@ fourWeeksAgo.fromNow(form: UnitStringForm.short); // 1mo ago
 Exact same example as above, but precise duration strings
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 Moment yesterday = Moment.now() - Duration(days: 1, hours: 2);
 Moment in2h47m =
     Moment.now() + Duration(hours: 2, minutes: 47, seconds: 15);
@@ -97,7 +102,7 @@ OR you can use it on `Duration` objects
 
 ```dart
 Duration(days: 67, hours: 3, minutes: 2).toDurationString(
-  MomentLocalizations.deDE(),
+  MomentLocalizations.de(),
   form: UnitStringForm.mid,
 ); // in 2 Mo. 7 Tg.
 
@@ -112,6 +117,8 @@ Duration(microseconds: DateTime.now().microsecondsSinceEpoch).toDurationString(
 
 ### Calendar dates
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+final now = Moment.now(); // Today at 10:02AM
 
 now.subtract(const Duration(days: 1)).calendar(); // Yesterday at 10:02AM
 now.calendar();                                   // Today at 10:02AM
@@ -127,6 +134,7 @@ now.calendar(
 
 ### Start of year/month/.../moment
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
 final Moment tada =
       DateTime(2022, 6, 19, 21, 9, 33).toMoment(); // June 19 2022 09:09 PM
 
@@ -139,9 +147,11 @@ tada.startOfDay(); // June 19 2022 12:00 AM
 
 **Works on `DateTime` and `Moment`**
 
-We're always dealing with ***local*** date times here. If the date is UTC, it's converted to local beforehand.
+⚠️ Do check whether your `DateTime` is in local timezone
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 final Moment tada =
       DateTime(2022, 6, 19, 21, 9, 33).toMoment(); // June 19 2022 09:09 PM
 
@@ -150,7 +160,7 @@ tada.nextMonday(); // June 20 2022 09:09 PM
 tada.lastMonday(); // June 13 2022 09:09 PM
 ```
 
-Note that ***this Sunday*** is neither last or next Sunday
+⚠️ Note that ***this Sunday*** is neither last or next Sunday
 
 ```dart
 tada.lastSunday(); // June 12 2022 09:09 PM
@@ -162,6 +172,8 @@ tada.lastSunday(); // June 12 2022 09:09 PM
 
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 final DateTime otherBday = DateTime(2003,6,19);
 final Moment spiritRoverOnMars = DateTime(2003,6,10).toMoment();
 
@@ -169,13 +181,15 @@ otherBday.isAtSameMonthAs(spiritRoverOnMars); // true
 otherBday.isAtSameYearAs(spiritRoverOnMars); // true
 ```
 
-⚠️ It converts both `Moment`s to UTC beforehand
+⚠️ It assumes that both `DateTime` is in same timezone
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 final DateTime bday = DateTime(2003,6,1,5,33); // 2003-05-31 21:33:00.000Z (Local time zone was GMT+08:00)
 final Moment spiritRoverOnMars = DateTime(2003,6,10).toMoment(); // 2003-06-09 16:00:00.000Z
 
-bday.isAtSameMonthAs(spiritRoverOnMars); // false; didn't happen in same month. Bday was in May, Spirit Rover landed in June.
+bday.isAtSameMonthAs(spiritRoverOnMars); // false; didn't happen in same month. In UTC+8 timezone, bday was in May, Spirit Rover landed in June.
 bday.isAtSameYearAs(spiritRoverOnMars); // true
 ```
 
@@ -248,17 +262,17 @@ Localizations are classes that extend `MomentLocalization`
 
 [See how you can create your own localization](#creating-your-own-localization-)
 
-| Class                | LCID     | Language                                       | Country       |
-| -------------------- | -------- | ---------------------------------------------- | ------------- |
-| LocalizationEnUs     | enUS     | English                                        | United States |
-| LocalizationKoKr     | koKR     | Korean                                         | South Korea   |
-| LocalizationFrFr     | frFR     | French                                         | France        |
-| LocalizationEsEs     | esES     | Spanish                                        | Spain         |
-| LocalizationItIt     | itIT     | Italian                                        | Italy         |
-| LocalizationDeDe     | deDE     | German                                         | Germany       |
-| LocalizationMnMn     | mnMN     | Mongolian                                      | Mongolia      |
-| LocalizationMnMongMn | mnMongMN | Traditional Mongolian                          | Mongolia      |
-| LocalizationMnQaaqMn | mnQaaqMN | Traditional Mongolian with Traditional Numbers | Mongolia      |
+| Class                | LCID       | Language                                       | Country       |
+| -------------------- | ---------- | ---------------------------------------------- | ------------- |
+| LocalizationEnUs     | en_US      | English                                        | United States |
+| LocalizationKoKr     | ko_KR      | Korean                                         | South Korea   |
+| LocalizationFrFr     | fr_FR      | French                                         | France        |
+| LocalizationEsEs     | es_ES      | Spanish                                        | Spain         |
+| LocalizationItIt     | it_IT      | Italian                                        | Italy         |
+| LocalizationDeDe     | de_DE      | German                                         | Germany       |
+| LocalizationMnMn     | mn_MN      | Mongolian                                      | Mongolia      |
+| LocalizationMnMongMn | mn_Mong_MN | Traditional Mongolian                          | Mongolia      |
+| LocalizationMnQaaqMn | mn_Qaaq_MN | Traditional Mongolian with Traditional Numbers | Mongolia      |
 
 ## Batteries included 🔋
 
@@ -296,10 +310,12 @@ Comparison can be called on either `Moment` or `DateTime`. Accounts UTC/Local ti
 Available for all units: year, month, day, hour, minute, second, millisecond, microsecond
 
 ```dart
+// >>> In this example, local timezone is UTC+8 <<<
+
 final DateTime local = DateTime(1972, 1, 1, 7); // Jan 1, 1972 at 7AM @GMT+8
 final DateTime utc = local.toUtc();             // Dec 31, 1971 at 11PM @UTC
 
-local.isAtSameYearAs(utc); // true;
+local.isAtSameYearAs(utc); // false; ⚠️ This will be different depending on the local timezone offset
 
 ```
 

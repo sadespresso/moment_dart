@@ -71,15 +71,21 @@ void main() {
           .toMoment()
           .toUtc(); // May 31 2003 09:07 PM
 
+      final bool timezoneDifferenceDependent = local.timeZoneOffset <= delta;
+
       expect(local.isAtSameYearAs(utc), true); // "same year"
       expect(local.isAtSameMonthAs(utc),
-          local.timeZoneOffset < delta); // "same month"
+          timezoneDifferenceDependent); // "same month"
       expect(
-          local.isAtSameDayAs(utc), local.timeZoneOffset < delta); // "same day"
-      expect(local.isAtSameHourAs(utc), false); // "same hour"
-      expect(local.isAtSameMinuteAs(utc), false); // "same minute"
-      expect(local.isAtSameSecondAs(utc), false); // "same second"
-      expect(local.isAtSameMillisecondAs(utc), false); // "same millis"
+          local.isAtSameDayAs(utc), timezoneDifferenceDependent); // "same day"
+      expect(local.isAtSameHourAs(utc),
+          timezoneDifferenceDependent); // "same hour"
+      expect(local.isAtSameMinuteAs(utc),
+          timezoneDifferenceDependent); // "same minute"
+      expect(local.isAtSameSecondAs(utc),
+          timezoneDifferenceDependent); // "same second"
+      expect(local.isAtSameMillisecondAs(utc),
+          timezoneDifferenceDependent); // "same millis"
       expect(local.isAtSameMicrosecondAs(utc), false); // "same microsecond"
       expect(local.isAtSameMomentAs(utc), false); // "same microsecond"
     });

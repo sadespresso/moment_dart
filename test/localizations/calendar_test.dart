@@ -5,9 +5,7 @@ import 'package:test/scaffolding.dart';
 void main() {
   // A
   var today = Moment.parse("2003-06-01T05:33:00.000Z"); // Sunday
-  print("today.isUtc: ${today.isUtc}");
   var tomorrow = today.add(const Duration(days: 1));
-  print("tomorrow.isUtc: ${tomorrow.isUtc}");
   var tueOrDayAfterTomorrow = today.add(const Duration(days: 2));
   var yesterday = today.subtract(const Duration(days: 1));
   var friOrdayBeforeYesterday = today.subtract(const Duration(days: 2));
