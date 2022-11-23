@@ -4,12 +4,8 @@ include: package:lints/recommended.yaml
 
 linter:
   rules:
-    # - camel_case_types
 analyzer:
   exclude:
-    - test
-    - test/*
-    - test/**/*
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints
 

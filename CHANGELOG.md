@@ -1,3 +1,11 @@
+## 0.12.0
+
+> This release has breaking change!
+- [BREAKING] `isAtSameUnit___As(other)` now doesn't take timezones into account. If you want the old behaviour, use `isAtSameUnit___As(other, enforceUTC: true)`
+- [BREAKING] Renamed `MomentLocalizations.deDE()` to `.de()`
+- [BREAKING] Removed `Moment().elapsed()` for sake of `Moment().fromPrecise()`
+- All localizations are now lazy-loaded Singletons
+
 ## 0.11.0
 
 - Calendar no longer includes time when the date is too distant (distant that it's formatted with 'l' token)

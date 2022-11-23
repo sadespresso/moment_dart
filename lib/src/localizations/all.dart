@@ -146,7 +146,7 @@ abstract class MomentLocalizations {
   static LocalizationKo ko() => LocalizationKo();
 
   /// German (Germany - Standard)
-  static LocalizationDeDe deDE() => LocalizationDeDe();
+  static LocalizationDeDe de() => LocalizationDeDe();
 
   /// Spanish (Spain)
   static LocalizationEsEs es() => LocalizationEsEs();

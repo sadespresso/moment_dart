@@ -11,8 +11,10 @@ class Moment extends DateTime {
 
   /// A [Moment] created using given `dateTime`;
   Moment(DateTime dateTime, {MomentLocalization? localization})
-      : super.fromMicrosecondsSinceEpoch(dateTime.microsecondsSinceEpoch,
-            isUtc: dateTime.isUtc) {
+      : super.fromMicrosecondsSinceEpoch(
+          dateTime.microsecondsSinceEpoch,
+          isUtc: dateTime.isUtc,
+        ) {
     this.localization = localization ?? defaultLocalization;
   }
 
@@ -69,6 +71,11 @@ class Moment extends DateTime {
 
   List<FormatterToken> get _fts => localization.tokens;
 
+  /// Formats date according to [payload].
+  ///
+  /// You may want to check if your [DateTime] object is local or not.
+  ///
+  /// Set [forceLocal] to true to enforce local timezone
   String format([
     String payload = MomentLocalization.localizationDefaultDateFormat,
     bool forceLocal = false,
@@ -156,7 +163,7 @@ class Moment extends DateTime {
   String formatTimeWithSeconds([bool forceLocal = false]) =>
       format("LTS", forceLocal);
 
-  /// Localization Default formatters
+  // Localization Default formatters
   // ignore: non_constant_identifier_names
   String get LL => format("LL");
   String get ll => format("ll");
@@ -294,41 +301,6 @@ class Moment extends DateTime {
         dropPrefixOrSuffix: dropPrefixOrSuffix,
       );
 
-  /// This will return **precise** durations. For imprecise durations, use [from()]
-  ///
-  /// e.g.:
-  /// * 2 minutes 39 seconds
-  /// * 2m39s
-  ///
-  /// Params:
-  ///
-  /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
-  /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
-  /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
-  /// * [round] - rounds the smallest unit if true, or truncates. Defaults to true.
-  /// * [omitZeros] - unit will be omitted if equal to zero. For example, `DurationFormat.md` may return "3 months", but not "3 months 0 days"
-  /// * [includeWeeks] - Whether `week` should be treated as duration unit. Only applicable when using [DurationFormat.auto]
-  /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
-  String elapsed(
-    DateTime since, {
-    bool round = true,
-    bool omitZeros = true,
-    bool includeWeeks = true,
-    UnitStringForm form = UnitStringForm.full,
-    String? delimiter,
-    DurationFormat format = DurationFormat.auto,
-  }) =>
-      fromPrecise(
-        DateTime.now(),
-        round: round,
-        omitZeros: omitZeros,
-        includeWeeks: includeWeeks,
-        form: form,
-        delimiter: delimiter,
-        format: format,
-        dropPrefixOrSuffix: true,
-      );
-
   /// Returns precise duration for [duration] in [localization]
   ///
   /// e.g.:
@@ -355,8 +327,8 @@ class Moment extends DateTime {
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
   }) =>
-      localization.duration(
-        duration,
+      duration.toDurationString(
+        localization,
         round: round,
         omitZeros: omitZeros,
         includeWeeks: includeWeeks,

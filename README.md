@@ -7,6 +7,7 @@
 
 Convert `DateTime` to human-readable text ✅
   - [Relative duration](#relative-durations)
+  - [Precise duration](#precise-durations)
   - [Calendar text](#calendar-dates)
   - [Formatted dates](#formatting)
   - [Multiple localizations](#changing-localization-)
@@ -56,14 +57,57 @@ assert(now is Moment); // true
 ### Relative durations
 
 ```dart
-final Moment yesterday = Moment.now() - Duration(days: 1);
+Moment yesterday = Moment.now() - Duration(days: 1, hours: 2); // -26 hours
+Moment in2h47m =
+    Moment.now() + Duration(hours: 2, minutes: 47, seconds: 15);
+Moment fourWeeksAgo = Moment.now() - Duration(days: 28);
 
-yesterday.fromNow(); // a day ago
+// You can omit prefix/suffix, or change forms
+yesterday.fromNow(
+  dropPrefixOrSuffix: true,
+  form: UnitStringForm.full,
+); // a day
+in2h47m.fromNow(form: UnitStringForm.mid); // in 3 hr
+fourWeeksAgo.fromNow(form: UnitStringForm.short); // 1mo ago
+```
 
-// You can omit prefix/suffix
-yesterday.fromNow(true); // a day
+### Precise durations
 
-yesterday.from(yesterday - Duration(days: 365)); // a year ago
+Exact same example as above, but precise duration strings
+
+```dart
+Moment yesterday = Moment.now() - Duration(days: 1, hours: 2);
+Moment in2h47m =
+    Moment.now() + Duration(hours: 2, minutes: 47, seconds: 15);
+Moment fourWeeksAgo = Moment.now() - Duration(days: 28);
+
+// You can omit prefix/suffix, or change forms
+String s1 = yesterday.fromNowPrecise(
+  dropPrefixOrSuffix: true,
+  form: UnitStringForm.full,
+); // a day
+String s2 = in2h47m.fromNowPrecise(form: UnitStringForm.mid); // in 2 hr 47 min
+String s3 = fourWeeksAgo.fromNowPrecise(
+  form: UnitStringForm.short,
+  includeWeeks: true,
+); // 4w ago
+```
+
+OR you can use it on `Duration` objects
+
+```dart
+Duration(days: 67, hours: 3, minutes: 2).toDurationString(
+  MomentLocalizations.deDE(),
+  form: UnitStringForm.mid,
+); // in 2 Mo. 7 Tg.
+
+// EPOCH
+Duration(microseconds: DateTime.now().microsecondsSinceEpoch).toDurationString(
+  MomentLocalizations.es(),
+  format: DurationFormat.all,
+  round: false,
+  omitZeros: false,
+); // en 52 años 11 meses 9 días 10 horas 53 minutos 53 segundos
 ```
 
 ### Calendar dates

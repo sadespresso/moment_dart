@@ -4,18 +4,22 @@ extension UnitComparision on DateTime {
   /// [unit]: 0-7
   ///
   /// year,month,day,hour,minute,second,mircos,millis
-  bool _isAtSameUnitAs(DateTime other, DurationUnit unit) {
+  bool _isAtSameUnitAs(
+    DateTime other,
+    DurationUnit unit, {
+    bool enforceUTC = false,
+  }) {
     if (unit == DurationUnit.microsecond) {
       return isAtSameMomentAs(other);
     }
 
     late final DateTime self;
 
-    if (other.isUtc) {
+    if (enforceUTC) {
       self = toUtc();
-    } else {
-      self = toUtc().add(other.timeZoneOffset);
       other = other.toUtc();
+    } else {
+      self = this;
     }
 
     if (other.year != self.year) return false;
@@ -44,51 +48,131 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameYearAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.year);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameYearAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.year,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMonthAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.month);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameMonthAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.month,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same day, month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameDayAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.day);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameDayAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.day,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same hour, day, month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameHourAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.hour);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameHourAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.hour,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same minute, hour, day, month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMinuteAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.minute);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameMinuteAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.minute,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same second, minute, hour, day, month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameSecondAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.second);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameSecondAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.second,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns if two dates are in same millisecond, second, minute, hour, day, month, year.
   ///
-  /// The comparison takes UTC/local timezone into account.
-  bool isAtSameMillisecondAs(DateTime other) =>
-      _isAtSameUnitAs(other, DurationUnit.millisecond);
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameMillisecondAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.millisecond,
+        enforceUTC: enforceUTC,
+      );
 
-  /// Returns `this.isAtSameMomentAs(other)`
-  bool isAtSameMicrosecondAs(DateTime other) => isAtSameMomentAs(other);
+  /// Returns if two dates are in same microsecond, millisecond, second, minute, hour, day, month, year.
+  ///
+  /// Assumes both [this] and [other] has same timezone
+  ///
+  /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
+  bool isAtSameMicrosecondAs(
+    DateTime other, {
+    bool enforceUTC = false,
+  }) =>
+      _isAtSameUnitAs(
+        other,
+        DurationUnit.microsecond,
+        enforceUTC: enforceUTC,
+      );
 
   /// Returns whether [this] and [other] is in same **local** week. Local week is determined by [weekStart], defaults to [DateTime.monday]
-  bool isSameLocalWeekAs(DateTime other, [int weekStart = DateTime.monday]) {
+  ///
+  /// Assumes both [this] and [other] is in local timezone.
+  bool isSameLocalWeekAs(
+    DateTime other, [
+    int weekStart = DateTime.monday,
+  ]) {
     final DateTime startOfWeek = startOfLocalWeek(weekStart);
     if (other < startOfWeek) return false;
 
@@ -99,7 +183,8 @@ extension UnitComparision on DateTime {
 
 extension UnitComparisonMoment on Moment {
   /// Returns whether [this] and [other] is in same **local** week. Local week is determined by [localization.weekStart], defaults to [DateTime.monday]
-  bool isSameLocalWeekAs(DateTime other) {
-    return forcedSuperType.isSameLocalWeekAs(other, localization.weekStart);
-  }
+  ///
+  /// Assumes both [this] and [other] is in local timezone.
+  bool isSameLocalWeekAs(DateTime other) =>
+      forcedSuperType.isSameLocalWeekAs(other, localization.weekStart);
 }

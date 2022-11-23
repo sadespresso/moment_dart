@@ -2,6 +2,8 @@ import 'package:moment_dart/src/extensions/benefits.dart';
 import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 
 /// [units] must be in descending order
+///
+/// ___Anything more precise than [DurationUnit.second] is not yet implemented___
 class DurationFormat {
   final List<DurationUnit> units;
 
@@ -23,7 +25,7 @@ class DurationFormat {
     Duration duration, [
     bool includeWeeks = false,
   ]) {
-    // I don't really want to deal with minus sign when making comparisons.
+    // I really don't want to deal with negative numbers
     duration = duration.abs();
 
     if (duration.inYears >= 1) {
@@ -46,30 +48,40 @@ class DurationFormat {
   /// Tries to find the most optimal format for the duration
   static const DurationFormat auto = DurationFormat([]);
 
-  /// X year(s) y months
+  // year month day hour minute second
+  static const DurationFormat all = DurationFormat([
+    DurationUnit.year,
+    DurationUnit.month,
+    DurationUnit.day,
+    DurationUnit.hour,
+    DurationUnit.minute,
+    DurationUnit.second,
+  ]);
+
+  /// **X** year(s) **y** months
   static const DurationFormat ym =
       DurationFormat([DurationUnit.year, DurationUnit.month]);
 
-  /// X month(s) y day(s)
+  /// **X** month(s) **y** day(s)
   static const DurationFormat md =
       DurationFormat([DurationUnit.month, DurationUnit.day]);
 
-  /// X week(s) y day(s)
+  /// **X** week(s) **y** day(s)
   static const DurationFormat wd =
       DurationFormat([DurationUnit.week, DurationUnit.day]);
 
-  /// X day(s) y hour(s)
+  /// **X** day(s) **y** hour(s)
   static const DurationFormat dh =
       DurationFormat([DurationUnit.day, DurationUnit.hour]);
 
-  /// X minute(s) y second(s)
+  /// **X** minute(s) **y** second(s)
   static const DurationFormat hm =
       DurationFormat([DurationUnit.hour, DurationUnit.minute]);
 
-  /// X minute(s) y second(s)
+  /// **X** minute(s) **y** second(s)
   static const DurationFormat ms =
       DurationFormat([DurationUnit.minute, DurationUnit.second]);
 
-  /// X second(s)
+  /// **X** second(s)
   static const DurationFormat s = DurationFormat([DurationUnit.second]);
 }

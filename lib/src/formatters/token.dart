@@ -16,7 +16,7 @@ enum FormatterToken {
   ///
   /// 1st 2nd ... 11th 12th
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   Mo,
 
   /// [Month]
@@ -28,14 +28,14 @@ enum FormatterToken {
   ///
   /// Jan Feb ... Nov Dec
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   MMM,
 
   /// [Month]
   ///
   /// January February ... November December
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   MMMM,
 
   /// [Quarter]
@@ -47,7 +47,7 @@ enum FormatterToken {
   ///
   /// 1st 2nd 3rd 4th
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   Qo,
 
   /// [Day of Month]
@@ -59,7 +59,7 @@ enum FormatterToken {
   ///
   /// 1st 2nd ... 30th 31st
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   Do,
 
   /// [Day of Month]
@@ -76,7 +76,7 @@ enum FormatterToken {
   ///
   /// 1st 2nd ... 364th 365th
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   DDDo,
 
   /// [Day of Year]
@@ -99,28 +99,28 @@ enum FormatterToken {
   ///
   /// Please note that `do` is dart language keyword
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   d_o,
 
   /// [Day of Week]
   ///
   /// Mo Tu ... Sa Su
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   dd,
 
   /// [Day of Week]
   ///
   /// Mon Tue ... Sat Sun
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   ddd,
 
   /// [Day of Week]
   ///
   /// Monday ... Saturday Sunday
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   dddd,
 
   /// [Day of Week (ISO)]
@@ -139,7 +139,7 @@ enum FormatterToken {
   ///
   /// 1st 2nd ... 52nd 53rd
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   wo,
 
   /// [Week of Year (ISO)]
@@ -217,14 +217,14 @@ enum FormatterToken {
   ///
   /// AM PM (uppercase)
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   A,
 
   /// [AM/PM]
   ///
   /// am pm (lowercase)
   ///
-  /// **Should reimplement**
+  /// **Not part of default formatters**. Therefore, must be implemented in the localization
   a,
 
   /// [Hour]

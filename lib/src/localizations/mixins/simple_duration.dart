@@ -20,11 +20,11 @@ mixin SimpleDuration on SimpleUnits {
   ///
   /// Used to connect last two elements of duration list items. Will be appended after [durationDelimiter] For example:
   ///
-  /// When null:
+  /// When null -->
   /// 2 minutes 3 seconds
   ///
-  /// When equal to 'and'
-  /// 2 minutes and 3 seconds
+  /// When equal to 'and' -->
+  /// 2 minutes _and_ 3 seconds
   String? get delimeterConnector => null;
 
   @override
