@@ -13,7 +13,15 @@ import 'package:moment_dart/src/types.dart';
 /// Country: France
 class LocalizationFrFr extends MomentLocalization
     with MonthNames, Ordinal, SimpleUnits, SimpleRelative, SimpleDuration {
-  LocalizationFrFr() : super();
+  static LocalizationFrFr? _instance;
+
+  LocalizationFrFr._internal() : super();
+
+  factory LocalizationFrFr() {
+    _instance ??= LocalizationFrFr._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "Français";

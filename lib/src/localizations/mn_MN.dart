@@ -11,7 +11,15 @@ import 'package:moment_dart/src/types.dart';
 /// Country: Mongolia
 class LocalizationMnMn extends MomentLocalization
     with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration {
-  LocalizationMnMn() : super();
+  static LocalizationMnMn? _instance;
+
+  LocalizationMnMn._internal() : super();
+
+  factory LocalizationMnMn() {
+    _instance ??= LocalizationMnMn._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "Монгол хэл";

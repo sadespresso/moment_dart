@@ -25,7 +25,15 @@ class LocalizationZnCn extends MomentLocalization
         SimpleRelative,
         SimpleDuration,
         ComplexCalendar {
-  LocalizationZnCn() : super();
+  static LocalizationZnCn? _instance;
+
+  LocalizationZnCn._internal() : super();
+
+  factory LocalizationZnCn() {
+    _instance ??= LocalizationZnCn._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "中文";

@@ -21,8 +21,6 @@ import 'package:moment_dart/src/types.dart';
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
-  MomentLocalization();
-
   static const int maxInt =
       (double.infinity is int) ? double.infinity as int : ~minInt;
   static const int minInt =

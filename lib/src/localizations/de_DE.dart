@@ -13,7 +13,15 @@ import 'package:moment_dart/src/types.dart';
 /// Country: Germany
 class LocalizationDeDe extends MomentLocalization
     with Ordinal, MonthNames, SimpleUnits, SimpleRelative, SimpleDuration {
-  LocalizationDeDe() : super();
+  static LocalizationDeDe? _instance;
+
+  LocalizationDeDe._internal() : super();
+
+  factory LocalizationDeDe() {
+    _instance ??= LocalizationDeDe._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "Deutsch";

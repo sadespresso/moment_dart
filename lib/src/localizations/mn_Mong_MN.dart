@@ -11,7 +11,15 @@ import 'package:moment_dart/src/types.dart';
 /// Country: Mongolia
 class LocalizationMnMongMn extends MomentLocalization
     with Ordinal, SimpleUnits, MnMongMnUnits, MnMongMnDuration {
-  LocalizationMnMongMn() : super();
+  static LocalizationMnMongMn? _instance;
+
+  LocalizationMnMongMn._internal() : super();
+
+  factory LocalizationMnMongMn() {
+    _instance ??= LocalizationMnMongMn._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ";
@@ -166,4 +174,98 @@ class LocalizationMnMongMn extends MomentLocalization
       lastWeekday: last,
     ),
   );
+}
+
+/// Language: Traditional Mongolian with Traditional Numbers
+/// Country: Mongolia
+class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
+  static LocalizationMnQaaqMn? _instance;
+
+  LocalizationMnQaaqMn._internal() : super._internal();
+
+  factory LocalizationMnQaaqMn() {
+    _instance ??= LocalizationMnQaaqMn._internal();
+
+    return _instance!;
+  }
+
+  @override
+  String get languageNameInEnglish =>
+      "Mongolian (Traditional Script with traditional numbers)";
+
+  @override
+  String get locale =>
+      "mn_Qaaq_MN"; // Here, 'Qaaq' is reserved private use script code
+
+  static const Map<String, String> mongolianNumbers = {
+    "0": "᠐",
+    "1": "᠑",
+    "2": "᠒",
+    "3": "᠓",
+    "4": "᠔",
+    "5": "᠕",
+    "6": "᠖",
+    "7": "᠗",
+    "8": "᠘",
+    "9": "᠙",
+  };
+
+  @override
+  String duration(
+    Duration duration, {
+    bool round = true,
+    bool omitZeros = true,
+    bool includeWeeks = false,
+    UnitStringForm form = UnitStringForm.full,
+    String? delimiter,
+    DurationFormat format = DurationFormat.auto,
+    bool dropPrefixOrSuffix = false,
+  }) {
+    return toTraditionalNumber(super.duration(
+      duration,
+      round: round,
+      omitZeros: omitZeros,
+      includeWeeks: includeWeeks,
+      form: form,
+      delimiter: delimiter,
+      format: format,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+    ));
+  }
+
+  @override
+  String relative(
+    Duration duration, {
+    bool dropPrefixOrSuffix = false,
+    UnitStringForm form = UnitStringForm.full,
+  }) {
+    return toTraditionalNumber(super.relative(
+      duration,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
+      form: form,
+    ));
+  }
+
+  String toTraditionalNumber(String input) {
+    mongolianNumbers.forEach((key, value) {
+      input = input.replaceAll(key, value);
+    });
+
+    return input;
+  }
+
+  @override
+  String ordinalNumber(int n) => toTraditionalNumber(super.ordinalNumber(n));
+
+  @override
+  FormatSetOptional get formatters => super.formatters.map(
+        (key, value) => MapEntry(
+          key,
+          value == null
+              ? null
+              : (DateTime dateTime) => toTraditionalNumber(
+                    value(dateTime),
+                  ),
+        ),
+      );
 }

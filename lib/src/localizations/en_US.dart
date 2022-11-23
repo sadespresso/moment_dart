@@ -17,7 +17,15 @@ class LocalizationEnUs extends MomentLocalization
         SimpleUnits,
         SimpleRelative,
         SimpleDuration {
-  LocalizationEnUs() : super();
+  static LocalizationEnUs? _instance;
+
+  LocalizationEnUs._internal() : super();
+
+  factory LocalizationEnUs() {
+    _instance ??= LocalizationEnUs._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "English";

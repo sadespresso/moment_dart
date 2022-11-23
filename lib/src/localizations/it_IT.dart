@@ -19,7 +19,15 @@ class LocalizationItIt extends MomentLocalization
         SimpleRelative,
         SimpleDuration,
         ComplexCalendar {
-  LocalizationItIt() : super();
+  static LocalizationItIt? _instance;
+
+  LocalizationItIt._internal() : super();
+
+  factory LocalizationItIt() {
+    _instance ??= LocalizationItIt._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "Italiano";

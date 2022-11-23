@@ -14,9 +14,6 @@ export 'mn_MN.dart';
 import 'mn_Mong_MN.dart';
 export 'mn_Mong_MN.dart';
 
-import 'mn_Qaaq_MN.dart';
-export 'mn_Qaaq_MN.dart';
-
 import 'ko_KR.dart';
 export 'ko_KR.dart';
 

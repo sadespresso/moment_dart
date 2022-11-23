@@ -13,7 +13,15 @@ import 'package:moment_dart/src/types.dart';
 /// Country: Spain
 class LocalizationEsEs extends MomentLocalization
     with MonthNames, Ordinal, SimpleUnits, SimpleRelative, SimpleDuration {
-  LocalizationEsEs() : super();
+  static LocalizationEsEs? _instance;
+
+  LocalizationEsEs._internal() : super();
+
+  factory LocalizationEsEs() {
+    _instance ??= LocalizationEsEs._internal();
+
+    return _instance!;
+  }
 
   @override
   String get endonym => "Espanol (Espana)";
