@@ -2,14 +2,10 @@ import 'package:moment_dart/src/exception.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension StartOfUnit on DateTime {
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   ///
   /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
   DateTime startOf(DurationUnit unit) {
-    if (isUtc) return toLocal().startOf(unit);
-
     switch (unit) {
       case DurationUnit.microsecond:
         return clone();
@@ -35,44 +31,32 @@ extension StartOfUnit on DateTime {
 
   /// Returns start of the millisecond
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfMillisecond() => startOf(DurationUnit.millisecond);
 
   /// Returns start of the second
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfSecond() => startOf(DurationUnit.second);
 
   /// Returns start of the minute
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfMinute() => startOf(DurationUnit.minute);
 
   /// Returns start of the hour
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfHour() => startOf(DurationUnit.hour);
 
   /// Returns start of the day
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfDay() => startOf(DurationUnit.day);
 
   /// Returns start of the week based on [weekStart]
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfLocalWeek([int weekStart = DateTime.monday]) {
     if (isUtc) return toLocal().startOfLocalWeek(weekStart);
 
@@ -87,23 +71,17 @@ extension StartOfUnit on DateTime {
 
   /// Returns start of the month
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfMonth() => startOf(DurationUnit.month);
 
   /// Returns start of the year
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime startOfYear() => startOf(DurationUnit.year);
 }
 
 extension StartOfUnitMoment on Moment {
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   ///
   /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
   Moment startOf(DurationUnit unit) =>
@@ -111,44 +89,32 @@ extension StartOfUnitMoment on Moment {
 
   /// Returns start of the millisecond
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfMillisecond() => startOf(DurationUnit.millisecond);
 
   /// Returns start of the second
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfSecond() => startOf(DurationUnit.second);
 
   /// Returns start of the minute
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfMinute() => startOf(DurationUnit.minute);
 
   /// Returns start of the hour
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfHour() => startOf(DurationUnit.hour);
 
   /// Returns start of the day
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfDay() => startOf(DurationUnit.day);
 
   /// Returns start of the week based on [localization.weekStart]
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfLocalWeek() {
     return forcedSuperType
         .startOfLocalWeek(localization.weekStart)
@@ -157,15 +123,11 @@ extension StartOfUnitMoment on Moment {
 
   /// Returns start of the month
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfMonth() => startOf(DurationUnit.month);
 
   /// Returns start of the year
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment startOfYear() => startOf(DurationUnit.year);
 }

@@ -2,14 +2,10 @@ import 'package:moment_dart/src/exception.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension EndOfUnit on DateTime {
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   ///
   /// Will throw [MomentException] if [unit] is [DurationUnit.microsecond]
   DateTime endOf(DurationUnit unit) {
-    if (isUtc) return toLocal().endOf(unit);
-
     switch (unit) {
       case DurationUnit.microsecond:
         throw MomentException(
@@ -63,44 +59,32 @@ extension EndOfUnit on DateTime {
 
   /// Returns end of the millisecond
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfMillisecond() => endOf(DurationUnit.millisecond);
 
   /// Returns end of the second
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfSecond() => endOf(DurationUnit.second);
 
   /// Returns end of the minute
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfMinute() => endOf(DurationUnit.minute);
 
   /// Returns end of the hour
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfHour() => endOf(DurationUnit.hour);
 
   /// Returns end of the day
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfDay() => endOf(DurationUnit.day);
 
   /// Returns start of the week based on [weekStart]
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfLocalWeek([int weekStart = DateTime.monday]) {
     if (isUtc) return toLocal().endOfLocalWeek(weekStart);
 
@@ -114,23 +98,17 @@ extension EndOfUnit on DateTime {
 
   /// Returns end of the month
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfMonth() => endOf(DurationUnit.month);
 
   /// Returns end of the year
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   DateTime endOfYear() => endOf(DurationUnit.year);
 }
 
 extension EndOfUnitMoment on Moment {
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   ///
   /// Will throw [MomentException] if [unit] is [DurationUnit.microsecond]
   Moment endOf(DurationUnit unit) =>
@@ -138,44 +116,32 @@ extension EndOfUnitMoment on Moment {
 
   /// Returns end of the millisecond
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfMillisecond() => endOf(DurationUnit.millisecond);
 
   /// Returns end of the second
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfSecond() => endOf(DurationUnit.second);
 
   /// Returns end of the minute
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfMinute() => endOf(DurationUnit.minute);
 
   /// Returns end of the hour
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfHour() => endOf(DurationUnit.hour);
 
   /// Returns end of the day
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfDay() => endOf(DurationUnit.day);
 
   /// Returns end of the week based on [localization.weekStart]
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfLocalWeek() {
     return forcedSuperType
         .endOfLocalWeek(localization.weekStart)
@@ -184,15 +150,11 @@ extension EndOfUnitMoment on Moment {
 
   /// Returns end of the month
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfMonth() => endOf(DurationUnit.month);
 
   /// Returns end of the year
   ///
-  /// ⚠️ Only works on local time zone dates
-  ///
-  /// When UTC DateTime is passed, it's converted into Local DateTime first.
+  /// Will assume [this] is local date.
   Moment endOfYear() => endOf(DurationUnit.year);
 }

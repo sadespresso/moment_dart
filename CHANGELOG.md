@@ -4,6 +4,7 @@
 - [BREAKING] `isAtSameUnit___As(other)` now doesn't take timezones into account. If you want the old behaviour, use `isAtSameUnit___As(other, enforceUTC: true)`
 - [BREAKING] Renamed `MomentLocalizations.deDE()` to `.de()`
 - [BREAKING] Removed `Moment().elapsed()` for sake of `Moment().fromPrecise()`
+- [BREAKING] Now `startOf_()` and `endOf_()` no longer converts to local timezone. It just "assumes" it is in local timezone.
 - All localizations are now lazy-loaded Singletons
 
 ## 0.11.0
