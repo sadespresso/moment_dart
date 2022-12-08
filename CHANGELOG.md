@@ -1,3 +1,10 @@
+## 0.13.0
+
+> This release has breaking changes!
+- [BREAKING] `endOf_()` and `startOf_()` now _preserves_ the timezone instead of always returning local `DateTime` object
+- `endOf(DurationUnit.microsecond)` and `startOf(DurationUnit.microsecond)` now returns `this.clone()` instead of throwing error
+- 
+
 ## 0.12.0
 
 > This release has breaking changes!
