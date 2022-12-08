@@ -316,8 +316,7 @@ void main() {
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
 
-      expect(m.startOf(DurationUnit.microsecond),
-          m.toLocal()); // Must check local value since .startOf returns local DateTime
+      expect(m.startOf(DurationUnit.microsecond), m);
     });
     test("Moment", () {
       Moment m = DateTime(2003, 6, 1, 21, 9, 33, 1, 1).toMoment();
@@ -334,7 +333,7 @@ void main() {
       expect(m.startOfMonth(), DateTime(2003, 6).toMoment());
       expect(m.startOfYear(), DateTime(2003).toMoment());
 
-      expect(m.startOf(DurationUnit.microsecond), m.toLocal());
+      expect(m.startOf(DurationUnit.microsecond), m);
     });
   });
 
@@ -353,8 +352,7 @@ void main() {
       expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
 
-      expect(() => m.endOf(DurationUnit.microsecond),
-          throwsA(isA<MomentException>()));
+      expect(m.endOf(DurationUnit.microsecond), m.clone());
     });
     test("Moment", () {
       Moment m = DateTime(2003, 6, 1, 21, 9, 33, 247, 1).toMoment();
@@ -377,8 +375,7 @@ void main() {
       expect(m.endOfYear(),
           DateTime(2003, 12, 31, 23, 59, 59, 999, 999).toMoment());
 
-      expect(() => m.endOf(DurationUnit.microsecond),
-          throwsA(isA<MomentException>()));
+      expect(m.endOf(DurationUnit.microsecond), m.clone());
     });
   });
 

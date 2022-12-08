@@ -1,4 +1,5 @@
 import 'package:moment_dart/src/exception.dart';
+import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension StartOfUnit on DateTime {
@@ -13,19 +14,22 @@ extension StartOfUnit on DateTime {
         throw MomentException(
             "endOf(DurationUnit.week) is not supported on DateTime. You can use Moment(...).startOf(DurationUnit.week)");
       case DurationUnit.millisecond:
-        return DateTime(year, month, day, hour, minute, second, millisecond);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute, second, millisecond);
       case DurationUnit.second:
-        return DateTime(year, month, day, hour, minute, second);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute, second);
       case DurationUnit.minute:
-        return DateTime(year, month, day, hour, minute);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute);
       case DurationUnit.hour:
-        return DateTime(year, month, day, hour);
+        return DateTimeConstructors.withTimezone(year, month, day, hour);
       case DurationUnit.day:
-        return DateTime(year, month, day);
+        return DateTimeConstructors.withTimezone(year, month, day);
       case DurationUnit.month:
-        return DateTime(year, month);
+        return DateTimeConstructors.withTimezone(year, month);
       case DurationUnit.year:
-        return DateTime(year);
+        return DateTimeConstructors.withTimezone(year);
     }
   }
 

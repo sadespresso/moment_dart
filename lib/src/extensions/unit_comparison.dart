@@ -3,43 +3,38 @@ import 'package:moment_dart/moment_dart.dart';
 extension UnitComparision on DateTime {
   /// [unit]: 0-7
   ///
-  /// year,month,day,hour,minute,second,mircos,millis
+  /// year, month, day, hour, minute, second, millisecond, microsecond
   bool _isAtSameUnitAs(
     DateTime other,
     DurationUnit unit, {
     bool enforceUTC = false,
   }) {
-    late final DateTime self;
-
     if (enforceUTC) {
-      self = toUtc();
-      other = other.toUtc();
-    } else {
-      self = this;
+      return toUtc()._isAtSameUnitAs(other.toUtc(), unit, enforceUTC: false);
     }
 
-    if (other.year != self.year) return false;
+    if (other.year != year) return false;
     if (unit == DurationUnit.year) return true;
 
-    if (other.month != self.month) return false;
+    if (other.month != month) return false;
     if (unit == DurationUnit.month) return true;
 
-    if (other.day != self.day) return false;
+    if (other.day != day) return false;
     if (unit == DurationUnit.day) return true;
 
-    if (other.hour != self.hour) return false;
+    if (other.hour != hour) return false;
     if (unit == DurationUnit.hour) return true;
 
-    if (other.minute != self.minute) return false;
+    if (other.minute != minute) return false;
     if (unit == DurationUnit.minute) return true;
 
-    if (other.second != self.second) return false;
+    if (other.second != second) return false;
     if (unit == DurationUnit.second) return true;
 
-    if (other.millisecond != self.millisecond) return false;
+    if (other.millisecond != millisecond) return false;
     if (unit == DurationUnit.millisecond) return true;
 
-    return other.microsecond == self.microsecond;
+    return other.microsecond == microsecond;
   }
 
   /// Returns if two dates are in same year.

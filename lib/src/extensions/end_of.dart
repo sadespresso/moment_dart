@@ -1,29 +1,31 @@
 import 'package:moment_dart/src/exception.dart';
+import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension EndOfUnit on DateTime {
-  /// Will assume [this] is local date.
-  ///
-  /// Will throw [MomentException] if [unit] is [DurationUnit.microsecond]
+  /// Returned object will have same timezone as [this]
   DateTime endOf(DurationUnit unit) {
     switch (unit) {
       case DurationUnit.microsecond:
-        throw MomentException(
-            "Illegally called moment.endOf(DurationUnit.microsecond) when microsecond is the smallest unit");
+        return clone();
       case DurationUnit.week:
         throw MomentException(
             "endOf(DurationUnit.week) is not supported on DateTime object. You can use it on Moment objects");
       case DurationUnit.millisecond:
-        return DateTime(
-            year, month, day, hour, minute, second, millisecond, 999);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute, second, millisecond, 999, isUtc);
       case DurationUnit.second:
-        return DateTime(year, month, day, hour, minute, second, 999, 999);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute, second, 999, 999, isUtc);
       case DurationUnit.minute:
-        return DateTime(year, month, day, hour, minute, 59, 999, 999);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, minute, 59, 999, 999, isUtc);
       case DurationUnit.hour:
-        return DateTime(year, month, day, hour, 59, 59, 999, 999);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, hour, 59, 59, 999, 999, isUtc);
       case DurationUnit.day:
-        return DateTime(year, month, day, 23, 59, 59, 999, 999);
+        return DateTimeConstructors.withTimezone(
+            year, month, day, 23, 59, 59, 999, 999, isUtc);
       case DurationUnit.month:
         const daysInMonths = [
           0,
@@ -53,38 +55,39 @@ extension EndOfUnit on DateTime {
           999,
         );
       case DurationUnit.year:
-        return DateTime(year, 12, 31, 23, 59, 59, 999, 999);
+        return DateTimeConstructors.withTimezone(
+            year, 12, 31, 23, 59, 59, 999, 999, isUtc);
     }
   }
 
   /// Returns end of the millisecond
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfMillisecond() => endOf(DurationUnit.millisecond);
 
   /// Returns end of the second
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfSecond() => endOf(DurationUnit.second);
 
   /// Returns end of the minute
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfMinute() => endOf(DurationUnit.minute);
 
   /// Returns end of the hour
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfHour() => endOf(DurationUnit.hour);
 
   /// Returns end of the day
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfDay() => endOf(DurationUnit.day);
 
   /// Returns start of the week based on [weekStart]
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfLocalWeek([int weekStart = DateTime.monday]) {
     if (isUtc) return toLocal().endOfLocalWeek(weekStart);
 
@@ -98,50 +101,48 @@ extension EndOfUnit on DateTime {
 
   /// Returns end of the month
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfMonth() => endOf(DurationUnit.month);
 
   /// Returns end of the year
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime endOfYear() => endOf(DurationUnit.year);
 }
 
 extension EndOfUnitMoment on Moment {
-  /// Will assume [this] is local date.
-  ///
-  /// Will throw [MomentException] if [unit] is [DurationUnit.microsecond]
+  /// Returned object will have same timezone as [this]
   Moment endOf(DurationUnit unit) =>
       forcedSuperType.endOf(unit).toMoment(localization: localization);
 
   /// Returns end of the millisecond
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfMillisecond() => endOf(DurationUnit.millisecond);
 
   /// Returns end of the second
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfSecond() => endOf(DurationUnit.second);
 
   /// Returns end of the minute
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfMinute() => endOf(DurationUnit.minute);
 
   /// Returns end of the hour
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfHour() => endOf(DurationUnit.hour);
 
   /// Returns end of the day
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfDay() => endOf(DurationUnit.day);
 
   /// Returns end of the week based on [localization.weekStart]
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfLocalWeek() {
     return forcedSuperType
         .endOfLocalWeek(localization.weekStart)
@@ -150,11 +151,11 @@ extension EndOfUnitMoment on Moment {
 
   /// Returns end of the month
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfMonth() => endOf(DurationUnit.month);
 
   /// Returns end of the year
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment endOfYear() => endOf(DurationUnit.year);
 }
