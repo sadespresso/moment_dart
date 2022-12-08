@@ -1,21 +1,14 @@
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/extensions/constructor.dart';
 
 extension MomentBenefits on DateTime {
   /// Returns if [year] is leap year.
   ///
   /// More about leap years: [Leap Year](https://en.wikipedia.org/wiki/Leap_year)
   bool get isLeapYear {
-    if (year & 3 == 0) {
-      if (year % 400 == 0) {
-        return true;
-      } else if (year % 100 == 0) {
-        return false;
-      }
-
-      return true;
-    }
-
-    return false;
+    if (year % 400 == 0) return true;
+    if (year % 100 == 0) return false;
+    return year % 4 == 0;
   }
 
   /// Returns quarter of the year.
@@ -27,9 +20,7 @@ extension MomentBenefits on DateTime {
   /// Jul,Aug,Sep is Q3
   ///
   /// Oct,Nov,Dec is Q4
-  int get quarter {
-    return (month - 1) ~/ 3 + 1;
-  }
+  int get quarter => (month - 1) ~/ 3 + 1;
 
   int get _isoWeekRaw => (10 + dayOfYear - weekday) ~/ 7;
 
@@ -91,7 +82,7 @@ extension MomentBenefits on DateTime {
       334
     ];
 
-    int dayOfTheYear = dayCount[month] + day;
+    final int dayOfTheYear = dayCount[month] + day;
 
     if (isLeapYear && month > 2) {
       return dayOfTheYear + 1;
@@ -150,12 +141,17 @@ extension MomentBenefits on DateTime {
   }
 
   DateTime clone() {
-    if (isUtc) {
-      return DateTime.utc(
-          year, month, day, hour, minute, second, millisecond, microsecond);
-    }
-    return DateTime(
-        year, month, day, hour, minute, second, millisecond, microsecond);
+    return DateTimeConstructors.withTimezone(
+      year,
+      month,
+      day,
+      hour,
+      minute,
+      second,
+      millisecond,
+      microsecond,
+      isUtc,
+    );
   }
 
   Moment toMoment({MomentLocalization? localization}) =>
@@ -179,6 +175,7 @@ extension MomentBenefits on DateTime {
 }
 
 extension MomentBenefitsPlus on Moment {
+  /// Returns [this] as [DateTime] (the super type)
   DateTime get forcedSuperType => this;
 
   Moment clone() {
