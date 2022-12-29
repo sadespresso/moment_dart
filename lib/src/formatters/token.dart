@@ -149,7 +149,9 @@ enum FormatterToken {
 
   /// [Year]
   ///
-  /// 70 71 ... 29 30
+  /// 1968 1969 70 71 ... 29 30 2031 2032
+  ///
+  /// If [year] doesn't belong in range (1970, 2030), displays full YYYY
   YY,
 
   /// [Year]

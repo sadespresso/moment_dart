@@ -187,11 +187,9 @@ abstract class MomentLocalization {
     FormatterToken.e: (dateTime) => dateTime.weekday.toString(),
     FormatterToken.w: (dateTime) => dateTime.week.toString(),
     FormatterToken.ww: (dateTime) => dateTime.week.padZero(),
-    FormatterToken.YY:
-        // TODO: this should be updated before 2031 hits
-        (dateTime) {
+    FormatterToken.YY: (dateTime) {
       if (dateTime.year < 1970 || dateTime.year > 2030) {
-        throw Exception("YY formatter only work in range [1970; 2030]");
+        return dateTime.year.toString();
       }
       return dateTime.year.toString().substring(2);
     },
@@ -204,8 +202,8 @@ abstract class MomentLocalization {
     FormatterToken.NNNNN: (dateTime) => dateTime.year < 1 ? "BC" : "AD",
 
     FormatterToken.gg: (dateTime) {
-      if (dateTime.year < 1970 || dateTime.year > 2030) {
-        throw Exception("YY formatter only work in range [1970; 2030]");
+      if (dateTime.weekYear < 1970 || dateTime.weekYear > 2030) {
+        return dateTime.weekYear.toString();
       }
       return dateTime.weekYear.toString().substring(2);
     },
