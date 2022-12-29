@@ -2,13 +2,13 @@ import 'package:moment_dart/moment_dart.dart';
 
 /// This mixin provides set of formatters named `formattersForMonthNames`
 mixin MonthNames on MomentLocalization {
-  /// Month name from month number (1-12)
+  /// Month name from month number (1-12) (January, Febuary, ..., December)
   Map<int, String> get monthNames;
 
-  /// Short month name from month number (1-12)
+  /// Short month name from month (1-12) (Jan, Feb, ..., Dec)
   Map<int, String> get monthNamesShort;
 
-  /// Short month name from month number (1-12)
+  /// Min month name from month (1-12) (01, 02, ..., 12)
   Map<int, String>? get monthNamesMin => null;
 
   /// Overrides:
