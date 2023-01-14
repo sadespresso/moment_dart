@@ -7,5 +7,19 @@
     "README.md"
   ],
   "imageSize": 80,
-  "contributors": []
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "sadespresso",
+      "name": "Батмэнд Ганбаатар",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51638223?v=4",
+      "profile": "https://github.com/sadespresso",
+      "contributions": [
+        "code",
+        "maintenance",
+        "translation"
+      ]
+    }
+  ],
+  "commitConvention": "angular"
 }
