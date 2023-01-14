@@ -30,6 +30,15 @@ Import the package
 import 'package:moment_dart/moment_dart.dart';
 ```
 
+Setting global localization
+```dart
+Moment.setGlobalLocalization(MomentLocalizations.fr()); 
+
+// Any new instances created after setting global localization will have that localization
+
+Moment.now().LL; // 15 janvier 2023
+```
+
 Create Moment instance
 
 ```dart
@@ -499,7 +508,6 @@ Encapsulate string in square brackets ([]) to escape.
 |                           | LLLL   | Thursday, September 04 1986 8:30 PM    | Day of week, month name, day of month, year, time                                             |
 |                           | LT     | 8:30 PM                                | Time (without seconds)                                                                        |
 |                           | LTS    | 8:30:00 PM                             | Time (with seconds)                                                                           |
-
 
 ## TODO ✔️
 

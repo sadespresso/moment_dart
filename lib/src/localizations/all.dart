@@ -54,16 +54,24 @@ abstract class MomentLocalizations {
   /// If `strict == false`, it tries to find closest
   /// possible match by omitting scriptCode.
   /// If still no luck, tries again with omitting countryCode
-  static MomentLocalization? byLanguage(String languageCode,
-          {String? countryCode, String? scriptCode, bool strict = false}) =>
+  static MomentLocalization? byLanguage(
+    String languageCode, {
+    String? countryCode,
+    String? scriptCode,
+    bool strict = false,
+  }) =>
       _byLanguage(
         languageCode,
         countryCode: countryCode,
         scriptCode: scriptCode,
         strict: strict,
       );
-  static MomentLocalization? _byLanguage(String languageCode,
-      {String? countryCode, String? scriptCode, bool strict = false}) {
+  static MomentLocalization? _byLanguage(
+    String languageCode, {
+    String? countryCode,
+    String? scriptCode,
+    bool strict = false,
+  }) {
     String prefix = languageCode;
 
     if (scriptCode != null) prefix += "_$scriptCode";

@@ -7,7 +7,23 @@ import 'package:moment_dart/src/formatters/format_match.dart';
 class Moment extends DateTime {
   static MomentLocalization defaultLocalization = MomentLocalizations.enUS();
 
-  late final MomentLocalization localization;
+  /// Any instances without explicit localization set will use the global localization.
+  ///
+  /// To override global localization, create new Moment instance like so:
+  /// ```dart
+  ///   Moment frenchMoment = Moment.now(localization: MomentLocalizations.fr();
+  ///   frenchMoment.LL; // 14 février 2023
+  /// ```
+  static setGlobalLocalization(MomentLocalization localization) {
+    Moment.defaultLocalization = localization;
+  }
+
+  late final MomentLocalization? _localization;
+
+  /// Returns localization of this instance. If [this] doesn't have localization, returns the global localization.
+  ///
+  /// Use [Moment.setGlobalLocalization] to set the global localization
+  MomentLocalization get localization => _localization ?? defaultLocalization;
 
   /// A [Moment] created using given `dateTime`;
   Moment(DateTime dateTime, {MomentLocalization? localization})
@@ -15,24 +31,24 @@ class Moment extends DateTime {
           dateTime.microsecondsSinceEpoch,
           isUtc: dateTime.isUtc,
         ) {
-    this.localization = localization ?? defaultLocalization;
+    _localization = localization;
   }
 
   /// A [Moment] created using DateTime.now(), in Local timezone
   Moment.now({MomentLocalization? localization}) : super.now() {
-    this.localization = localization ?? defaultLocalization;
+    _localization = localization;
   }
 
   Moment.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch,
       {bool isUtc = false, MomentLocalization? localization})
       : super.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: isUtc) {
-    this.localization = localization ?? defaultLocalization;
+    _localization = localization;
   }
 
   Moment.fromMicrosecondsSinceEpoch(int microsecondsSinceEpoch,
       {bool isUtc = false, MomentLocalization? localization})
       : super.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch, isUtc: isUtc) {
-    this.localization = localization ?? defaultLocalization;
+    _localization = localization;
   }
 
   /// Returns new [Moment] with new values

@@ -1,3 +1,8 @@
+## 0.15.0
+
+- Now it's possible to set global localization with `Moment.setGlobalLocalization(MomentLocalization)`
+- Renamed `Moment.localization` to `Moment._localization`, making it private, and nullable. However, this shouldn't be breaking change as `Moment.localization` is introduced.
+
 ## 0.14.0
 
 > This release has breaking changes!
