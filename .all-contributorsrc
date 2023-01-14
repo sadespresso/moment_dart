@@ -9,5 +9,18 @@
   "imageSize": 64,
   "contributorsPerLine": 7,
   "contributorTemplate": "<a href=\"<%= contributor.profile %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/><br /><sub><b><%= contributor.name %></b></sub></a>",
-  "contributors": []
+  "contributors": [
+    {
+      "login": "sadespresso",
+      "name": "Батмэнд Ганбаатар",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51638223?v=4",
+      "profile": "https://github.com/sadespresso",
+      "contributions": [
+        "code",
+        "maintenance",
+        "translation"
+      ]
+    }
+  ],
+  "commitConvention": "angular"
 }
