@@ -1,5 +1,6 @@
 [![pub package](https://img.shields.io/pub/v/moment_dart.svg)](https://pub.dartlang.org/packages/moment_dart)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![All Contributors](https://img.shields.io/github/all-contributors/sadespresso/moment_dart?color=ee8449&style=flat-square)](#contributors)
 
 > Inspired by moment.js
 
@@ -509,7 +510,23 @@ Encapsulate string in square brackets ([]) to escape.
 |                           | LT     | 8:30 PM                                | Time (without seconds)                                                                        |
 |                           | LTS    | 8:30:00 PM                             | Time (with seconds)                                                                           |
 
+## Contributing
+
+Contributions of any kind are welcome! Please refer to [CONTRIBUTE.md](CONTRIBUTE.md)
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## TODO ✔️
 
-- Add more localizations
-- Implement parsing
+- [ ] Add more localizations
+- [ ] Implement parsing
+- [ ] Have documentation and cut this README.md file some slack
