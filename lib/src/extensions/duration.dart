@@ -29,8 +29,8 @@ extension DurationExtra on Duration {
 
   static const int monthsPerYear = 12;
 
-  String toDurationString(
-    MomentLocalization localization, {
+  String toDurationString({
+    MomentLocalization? localization,
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
@@ -39,7 +39,7 @@ extension DurationExtra on Duration {
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
   }) {
-    return localization.duration(
+    return (localization ?? Moment.defaultLocalization).duration(
       this,
       round: round,
       omitZeros: omitZeros,

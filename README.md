@@ -22,7 +22,7 @@ Handful of other useful extension/functions
 
 ## Demo 👁️
 
-### [🔗 A Flutter web demo](https://theironbatka.github.io/moment_dart_demo/#/)
+### [🔗 A Flutter web demo](https://sadespresso.github.io/moment_dart_demo/#/)
 
 ## Getting started ✨
 

@@ -3,9 +3,13 @@ import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension StartOfUnit on DateTime {
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   ///
-  /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
+  /// Notes:
+  ///
+  /// * instance.startOf(DurationUnit.week) will throw [MomentException]
+  ///
+  /// * instance.startOf(DurationUnit.microsecond) will return clone of that instance
   DateTime startOf(DurationUnit unit) {
     switch (unit) {
       case DurationUnit.microsecond:
@@ -35,34 +39,34 @@ extension StartOfUnit on DateTime {
 
   /// Returns start of the millisecond
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfMillisecond() => startOf(DurationUnit.millisecond);
 
   /// Returns start of the second
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfSecond() => startOf(DurationUnit.second);
 
   /// Returns start of the minute
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfMinute() => startOf(DurationUnit.minute);
 
   /// Returns start of the hour
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfHour() => startOf(DurationUnit.hour);
 
   /// Returns start of the day
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfDay() => startOf(DurationUnit.day);
 
-  /// Returns start of the week based on [weekStart]
+  /// Returns start of the week based on [weekStart]. If it's null, it uses [Moment.defaultLocalization.weekStart]
   ///
-  /// Will assume [this] is local date.
-  DateTime startOfLocalWeek([int weekStart = DateTime.monday]) {
-    if (isUtc) return toLocal().startOfLocalWeek(weekStart);
+  /// Returned object will have same timezone as [this]
+  DateTime startOfLocalWeek([int? weekStart]) {
+    weekStart ??= Moment.defaultLocalization.weekStart;
 
     int delta = weekday - weekStart;
 
@@ -75,17 +79,17 @@ extension StartOfUnit on DateTime {
 
   /// Returns start of the month
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfMonth() => startOf(DurationUnit.month);
 
   /// Returns start of the year
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   DateTime startOfYear() => startOf(DurationUnit.year);
 }
 
 extension StartOfUnitMoment on Moment {
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   ///
   /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
   Moment startOf(DurationUnit unit) =>
@@ -93,32 +97,32 @@ extension StartOfUnitMoment on Moment {
 
   /// Returns start of the millisecond
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfMillisecond() => startOf(DurationUnit.millisecond);
 
   /// Returns start of the second
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfSecond() => startOf(DurationUnit.second);
 
   /// Returns start of the minute
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfMinute() => startOf(DurationUnit.minute);
 
   /// Returns start of the hour
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfHour() => startOf(DurationUnit.hour);
 
   /// Returns start of the day
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfDay() => startOf(DurationUnit.day);
 
   /// Returns start of the week based on [localization.weekStart]
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfLocalWeek() {
     return forcedSuperType
         .startOfLocalWeek(localization.weekStart)
@@ -127,11 +131,11 @@ extension StartOfUnitMoment on Moment {
 
   /// Returns start of the month
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfMonth() => startOf(DurationUnit.month);
 
   /// Returns start of the year
   ///
-  /// Will assume [this] is local date.
+  /// Returned object will have same timezone as [this]
   Moment startOfYear() => startOf(DurationUnit.year);
 }

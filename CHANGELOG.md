@@ -1,7 +1,14 @@
+## 0.16.0
+
+> This release has breaking changes!
+- `Duration().toDurationString()` first argument is now **named**, and ***optional***. When null, uses global localization set using `Moment.setGlobalLocalization(MomentLocalization)`
+- Now `weekStart` of `DateTime().startOfLocalWeek([int weekStart])` is nullable, and defaults to `Moment.defaultLocalization.weekStart`
+- Now `weekStart` of `DateTime().endOfLocalWeek([int weekStart])` is nullable, and defaults to `Moment.defaultLocalization.weekStart`
+
 ## 0.15.0
 
 - Now it's possible to set global localization with `Moment.setGlobalLocalization(MomentLocalization)`
-- Renamed `Moment.localization` to `Moment._localization`, making it private, and nullable. However, this shouldn't be breaking change as `Moment.localization` is introduced.
+- Renamed `Moment.localization` to `Moment._localization`, making it private, and nullable. However, this shouldn't be breaking change as `Moment.localization` getter is introduced. Getter returns instances' localization, or global localization in case the instance doesn't have set localization
 
 ## 0.14.0
 
@@ -15,7 +22,6 @@
 > This release has breaking changes!
 - [BREAKING] `endOf_()` and `startOf_()` now _preserves_ the timezone instead of always returning local `DateTime` object
 - `endOf(DurationUnit.microsecond)` and `startOf(DurationUnit.microsecond)` now returns `this.clone()` instead of throwing error
-- 
 
 ## 0.12.0
 

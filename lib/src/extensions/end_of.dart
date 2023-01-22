@@ -4,6 +4,12 @@ import 'package:moment_dart/src/moment.dart';
 
 extension EndOfUnit on DateTime {
   /// Returned object will have same timezone as [this]
+  ///
+  /// Notes:
+  ///
+  /// * instance.startOf(DurationUnit.week) will throw [MomentException]
+  ///
+  /// * instance.startOf(DurationUnit.microsecond) will return clone of that instance
   DateTime endOf(DurationUnit unit) {
     switch (unit) {
       case DurationUnit.microsecond:
@@ -85,11 +91,11 @@ extension EndOfUnit on DateTime {
   /// Returned object will have same timezone as [this]
   DateTime endOfDay() => endOf(DurationUnit.day);
 
-  /// Returns start of the week based on [weekStart]
+  /// Returns start of the week based on [weekStart]. If it's null, it uses [Moment.defaultLocalization.weekStart]
   ///
   /// Returned object will have same timezone as [this]
-  DateTime endOfLocalWeek([int weekStart = DateTime.monday]) {
-    if (isUtc) return toLocal().endOfLocalWeek(weekStart);
+  DateTime endOfLocalWeek([int? weekStart]) {
+    weekStart ??= Moment.defaultLocalization.weekStart;
 
     int delta = (weekStart + 6) - weekday;
     if (delta > 7) {

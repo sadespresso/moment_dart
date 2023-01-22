@@ -4,7 +4,19 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// Moment is subclass of DateTime
+///
+/// See also:
+/// * [defaultLocalization]
+/// * [setGlobalLocalization]
+///
 class Moment extends DateTime {
+  /// Any instances without explicit localization set will use the global localization.
+  ///
+  /// To override global localization, create new Moment instance like so:
+  /// ```dart
+  ///   Moment frenchMoment = Moment.now(localization: MomentLocalizations.fr();
+  ///   frenchMoment.LL; // 14 février 2023
+  /// ```
   static MomentLocalization defaultLocalization = MomentLocalizations.enUS();
 
   /// Any instances without explicit localization set will use the global localization.
@@ -325,6 +337,7 @@ class Moment extends DateTime {
   ///
   /// Params:
   ///
+  /// * [localization] - when null, defaults to `Moment.defaultLocalization` (see [setGlobalLocalization])
   /// * [format] - format to display the duration. For example, when set to `DurationFormat.md`, will result to "3 months 2 days"
   /// * [delimiter] - string to join duration when there are more than one. Defaults to **space**. For example,
   /// * [form] - Unit string form. For example, minute would look like "18 minutes", "18 min", "18m" in full, mid, short forms, respectively.
@@ -334,7 +347,7 @@ class Moment extends DateTime {
   /// * [dropPrefixOrSuffix] - Whether to drop suffix/prefix. For example, "3h 2m ago" => "3h 2m", "in 7 days" => "7 days"
   static String duration(
     Duration duration, {
-    required MomentLocalization localization,
+    MomentLocalization? localization,
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
@@ -344,7 +357,7 @@ class Moment extends DateTime {
     bool dropPrefixOrSuffix = false,
   }) =>
       duration.toDurationString(
-        localization,
+        localization: localization ?? Moment.defaultLocalization,
         round: round,
         omitZeros: omitZeros,
         includeWeeks: includeWeeks,
@@ -369,10 +382,12 @@ class Moment extends DateTime {
     bool omitHours = false,
     String? customFormat,
   }) =>
-      localization.calendar(this,
-          reference: reference,
-          omitHours: omitHours,
-          customFormat: customFormat);
+      localization.calendar(
+        this,
+        reference: reference,
+        omitHours: omitHours,
+        customFormat: customFormat,
+      );
 
   @override
   Moment toUtc() => Moment(super.toUtc(), localization: localization);

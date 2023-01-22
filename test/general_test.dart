@@ -311,8 +311,8 @@ void main() {
       expect(m.startOfDay(), DateTime(2022, 6, 19));
       expect(
         m.startOfLocalWeek(),
-        DateTime(2022, 6, 13),
-      ); // Monday as start of week
+        DateTime(2022, 6, 19),
+      ); // Sunday as start of week (since 0.16.0)
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
 
@@ -347,8 +347,8 @@ void main() {
       expect(m.endOfDay(), DateTime(2022, 6, 19, 23, 59, 59, 999, 999));
       expect(
         m.endOfLocalWeek(),
-        DateTime(2022, 6, 19, 23, 59, 59, 999, 999),
-      ); // Week start on Monday by default
+        DateTime(2022, 6, 25, 23, 59, 59, 999, 999),
+      ); // Sunday as start of week (since 0.16.0)
       expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
 
