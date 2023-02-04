@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+// Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
@@ -7,7 +8,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_MN/units.dart';
 import 'package:moment_dart/src/types.dart';
 
-/// Language: Mongolian - Cyrillic
+/// Language: Mongolian (Cyrillic)
 /// Country: Mongolia
 class LocalizationMnMn extends MomentLocalization
     with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration {

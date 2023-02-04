@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+// Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';

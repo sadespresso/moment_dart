@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+// Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/english_like_ordinal.dart';
