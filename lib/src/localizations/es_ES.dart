@@ -25,7 +25,7 @@ class LocalizationEsEs extends MomentLocalization
   }
 
   @override
-  String get endonym => "Espanol (Espana)";
+  String get endonym => "Español (Espana)";
 
   @override
   String get languageCode => "es";
