@@ -41,8 +41,8 @@ void main() {
       TypeMatcher<LocalizationEnUs>(),
     );
     expect(
-      MomentLocalizations.byLanguage('zn'),
-      TypeMatcher<LocalizationZnCn>(),
+      MomentLocalizations.byLanguage('zh'),
+      TypeMatcher<LocalizationZhCn>(),
     );
   });
 
@@ -189,18 +189,18 @@ void main() {
     );
     expect(
       MomentLocalizations.byLanguage(
-        'zn',
+        'zh',
         countryCode: 'CN',
         strict: true,
       ),
-      TypeMatcher<LocalizationZnCn>(),
+      TypeMatcher<LocalizationZhCn>(),
     );
     expect(
       MomentLocalizations.byLanguage(
-        'zn',
+        'zh',
         strict: true,
       ),
-      TypeMatcher<LocalizationZnCn>(),
+      TypeMatcher<LocalizationZhCn>(),
     );
   });
 }

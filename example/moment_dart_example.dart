@@ -41,4 +41,7 @@ void main() {
 
   /// String encapsulated in square brackets will be escaped.
   moment.format("[YEAR:] YYYY, [MONTH:] MMMM, Do dddd A hh:mm");
+
+  print(Moment(DateTime(1971, 2, 14), localization: LocalizationEnUs())
+      .format("[YEAR:] YYYY, [MONTH:] MMMM, Do dddd A hh:mm"));
 }

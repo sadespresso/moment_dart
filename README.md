@@ -272,17 +272,18 @@ Localizations are classes that extend `MomentLocalization`
 
 [See how you can create your own localization](#creating-your-own-localization-)
 
-| Class                | LCID       | Language                                       | Country       |
-| -------------------- | ---------- | ---------------------------------------------- | ------------- |
-| LocalizationEnUs     | en_US      | English                                        | United States |
-| LocalizationKoKr     | ko_KR      | Korean                                         | South Korea   |
-| LocalizationFrFr     | fr_FR      | French                                         | France        |
-| LocalizationEsEs     | es_ES      | Spanish                                        | Spain         |
-| LocalizationItIt     | it_IT      | Italian                                        | Italy         |
-| LocalizationDeDe     | de_DE      | German                                         | Germany       |
-| LocalizationMnMn     | mn_MN      | Mongolian                                      | Mongolia      |
-| LocalizationMnMongMn | mn_Mong_MN | Traditional Mongolian                          | Mongolia      |
-| LocalizationMnQaaqMn | mn_Qaaq_MN | Traditional Mongolian with Traditional Numbers | Mongolia      |
+| Class                | LCID       | Language                                    | Country       |
+| -------------------- | ---------- | ------------------------------------------- | ------------- |
+| LocalizationEnUs     | en_US      | English                                     | United States |
+| LocalizationKoKr     | ko_KR      | Korean                                      | South Korea   |
+| LocalizationFrFr     | fr_FR      | French                                      | France        |
+| LocalizationEsEs     | es_ES      | Spanish                                     | Spain         |
+| LocalizationItIt     | it_IT      | Italian                                     | Italy         |
+| LocalizationDeDe     | de_DE      | German                                      | Germany       |
+| LocalizationZhCn     | zh_CN      | Simplified Chinese                          | China         |
+| LocalizationMnMn     | mn_MN      | Mongolian                                   | Mongolia      |
+| LocalizationMnMongMn | mn_Mong_MN | Traditional Mongolian                       | Mongolia      |
+| LocalizationMnQaaqMn | mn_Qaaq_MN | Traditional Mongolian (Traditional Numbers) | Mongolia      |
 
 ## Batteries included 🔋
 

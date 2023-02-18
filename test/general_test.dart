@@ -426,4 +426,11 @@ void main() {
       true,
     );
   });
+
+  test("formatting", () {
+    final q1 = Moment(DateTime(1971, 2, 14), localization: LocalizationEnUs())
+        .format("[YEAR:] YYYY, [MONTH:] MMMM, Do dddd A ][hh:mm");
+
+    expect(q1, "YEAR: 1971, MONTH: February, 14th Sunday AM ][12:00");
+  });
 }

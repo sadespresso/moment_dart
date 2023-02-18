@@ -2428,8 +2428,8 @@ void main() {
     );
   });
 
-  test("zn_CN localization duration test", () {
-    final MomentLocalization l10n = LocalizationZnCn();
+  test("zh_CN localization duration test", () {
+    final MomentLocalization l10n = LocalizationZhCn();
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true),

@@ -108,26 +108,28 @@ class Moment extends DateTime {
     String payload = MomentLocalization.localizationDefaultDateFormat,
     bool forceLocal = false,
   ]) {
+    final RegExp escaper = RegExp(r"\[(([^\]]+))\]", multiLine: true);
+
+    if (escaper.hasMatch(payload)) {
+      return payload.splitMapJoin(
+        escaper,
+        onMatch: (p0) => p0.group(1)!,
+        onNonMatch: (p0) => _format(p0, forceLocal: forceLocal),
+      );
+    }
+
+    return _format(payload, forceLocal: forceLocal);
+  }
+
+  String _format(
+    String payload, {
+    bool forceLocal = false,
+  }) {
     final List<dynamic> tokens = [];
 
     bool halt = false;
 
-    final RegExp escaper = RegExp(r"\[(([^\]]+))\]", multiLine: true);
-
     while (!halt) {
-      if (payload.length > 1 && payload.trim()[0] == r"[") {
-        final RegExpMatch? firstMatch = escaper.firstMatch(payload);
-
-        if (firstMatch != null) {
-          if (firstMatch.start != 0) {
-            tokens.add(payload.substring(0, firstMatch.start));
-          }
-          tokens.add(firstMatch.group(1) ?? "");
-          payload = payload.substring(firstMatch.end);
-          continue;
-        }
-      }
-
       FormatMatch? closestToZero;
 
       for (FormatterToken token in _fts) {
@@ -147,7 +149,12 @@ class Moment extends DateTime {
         closestToZero = FormatMatch(startIndex: matchIndex, token: token);
       }
 
-      if (closestToZero == null) break;
+      if (closestToZero == null) {
+        if (payload.isNotEmpty) {
+          tokens.add(payload);
+        }
+        break;
+      }
 
       if (closestToZero.startIndex != 0) {
         tokens.add(payload.substring(0, closestToZero.startIndex));

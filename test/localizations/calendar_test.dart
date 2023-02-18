@@ -296,8 +296,8 @@ void main() {
     expect(epoch.format("LLLL"), "1970년 1월 1일 목요일 오전 12:00");
   });
 
-  test("zn_CN localization calendar test", () {
-    ssetLocalization(MomentLocalizations.znCn());
+  test("zh_CN localization calendar test", () {
+    ssetLocalization(MomentLocalizations.zhCn());
 
     // A
     expect(today.calendar(reference: today), "今天 05:33");
@@ -314,6 +314,6 @@ void main() {
     expect(nextFriday.calendar(reference: today, omitHours: true), "下星期五");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "1970年1月1日星期四凌晨12点00");
+    expect(epoch.format("LLLL"), "1970年1月1日星期四凌晨12点00分");
   });
 }

@@ -397,8 +397,8 @@ void main() {
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3년");
   });
 
-  test("zn_CN localization relative time test", () {
-    ssetLocalization(MomentLocalizations.znCn());
+  test("zh_CN localization relative time test", () {
+    ssetLocalization(MomentLocalizations.zhCn());
 
     expect(fewMomentsAhead.from(now), "几秒后");
     expect(fewMomentsAgo.from(now), "几秒前");

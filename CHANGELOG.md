@@ -1,3 +1,8 @@
+## 0.17.0
+
+- Fixed `Moment.format()`
+- Corrected Chinese language code (zn -> zh)
+
 ## 0.16.0
 
 > This release has breaking changes!

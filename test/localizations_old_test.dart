@@ -93,9 +93,9 @@ void main() {
     expect(
         epochPlusFiveDays.calendar(reference: epoch, omitHours: true), "화요일");
     expect(epochPlusAYear.from(epoch), "1년 후");
-    expect(epochPlusAYear.calendar(reference: epoch), "1971.1.1");
+    expect(epochPlusAYear.calendar(reference: epoch), "1971.1.1.");
 
-    expect(epochPlusFiveDays.format("L LT"), "1970.01.06 오전 12:00");
+    expect(epochPlusFiveDays.format("L LT"), "1970.01.06. 오전 12:00");
   });
 
   test("Text escaping test", () {

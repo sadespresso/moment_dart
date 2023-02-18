@@ -9,14 +9,14 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
-import 'package:moment_dart/src/localizations/mixins/zn_CN/ordinal_number.dart';
+import 'package:moment_dart/src/localizations/mixins/zh_CN/ordinal_number.dart';
 import 'package:moment_dart/src/types.dart';
 
-import 'mixins/zn_CN/chinese_numbers.dart';
+import 'mixins/zh_CN/chinese_numbers.dart';
 
-/// Language: Italian
-/// Country: Italy
-class LocalizationZnCn extends MomentLocalization
+/// Language: Simplified Chinese
+/// Country: China
+class LocalizationZhCn extends MomentLocalization
     with
         MonthNames,
         WeekdayShortForms,
@@ -26,12 +26,12 @@ class LocalizationZnCn extends MomentLocalization
         SimpleRelative,
         SimpleDuration,
         ComplexCalendar {
-  static LocalizationZnCn? _instance;
+  static LocalizationZhCn? _instance;
 
-  LocalizationZnCn._internal() : super();
+  LocalizationZhCn._internal() : super();
 
-  factory LocalizationZnCn() {
-    _instance ??= LocalizationZnCn._internal();
+  factory LocalizationZhCn() {
+    _instance ??= LocalizationZhCn._internal();
 
     return _instance!;
   }
@@ -40,7 +40,7 @@ class LocalizationZnCn extends MomentLocalization
   String get endonym => "中文";
 
   @override
-  String get languageCode => "zn";
+  String get languageCode => "zh";
 
   @override
   String get countryCode => "CN";
