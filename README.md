@@ -1,6 +1,6 @@
 [![pub package](https://img.shields.io/pub/v/moment_dart.svg)](https://pub.dartlang.org/packages/moment_dart)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![All Contributors](https://img.shields.io/github/all-contributors/sadespresso/moment_dart?color=ee8449&style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/github/all-contributors/sadespresso/moment_dart?color=ae00ff)](#contributors)
 
 > Inspired by moment.js
 
@@ -22,7 +22,7 @@ Handful of other useful extension/functions
 
 ## Demo 👁️
 
-### [🔗 A Flutter web demo](https://sadespresso.github.io/moment_dart_demo/#/)
+### [🔗 A Flutter web demo](https://dev.gege.mn/moment_dart_demo/#/)
 
 ## Getting started ✨
 

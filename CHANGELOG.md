@@ -1,3 +1,12 @@
+## 0.17.1
+
+- Fixed [#9](https://github.com/sadespresso/moment_dart/issues/9)
+- **mn_MN**, **mn_Mong_MN**, **mn_Qaaq_MN** locales now use `HH` instead of `H` in `LT`, `LTS` formatters
+- Added 3 extension getter for `Moment` and `DateTime` objects.
+  - `.hour12`
+  - `.isAm`
+  - `.isPm`
+
 ## 0.17.0
 
 - Fixed `Moment.format()`

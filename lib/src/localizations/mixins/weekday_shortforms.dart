@@ -2,6 +2,9 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// This mixin provides set of formatters named `formattersForWeekdayShortForms`
+///
+/// Implement [weekdayNameShort]
+/// Optionally, [weekdayNameMin]
 mixin WeekdayShortForms on MomentLocalization {
   Map<int, String> get weekdayNameShort;
 

@@ -208,13 +208,10 @@ abstract class MomentLocalization {
       return dateTime.weekYear.toString().substring(2);
     },
     FormatterToken.gggg: (dateTime) => dateTime.weekYear.toString(),
-    FormatterToken.H: (dateTime) =>
-        dateTime.hour == 0 ? "00" : dateTime.hour.toString(),
+    FormatterToken.H: (dateTime) => dateTime.hour.toString(),
     FormatterToken.HH: (dateTime) => dateTime.hour.padZero(),
-    FormatterToken.h: (dateTime) =>
-        dateTime.hour == 0 ? "12" : "${dateTime.hour % 12}",
-    FormatterToken.hh: (dateTime) =>
-        dateTime.hour == 0 ? "12" : (dateTime.hour % 12).padZero(),
+    FormatterToken.h: (dateTime) => dateTime.hour12.toString(),
+    FormatterToken.hh: (dateTime) => dateTime.hour12.padZero(),
     FormatterToken.k: (dateTime) =>
         dateTime.hour == 0 ? "24" : dateTime.hour.toString(),
     FormatterToken.kk: (dateTime) =>
@@ -257,8 +254,8 @@ abstract class MomentLocalization {
     FormatterToken.ddd: (dateTime) => "Day #${dateTime.weekday} of the week",
     FormatterToken.dddd: (dateTime) => "Day #${dateTime.weekday} of the week",
     FormatterToken.wo: (dateTime) => "Week #${dateTime.week} of the year (ISO)",
-    FormatterToken.A: (dateTime) => dateTime.hour < 12 ? "AM" : "PM",
-    FormatterToken.a: (dateTime) => dateTime.hour < 12 ? "am" : "pm",
+    FormatterToken.A: (dateTime) => dateTime.isAm ? "AM" : "PM",
+    FormatterToken.a: (dateTime) => dateTime.isAm ? "am" : "pm",
   };
 
   Map<FormatterToken, FormatterTokenFn> get nonFinalFormatters => {

@@ -108,13 +108,13 @@ class LocalizationMnMongMn extends MomentLocalization
       FormatterToken.LLL: (dateTime) =>
           reformat(dateTime, "YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D᠂ HH:mm"),
       FormatterToken.lll: (dateTime) =>
-          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D᠂ HH:mm"),
+          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D᠂ H:mm"),
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "dddd, YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D᠂ H:mm"),
+          reformat(dateTime, "dddd, YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D᠂ HH:mm"),
       FormatterToken.llll: (dateTime) =>
           reformat(dateTime, "ddd, YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D᠂ H:mm"),
-      FormatterToken.LT: (dateTime) => reformat(dateTime, "H:mm"),
-      FormatterToken.LTS: (dateTime) => reformat(dateTime, "H:mm:ss"),
+      FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
+      FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
       // Missings
       FormatterToken.MMM: (dateTime) => "${dateTime.month} ᠰᠠᠷ᠎ᠠ",
       FormatterToken.MMMM: (dateTime) => monthName(dateTime.month),

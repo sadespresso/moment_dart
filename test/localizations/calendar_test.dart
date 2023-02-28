@@ -169,7 +169,7 @@ void main() {
     expect(nextFriday.calendar(reference: today, omitHours: true), "viernes");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "jueves, 1 de enero de 1970 00:00");
+    expect(epoch.format("LLLL"), "jueves, 1 de enero de 1970 0:00");
   });
 
   test("en_US localization calendar test", () {
@@ -204,11 +204,12 @@ void main() {
     ssetLocalization(MomentLocalizations.mn());
 
     // A
-    expect(today.calendar(reference: today), "Өнөөдөр 5:33");
-    expect(tomorrow.calendar(reference: today), "Маргааш 5:33");
-    expect(tueOrDayAfterTomorrow.calendar(reference: today), "Нөгөөдөр 5:33");
-    expect(yesterday.calendar(reference: today), "Өчигдөр 5:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "Уржигдар 5:33");
+    expect(today.calendar(reference: today), "Өнөөдөр 05:33");
+    expect(tomorrow.calendar(reference: today), "Маргааш 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "Нөгөөдөр 05:33");
+    expect(yesterday.calendar(reference: today), "Өчигдөр 05:33");
+    expect(
+        friOrdayBeforeYesterday.calendar(reference: today), "Уржигдар 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "Өнгөрсөн Даваа");
@@ -229,11 +230,11 @@ void main() {
     ssetLocalization(MomentLocalizations.mnMong());
 
     // A
-    expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ 5:33");
-    expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ 5:33");
-    expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ 5:33");
-    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ 5:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ 5:33");
+    expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ 05:33");
+    expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ 05:33");
+    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ 05:33");
+    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ");
@@ -254,11 +255,11 @@ void main() {
     ssetLocalization(MomentLocalizations.mnMongtn());
 
     // A
-    expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ ᠕:᠓᠓");
-    expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ ᠕:᠓᠓");
-    expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ ᠕:᠓᠓");
-    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ ᠕:᠓᠓");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ ᠕:᠓᠓");
+    expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ ᠐᠕:᠓᠓");
+    expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ ᠐᠕:᠓᠓");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
+    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
+    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ ᠐᠕:᠓᠓");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ");

@@ -13,6 +13,21 @@ extension MomentBenefits on DateTime {
     return year % 4 == 0;
   }
 
+  /// Returns hour in 12-hour format
+  ///
+  /// Relevant: [isAm] or [isPm]
+  int get hour12 {
+    if (hour == 0 || hour == 12) return 12;
+
+    return hour % 12;
+  }
+
+  /// Returns whether the [hour] is before noon (ante meridiem) in the current timezone
+  bool get isAm => hour < 12;
+
+  /// Returns whether the [hour] is after noon (post meridiem) in the current timezone
+  bool get isPm => hour >= 12;
+
   /// Returns quarter of the year.
   ///
   /// Jan,Feb,Mar is Q1

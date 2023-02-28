@@ -85,8 +85,8 @@ class LocalizationMnMn extends MomentLocalization
           reformat(dateTime, "dddd, YYYY оны MMMMын D, HH:mm"),
       FormatterToken.llll: (dateTime) =>
           reformat(dateTime, "ddd, YYYY оны MMMын D, H:mm"),
-      FormatterToken.LT: (dateTime) => reformat(dateTime, "H:mm"),
-      FormatterToken.LTS: (dateTime) => reformat(dateTime, "H:mm:ss"),
+      FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
+      FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
       // Customs
       FormatterToken.A: (dateTime) => dateTime.hour < 12 ? "Ү.Ө" : "Ү.Х",
       FormatterToken.a: (dateTime) => dateTime.hour < 12 ? "ү.ө" : "ү.х",
