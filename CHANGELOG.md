@@ -1,3 +1,7 @@
+## 0.17.2
+
+- Fixed [#10](https://github.com/sadespresso/moment_dart/issues/10)
+
 ## 0.17.1
 
 - Fixed [#9](https://github.com/sadespresso/moment_dart/issues/9)

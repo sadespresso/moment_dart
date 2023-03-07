@@ -148,8 +148,10 @@ extension MomentBenefits on DateTime {
   ///
   /// +1300 => GMT+13
   String timeZoneFormatted([bool seperateWithColon = true]) {
-    final int hours = timeZoneOffset.inMinutes ~/ 60;
-    final int minutes = timeZoneOffset.inMinutes - (hours * 60);
+    final int inMinutes = timeZoneOffset.abs().inMinutes;
+
+    final int hours = inMinutes ~/ 60;
+    final int minutes = inMinutes - (hours * 60);
 
     return (timeZoneOffset.isNegative ? "-" : "+") +
         hours.toString().padLeft(2, '0') +
