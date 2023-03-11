@@ -1,3 +1,7 @@
+## 0.17.3
+
+- `Moment.endOfLocalWeek()` and `Moment.startOfLocalWeek()` now accepts `weekStart` override, like `DateTime.~` counterparts
+
 ## 0.17.2
 
 - Fixed [#10](https://github.com/sadespresso/moment_dart/issues/10)

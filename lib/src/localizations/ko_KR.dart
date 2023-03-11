@@ -9,7 +9,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// Language: Korean
-/// Country: South Korea
+/// Country: Korea, Republic of
 class LocalizationKo extends MomentLocalization
     with SimpleUnits, SimpleRelative, SimpleDuration {
   static LocalizationKo? _instance;

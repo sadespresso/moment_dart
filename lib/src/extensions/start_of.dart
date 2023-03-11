@@ -120,12 +120,12 @@ extension StartOfUnitMoment on Moment {
   /// Returned object will have same timezone as [this]
   Moment startOfDay() => startOf(DurationUnit.day);
 
-  /// Returns start of the week based on [localization.weekStart]
+  /// Returns start of the week based on [localization.weekStart]. You can override this with [weekStart]
   ///
   /// Returned object will have same timezone as [this]
-  Moment startOfLocalWeek() {
+  Moment startOfLocalWeek([int? weekStart]) {
     return forcedSuperType
-        .startOfLocalWeek(localization.weekStart)
+        .startOfLocalWeek(weekStart ?? localization.weekStart)
         .toMoment(localization: localization);
   }
 

@@ -146,12 +146,12 @@ extension EndOfUnitMoment on Moment {
   /// Returned object will have same timezone as [this]
   Moment endOfDay() => endOf(DurationUnit.day);
 
-  /// Returns end of the week based on [localization.weekStart]
+  /// Returns end of the week based on [localization.weekStart]. You can override this with [weekStart]
   ///
   /// Returned object will have same timezone as [this]
-  Moment endOfLocalWeek() {
+  Moment endOfLocalWeek([int? weekStart]) {
     return forcedSuperType
-        .endOfLocalWeek(localization.weekStart)
+        .endOfLocalWeek(weekStart ?? localization.weekStart)
         .toMoment(localization: localization);
   }
 

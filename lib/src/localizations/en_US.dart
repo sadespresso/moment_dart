@@ -10,7 +10,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// Language: English (US)
-/// Country: United States
+/// Country: United States of America
 class LocalizationEnUs extends MomentLocalization
     with
         MonthNames,
