@@ -21,11 +21,6 @@ import 'package:moment_dart/src/types.dart';
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
-  static const int maxInt =
-      (double.infinity is int) ? double.infinity as int : ~minInt;
-  static const int minInt =
-      (double.infinity is int) ? -double.infinity as int : (-1 << 63);
-
   /// Defined intervals' upper-limit has been stored as <String,Duration?> map. Null [Duration] value indicates last possible case.
   ///
   /// Used this table as guide:
