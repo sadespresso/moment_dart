@@ -79,7 +79,7 @@ extension MomentBenefits on DateTime {
     return year;
   }
 
-  /// Returns ordinal day of the year
+  /// Returns ordinal day of the year in the current timezone
   ///
   /// [1,2,3,...,365,366]
   int get dayOfYear {
