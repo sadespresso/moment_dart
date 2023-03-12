@@ -27,33 +27,8 @@ void main() {
   var threeYearsAhead = now + const Duration(days: 365 * 3 + 1);
   var threeYearsAgo = now - const Duration(days: 365 * 3 + 1);
 
-  void ssetLocalization(MomentLocalization localization) {
-    fewMomentsAhead = fewMomentsAhead.copyWith(localization: localization);
-    fewMomentsAgo = fewMomentsAgo.copyWith(localization: localization);
-    aMinuteAhead = aMinuteAhead.copyWith(localization: localization);
-    aMinuteAgo = aMinuteAgo.copyWith(localization: localization);
-    fiveMinutesAhead = fiveMinutesAhead.copyWith(localization: localization);
-    fiveMinutesAgo = fiveMinutesAgo.copyWith(localization: localization);
-    anHourAhead = anHourAhead.copyWith(localization: localization);
-    anHourAgo = anHourAgo.copyWith(localization: localization);
-    sixHoursAhead = sixHoursAhead.copyWith(localization: localization);
-    sixHoursAgo = sixHoursAgo.copyWith(localization: localization);
-    aDayAhead = aDayAhead.copyWith(localization: localization);
-    aDayAgo = aDayAgo.copyWith(localization: localization);
-    twoDaysAhead = twoDaysAhead.copyWith(localization: localization);
-    twoDaysAgo = twoDaysAgo.copyWith(localization: localization);
-    aMonthAhead = aMonthAhead.copyWith(localization: localization);
-    aMonthAgo = aMonthAgo.copyWith(localization: localization);
-    fourMonthsAhead = fourMonthsAhead.copyWith(localization: localization);
-    fourMonthsAgo = fourMonthsAgo.copyWith(localization: localization);
-    aYearAhead = aYearAhead.copyWith(localization: localization);
-    aYearAgo = aYearAgo.copyWith(localization: localization);
-    threeYearsAhead = threeYearsAhead.copyWith(localization: localization);
-    threeYearsAgo = threeYearsAgo.copyWith(localization: localization);
-  }
-
   test("de_DE localization relative time test", () {
-    ssetLocalization(MomentLocalizations.de());
+    Moment.setGlobalLocalization(MomentLocalizations.de());
 
     expect(fewMomentsAhead.from(now), "in ein paar Sekunden");
     expect(fewMomentsAgo.from(now), "vor ein paar Sekunden");
@@ -92,7 +67,7 @@ void main() {
   });
 
   test("it localization relative time test", () {
-    ssetLocalization(MomentLocalizations.it());
+    Moment.setGlobalLocalization(MomentLocalizations.it());
 
     expect(fewMomentsAhead.from(now), "tra alcuni secondi");
     expect(fewMomentsAgo.from(now), "alcuni secondi fa");
@@ -130,7 +105,7 @@ void main() {
   });
 
   test("fr localization relative time test", () {
-    ssetLocalization(MomentLocalizations.fr());
+    Moment.setGlobalLocalization(MomentLocalizations.fr());
 
     expect(fewMomentsAhead.from(now), "dans quelques secondes");
     expect(fewMomentsAgo.from(now), "il y a quelques secondes");
@@ -169,7 +144,7 @@ void main() {
   });
 
   test("es localization relative time test", () {
-    ssetLocalization(MomentLocalizations.es());
+    Moment.setGlobalLocalization(MomentLocalizations.es());
 
     expect(fewMomentsAhead.from(now), "en unos segundos");
     expect(fewMomentsAgo.from(now), "hace unos segundos");
@@ -207,7 +182,7 @@ void main() {
   });
 
   test("en_US localization relative time test", () {
-    ssetLocalization(MomentLocalizations.enUS());
+    Moment.setGlobalLocalization(MomentLocalizations.enUS());
 
     expect(fewMomentsAhead.from(now), "in a few seconds");
     expect(fewMomentsAgo.from(now), "a few seconds ago");
@@ -245,7 +220,7 @@ void main() {
   });
 
   test("mn localization relative time test", () {
-    ssetLocalization(MomentLocalizations.mn());
+    Moment.setGlobalLocalization(MomentLocalizations.mn());
 
     expect(fewMomentsAhead.from(now), "хэдэн хормын дараа");
     expect(fewMomentsAgo.from(now), "хэдэн хормын өмнө");
@@ -283,7 +258,7 @@ void main() {
   });
 
   test("mn (Traditional) localization relative time test", () {
-    ssetLocalization(MomentLocalizations.mnMong());
+    Moment.setGlobalLocalization(MomentLocalizations.mnMong());
 
     expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
     expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
@@ -321,7 +296,7 @@ void main() {
   });
 
   test("mn (Traditional with numbers) localization relative time test", () {
-    ssetLocalization(MomentLocalizations.mnMongtn());
+    Moment.setGlobalLocalization(MomentLocalizations.mnMongtn());
 
     expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
     expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
@@ -359,7 +334,7 @@ void main() {
   });
 
   test("ko localization relative time test", () {
-    ssetLocalization(MomentLocalizations.ko());
+    Moment.setGlobalLocalization(MomentLocalizations.ko());
 
     expect(fewMomentsAhead.from(now), "몇 초 후");
     expect(fewMomentsAgo.from(now), "몇 초 전");
@@ -398,7 +373,7 @@ void main() {
   });
 
   test("zh_CN localization relative time test", () {
-    ssetLocalization(MomentLocalizations.zhCn());
+    Moment.setGlobalLocalization(MomentLocalizations.zhCn());
 
     expect(fewMomentsAhead.from(now), "几秒后");
     expect(fewMomentsAgo.from(now), "几秒前");

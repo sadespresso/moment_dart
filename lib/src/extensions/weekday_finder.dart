@@ -100,8 +100,9 @@ extension WeekdayFinderMoment on Moment {
   /// Returns new [Moment] instance of nearest `n`th weekday in the future
   ///
   /// If `n`th day is today, will return `7 days in the future`.
-  Moment nextWeekday(int weekday) =>
-      forcedSuperType.nextWeekday(weekday).toMoment(localization: localization);
+  Moment nextWeekday(int weekday) => forcedSuperType
+      .nextWeekday(weekday)
+      .toMoment(localization: setLocalization);
 
   /// Returns new [Moment] instance of nearest Monday in the Future
   ///
@@ -141,8 +142,9 @@ extension WeekdayFinderMoment on Moment {
   /// Returns new [Moment] instance of last `n`th weekday
   ///
   /// If today is the `n`th day, will return `7 days in the past`
-  Moment lastWeekday(int weekday) =>
-      forcedSuperType.lastWeekday(weekday).toMoment(localization: localization);
+  Moment lastWeekday(int weekday) => forcedSuperType
+      .lastWeekday(weekday)
+      .toMoment(localization: setLocalization);
 
   /// Returns new [Moment] instance of nearest Monday in the past
   ///

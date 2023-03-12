@@ -21,28 +21,8 @@ void main() {
   // C
   var epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
-  void ssetLocalization(MomentLocalization localization) {
-    // A
-    today = today.copyWith(localization: localization);
-    tomorrow = tomorrow.copyWith(localization: localization);
-    tueOrDayAfterTomorrow =
-        tueOrDayAfterTomorrow.copyWith(localization: localization);
-    yesterday = yesterday.copyWith(localization: localization);
-    friOrdayBeforeYesterday =
-        friOrdayBeforeYesterday.copyWith(localization: localization);
-    // B
-    lastMonday = lastMonday.copyWith(localization: localization);
-    lastTuesday = lastTuesday.copyWith(localization: localization);
-    lastWednesday = lastWednesday.copyWith(localization: localization);
-    nextWednesday = nextWednesday.copyWith(localization: localization);
-    nextThursday = nextThursday.copyWith(localization: localization);
-    nextFriday = nextFriday.copyWith(localization: localization);
-    // C
-    epoch = epoch.copyWith(localization: localization);
-  }
-
   test("de_DE localization calendar test", () {
-    ssetLocalization(MomentLocalizations.de());
+    Moment.setGlobalLocalization(MomentLocalizations.de());
 
     // A
     expect(today.calendar(reference: today), "heute um 5:33");
@@ -70,7 +50,7 @@ void main() {
   });
 
   test("it localization calendar test", () {
-    ssetLocalization(MomentLocalizations.it());
+    Moment.setGlobalLocalization(MomentLocalizations.it());
 
     // A
     expect(today.calendar(reference: today), "oggi alle 05:33");
@@ -121,7 +101,7 @@ void main() {
   });
 
   test("fr localization calendar test", () {
-    ssetLocalization(MomentLocalizations.fr());
+    Moment.setGlobalLocalization(MomentLocalizations.fr());
 
     // A
     expect(today.calendar(reference: today), "Aujourd'hui à 05:33");
@@ -147,7 +127,7 @@ void main() {
   });
 
   test("es localization calendar test", () {
-    ssetLocalization(MomentLocalizations.es());
+    Moment.setGlobalLocalization(MomentLocalizations.es());
 
     // A
     expect(today.calendar(reference: today), "hoy a las 5:33");
@@ -173,7 +153,7 @@ void main() {
   });
 
   test("en_US localization calendar test", () {
-    ssetLocalization(MomentLocalizations.enUS());
+    Moment.setGlobalLocalization(MomentLocalizations.enUS());
 
     // A
     expect(today.calendar(reference: today), "Today at 5:33 AM");
@@ -201,7 +181,7 @@ void main() {
   });
 
   test("mn localization calendar test", () {
-    ssetLocalization(MomentLocalizations.mn());
+    Moment.setGlobalLocalization(MomentLocalizations.mn());
 
     // A
     expect(today.calendar(reference: today), "Өнөөдөр 05:33");
@@ -227,7 +207,7 @@ void main() {
   });
 
   test("mn (Traditional) localization calendar test", () {
-    ssetLocalization(MomentLocalizations.mnMong());
+    Moment.setGlobalLocalization(MomentLocalizations.mnMong());
 
     // A
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ 05:33");
@@ -252,7 +232,7 @@ void main() {
   });
 
   test("mn (Traditional with numbers) localization calendar test", () {
-    ssetLocalization(MomentLocalizations.mnMongtn());
+    Moment.setGlobalLocalization(MomentLocalizations.mnMongtn());
 
     // A
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ ᠐᠕:᠓᠓");
@@ -277,7 +257,7 @@ void main() {
   });
 
   test("ko localization calendar test", () {
-    ssetLocalization(MomentLocalizations.ko());
+    Moment.setGlobalLocalization(MomentLocalizations.ko());
 
     // A
     expect(today.calendar(reference: today), "오늘 오전 5:33");
@@ -298,7 +278,7 @@ void main() {
   });
 
   test("zh_CN localization calendar test", () {
-    ssetLocalization(MomentLocalizations.zhCn());
+    Moment.setGlobalLocalization(MomentLocalizations.zhCn());
 
     // A
     expect(today.calendar(reference: today), "今天 05:33");

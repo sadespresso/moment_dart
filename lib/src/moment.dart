@@ -3,12 +3,32 @@ export 'package:moment_dart/src/extensions.dart';
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';
 
-/// Moment is subclass of DateTime
+/// A subclass of DateTime. Therefore:
+/// ```dart
+/// Moment.now() is DateTime == true // always
+/// ```
 ///
-/// See also:
-/// * [defaultLocalization]
-/// * [setGlobalLocalization]
+/// ### Set a global localization:
 ///
+/// Global localizations will affect all moment instances, except those with explicitly set localizations.
+///
+/// ```dart
+/// Moment.setGlobalLocalization(MomentLocalizations.fr());
+/// ```
+///
+/// ### An instance with explicit localization:
+/// ```dart
+/// Moment.now(localization: MomentLocalizations.mn())
+/// ```
+///
+/// ### Formatting
+///
+/// `Moment().format` will format [DateTime] based on the `payload`. For example:
+/// ```dart
+/// Moment.fromMillisecondsSinceEpoch(0, isUtc: true).LLLL; // Thursday, January 1 1970 00:00 AM
+/// ```
+///
+/// See [FormatterToken]s
 class Moment extends DateTime {
   /// Any instances without explicit localization set will use the global localization.
   ///
@@ -31,6 +51,9 @@ class Moment extends DateTime {
   }
 
   late final MomentLocalization? _localization;
+
+  /// Original localization of this instance
+  MomentLocalization? get setLocalization => _localization;
 
   /// Returns localization of this instance. If [this] doesn't have localization, returns the global localization.
   ///
@@ -67,7 +90,7 @@ class Moment extends DateTime {
   Moment copyWith({DateTime? dateTime, MomentLocalization? localization}) {
     final Moment value = Moment(
       dateTime ?? this,
-      localization: localization ?? this.localization,
+      localization: localization ?? _localization,
     );
 
     return value;
@@ -78,14 +101,14 @@ class Moment extends DateTime {
   /// Adds the `duration` using `DateTime.add(duration)`
   @override
   Moment add(Duration duration) =>
-      Moment(super.add(duration), localization: localization);
+      Moment(super.add(duration), localization: _localization);
 
   /// Returns new [Moment] with subtracted duration
   ///
   /// Subtracts the `duration` using `DateTime.subtract(duration)`
   @override
   Moment subtract(Duration duration) =>
-      Moment(super.subtract(duration), localization: localization);
+      Moment(super.subtract(duration), localization: _localization);
 
   /// Returns new [Moment] with added duration
   ///
@@ -99,7 +122,7 @@ class Moment extends DateTime {
 
   List<FormatterToken> get _fts => localization.tokens;
 
-  /// Formats date according to [payload].
+  /// Formats date according to [payload]. See also: [FormatterToken]
   ///
   /// You may want to check if your [DateTime] object is local or not.
   ///
@@ -397,10 +420,10 @@ class Moment extends DateTime {
       );
 
   @override
-  Moment toUtc() => Moment(super.toUtc(), localization: localization);
+  Moment toUtc() => Moment(super.toUtc(), localization: _localization);
 
   @override
-  Moment toLocal() => Moment(super.toLocal(), localization: localization);
+  Moment toLocal() => Moment(super.toLocal(), localization: _localization);
 
   /// Returns "LLL" formatted string
   @override

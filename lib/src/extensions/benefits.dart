@@ -200,7 +200,7 @@ extension MomentBenefitsPlus on Moment {
   Moment clone() {
     return Moment(
       forcedSuperType.clone(),
-      localization: localization,
+      localization: setLocalization,
     );
   }
 }

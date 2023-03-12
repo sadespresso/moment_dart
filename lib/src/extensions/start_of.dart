@@ -93,7 +93,7 @@ extension StartOfUnitMoment on Moment {
   ///
   /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
   Moment startOf(DurationUnit unit) =>
-      forcedSuperType.startOf(unit).toMoment(localization: localization);
+      forcedSuperType.startOf(unit).toMoment(localization: setLocalization);
 
   /// Returns start of the millisecond
   ///
@@ -126,7 +126,7 @@ extension StartOfUnitMoment on Moment {
   Moment startOfLocalWeek([int? weekStart]) {
     return forcedSuperType
         .startOfLocalWeek(weekStart ?? localization.weekStart)
-        .toMoment(localization: localization);
+        .toMoment(localization: setLocalization);
   }
 
   /// Returns start of the month

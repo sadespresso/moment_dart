@@ -1,3 +1,7 @@
+## 0.17.4
+
+- Fixed extensions, and operations copying default localization when the instance had no explicit localization
+
 ## 0.17.3
 
 - `Moment.endOfLocalWeek()` and `Moment.startOfLocalWeek()` now accepts `weekStart` override, like `DateTime.~` counterparts
