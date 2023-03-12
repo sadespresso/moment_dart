@@ -1,6 +1,8 @@
 import 'package:moment_dart/moment_dart.dart';
 
-/// This mixin provides set of formatters named `formattersWithOrdinal`
+/// This mixin provides:
+///
+/// * [formattersWithOrdinal] - getter for set of formatters related to ordinals
 mixin Ordinal on MomentLocalization {
   String ordinalNumber(int n);
 

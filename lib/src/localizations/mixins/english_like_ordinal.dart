@@ -1,8 +1,9 @@
 import 'package:moment_dart/moment_dart.dart';
 
-/// This mixin provides set of formatters named `formattersWithOrdinal`
+/// This mixin provides:
 ///
-/// And a function named `ordinalNumber`, which returns ordinal number string of any `int`
+/// * [formattersWithOrdinal] - getter for set of formatters related to English-like ordinals
+/// * [ordinalNumber] - function returns *ordinal number string* for an `int`
 mixin EnglishLikeOrdinal on MomentLocalization {
   /// Ordinal suffixes in order:
   ///

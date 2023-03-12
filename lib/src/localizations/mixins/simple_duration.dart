@@ -7,7 +7,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 ///
 /// * [durationDelimiter] - getter for delimeters of each [UnitStringForm]
 ///
-/// And overrides [MomentLocalization.duration]
+/// And **overrides** [MomentLocalization.duration]
 mixin SimpleDuration on SimpleUnits {
   /// If overriden, must implement for all [UnitStringForm]s
   Map<UnitStringForm, String> get durationDelimiter => {

@@ -2,7 +2,9 @@ import 'package:moment_dart/moment_dart.dart';
 
 import 'chinese_numbers.dart';
 
-/// This mixin provides set of formatters named `formattersWithZnCnOrdinal`
+/// This mixin provides
+///
+/// * [formattersWithZnCnOrdinal] - getter for set of formatters related to Chinese ordinal numbers
 mixin ZnCnOrdinal on ChineseNumbers {
   String ordinalNumberDay(int n) => "$n日";
   String ordinalNumberWeek(int n) => "$n周";

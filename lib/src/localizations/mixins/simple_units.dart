@@ -1,6 +1,6 @@
 import 'package:moment_dart/moment_dart.dart';
 
-/// [units] defined here is used by `simple_relative` and `simple_duration`.
+/// [units] is used by following mixins: `simple_relative`, and `simple_duration`.
 ///
 ///
 /// This mixin provides:

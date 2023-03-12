@@ -3,7 +3,7 @@ import 'package:moment_dart/src/moment.dart';
 
 /// This mixin provides:
 ///
-/// * [complexCalendarData] - custom data getter
+/// * [complexCalendarData] - getter for custom data
 ///
 /// And **overrides** [MomentLocalization.calendar]
 mixin ComplexCalendar on MomentLocalization {

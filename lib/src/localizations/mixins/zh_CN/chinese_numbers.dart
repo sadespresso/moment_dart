@@ -1,5 +1,8 @@
 import 'package:moment_dart/moment_dart.dart';
 
+/// This mixin provides
+///
+/// * [chineseNumbers] - final property with chinese numbers
 mixin ChineseNumbers on MomentLocalization {
   final Map<int, String> chineseNumbers = {
     1: "一",
