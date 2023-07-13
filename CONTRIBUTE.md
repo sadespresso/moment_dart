@@ -1,11 +1,11 @@
 # Contributing to moment_dart
 
 1. Fork the repository.
-2. Create a new branch from the `develop` branch.
+2. Create a new branch from the `master` branch.
 3. Make your changes.
     * If you are adding a new feature, please write tests to ensure that it works correctly.
     * Run the tests to make sure they are passing.
-4. Make a pull request to `develop` branch.
+4. Make a pull request to `master` branch.
     * In the body of the pull request, describe your changes and why you made them.
     * If your changes close an issue, please [mention](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) the issue.
 5. Wait for your pull request to be reviewed and merged.
