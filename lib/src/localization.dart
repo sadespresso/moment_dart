@@ -96,7 +96,7 @@ abstract class MomentLocalization {
     bool dropPrefixOrSuffix = false,
   });
 
-  /// Some language require article before the hours. For example, la 1:20, las 13:20 (Spanish)
+  /// Some languages require article before the hours. For example, la 1:20, las 13:20 (Spanish)
   String calendarTime(Moment moment) =>
       moment.format(localizationDefaultHourFormat);
 
