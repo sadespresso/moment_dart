@@ -1,13 +1,14 @@
 # Contributing to moment_dart
 
-1. Fork this repo
-2. Clone your fork
-3. Don't forget to run `dart pub get`
-4. Make your changes. Ensure you're working on `develop` branch
-5. Update [CHANGELOG.md](CHANGELOG.md) (Use 'master' as your version)
-6. Run tests and ensure they are passing. (CLI: `dart test`)
-7. Make a pull request. Describe your changes if needed
+1. Fork the repository.
+2. Create a new branch from the `develop` branch.
+3. Make your changes.
+    * If you are adding a new feature, please write tests to ensure that it works correctly.
+    * Run the tests to make sure they are passing.
+4. Make a pull request.
+    * In the body of the pull request, describe your changes and why you made them.
+5. Wait for your pull request to be reviewed and merged.
 
-To add yourself to the contributors list, refer to [All Contributors bot usage docs](https://allcontributors.org/docs/en/bot/usage)
+Once your pull request is accepted, you will be considered a contributor to the project. The project maintainer is responsible for adding you as a contributor, but you also have the option to add yourself to the contributors list (automatically added upon merge of your PR). You can refer to the [All Contributors bot usage documentation](https://allcontributors.org/docs/en/bot/usage) for instructions.
 
-This project follows [all-contributors](https://allcontributors.org/) specification. Thank you for your contribution 💖
+Please note that this project follows the [all-contributors](https://allcontributors.org/) specification. Thank you for your valuable contribution! 💖
