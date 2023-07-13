@@ -408,7 +408,7 @@ class Moment extends DateTime {
   ///
   /// Using [customFormat] will make [omitHours] ineffective.
   String calendar({
-    Moment? reference,
+    DateTime? reference,
     bool omitHours = false,
     String? customFormat,
   }) =>

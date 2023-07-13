@@ -103,7 +103,7 @@ abstract class MomentLocalization {
   /// Calendar string
   String calendar(
     Moment moment, {
-    Moment? reference,
+    DateTime? reference,
     int startOfWeek = DateTime.monday,
     String? customFormat,
     bool omitHours = false,
@@ -127,7 +127,7 @@ abstract class MomentLocalization {
     } else {
       /// If it occured before [reference]
       if (moment < reference) {
-        final Moment weekBefore = reference.subtract(const Duration(days: 7));
+        final DateTime weekBefore = reference.subtract(const Duration(days: 7));
 
         if (moment.isBefore(weekBefore)) {
           if (omitHoursIfDistant) {
@@ -143,7 +143,7 @@ abstract class MomentLocalization {
 
       /// If it occured after [reference]
       else {
-        final Moment weekAfter = reference.add(const Duration(days: 7));
+        final DateTime weekAfter = reference.add(const Duration(days: 7));
 
         /// If it's this or next week (relative to the reference)
         if (moment.isBefore(weekAfter)) {
