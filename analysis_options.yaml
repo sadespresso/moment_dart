@@ -1,13 +1,6 @@
 include: package:lints/recommended.yaml
 
-# Uncomment the following section to specify additional rules.
-
 linter:
   rules:
 analyzer:
   exclude:
-# For more information about the core and recommended set of lints, see
-# https://dart.dev/go/core-lints
-
-# For additional information about configuring this file, see
-# https://dart.dev/guides/language/analysis-options
