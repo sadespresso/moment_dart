@@ -1,3 +1,10 @@
+## 0.17.5
+
+- Calendar now accepts `DateTime` as reference
+- Documentation work has begun.
+  - See [docs](https://dev.gege.mn/moment_dart_docs)
+  - See [repo on GitHub](https://github.com/sadespresso/moment_dart_docs)
+
 ## 0.17.4
 
 - Fixed extensions, and operations copying default localization when the instance had no explicit localization
