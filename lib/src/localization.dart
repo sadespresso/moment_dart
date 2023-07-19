@@ -10,8 +10,8 @@ export 'package:moment_dart/src/localizations/utils/duration_format.dart';
 import 'package:moment_dart/src/localizations/utils/relative_interval.dart';
 export 'package:moment_dart/src/localizations/utils/relative_interval.dart';
 
-import 'package:moment_dart/src/localizations/utils/unit_form.dart';
-export 'package:moment_dart/src/localizations/utils/unit_form.dart';
+import 'package:moment_dart/src/localizations/utils/abbreviation.dart';
+export 'package:moment_dart/src/localizations/utils/abbreviation.dart';
 
 import 'package:moment_dart/src/calendar.dart';
 export 'package:moment_dart/src/calendar.dart';
@@ -67,7 +67,7 @@ abstract class MomentLocalization {
   String relative(
     Duration duration, {
     bool dropPrefixOrSuffix = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
   });
 
   /// This will return **precise** durations. For imprecise durations, use [relative()]
@@ -90,7 +90,7 @@ abstract class MomentLocalization {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,

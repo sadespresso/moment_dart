@@ -34,7 +34,7 @@ extension DurationExtra on Duration {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,

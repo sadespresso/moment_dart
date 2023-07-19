@@ -41,7 +41,7 @@ class LocalizationMnMongMn extends MomentLocalization
   @override
   String relative(Duration duration,
       {bool dropPrefixOrSuffix = false,
-      UnitStringForm form = UnitStringForm.full}) {
+      Abbreviation form = Abbreviation.none}) {
     final bool past = duration.isNegative;
 
     duration = duration.abs();
@@ -217,7 +217,7 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
@@ -238,7 +238,7 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
   String relative(
     Duration duration, {
     bool dropPrefixOrSuffix = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
   }) {
     return toTraditionalNumber(super.relative(
       duration,

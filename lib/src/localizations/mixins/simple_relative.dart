@@ -10,7 +10,7 @@ mixin SimpleRelative on SimpleUnits {
   String relative(
     Duration duration, {
     bool dropPrefixOrSuffix = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
   }) {
     final bool past = duration.isNegative;
 

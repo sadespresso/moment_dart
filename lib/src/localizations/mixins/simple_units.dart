@@ -22,7 +22,7 @@ mixin SimpleUnits on MomentLocalization {
 abstract class UnitString {
   const UnitString();
 
-  String get(UnitStringForm form, bool dropPrefixOrSuffix);
+  String get(Abbreviation form, bool dropPrefixOrSuffix);
 
   factory UnitString.withForm(String full, String mid, String short) =>
       UnitStringWithForm._default(full, mid, short);
@@ -49,13 +49,13 @@ class UnitStringWithForm extends UnitString {
   ) : super();
 
   @override
-  String get(UnitStringForm form, bool dropPrefixOrSuffix) {
+  String get(Abbreviation form, bool dropPrefixOrSuffix) {
     switch (form) {
-      case UnitStringForm.full:
+      case Abbreviation.none:
         return full;
-      case UnitStringForm.mid:
+      case Abbreviation.semi:
         return mid;
-      case UnitStringForm.short:
+      case Abbreviation.full:
         return short;
     }
   }
@@ -67,5 +67,5 @@ class UnitStringSingle extends UnitString {
   const UnitStringSingle._default(this.value) : super();
 
   @override
-  String get(UnitStringForm form, bool dropPrefixOrSuffix) => value;
+  String get(Abbreviation form, bool dropPrefixOrSuffix) => value;
 }

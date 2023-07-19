@@ -1,7 +1,7 @@
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 import 'package:moment_dart/src/localizations/utils/relative_interval.dart';
-import 'package:moment_dart/src/localizations/utils/unit_form.dart';
+import 'package:moment_dart/src/localizations/utils/abbreviation.dart';
 
 /// This mixin provides:
 ///
@@ -16,7 +16,7 @@ mixin MnMongMnUnits on SimpleUnits {
 
   String getUnit(
     DurationInterval interval,
-    UnitStringForm form, {
+    Abbreviation form, {
     bool dropPrefixOrSuffix = false,
   }) {
     final String result =
@@ -31,7 +31,7 @@ mixin MnMongMnUnits on SimpleUnits {
 
     late final String suffix; // Language specific stuff
 
-    if (form != UnitStringForm.full) {
+    if (form != Abbreviation.none) {
       suffix = "";
     } else if (interval.unit == DurationUnit.month) {
       suffix = " ᠶᠢᠨ";

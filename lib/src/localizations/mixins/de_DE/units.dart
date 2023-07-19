@@ -1,5 +1,5 @@
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localizations/utils/unit_form.dart';
+import 'package:moment_dart/src/localizations/utils/abbreviation.dart';
 
 class UnitStringDeDe extends UnitString {
   final String full;
@@ -11,13 +11,13 @@ class UnitStringDeDe extends UnitString {
   const UnitStringDeDe(this.full, this.mid, this.short, {this.standalone});
 
   @override
-  String get(UnitStringForm form, bool dropPrefixOrSuffix) {
+  String get(Abbreviation form, bool dropPrefixOrSuffix) {
     switch (form) {
-      case UnitStringForm.full:
+      case Abbreviation.none:
         return dropPrefixOrSuffix ? (standalone ?? full) : full;
-      case UnitStringForm.mid:
+      case Abbreviation.semi:
         return mid;
-      case UnitStringForm.short:
+      case Abbreviation.full:
         return short;
     }
   }

@@ -1,7 +1,7 @@
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/utils/duration_unit.dart';
 import 'package:moment_dart/src/localizations/utils/relative_interval.dart';
-import 'package:moment_dart/src/localizations/utils/unit_form.dart';
+import 'package:moment_dart/src/localizations/utils/abbreviation.dart';
 
 /// This mixin provides:
 ///
@@ -14,7 +14,7 @@ mixin MnMnUnits on SimpleUnits {
   @override
   String get srDelta => "%";
 
-  String getUnit(DurationInterval interval, UnitStringForm form,
+  String getUnit(DurationInterval interval, Abbreviation form,
       {bool dropPrefixOrSuffix = false}) {
     if (!dropPrefixOrSuffix) {
       final bool useMasculineSuffix =
@@ -22,9 +22,8 @@ mixin MnMnUnits on SimpleUnits {
               interval.unit == DurationUnit.minute ||
               interval.unit == DurationUnit.month;
 
-      final String suffix = form != UnitStringForm.full
-          ? ""
-          : (useMasculineSuffix ? "ын" : "ийн");
+      final String suffix =
+          form != Abbreviation.none ? "" : (useMasculineSuffix ? "ын" : "ийн");
 
       return unitsWithSuffixConsidered[interval]!
               .get(form, dropPrefixOrSuffix) +

@@ -250,7 +250,7 @@ class Moment extends DateTime {
   String from(
     DateTime anchor, {
     bool dropPrefixOrSuffix = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
   }) {
     final Duration delta = difference(anchor);
 
@@ -272,7 +272,7 @@ class Moment extends DateTime {
   /// Use [fromNowPrecise]
   String fromNow({
     bool dropPrefixOrSuffix = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
   }) =>
       from(
         DateTime.now(),
@@ -300,7 +300,7 @@ class Moment extends DateTime {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = true,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
@@ -343,7 +343,7 @@ class Moment extends DateTime {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = true,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
@@ -381,7 +381,7 @@ class Moment extends DateTime {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,

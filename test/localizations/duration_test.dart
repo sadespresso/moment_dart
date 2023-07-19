@@ -37,54 +37,54 @@ void main() {
     final MomentLocalization l10n = LocalizationDeDe();
 
     expect(
-      l10n.duration(_1y_2mo, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, form: Abbreviation.none),
       "in einem Jahr 2 Monaten",
     );
     expect(
-      l10n.duration(_1y_2mo, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, form: Abbreviation.semi),
       "in 1 Jr. 2 Mo.",
     );
     expect(
-      l10n.duration(_1y_2mo, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, form: Abbreviation.full),
       "in 1y 2mo",
     );
 
     expect(
-      l10n.duration(_3y, form: UnitStringForm.full),
+      l10n.duration(_3y, form: Abbreviation.none),
       "in 3 Jahren",
     );
     expect(
-      l10n.duration(_3y, form: UnitStringForm.mid),
+      l10n.duration(_3y, form: Abbreviation.semi),
       "in 3 Jr.",
     );
     expect(
-      l10n.duration(_3y, form: UnitStringForm.short),
+      l10n.duration(_3y, form: Abbreviation.full),
       "in 3y",
     );
 
     expect(
-      l10n.duration(_3mo_17d, form: UnitStringForm.full),
+      l10n.duration(_3mo_17d, form: Abbreviation.none),
       "in 3 Monaten 17 Tagen",
     );
     expect(
-      l10n.duration(_3mo_17d, form: UnitStringForm.mid),
+      l10n.duration(_3mo_17d, form: Abbreviation.semi),
       "in 3 Mo. 17 Tg.",
     );
     expect(
-      l10n.duration(_3mo_17d, form: UnitStringForm.short),
+      l10n.duration(_3mo_17d, form: Abbreviation.full),
       "in 3mo 17d",
     );
 
     expect(
-      l10n.duration(_4mo, form: UnitStringForm.full),
+      l10n.duration(_4mo, form: Abbreviation.none),
       "in 4 Monaten",
     );
     expect(
-      l10n.duration(_4mo, form: UnitStringForm.mid),
+      l10n.duration(_4mo, form: Abbreviation.semi),
       "in 4 Mo.",
     );
     expect(
-      l10n.duration(_4mo, form: UnitStringForm.short),
+      l10n.duration(_4mo, form: Abbreviation.full),
       "in 4mo",
     );
 
@@ -92,7 +92,7 @@ void main() {
       l10n.duration(
         _3w_2d_or_23d,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "in 3 Wochen 2 Tagen",
     );
@@ -100,7 +100,7 @@ void main() {
       l10n.duration(
         _3w_2d_or_23d,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "in 3 Wochen 2 Tg.",
     );
@@ -108,20 +108,20 @@ void main() {
       l10n.duration(
         _3w_2d_or_23d,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "in 3w 2d",
     );
     expect(
-      l10n.duration(_3w_2d_or_23d, form: UnitStringForm.full),
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.none),
       "in 23 Tagen",
     );
     expect(
-      l10n.duration(_3w_2d_or_23d, form: UnitStringForm.mid),
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
       "in 23 Tg.",
     );
     expect(
-      l10n.duration(_3w_2d_or_23d, form: UnitStringForm.short),
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
       "in 23d",
     );
 
@@ -129,7 +129,7 @@ void main() {
       l10n.duration(
         _4w_or_28d,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "in 4 Wochen",
     );
@@ -137,7 +137,7 @@ void main() {
       l10n.duration(
         _4w_or_28d,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "in 4 Wochen",
     );
@@ -145,124 +145,124 @@ void main() {
       l10n.duration(
         _4w_or_28d,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "in 4w",
     );
     expect(
-      l10n.duration(_4w_or_28d, form: UnitStringForm.full),
+      l10n.duration(_4w_or_28d, form: Abbreviation.none),
       "in 28 Tagen",
     );
     expect(
-      l10n.duration(_4w_or_28d, form: UnitStringForm.mid),
+      l10n.duration(_4w_or_28d, form: Abbreviation.semi),
       "in 28 Tg.",
     );
     expect(
-      l10n.duration(_4w_or_28d, form: UnitStringForm.short),
+      l10n.duration(_4w_or_28d, form: Abbreviation.full),
       "in 28d",
     );
 
     expect(
-      l10n.duration(_6d_7h, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, form: Abbreviation.none),
       "in 6 Tagen 7 Stunden",
     );
     expect(
-      l10n.duration(_6d_7h, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, form: Abbreviation.semi),
       "in 6 Tg. 7 Std.",
     );
     expect(
-      l10n.duration(_6d_7h, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, form: Abbreviation.full),
       "in 6d 7h",
     );
 
     expect(
-      l10n.duration(_6d, form: UnitStringForm.full),
+      l10n.duration(_6d, form: Abbreviation.none),
       "in 6 Tagen",
     );
     expect(
-      l10n.duration(_6d, form: UnitStringForm.mid),
+      l10n.duration(_6d, form: Abbreviation.semi),
       "in 6 Tg.",
     );
     expect(
-      l10n.duration(_6d, form: UnitStringForm.short),
+      l10n.duration(_6d, form: Abbreviation.full),
       "in 6d",
     );
 
     expect(
-      l10n.duration(_8h_8m, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, form: Abbreviation.none),
       "in 8 Stunden 8 Minuten",
     );
     expect(
-      l10n.duration(_8h_8m, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, form: Abbreviation.semi),
       "in 8 Std. 8 Min.",
     );
     expect(
-      l10n.duration(_8h_8m, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, form: Abbreviation.full),
       "in 8h 8m",
     );
 
     expect(
-      l10n.duration(_8h, form: UnitStringForm.full),
+      l10n.duration(_8h, form: Abbreviation.none),
       "in 8 Stunden",
     );
     expect(
-      l10n.duration(_8h, form: UnitStringForm.mid),
+      l10n.duration(_8h, form: Abbreviation.semi),
       "in 8 Std.",
     );
     expect(
-      l10n.duration(_8h, form: UnitStringForm.short),
+      l10n.duration(_8h, form: Abbreviation.full),
       "in 8h",
     );
 
     expect(
-      l10n.duration(_48m_42s, form: UnitStringForm.full),
+      l10n.duration(_48m_42s, form: Abbreviation.none),
       "in 48 Minuten 42 Sekunden",
     );
     expect(
-      l10n.duration(_48m_42s, form: UnitStringForm.mid),
+      l10n.duration(_48m_42s, form: Abbreviation.semi),
       "in 48 Min. 42 Sek.",
     );
     expect(
-      l10n.duration(_48m_42s, form: UnitStringForm.short),
+      l10n.duration(_48m_42s, form: Abbreviation.full),
       "in 48m 42s",
     );
 
     expect(
-      l10n.duration(_35m, form: UnitStringForm.full),
+      l10n.duration(_35m, form: Abbreviation.none),
       "in 35 Minuten",
     );
     expect(
-      l10n.duration(_35m, form: UnitStringForm.mid),
+      l10n.duration(_35m, form: Abbreviation.semi),
       "in 35 Min.",
     );
     expect(
-      l10n.duration(_35m, form: UnitStringForm.short),
+      l10n.duration(_35m, form: Abbreviation.full),
       "in 35m",
     );
 
     expect(
-      l10n.duration(_42s, form: UnitStringForm.full),
+      l10n.duration(_42s, form: Abbreviation.none),
       "in 42 Sekunden",
     );
     expect(
-      l10n.duration(_42s, form: UnitStringForm.mid),
+      l10n.duration(_42s, form: Abbreviation.semi),
       "in 42 Sek.",
     );
     expect(
-      l10n.duration(_42s, form: UnitStringForm.short),
+      l10n.duration(_42s, form: Abbreviation.full),
       "in 42s",
     );
 
     expect(
-      l10n.duration(_zero, form: UnitStringForm.full),
+      l10n.duration(_zero, form: Abbreviation.none),
       "in ein paar Sekunden",
     );
     expect(
-      l10n.duration(_zero, form: UnitStringForm.mid),
+      l10n.duration(_zero, form: Abbreviation.semi),
       "in ein paar Sek.",
     );
     expect(
-      l10n.duration(_zero, form: UnitStringForm.short),
+      l10n.duration(_zero, form: Abbreviation.full),
       "in ein paar Sek.",
     );
   });
@@ -271,60 +271,57 @@ void main() {
     final MomentLocalization l10n = LocalizationDeDe();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "ein Jahr 2 Monate",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 Jr. 2 Mo.",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1y 2mo",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 Jahre",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 Jr.",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3y",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 Monate 17 Tage",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 Mo. 17 Tg.",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3mo 17d",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 Monate",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 Mo.",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4mo",
     );
 
@@ -333,7 +330,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 Wochen 2 Tage",
     );
@@ -342,7 +339,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 Wochen 2 Tg.",
     );
@@ -351,23 +348,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3w 2d",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 Tage",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 Tg.",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23d",
     );
 
@@ -376,7 +373,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 Wochen",
     );
@@ -385,7 +382,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 Wochen",
     );
@@ -394,135 +391,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4w",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 Tage",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 Tg.",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28d",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 Tage 7 Stunden",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 Tg. 7 Std.",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6d 7h",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 Tage",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 Tg.",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6d",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 Stunden 8 Minuten",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 Std. 8 Min.",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8h 8m",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 Stunden",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 Std.",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8h",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 Minuten 42 Sekunden",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 Min. 42 Sek.",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48m 42s",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 Minuten",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 Min.",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35m",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 Sekunden",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 Sek.",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42s",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "ein paar Sekunden",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "ein paar Sek.",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "ein paar Sek.",
     );
   });
@@ -530,60 +522,57 @@ void main() {
     final MomentLocalization l10n = LocalizationItIt();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "un anno 2 mesi",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 anno 2 mesi",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1 a. 2 ms.",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 anni",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 anni",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 a.",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 mesi 17 giorni",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 mesi 17 giorni",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 ms. 17 gg.",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 mesi",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 mesi",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4 ms.",
     );
 
@@ -592,7 +581,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 settimane 2 giorni",
     );
@@ -601,7 +590,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 sett. 2 giorni",
     );
@@ -610,23 +599,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3 sett. 2 gg.",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 giorni",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 giorni",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23 gg.",
     );
 
@@ -635,7 +624,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 settimane",
     );
@@ -644,7 +633,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 sett.",
     );
@@ -653,135 +642,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4 sett.",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 giorni",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 giorni",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28 gg.",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 giorni 7 ore",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 giorni 7 ore",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 gg. 7 h",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 giorni",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 giorni",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 gg.",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 ore 8 minuti",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 ore 8 min",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h 8 m",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 ore",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 ore",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 minuti 42 secondi",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 min 42 sec",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48 m 42 s",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 minuti",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 min",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35 m",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 secondi",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 sec",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42 s",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "alcuni secondi",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "alcuni sec",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "alcuni sec",
     );
   });
@@ -789,60 +773,57 @@ void main() {
     final MomentLocalization l10n = LocalizationFrFr();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "un an 2 mois",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 an 2 mois",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1 an 2 mois",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 ans",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 ans",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 ans",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 mois 17 jours",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 mois 17 jours",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 mois 17 j",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 mois",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 mois",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4 mois",
     );
 
@@ -851,7 +832,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 semaines 2 jours",
     );
@@ -860,7 +841,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 sem. 2 jours",
     );
@@ -869,23 +850,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3 sem. 2 j",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 jours",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 jours",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23 j",
     );
 
@@ -894,7 +875,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 semaines",
     );
@@ -903,7 +884,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 sem.",
     );
@@ -912,135 +893,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4 sem.",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 jours",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 jours",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28 j",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 jours 7 heures",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 jours 7 heures",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 j 7 h",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 jours",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 jours",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 j",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 heures 8 minutes",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 heures 8 min",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h 8 min",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 heures",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 heures",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 minutes 42 secondes",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 min 42 sec.",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48 min 42 s",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 minutes",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 min",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35 min",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 secondes",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 sec.",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42 s",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "quelques secondes",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "quelques sec.",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "quelques sec.",
     );
   });
@@ -1048,60 +1024,57 @@ void main() {
     final MomentLocalization l10n = LocalizationEsEs();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "un año 2 meses",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 año 2 meses",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1 año 2 ms.",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 años",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 años",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 años",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 meses 17 días",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 meses 17 días",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3 ms. 17 d",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 meses",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 meses",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4 ms.",
     );
 
@@ -1110,7 +1083,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 semanas 2 días",
     );
@@ -1119,7 +1092,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 semanas 2 días",
     );
@@ -1128,23 +1101,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3 sem. 2 d",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 días",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 días",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23 d",
     );
 
@@ -1153,7 +1126,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 semanas",
     );
@@ -1162,7 +1135,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 semanas",
     );
@@ -1171,135 +1144,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4 sem.",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 días",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 días",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28 d",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 días 7 horas",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 días 7 horas",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 d 7 h",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 días",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 días",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6 d",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 horas 8 minutos",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 horas 8 min.",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h 8 min",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 horas",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 horas",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8 h",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 minutos 42 segundos",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 min. 42 seg.",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48 min 42 s",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 minutos",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 min.",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35 min",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 segundos",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 seg.",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42 s",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "unos segundos",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "unos seg.",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "unos s",
     );
   });
@@ -1307,60 +1275,57 @@ void main() {
     final MomentLocalization l10n = LocalizationEnUs();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "a year 2 months",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 yr 2 mo",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1y 2mo",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 years",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 yr",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3y",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 months 17 days",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 mo 17 day",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3mo 17d",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 months",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 mo",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4mo",
     );
 
@@ -1369,7 +1334,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 weeks 2 days",
     );
@@ -1378,7 +1343,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 wk 2 day",
     );
@@ -1387,23 +1352,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3w 2d",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 days",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 day",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23d",
     );
 
@@ -1412,7 +1377,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 weeks",
     );
@@ -1421,7 +1386,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 wk",
     );
@@ -1430,135 +1395,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4w",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 days",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 day",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28d",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 days 7 hours",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 day 7 hr",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6d 7h",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 days",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 day",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6d",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 hours 8 minutes",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 hr 8 min",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8h 8m",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 hours",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 hr",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8h",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 minutes 42 seconds",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 min 42 sec",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48m 42s",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 minutes",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 min",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35m",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 seconds",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 sec",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42s",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "a few seconds",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "a few sec",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "a sec",
     );
   });
@@ -1566,60 +1526,57 @@ void main() {
     final MomentLocalization l10n = LocalizationMnMn();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "1 жил 2 сар",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 жил 2 сар",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1жил 2сар",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 жил",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 жил",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3жил",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 сар 17 өдөр",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 сар 17 өдөр",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3сар 17ө",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 сар",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 сар",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4сар",
     );
 
@@ -1628,7 +1585,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 долоо хоног 2 өдөр",
     );
@@ -1637,7 +1594,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 долоо хон 2 өдөр",
     );
@@ -1646,23 +1603,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3дол.хон 2ө",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 өдөр",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 өдөр",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23ө",
     );
 
@@ -1671,7 +1628,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 долоо хоног",
     );
@@ -1680,7 +1637,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 долоо хон",
     );
@@ -1689,135 +1646,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4дол.хон",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 өдөр",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 өдөр",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28ө",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 өдөр 7 цаг",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 өдөр 7 цаг",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6ө 7ц",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 өдөр",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 өдөр",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6ө",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 цаг 8 минут",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 цаг 8 мин",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8ц 8м",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 цаг",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 цаг",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8ц",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 минут 42 секунд",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 мин 42 сек",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48м 42с",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 минут",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 мин",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35м",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 секунд",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 сек",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42с",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "хэдэн хором",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "хором",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "хором",
     );
   });
@@ -1825,60 +1777,57 @@ void main() {
     final MomentLocalization l10n = LocalizationMnMongMn();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "1 ᠵᠢᠯ 2 ᠰᠠᠷ᠎ᠠ",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "1 ᠵᠢᠯ 2 ᠰᠠ᠊᠍",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "1ᠵᠢᠯ 2ᠰᠠ᠊᠍",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 ᠵᠢᠯ",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 ᠵᠢᠯ",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3ᠵᠢᠯ",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "3 ᠰᠠᠷ᠎ᠠ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "3 ᠰᠠ᠊᠍ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "3ᠰᠠ᠊᠍ 17ᠥ",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "4 ᠰᠠᠷ᠎ᠠ",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "4 ᠰᠠ᠊᠍",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "4ᠰᠠ᠊᠍",
     );
 
@@ -1887,7 +1836,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ 2 ᠡᠳᠦᠷ",
     );
@@ -1896,7 +1845,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ 2 ᠡᠳᠦᠷ",
     );
@@ -1905,23 +1854,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "3ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ 2ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "23 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "23 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "23ᠥ",
     );
 
@@ -1930,7 +1879,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
     );
@@ -1939,7 +1888,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
     );
@@ -1948,135 +1897,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "4ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "28 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "28ᠥ",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 ᠡᠳᠦᠷ 7 ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 ᠡᠳᠦᠷ 7 ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6ᠥ 7ᠴ",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 ᠡᠳᠦᠷ",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "6 ᠡᠳᠦᠷ",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "6ᠥ",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 ᠴᠠᠭ 8 ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 ᠴᠠᠭ 8 ᠮᠢᠨ᠊᠍",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8ᠴ 8ᠮ",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "8 ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "8ᠴ",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 ᠮᠢᠨᠦᠢᠲ 42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "48 ᠮᠢᠨ᠊᠍ 42 ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "48ᠮ 42ᠰ",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "35 ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "35 ᠮᠢᠨ᠊᠍",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "35ᠮ",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "42 ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "42ᠰ",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "ᠬᠣᠷᠤᠮ",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "ᠬᠣᠷᠤᠮ",
     );
   });
@@ -2084,60 +2028,57 @@ void main() {
     final MomentLocalization l10n = LocalizationMnQaaqMn();
 
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠑ ᠵᠢᠯ ᠒ ᠰᠠᠷ᠎ᠠ",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠑ ᠵᠢᠯ ᠒ ᠰᠠ᠊᠍",
     );
     expect(
-      l10n.duration(_1y_2mo,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠑ᠵᠢᠯ ᠒ᠰᠠ᠊᠍",
     );
 
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠓ ᠵᠢᠯ",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠓ ᠵᠢᠯ",
     );
     expect(
-      l10n.duration(_3y, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠓ᠵᠢᠯ",
     );
 
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠓ ᠰᠠᠷ᠎ᠠ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠓ ᠰᠠ᠊᠍ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠓ᠰᠠ᠊᠍ ᠑᠗ᠥ",
     );
 
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠔ ᠰᠠᠷ᠎ᠠ",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠔ ᠰᠠ᠊᠍",
     );
     expect(
-      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠔ᠰᠠ᠊᠍",
     );
 
@@ -2146,7 +2087,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠒ ᠡᠳᠦᠷ",
     );
@@ -2155,7 +2096,7 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠒ ᠡᠳᠦᠷ",
     );
@@ -2164,23 +2105,23 @@ void main() {
         _3w_2d_or_23d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "᠓ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠒ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠒᠓ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠒᠓ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠒᠓ᠥ",
     );
 
@@ -2189,7 +2130,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.full,
+        form: Abbreviation.none,
       ),
       "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
     );
@@ -2198,7 +2139,7 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
     );
@@ -2207,135 +2148,130 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.short,
+        form: Abbreviation.full,
       ),
       "᠔ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠒᠘ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠒᠘ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠒᠘ᠥ",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠖ ᠡᠳᠦᠷ ᠗ ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠖ ᠡᠳᠦᠷ ᠗ ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠖ᠥ ᠗ᠴ",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠖ ᠡᠳᠦᠷ",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠖ ᠡᠳᠦᠷ",
     );
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠖ᠥ",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
-      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨ᠊᠍",
     );
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠘ᠴ ᠘ᠮ",
     );
 
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠘ ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠘ ᠴᠠᠭ",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠘ᠴ",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠔᠘ ᠮᠢᠨᠦᠢᠲ ᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠔᠘ ᠮᠢᠨ᠊᠍ ᠔᠒ ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠔᠘ᠮ ᠔᠒ᠰ",
     );
 
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠓᠕ ᠮᠢᠨᠦᠢᠲ",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠓᠕ ᠮᠢᠨ᠊᠍",
     );
     expect(
-      l10n.duration(_35m, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠓᠕ᠮ",
     );
 
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "᠔᠒ ᠰᠧᠻ᠍᠊᠍",
     );
     expect(
-      l10n.duration(_42s, dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "᠔᠒ᠰ",
     );
 
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ",
     );
     expect(
-      l10n.duration(_zero, dropPrefixOrSuffix: true, form: UnitStringForm.mid),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "ᠬᠣᠷᠤᠮ",
     );
     expect(
-      l10n.duration(_zero,
-          dropPrefixOrSuffix: true, form: UnitStringForm.short),
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
       "ᠬᠣᠷᠤᠮ",
     );
   });
@@ -2469,40 +2405,38 @@ void main() {
         _4w_or_28d,
         dropPrefixOrSuffix: true,
         includeWeeks: true,
-        form: UnitStringForm.mid,
+        form: Abbreviation.semi,
       ),
       "4 周",
     );
     expect(
       l10n.duration(_4w_or_28d,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "28 天",
     );
 
     expect(
-      l10n.duration(_6d_7h,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 天 7 小时",
     );
 
     expect(
-      l10n.duration(_6d, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "6 天",
     );
 
     expect(
-      l10n.duration(_8h_8m,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 小时 8 分钟",
     );
     expect(
-      l10n.duration(_8h, dropPrefixOrSuffix: true, form: UnitStringForm.full),
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
       "8 小时",
     );
 
     expect(
       l10n.duration(_48m_42s,
-          dropPrefixOrSuffix: true, form: UnitStringForm.full),
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
       "48 分钟 42 秒",
     );
 

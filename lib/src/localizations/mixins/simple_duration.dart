@@ -5,15 +5,15 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 ///
 /// This mixin provides:
 ///
-/// * [durationDelimiter] - getter for delimeters of each [UnitStringForm]
+/// * [durationDelimiter] - getter for delimeters of each [Abbreviation]
 ///
 /// And **overrides** [MomentLocalization.duration]
 mixin SimpleDuration on SimpleUnits {
-  /// If overriden, must implement for all [UnitStringForm]s
-  Map<UnitStringForm, String> get durationDelimiter => {
-        UnitStringForm.full: " ",
-        UnitStringForm.mid: " ",
-        UnitStringForm.short: " ",
+  /// If overriden, must implement for all [Abbreviation]s
+  Map<Abbreviation, String> get durationDelimiter => {
+        Abbreviation.none: " ",
+        Abbreviation.semi: " ",
+        Abbreviation.full: " ",
       };
 
   /// "and" keyword.
@@ -33,7 +33,7 @@ mixin SimpleDuration on SimpleUnits {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,

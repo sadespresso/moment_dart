@@ -2,11 +2,11 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 
 mixin MnMongMnDuration on MnMongMnUnits {
-  /// If overriden, must implement for all [UnitStringForm]s
-  Map<UnitStringForm, String> get durationDelimiter => {
-        UnitStringForm.full: " ",
-        UnitStringForm.mid: " ",
-        UnitStringForm.short: " ",
+  /// If overriden, must implement for all [Abbreviation]s
+  Map<Abbreviation, String> get durationDelimiter => {
+        Abbreviation.none: " ",
+        Abbreviation.semi: " ",
+        Abbreviation.full: " ",
       };
 
   @override
@@ -15,7 +15,7 @@ mixin MnMongMnDuration on MnMongMnUnits {
     bool round = true,
     bool omitZeros = true,
     bool includeWeeks = false,
-    UnitStringForm form = UnitStringForm.full,
+    Abbreviation form = Abbreviation.none,
     String? delimiter,
     DurationFormat format = DurationFormat.auto,
     bool dropPrefixOrSuffix = false,
