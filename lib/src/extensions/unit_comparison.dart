@@ -162,8 +162,10 @@ extension UnitComparision on DateTime {
   /// Assumes both [this] and [other] is in local timezone.
   bool isSameLocalWeekAs(
     DateTime other, [
-    int weekStart = DateTime.monday,
+    int? weekStart,
   ]) {
+    weekStart ??= Moment.defaultLocalization.weekStart;
+
     final DateTime startOfWeek = startOfLocalWeek(weekStart);
     if (other < startOfWeek) return false;
 
