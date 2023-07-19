@@ -185,7 +185,7 @@ extension MomentBenefits on DateTime {
     );
   }
 
-  /// Returns date at 00:00:00 AM, preserves timezone
+  /// Returns new `DateTime` with the date at 00:00:00 AM, preserves timezone
   DateTime get date => DateTimeConstructors.dateWithTimezone(
         year,
         month,
