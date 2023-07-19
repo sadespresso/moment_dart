@@ -33,4 +33,34 @@ extension DateTimeConstructors on DateTime {
       microsecond,
     );
   }
+
+  static DateTime dateWithTimezone(
+    int year, [
+    int month = 1,
+    int day = 1,
+    bool isUtc = false,
+  ]) {
+    if (isUtc) {
+      return DateTime.utc(
+        year,
+        month,
+        day,
+        0,
+        0,
+        0,
+        0,
+        0,
+      );
+    }
+    return DateTime(
+      year,
+      month,
+      day,
+      0,
+      0,
+      0,
+      0,
+      0,
+    );
+  }
 }

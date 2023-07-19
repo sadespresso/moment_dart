@@ -1,3 +1,9 @@
+## 0.18.0
+
+- `differenceInDays` no longer forces local timezone
+- Added `date` getter, returns Date with hours, minutes, etc set to 0.
+- Added new constructor: `DateTimeConstructors.dateWithTimezone`
+
 ## 0.17.5
 
 - Calendar now accepts `DateTime` as reference

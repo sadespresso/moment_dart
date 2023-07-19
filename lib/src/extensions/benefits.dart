@@ -110,6 +110,8 @@ extension MomentBenefits on DateTime {
 
   /// Difference calculated after omitting hour, minute, ..., microsecond
   ///
+  /// Does not take timezones of [this] and [other]!
+  ///
   /// Uses DateTime.difference(), therefore behaves same.
   /// So, be careful with UTC and local timezones.
   ///
@@ -124,16 +126,25 @@ extension MomentBenefits on DateTime {
   /// // 0 means [this] and [other] occured at the same day.
   /// ```
   int differenceInDays(DateTime other) {
-    return DateTime(year, month, day)
-        .difference(DateTime(other.year, other.month, other.day))
-        .inDays;
+    return date.difference(other.date).inDays;
   }
 
+  /// Equivalent to `add(other)`
   operator +(Duration other) => add(other);
+
+  /// Equivalent to `subtract(other)`
   operator -(Duration other) => subtract(other);
+
+  /// Equivalent to `isAfter(other)`
   operator >(DateTime other) => isAfter(other);
+
+  /// Equivalent to `isBefore(other)`
   operator <(DateTime other) => isBefore(other);
+
+  /// Equivalent to `isAfter(other) || isAtSameMomentAs(other)`
   operator >=(DateTime other) => isAfter(other) || isAtSameMomentAs(other);
+
+  /// Equivalent to `isBefore(other) || isAtSameMomentAs(other)`
   operator <=(DateTime other) => isBefore(other) || isAtSameMomentAs(other);
 
   /// Returns timezone:
@@ -159,6 +170,7 @@ extension MomentBenefits on DateTime {
         minutes.toString().padLeft(2, '0');
   }
 
+  /// Returns new `DateTime`, preserves timezone
   DateTime clone() {
     return DateTimeConstructors.withTimezone(
       year,
@@ -172,6 +184,14 @@ extension MomentBenefits on DateTime {
       isUtc,
     );
   }
+
+  /// Returns date at 00:00:00 AM, preserves timezone
+  DateTime get date => DateTimeConstructors.dateWithTimezone(
+        year,
+        month,
+        day,
+        isUtc,
+      );
 
   Moment toMoment({MomentLocalization? localization}) =>
       Moment(this, localization: localization);
@@ -200,6 +220,13 @@ extension MomentBenefitsPlus on Moment {
   Moment clone() {
     return Moment(
       forcedSuperType.clone(),
+      localization: setLocalization,
+    );
+  }
+
+  Moment get date {
+    return Moment(
+      forcedSuperType.date,
       localization: setLocalization,
     );
   }
