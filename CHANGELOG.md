@@ -1,3 +1,7 @@
+## 0.18.1
+
+- `DateTime.isSameLocalWeekAs()` now uses default localization's week start if `weekStart` is omitted. Closes #11
+
 ## 0.18.0
 
 - `differenceInDays` no longer forces local timezone
