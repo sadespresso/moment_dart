@@ -334,7 +334,7 @@ void main() {
   });
 
   test("ko localization relative time test", () {
-    Moment.setGlobalLocalization(MomentLocalizations.ko());
+    Moment.setGlobalLocalization(MomentLocalizations.koKr());
 
     expect(fewMomentsAhead.from(now), "몇 초 후");
     expect(fewMomentsAgo.from(now), "몇 초 전");
@@ -408,5 +408,43 @@ void main() {
     expect(threeYearsAhead.from(now), "3 年后");
     expect(threeYearsAgo.from(now), "3 年前");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 年");
+  });
+
+  test("ja_JP localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.jaJp());
+
+    expect(fewMomentsAhead.from(now), "数秒後");
+    expect(fewMomentsAgo.from(now), "数秒前");
+    expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "数秒");
+    expect(aMinuteAhead.from(now), "1分後");
+    expect(aMinuteAgo.from(now), "1分前");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1分");
+    expect(fiveMinutesAhead.from(now), "5分後");
+    expect(fiveMinutesAgo.from(now), "5分前");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5分");
+    expect(anHourAhead.from(now), "1時間後");
+    expect(anHourAgo.from(now), "1時間前");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "1時間");
+    expect(sixHoursAhead.from(now), "6時間後");
+    expect(sixHoursAgo.from(now), "6時間前");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6時間");
+    expect(aDayAhead.from(now), "1日後");
+    expect(aDayAgo.from(now), "1日前");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "1日");
+    expect(twoDaysAhead.from(now), "2日後");
+    expect(twoDaysAgo.from(now), "2日前");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2日");
+    expect(aMonthAhead.from(now), "1ヶ月後");
+    expect(aMonthAgo.from(now), "1ヶ月前");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "1ヶ月");
+    expect(fourMonthsAhead.from(now), "4ヶ月後");
+    expect(fourMonthsAgo.from(now), "4ヶ月前");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4ヶ月");
+    expect(aYearAhead.from(now), "1年後");
+    expect(aYearAgo.from(now), "1年前");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "1年");
+    expect(threeYearsAhead.from(now), "3年後");
+    expect(threeYearsAgo.from(now), "3年前");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3年");
   });
 }

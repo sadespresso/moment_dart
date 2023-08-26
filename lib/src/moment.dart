@@ -1,6 +1,7 @@
 export 'package:moment_dart/src/extensions.dart';
 
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// A subclass of DateTime. Therefore:
@@ -52,6 +53,8 @@ class Moment extends DateTime {
 
   late final MomentLocalization? _localization;
 
+  bool get hasExplicitLocalization => _localization != null;
+
   /// Original localization of this instance
   MomentLocalization? get setLocalization => _localization;
 
@@ -73,6 +76,13 @@ class Moment extends DateTime {
   Moment.now({MomentLocalization? localization}) : super.now() {
     _localization = localization;
   }
+
+  factory Moment.nowWithTimezone(
+    bool isUtc, {
+    MomentLocalization? localization,
+  }) =>
+      Moment(DateTimeConstructors.nowWithTimezone(isUtc),
+          localization: localization);
 
   Moment.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch,
       {bool isUtc = false, MomentLocalization? localization})
@@ -275,7 +285,7 @@ class Moment extends DateTime {
     Abbreviation form = Abbreviation.none,
   }) =>
       from(
-        DateTime.now(),
+        DateTimeConstructors.nowWithTimezone(isUtc),
         dropPrefixOrSuffix: dropPrefixOrSuffix,
         form: form,
       );
@@ -349,7 +359,7 @@ class Moment extends DateTime {
     bool dropPrefixOrSuffix = false,
   }) =>
       fromPrecise(
-        DateTime.now(),
+        DateTimeConstructors.nowWithTimezone(isUtc),
         round: round,
         omitZeros: omitZeros,
         includeWeeks: includeWeeks,

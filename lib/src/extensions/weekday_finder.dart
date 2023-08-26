@@ -6,7 +6,7 @@ extension WeekdayFinder on DateTime {
   /// If `n`th day is today, will return `7 days in the future`.
   DateTime nextWeekday(int weekday) {
     assert(weekday > -1 && weekday < 8,
-        "[Moment Dart] Weekday must be in range `0<=n<=7`");
+        "[moment_dart] Weekday must be in range `0<=n<=7`");
 
     final int requiredDelta = (weekday - this.weekday) % 7;
 

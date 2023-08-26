@@ -257,7 +257,7 @@ void main() {
   });
 
   test("ko localization calendar test", () {
-    Moment.setGlobalLocalization(MomentLocalizations.ko());
+    Moment.setGlobalLocalization(MomentLocalizations.koKr());
 
     // A
     expect(today.calendar(reference: today), "오늘 오전 5:33");
@@ -287,14 +287,38 @@ void main() {
     expect(yesterday.calendar(reference: today), "昨天 05:33");
     expect(friOrdayBeforeYesterday.calendar(reference: today), "前天 05:33");
     // B
-    expect(lastMonday.calendar(reference: today, omitHours: true), "上星期一");
-    expect(lastTuesday.calendar(reference: today, omitHours: true), "上星期二");
-    expect(lastWednesday.calendar(reference: today, omitHours: true), "上星期三");
+    expect(lastMonday.calendar(reference: today, omitHours: true), "本星期一");
+    expect(lastTuesday.calendar(reference: today, omitHours: true), "本星期二");
+    expect(lastWednesday.calendar(reference: today, omitHours: true), "本星期三");
     expect(nextWednesday.calendar(reference: today, omitHours: true), "下星期三");
     expect(nextThursday.calendar(reference: today, omitHours: true), "下星期四");
     expect(nextFriday.calendar(reference: today, omitHours: true), "下星期五");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "1970年1月1日星期四凌晨12点00分");
+  });
+
+  test("ja_JP localization calendar test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.jaJp());
+
+    // A
+    expect(today.calendar(reference: today), "今日 05:33");
+    expect(tomorrow.calendar(reference: today), "明日 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "火曜日 05:33");
+    expect(yesterday.calendar(reference: today), "昨日 05:33");
+    // because japanese week start at Sunday, this is "last" week's friday
+    expect(friOrdayBeforeYesterday.calendar(reference: today), "先週金曜日 05:33");
+
+    // B
+
+    expect(lastMonday.calendar(reference: today, omitHours: true), "先週月曜日");
+    expect(lastTuesday.calendar(reference: today, omitHours: true), "先週火曜日");
+    expect(lastWednesday.calendar(reference: today, omitHours: true), "先週水曜日");
+    expect(nextWednesday.calendar(reference: today, omitHours: true), "水曜日");
+    expect(nextThursday.calendar(reference: today, omitHours: true), "木曜日");
+    expect(nextFriday.calendar(reference: today, omitHours: true), "金曜日");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "1970年1月1日 木曜日 00:00");
   });
 }

@@ -2,6 +2,7 @@
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/src/extensions.dart';
+import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
@@ -170,11 +171,10 @@ class LocalizationZhCn extends MomentLocalization
   ComplexCalenderLocalizationData get complexCalendarData =>
       ComplexCalenderLocalizationData(
         keywords: ComplexCalenderLocalizationKeywords(
-          at: (DateTime dateTime, String dateString, String timeString) =>
-              "$dateString $timeString",
-          lastWeekday: (DateTime dateTime) {
-            final bool isSameWeek =
-                DateTime.now().isSameLocalWeekAs(dateTime, weekStart);
+          lastWeekday: (dateTime, {reference}) {
+            final bool isSameWeek = (reference ??
+                    DateTimeConstructors.nowWithTimezone(dateTime.isUtc))
+                .isSameLocalWeekAs(dateTime, weekStart);
 
             if (isSameWeek) {
               return "本${reformat(dateTime, "dddd")}";
@@ -182,9 +182,10 @@ class LocalizationZhCn extends MomentLocalization
               return "上${reformat(dateTime, "dddd")}";
             }
           },
-          nextWeekday: (DateTime dateTime) {
-            final bool isSameWeek =
-                DateTime.now().isSameLocalWeekAs(dateTime, weekStart);
+          nextWeekday: (dateTime, {reference}) {
+            final bool isSameWeek = (reference ??
+                    DateTimeConstructors.nowWithTimezone(dateTime.isUtc))
+                .isSameLocalWeekAs(dateTime, weekStart);
 
             if (isSameWeek) {
               return "本${reformat(dateTime, "dddd")}";

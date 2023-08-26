@@ -190,7 +190,8 @@ class LocalizationItIt extends MomentLocalization
   ComplexCalenderLocalizationData get complexCalendarData =>
       ComplexCalenderLocalizationData(
         keywords: ComplexCalenderLocalizationKeywords(
-          at: (DateTime dateTime, String dateString, String timeString) {
+          at: (DateTime dateTime, String dateString, String timeString,
+              {reference}) {
             late final String suffix;
 
             if (dateTime.hour > 1) {
@@ -201,14 +202,15 @@ class LocalizationItIt extends MomentLocalization
 
             return "$dateString a$suffix$timeString";
           },
-          lastWeekday: (DateTime dateTime) {
+          lastWeekday: (dateTime, {reference}) {
             if (dateTime.weekday == DateTime.sunday) {
               return "La scorsa ${reformat(dateTime, "dddd")}";
             }
 
             return "Lo scorso ${reformat(dateTime, "dddd")}";
           },
-          nextWeekday: (DateTime dateTime) => reformat(dateTime, "dddd"),
+          nextWeekday: (DateTime dateTime, {reference}) =>
+              reformat(dateTime, "dddd"),
         ),
         relativeDayNames: {
           -1: "ieri",

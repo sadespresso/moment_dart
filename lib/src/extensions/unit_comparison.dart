@@ -170,6 +170,7 @@ extension UnitComparision on DateTime {
     if (other < startOfWeek) return false;
 
     final DateTime endOfWeek = endOfLocalWeek(weekStart);
+
     return other <= endOfWeek;
   }
 }

@@ -173,6 +173,7 @@ extension MomentBenefits on DateTime {
   /// Returns new `DateTime`, preserves timezone
   DateTime clone() {
     return DateTimeConstructors.withTimezone(
+      isUtc,
       year,
       month,
       day,
@@ -181,7 +182,6 @@ extension MomentBenefits on DateTime {
       second,
       millisecond,
       microsecond,
-      isUtc,
     );
   }
 

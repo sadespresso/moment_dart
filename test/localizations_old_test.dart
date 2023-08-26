@@ -76,7 +76,7 @@ void main() {
   });
 
   test('Korean', () {
-    MomentLocalization localization = LocalizationKo();
+    MomentLocalization localization = LocalizationKoKr();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
     final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
         localization: localization);

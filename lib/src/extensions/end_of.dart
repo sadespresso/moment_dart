@@ -19,19 +19,64 @@ extension EndOfUnit on DateTime {
             "endOf(DurationUnit.week) is not supported on DateTime object. You can use it on Moment objects");
       case DurationUnit.millisecond:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute, second, millisecond, 999, isUtc);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          second,
+          millisecond,
+          999,
+        );
       case DurationUnit.second:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute, second, 999, 999, isUtc);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          second,
+          999,
+          999,
+        );
       case DurationUnit.minute:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute, 59, 999, 999, isUtc);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          59,
+          999,
+          999,
+        );
       case DurationUnit.hour:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, 59, 59, 999, 999, isUtc);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          59,
+          59,
+          999,
+          999,
+        );
       case DurationUnit.day:
         return DateTimeConstructors.withTimezone(
-            year, month, day, 23, 59, 59, 999, 999, isUtc);
+          isUtc,
+          year,
+          month,
+          day,
+          23,
+          59,
+          59,
+          999,
+          999,
+        );
       case DurationUnit.month:
         const daysInMonths = [
           0,
@@ -62,7 +107,16 @@ extension EndOfUnit on DateTime {
         );
       case DurationUnit.year:
         return DateTimeConstructors.withTimezone(
-            year, 12, 31, 23, 59, 59, 999, 999, isUtc);
+          isUtc,
+          year,
+          12,
+          31,
+          23,
+          59,
+          59,
+          999,
+          999,
+        );
     }
   }
 

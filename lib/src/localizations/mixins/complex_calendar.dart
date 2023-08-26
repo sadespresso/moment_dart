@@ -11,18 +11,16 @@ mixin ComplexCalendar on MomentLocalization {
   CalenderLocalizationData? get calendarData => null;
   ComplexCalenderLocalizationData get complexCalendarData;
 
-  @override
-
   /// Calendar string
+  @override
   String calendar(
     Moment moment, {
     DateTime? reference,
-    int startOfWeek = DateTime.monday,
     String? customFormat,
     bool omitHours = false,
     bool omitHoursIfDistant = true,
   }) {
-    reference ??= Moment.now();
+    reference ??= Moment.nowWithTimezone(moment.isUtc);
 
     late final String dateString;
 
@@ -43,9 +41,13 @@ mixin ComplexCalendar on MomentLocalization {
           }
 
           dateString = moment.format(
-              customFormat ?? MomentLocalization.localizationDefaultDateFormat);
+            customFormat ?? MomentLocalization.localizationDefaultDateFormat,
+          );
         } else {
-          dateString = complexCalendarData.keywords.lastWeekday(moment);
+          dateString = complexCalendarData.keywords.lastWeekday(
+            moment,
+            reference: reference,
+          );
         }
       }
 
@@ -55,14 +57,18 @@ mixin ComplexCalendar on MomentLocalization {
 
         /// If it's this or next week (relative to the reference)
         if (moment.isBefore(weekAfter)) {
-          dateString = complexCalendarData.keywords.nextWeekday(moment);
+          dateString = complexCalendarData.keywords.nextWeekday(
+            moment,
+            reference: reference,
+          );
         } else {
           if (omitHoursIfDistant) {
             omitHours = true;
           }
 
           dateString = moment.format(
-              customFormat ?? MomentLocalization.localizationDefaultDateFormat);
+            customFormat ?? MomentLocalization.localizationDefaultDateFormat,
+          );
         }
       }
     }
@@ -73,8 +79,12 @@ mixin ComplexCalendar on MomentLocalization {
       return dateString;
     }
 
-    return complexCalendarData.keywords
-        .at(moment, dateString, calendarTime(moment));
+    return complexCalendarData.keywords.at(
+      moment,
+      dateString,
+      calendarTime(moment),
+      reference: reference,
+    );
   }
 }
 
@@ -97,23 +107,41 @@ class ComplexCalenderLocalizationData {
   });
 }
 
-typedef CalendarKeywordLastWeekdayString = String Function(DateTime dateTime);
+typedef CalendarKeywordLastWeekdayString = String Function(
+  DateTime dateTime, {
+  DateTime? reference,
+});
 
-typedef CalendarKeywordNextWeekdayString = String Function(DateTime dateTime);
+typedef CalendarKeywordNextWeekdayString = String Function(
+  DateTime dateTime, {
+  DateTime? reference,
+});
 
 typedef CalendarKeywordDateAtTimeString = String Function(
-    DateTime dateTime, String dateString, String timeString);
+  DateTime dateTime,
+  String dateString,
+  String timeString, {
+  DateTime? reference,
+});
 
 class ComplexCalenderLocalizationKeywords {
   final CalendarKeywordLastWeekdayString lastWeekday;
 
   final CalendarKeywordNextWeekdayString nextWeekday;
 
+  /// Defaults to
+  ///
+  /// ```dart
+  /// "$dateString $timeString"
+  /// ```
   final CalendarKeywordDateAtTimeString at;
 
   const ComplexCalenderLocalizationKeywords({
     required this.lastWeekday,
     required this.nextWeekday,
-    required this.at,
+    this.at = ComplexCalenderLocalizationKeywords._defaultAt,
   });
+
+  static String _defaultAt(dateTime, dateString, timeString, {reference}) =>
+      "$dateString $timeString";
 }

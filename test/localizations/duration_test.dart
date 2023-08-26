@@ -2276,7 +2276,7 @@ void main() {
     );
   });
   test("ko_KO localization duration test", () {
-    final MomentLocalization l10n = LocalizationKo();
+    final MomentLocalization l10n = LocalizationKoKr();
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true),
@@ -2453,6 +2453,98 @@ void main() {
     expect(
       l10n.duration(_zero, dropPrefixOrSuffix: true),
       "几秒",
+    );
+  });
+
+  test("ja_JP localization duration test", () {
+    final MomentLocalization l10n = LocalizationJaJp();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true),
+      "1年2ヶ月",
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true),
+      "3年",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d, dropPrefixOrSuffix: true),
+      "3ヶ月17日",
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true),
+      "4ヶ月",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+      ),
+      "3週間2日",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, dropPrefixOrSuffix: true),
+      "23日",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "4週間",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "28日",
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6日7時間",
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6日",
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8時間8分",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8時間",
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "48分42秒",
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true),
+      "35分",
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true),
+      "42秒",
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true),
+      "数秒",
     );
   });
 }

@@ -17,6 +17,9 @@ export 'mn_Mong_MN.dart';
 import 'ko_KR.dart';
 export 'ko_KR.dart';
 
+import 'ja_JP.dart';
+export 'ja_JP.dart';
+
 import 'de_DE.dart';
 export 'de_DE.dart';
 
@@ -39,7 +42,8 @@ abstract class MomentLocalizations {
     "mn_MN": () => LocalizationMnMn(),
     "mn_Mong_MN": () => LocalizationMnMongMn(),
     "mn_Qaaq_MN": () => LocalizationMnQaaqMn(),
-    "ko_KR": () => LocalizationKo(),
+    "ko_KR": () => LocalizationKoKr(),
+    "ja_JP": () => LocalizationJaJp(),
     "de_DE": () => LocalizationDeDe(),
     "es_ES": () => LocalizationEsEs(),
     "fr_FR": () => LocalizationFrFr(),
@@ -136,22 +140,17 @@ abstract class MomentLocalizations {
   /// Mongolian (Cyrillic)
   static LocalizationMnMn mn() => LocalizationMnMn();
 
-  @Deprecated(
-      "This method was deprecated in version 0.9.0, please use mnMong()")
-  static LocalizationMnMongMn mnTM() => mnMong();
-
   /// Mongolian (Traditional Mongolian Script with Roman Numerals)
   static LocalizationMnMongMn mnMong() => LocalizationMnMongMn();
-
-  @Deprecated(
-      "This method was deprecated in version 0.9.0, please use mnMong()")
-  static LocalizationMnQaaqMn mnTMtn() => mnMongtn();
 
   /// Mongolian (Traditional Mongolian Script with Traditional Numerals)
   static LocalizationMnQaaqMn mnMongtn() => LocalizationMnQaaqMn();
 
   /// Korean (South Korea)
-  static LocalizationKo ko() => LocalizationKo();
+  static LocalizationKoKr koKr() => LocalizationKoKr();
+
+  /// Japanese (Japan)
+  static LocalizationJaJp jaJp() => LocalizationJaJp();
 
   /// German (Germany - Standard)
   static LocalizationDeDe de() => LocalizationDeDe();

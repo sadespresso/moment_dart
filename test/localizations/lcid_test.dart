@@ -7,7 +7,8 @@ void main() {
     expect(LocalizationMnMn().locale, "mn_MN");
     expect(LocalizationMnMongMn().locale, "mn_Mong_MN");
     expect(LocalizationMnQaaqMn().locale, "mn_Qaaq_MN");
-    expect(LocalizationKo().locale, "ko_KR");
+    expect(LocalizationKoKr().locale, "ko_KR");
+    expect(LocalizationJaJp().locale, "ja_JP");
     expect(LocalizationDeDe().locale, "de_DE");
     expect(LocalizationEsEs().locale, "es_ES");
     expect(LocalizationFrFr().locale, "fr_FR");

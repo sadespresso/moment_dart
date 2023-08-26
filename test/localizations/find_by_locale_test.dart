@@ -25,7 +25,12 @@ void main() {
 
     expect(
       MomentLocalizations.byLocale("ko_KR"),
-      TypeMatcher<LocalizationKo>(),
+      TypeMatcher<LocalizationKoKr>(),
+    );
+
+    expect(
+      MomentLocalizations.byLocale("ja_JP"),
+      TypeMatcher<LocalizationJaJp>(),
     );
 
     expect(

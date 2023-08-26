@@ -19,21 +19,60 @@ extension StartOfUnit on DateTime {
             "endOf(DurationUnit.week) is not supported on DateTime. You can use Moment(...).startOf(DurationUnit.week)");
       case DurationUnit.millisecond:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute, second, millisecond);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          second,
+          millisecond,
+        );
       case DurationUnit.second:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute, second);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+          second,
+        );
       case DurationUnit.minute:
         return DateTimeConstructors.withTimezone(
-            year, month, day, hour, minute);
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+          minute,
+        );
       case DurationUnit.hour:
-        return DateTimeConstructors.withTimezone(year, month, day, hour);
+        return DateTimeConstructors.withTimezone(
+          isUtc,
+          year,
+          month,
+          day,
+          hour,
+        );
       case DurationUnit.day:
-        return DateTimeConstructors.withTimezone(year, month, day);
+        return DateTimeConstructors.withTimezone(
+          isUtc,
+          year,
+          month,
+          day,
+        );
       case DurationUnit.month:
-        return DateTimeConstructors.withTimezone(year, month);
+        return DateTimeConstructors.withTimezone(
+          isUtc,
+          year,
+          month,
+        );
       case DurationUnit.year:
-        return DateTimeConstructors.withTimezone(year);
+        return DateTimeConstructors.withTimezone(
+          isUtc,
+          year,
+        );
     }
   }
 

@@ -1,5 +1,14 @@
 extension DateTimeConstructors on DateTime {
+  static DateTime nowWithTimezone(bool isUtc) {
+    if (isUtc) {
+      return DateTime.now().toUtc();
+    }
+
+    return DateTime.now();
+  }
+
   static DateTime withTimezone(
+    bool isUtc,
     int year, [
     int month = 1,
     int day = 1,
@@ -8,7 +17,6 @@ extension DateTimeConstructors on DateTime {
     int second = 0,
     int millisecond = 0,
     int microsecond = 0,
-    bool isUtc = false,
   ]) {
     if (isUtc) {
       return DateTime.utc(

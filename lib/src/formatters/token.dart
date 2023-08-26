@@ -383,7 +383,3 @@ enum FormatterToken {
   /// 8:30:00 PM
   LTS,
 }
-
-extension TokenString on FormatterToken {
-  String get name => toString().split(".").last;
-}

@@ -1,3 +1,21 @@
+## 1.0.0-rc.1
+
+> Features **breaking changes**
+- Added {reference} argument to `ComplexCalendar` methods
+  - This fixes incorrect results of localizations that use `ComplexCalender` (i.e., zh_CN, it_IT)
+- Renamed `LocalizationKo` to `LocalizationKoKr` for consistency
+- Removed deprecated methods
+- Removed `weekStart` from `Moment().calendar()` as it's not used. I don't know why I put it there, I don't drink alcohol, maybe I was just tired I guess
+- Added `DateTimeConstructors.nowWithTimezone` constructor
+  - `Moment().fromNow()` and `Moment.fromNowPrecise()` now matches timezone with `this`. Meaning, anchor will be set to UTC timezone if `this` is in UTC timezone
+  - `Moment().calendar()` now matches timezone with `this`. Meaning, anchor will be set to UTC timezone if `this` is in UTC timezone
+- `DateTimeConstructors.withTimezone` now requires `isUtc` as a positional argument
+- Added getter `Moment().hasExplicitLocalization` to check if that instance have any explicit localization
+- Added Japanese localization
+- Bugfixes
+  - `.startOf*` now returns correct timezone **DateTime**
+  - [zh-CN] fixed **this week** was wrongly displayed as **last week** in `Moment().calendar()`
+
 ## 0.18.1
 
 - `DateTime.isSameLocalWeekAs()` now uses default localization's week start if `weekStart` is omitted. Closes #11

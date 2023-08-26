@@ -18,7 +18,11 @@ void main() {
     );
     expect(
       MomentLocalizations.byLanguage('ko'),
-      TypeMatcher<LocalizationKo>(),
+      TypeMatcher<LocalizationKoKr>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage('ja'),
+      TypeMatcher<LocalizationJaJp>(),
     );
     expect(
       MomentLocalizations.byLanguage('de'),
@@ -98,7 +102,7 @@ void main() {
         'ko',
         strict: true,
       ),
-      TypeMatcher<LocalizationKo>(),
+      TypeMatcher<LocalizationKoKr>(),
     );
     expect(
       MomentLocalizations.byLanguage(
@@ -106,7 +110,23 @@ void main() {
         countryCode: 'KR',
         strict: true,
       ),
-      TypeMatcher<LocalizationKo>(),
+      TypeMatcher<LocalizationKoKr>(),
+    );
+
+    expect(
+      MomentLocalizations.byLanguage(
+        'ja',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationJaJp>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'ja',
+        countryCode: "JP",
+        strict: true,
+      ),
+      TypeMatcher<LocalizationJaJp>(),
     );
 
     expect(

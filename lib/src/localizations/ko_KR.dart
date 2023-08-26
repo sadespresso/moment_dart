@@ -10,14 +10,14 @@ import 'package:moment_dart/src/types.dart';
 
 /// Language: Korean
 /// Country: Korea, Republic of
-class LocalizationKo extends MomentLocalization
+class LocalizationKoKr extends MomentLocalization
     with SimpleUnits, SimpleRelative, SimpleDuration {
-  static LocalizationKo? _instance;
+  static LocalizationKoKr? _instance;
 
-  LocalizationKo._internal() : super();
+  LocalizationKoKr._internal() : super();
 
-  factory LocalizationKo() {
-    _instance ??= LocalizationKo._internal();
+  factory LocalizationKoKr() {
+    _instance ??= LocalizationKoKr._internal();
 
     return _instance!;
   }

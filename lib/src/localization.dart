@@ -104,7 +104,6 @@ abstract class MomentLocalization {
   String calendar(
     Moment moment, {
     DateTime? reference,
-    int startOfWeek = DateTime.monday,
     String? customFormat,
     bool omitHours = false,
     bool omitHoursIfDistant = true,
@@ -115,7 +114,7 @@ abstract class MomentLocalization {
           "Moment.calendar() for this localization $locale ($endonym) must be overriden since [calendarData] is null");
     }
 
-    reference ??= Moment.now();
+    reference ??= Moment.nowWithTimezone(moment.isUtc);
 
     late final String dateString;
 
