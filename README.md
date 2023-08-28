@@ -109,6 +109,17 @@ now.nextTuesday(); // July 25 2023 03:12 PM
 // and many more!
 ```
 
+## Migrate to 1.0.0
+
+* Instead of `MomentLocalizations.ko()`, use `MomentLocalizations.koKr()`
+* Replace `UnitStringForm` with:
+  * `UnitStringForm.short` => `Abbreviation.full`
+  * `UnitStringForm.mid` => `Abbreviation.semi`
+  * `UnitStringForm.full` => `Abbreviation.none`
+* In `Moment().calendar()` calls: remove `weekStart` argument
+* `DateTimeConstructors.withTimezone`: move `isUtc` argument to first position
+* Replace deprecated methods
+
 ## Contributing
 
 Contributions of any kind are welcome! Please refer to [CONTRIBUTE.md](CONTRIBUTE.md)
