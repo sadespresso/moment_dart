@@ -12,6 +12,8 @@
 
 ### [🕹️ A Flutter web demo](https://dev.gege.mn/moment_dart_demo/#/)
 
+### [🆕 Migrate to 1.0.0](#migrate-to-100)
+
 ## Usage
 
 ### Creating instance
