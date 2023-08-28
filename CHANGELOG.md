@@ -4,6 +4,7 @@
 - Now requires Dart v2.19.4
 - Added {reference} argument to `ComplexCalendar` methods
   - This fixes incorrect results of localizations that use `ComplexCalender` (i.e., zh_CN, it_IT)
+- Renamed `UnitStringForm` to `Abbreviation`
 - Renamed `LocalizationKo` to `LocalizationKoKr` for consistency
 - Removed deprecated methods
 - Removed `weekStart` from `Moment().calendar()` as it's not used. I don't know why I put it there, I don't drink alcohol, maybe I was just tired I guess
