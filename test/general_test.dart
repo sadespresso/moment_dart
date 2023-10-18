@@ -313,6 +313,8 @@ void main() {
         m.startOfLocalWeek(),
         DateTime(2022, 6, 19),
       ); // Sunday as start of week (since 0.16.0)
+      expect(
+          () => m.startOf(DurationUnit.week), throwsA(isA<MomentException>()));
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
 
@@ -330,6 +332,7 @@ void main() {
         m.startOfLocalWeek(),
         DateTime(2003, 6, 1).toMoment(),
       ); // Sunday as start of week, dervied from en_US locale
+      expect(m.startOf(DurationUnit.week), m.startOfLocalWeek());
       expect(m.startOfMonth(), DateTime(2003, 6).toMoment());
       expect(m.startOfYear(), DateTime(2003).toMoment());
 
@@ -349,6 +352,7 @@ void main() {
         m.endOfLocalWeek(),
         DateTime(2022, 6, 25, 23, 59, 59, 999, 999),
       ); // Sunday as start of week (since 0.16.0)
+      expect(() => m.endOf(DurationUnit.week), throwsA(isA<MomentException>()));
       expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
 
@@ -370,6 +374,7 @@ void main() {
         m.endOfLocalWeek(),
         DateTime(2003, 6, 7, 23, 59, 59, 999, 999).toMoment(),
       ); // Week start on Sunday, derived from en_US locale
+      expect(m.endOf(DurationUnit.week), m.endOfLocalWeek());
       expect(m.endOfMonth(),
           DateTime(2003, 6, 30, 23, 59, 59, 999, 999).toMoment());
       expect(m.endOfYear(),

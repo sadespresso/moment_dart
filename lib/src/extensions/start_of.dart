@@ -131,8 +131,24 @@ extension StartOfUnitMoment on Moment {
   /// Returned object will have same timezone as [this]
   ///
   /// instance.startOf(DurationUnit.microsecond) will return clone of that instance
-  Moment startOf(DurationUnit unit) =>
-      forcedSuperType.startOf(unit).toMoment(localization: setLocalization);
+  Moment startOf(DurationUnit unit) {
+    switch (unit) {
+      case DurationUnit.week:
+        return startOfLocalWeek();
+
+      case DurationUnit.microsecond:
+      case DurationUnit.millisecond:
+      case DurationUnit.second:
+      case DurationUnit.minute:
+      case DurationUnit.hour:
+      case DurationUnit.day:
+      case DurationUnit.month:
+      case DurationUnit.year:
+        return forcedSuperType
+            .startOf(unit)
+            .toMoment(localization: setLocalization);
+    }
+  }
 
   /// Returns start of the millisecond
   ///

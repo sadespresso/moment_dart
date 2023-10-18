@@ -172,8 +172,24 @@ extension EndOfUnit on DateTime {
 
 extension EndOfUnitMoment on Moment {
   /// Returned object will have same timezone as [this]
-  Moment endOf(DurationUnit unit) =>
-      forcedSuperType.endOf(unit).toMoment(localization: setLocalization);
+  Moment endOf(DurationUnit unit) {
+    switch (unit) {
+      case DurationUnit.week:
+        return endOfLocalWeek();
+
+      case DurationUnit.microsecond:
+      case DurationUnit.millisecond:
+      case DurationUnit.second:
+      case DurationUnit.minute:
+      case DurationUnit.hour:
+      case DurationUnit.day:
+      case DurationUnit.month:
+      case DurationUnit.year:
+        return forcedSuperType
+            .endOf(unit)
+            .toMoment(localization: setLocalization);
+    }
+  }
 
   /// Returns end of the millisecond
   ///
