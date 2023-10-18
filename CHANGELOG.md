@@ -1,3 +1,7 @@
+## 1.1.0
+
+- `.startOf(DurationUnit.week)` and `endOf` now works, fixes [#13](https://github.com/sadespresso/moment_dart/issues/13) 
+
 ## 1.0.1
 
 - Update CHANGELOG.md
