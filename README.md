@@ -27,7 +27,7 @@ final a = DateTime.now().toMoment();
 final b = Moment(DateTime(...));
 
 // This instance won't be affected by global localization!
-final c = Moment(b, localization: MomentLocalizations.ko());
+final c = Moment(b, localization: MomentLocalizations.koKr());
 ```
 
 ### Setting global localization
@@ -58,14 +58,15 @@ add5sec.fromNow(dropPrefixOrSuffix: true); // a few seconds
 You can create localized human-readable duration text with
 abbreviation, highly-customizable units.
 
-See more on [docs](https://dev.gege.mn/moment_dart_docs/duration/precise). (delimiter, custom units, abbreviation...)
+See more on [docs](https://dev.gege.mn/moment_dart_docs/duration/precise).
+(delimiter, custom units, abbreviation...)
 
 On `Duration` objects:
 
 ```dart
 Duration(days: 67, hours: 3, minutes: 2).toDurationString(
-  MomentLocalizations.de(),
-  form: UnitStringForm.mid,
+  localization: MomentLocalizations.de(),
+  form: Abbreviation.semi,
 ); // in 2 Mo. 7 Tg.
 ```
 
