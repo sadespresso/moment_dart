@@ -333,42 +333,58 @@ enum FormatterToken {
   /// [Unix microsecond timestamp]
   xx,
 
-  /// Date (in local format, shorter)
+  /// Date (in local format)
+  ///
+  /// (no zero padding)
   ///
   /// 9/4/1986
   l,
 
   /// Date (in local format)
   ///
+  /// (zero-padded)
+  ///
   /// 09/04/1986
   L,
 
-  /// Month name, day of month, year (shorter)
+  /// Month name, day of month, year
+  ///
+  /// (no zero padding)
   ///
   /// Sep 4 1986
   ll,
 
   /// Month name, day of month, year
   ///
+  /// (zero-padded)
+  ///
   /// September 04 1986
   LL,
 
   /// Month name, day of month, year, time
+  ///
+  /// (no zero padding)
   ///
   /// Sep 4 1986 8:30 PM
   lll,
 
   /// Month name, day of month, year, time
   ///
+  /// (zero-padded)
+  ///
   /// September 04 1986 08:30 PM
   LLL,
 
-  /// Day of week, month name, day of month, year, time (shorter)
+  /// Day of week, month name, day of month, year, time
+  ///
+  /// (no zero padding)
   ///
   /// Thu, Sep 4 1986 8:30 PM
   llll,
 
   /// Day of week, month name, day of month, year, time
+  ///
+  /// (zero-padded)
   ///
   /// Thursday, September 04 1986 08:30 PM
   LLLL,
