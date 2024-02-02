@@ -181,6 +181,45 @@ void main() {
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 años");
   });
 
+  test("pt localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.pt());
+
+    expect(fewMomentsAhead.from(now), "em alguns segundos");
+    expect(fewMomentsAgo.from(now), "há alguns segundos");
+    expect(
+        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "alguns segundos");
+    expect(aMinuteAhead.from(now), "em um minuto");
+    expect(aMinuteAgo.from(now), "há um minuto");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "um minuto");
+    expect(fiveMinutesAhead.from(now), "em 5 minutos");
+    expect(fiveMinutesAgo.from(now), "há 5 minutos");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 minutos");
+    expect(anHourAhead.from(now), "em uma hora");
+    expect(anHourAgo.from(now), "há uma hora");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "uma hora");
+    expect(sixHoursAhead.from(now), "em 6 horas");
+    expect(sixHoursAgo.from(now), "há 6 horas");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 horas");
+    expect(aDayAhead.from(now), "em um dia");
+    expect(aDayAgo.from(now), "há um dia");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "um dia");
+    expect(twoDaysAhead.from(now), "em 2 dias");
+    expect(twoDaysAgo.from(now), "há 2 dias");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 dias");
+    expect(aMonthAhead.from(now), "em um mês");
+    expect(aMonthAgo.from(now), "há um mês");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "um mês");
+    expect(fourMonthsAhead.from(now), "em 4 mêses");
+    expect(fourMonthsAgo.from(now), "há 4 mêses");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 mêses");
+    expect(aYearAhead.from(now), "em um ano");
+    expect(aYearAgo.from(now), "há um ano");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "um ano");
+    expect(threeYearsAhead.from(now), "em 3 anos");
+    expect(threeYearsAgo.from(now), "há 3 anos");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 anos");
+  });
+
   test("en_US localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.enUS());
 

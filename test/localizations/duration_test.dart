@@ -1020,6 +1020,257 @@ void main() {
       "quelques sec.",
     );
   });
+  test("pt_PT localization duration test", () {
+    final MomentLocalization l10n = LocalizationPtPt();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "um ano 2 mêses",
+    );
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "1 ano 2 mêses",
+    );
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "1 a 2 mê",
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 anos",
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 anos",
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "3 a",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 mêses 17 dias",
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 mêses 17 dias",
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "3 mê 17 d",
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "4 mêses",
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "4 mêses",
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "4 mê",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "3 semanas 2 dias",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "3 sem 2 dias",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "3 sem 2 d",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "23 dias",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "23 dias",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "23 d",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "4 semanas",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "4 sem",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "4 sem",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "28 dias",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "28 dias",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "28 d",
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 dias 7 horas",
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 dias 7 horas",
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "6 d 7 h",
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 dias",
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 dias",
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "6 d",
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 horas 8 minutos",
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 horas 8 min",
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "8 h 8 m",
+    );
+
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 horas",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 horas",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "8 h",
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "48 minutos 42 segundos",
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "48 min 42 seg",
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "48 m 42 s",
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "35 minutos",
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "35 min",
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "35 m",
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "42 segundos",
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "42 seg",
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "42 s",
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "alguns segundos",
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "alguns segundos",
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "alguns seg",
+    );
+  });
   test("es_ES localization duration test", () {
     final MomentLocalization l10n = LocalizationEsEs();
 

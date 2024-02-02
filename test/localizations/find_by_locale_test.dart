@@ -61,6 +61,15 @@ void main() {
     );
 
     expect(
+      MomentLocalizations.byLocale("pt_PT"),
+      TypeMatcher<LocalizationPtPt>(),
+    );
+    expect(
+      MomentLocalizations.byLocale("pt"),
+      TypeMatcher<LocalizationPtPt>(),
+    );
+
+    expect(
       MomentLocalizations.byLocale("it_IT"),
       TypeMatcher<LocalizationItIt>(),
     );

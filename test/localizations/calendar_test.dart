@@ -126,6 +126,35 @@ void main() {
     expect(epoch.format("LLLL"), "jeudi 1 janvier 1970 00:00");
   });
 
+  test("pt localization calendar test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.pt());
+
+    // A
+    expect(today.calendar(reference: today), "Hoje às 05:33");
+    expect(tomorrow.calendar(reference: today), "Amanhã às 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today),
+        "Terça-feira às 05:33");
+    expect(yesterday.calendar(reference: today), "Ontem às 05:33");
+    expect(friOrdayBeforeYesterday.calendar(reference: today),
+        "Última Sexta-feira às 05:33");
+    // B
+    expect(lastMonday.calendar(reference: today, omitHours: true),
+        "Última Segunda-feira");
+    expect(lastTuesday.calendar(reference: today, omitHours: true),
+        "Última Terça-feira");
+    expect(lastWednesday.calendar(reference: today, omitHours: true),
+        "Última Quarta-feira");
+    expect(nextWednesday.calendar(reference: today, omitHours: true),
+        "Quarta-feira");
+    expect(nextThursday.calendar(reference: today, omitHours: true),
+        "Quinta-feira");
+    expect(
+        nextFriday.calendar(reference: today, omitHours: true), "Sexta-feira");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "Quinta-feira, 1º de janeiro de 1970 00:00");
+  });
+
   test("es localization calendar test", () {
     Moment.setGlobalLocalization(MomentLocalizations.es());
 
@@ -136,13 +165,14 @@ void main() {
         tueOrDayAfterTomorrow.calendar(reference: today), "martes a las 5:33");
     expect(yesterday.calendar(reference: today), "ayer a las 5:33");
     expect(friOrdayBeforeYesterday.calendar(reference: today),
-        "el viernes a las 5:33");
+        "el viernes pasodo a las 5:33");
     // B
-    expect(lastMonday.calendar(reference: today, omitHours: true), "el lunes");
-    expect(
-        lastTuesday.calendar(reference: today, omitHours: true), "el martes");
+    expect(lastMonday.calendar(reference: today, omitHours: true),
+        "el lunes pasodo");
+    expect(lastTuesday.calendar(reference: today, omitHours: true),
+        "el martes pasodo");
     expect(lastWednesday.calendar(reference: today, omitHours: true),
-        "el miércoles");
+        "el miércoles pasodo");
     expect(
         nextWednesday.calendar(reference: today, omitHours: true), "miércoles");
     expect(nextThursday.calendar(reference: today, omitHours: true), "jueves");

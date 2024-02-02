@@ -1,3 +1,8 @@
+## 1.1.1
+
+- `es_ES` last week prefix has been fixed
+- Added Portuguese localization
+
 ## 1.1.0
 
 - `.startOf(DurationUnit.week)` and `endOf` now works, fixes [#13](https://github.com/sadespresso/moment_dart/issues/13) 
