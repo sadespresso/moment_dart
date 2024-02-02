@@ -42,24 +42,23 @@ class LocalizationKoKr extends MomentLocalization
   // 평일 이름
   @override
   Map<int, String> get weekdayName => {
-        1: "월요일",
-        2: "화요일",
-        3: "수요일",
-        4: "목요일",
-        5: "금요일",
-        6: "토요일",
-        7: "일요일",
+        DateTime.monday: "월요일",
+        DateTime.tuesday: "화요일",
+        DateTime.wednesday: "수요일",
+        DateTime.thursday: "목요일",
+        DateTime.friday: "금요일",
+        DateTime.saturday: "토요일",
+        DateTime.sunday: "일요일",
       };
 
-  // 평일 이름
   Map<int, String> get weekdayNameShort => {
-        1: "월",
-        2: "화",
-        3: "수",
-        4: "목",
-        5: "금",
-        6: "토",
-        7: "일",
+        DateTime.monday: "월",
+        DateTime.tuesday: "화",
+        DateTime.wednesday: "수",
+        DateTime.thursday: "목",
+        DateTime.friday: "금",
+        DateTime.saturday: "토",
+        DateTime.sunday: "일",
       };
 
   String monthName(int i) => "$i월";

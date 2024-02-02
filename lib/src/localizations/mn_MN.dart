@@ -109,13 +109,13 @@ class LocalizationMnMn extends MomentLocalization
   /// Tibet weekday names are here, because it is majorly used in Mongolia
   @override
   Map<int, String> get weekdayName => {
-        1: "Даваа",
-        2: "Мягмар",
-        3: "Лхагва",
-        4: "Пүрэв",
-        5: "Баасан",
-        6: "Бямба",
-        7: "Ням",
+        DateTime.monday: "Даваа",
+        DateTime.tuesday: "Мягмар",
+        DateTime.wednesday: "Лхагва",
+        DateTime.thursday: "Пүрэв",
+        DateTime.friday: "Баасан",
+        DateTime.saturday: "Бямба",
+        DateTime.sunday: "Ням",
       };
 
   @override

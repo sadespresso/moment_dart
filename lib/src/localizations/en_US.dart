@@ -67,13 +67,13 @@ class LocalizationEnUs extends MomentLocalization
 
   @override
   Map<int, String> get weekdayName => {
-        1: "Monday",
-        2: "Tuesday",
-        3: "Wednesday",
-        4: "Thursday",
-        5: "Friday",
-        6: "Saturday",
-        7: "Sunday",
+        DateTime.monday: "Monday",
+        DateTime.tuesday: "Tuesday",
+        DateTime.wednesday: "Wednesday",
+        DateTime.thursday: "Thursday",
+        DateTime.friday: "Friday",
+        DateTime.saturday: "Saturday",
+        DateTime.sunday: "Sunday",
       };
 
   @override

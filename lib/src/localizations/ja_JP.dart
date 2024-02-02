@@ -44,24 +44,23 @@ class LocalizationJaJp extends MomentLocalization
   // 평日 이름
   @override
   Map<int, String> get weekdayName => {
-        1: "月曜日",
-        2: "火曜日",
-        3: "水曜日",
-        4: "木曜日",
-        5: "金曜日",
-        6: "土曜日",
-        7: "日曜日",
+        DateTime.monday: "月曜日",
+        DateTime.tuesday: "火曜日",
+        DateTime.wednesday: "水曜日",
+        DateTime.thursday: "木曜日",
+        DateTime.friday: "金曜日",
+        DateTime.saturday: "土曜日",
+        DateTime.sunday: "日曜日",
       };
 
-  // 평日 이름
   Map<int, String> get weekdayNameShort => {
-        1: "月",
-        2: "火",
-        3: "水",
-        4: "木",
-        5: "金",
-        6: "土",
-        7: "日",
+        DateTime.monday: "月",
+        DateTime.tuesday: "火",
+        DateTime.wednesday: "水",
+        DateTime.thursday: "木",
+        DateTime.friday: "金",
+        DateTime.saturday: "土",
+        DateTime.sunday: "日",
       };
 
   String monthName(int i) => "$i月";

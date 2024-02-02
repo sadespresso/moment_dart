@@ -66,35 +66,35 @@ class LocalizationZhCn extends MomentLocalization
 
   @override
   Map<int, String> get weekdayName => {
-        1: "星期一",
-        2: "星期二",
-        3: "星期三",
-        4: "星期四",
-        5: "星期五",
-        6: "星期六",
-        7: "星期日",
+        DateTime.monday: "星期一",
+        DateTime.tuesday: "星期二",
+        DateTime.wednesday: "星期三",
+        DateTime.thursday: "星期四",
+        DateTime.friday: "星期五",
+        DateTime.saturday: "星期六",
+        DateTime.sunday: "星期日",
       };
 
   @override
   Map<int, String> get weekdayNameShort => {
-        1: "周一",
-        2: "周二",
-        3: "周三",
-        4: "周四",
-        5: "周五",
-        6: "周六",
-        7: "周日",
+        DateTime.monday: "周一",
+        DateTime.tuesday: "周二",
+        DateTime.wednesday: "周三",
+        DateTime.thursday: "周四",
+        DateTime.friday: "周五",
+        DateTime.saturday: "周六",
+        DateTime.sunday: "周日",
       };
 
   @override
   Map<int, String> get weekdayNameMin => {
-        1: "一",
-        2: "二",
-        3: "三",
-        4: "四",
-        5: "五",
-        6: "六",
-        7: "日",
+        DateTime.monday: "一",
+        DateTime.tuesday: "二",
+        DateTime.wednesday: "三",
+        DateTime.thursday: "四",
+        DateTime.friday: "五",
+        DateTime.saturday: "六",
+        DateTime.sunday: "日",
       };
 
   // Got it from here https://github.com/moment/moment/blob/develop/locale/zh-cn.js

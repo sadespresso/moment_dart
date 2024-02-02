@@ -132,13 +132,13 @@ class LocalizationMnMongMn extends MomentLocalization
 
   @override
   Map<int, String> get weekdayName => {
-        1: "ᠰᠠᠷᠠᠨ",
-        2: "ᠤᠯᠠᠭᠠᠨ",
-        3: "ᠥᠯᠡᠮᠵᠢ",
-        4: "ᠭᠠᠳᠠᠰᠤ",
-        5: "ᠴᠣᠯᠮᠤᠨ",
-        6: "ᠬᠡᠰᠢᠭ",
-        7: "ᠨᠠᠷᠠᠨ",
+        DateTime.monday: "ᠰᠠᠷᠠᠨ",
+        DateTime.tuesday: "ᠤᠯᠠᠭᠠᠨ",
+        DateTime.wednesday: "ᠥᠯᠡᠮᠵᠢ",
+        DateTime.thursday: "ᠭᠠᠳᠠᠰᠤ",
+        DateTime.friday: "ᠴᠣᠯᠮᠤᠨ",
+        DateTime.saturday: "ᠬᠡᠰᠢᠭ",
+        DateTime.sunday: "ᠨᠠᠷᠠᠨ",
       };
   Map<int, String> get weekdayNameShort => {
         1: "ᠰᠠ᠊",
