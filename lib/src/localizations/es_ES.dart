@@ -103,7 +103,7 @@ class LocalizationEsEs extends MomentLocalization
     };
   }
 
-  static String last(String weekday) => "el $weekday";
+  static String last(String weekday) => "el $weekday pasodo";
   static String at(String date, String time) => "$date a $time";
 
   @override
