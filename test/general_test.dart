@@ -438,4 +438,59 @@ void main() {
 
     expect(q1, "YEAR: 1971, MONTH: February, 14th Sunday AM ][12:00");
   });
+
+  group("start/end of X static methods", () {
+    final now = DateTime.now();
+
+    test("start of", () {
+      expect(Moment.startOfToday(), DateTime(now.year, now.month, now.day));
+      expect(
+          Moment.startOfTomorrow(), DateTime(now.year, now.month, now.day + 1));
+      expect(Moment.startOfYesterday(),
+          DateTime(now.year, now.month, now.day - 1));
+      expect(Moment.startOfThisMonth(), DateTime(now.year, now.month));
+      expect(Moment.startOfNextMonth(), DateTime(now.year, now.month + 1));
+      expect(Moment.startOfPrevMonth(), DateTime(now.year, now.month - 1));
+      expect(Moment.startOfThisYear(), DateTime(now.year));
+      expect(Moment.startOfNextYear(), DateTime(now.year + 1));
+      expect(Moment.startOfLastYear(), DateTime(now.year - 1));
+    });
+
+    test("end of", () {
+      expect(Moment.endOfToday(),
+          DateTime(now.year, now.month, now.day).endOfDay());
+      expect(Moment.endOfTomorrow(),
+          DateTime(now.year, now.month, now.day + 1).endOfDay());
+      expect(Moment.endOfYesterday(),
+          DateTime(now.year, now.month, now.day - 1).endOfDay());
+      expect(
+          Moment.endOfThisMonth(), DateTime(now.year, now.month).endOfMonth());
+      expect(Moment.endOfNextMonth(),
+          DateTime(now.year, now.month + 1).endOfMonth());
+      expect(Moment.endOfPrevMonth(),
+          DateTime(now.year, now.month - 1).endOfMonth());
+      expect(Moment.endOfThisYear(), DateTime(now.year).endOfYear());
+      expect(Moment.endOfNextYear(), DateTime(now.year + 1).endOfYear());
+      expect(Moment.endOfLastYear(), DateTime(now.year - 1).endOfYear());
+    });
+  });
+
+  test("epoch static methods", () {
+    expect(Moment.epoch, DateTime.fromMicrosecondsSinceEpoch(0));
+    expect(
+        Moment.epochUtc, DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true));
+  });
+
+  test("isFuture / isPast", () {
+    final now = DateTime.now();
+    final epoch = Moment.epoch;
+    final tt = DateTime(3000);
+
+    expect(now.add(Duration(days: 1)).isFuture, true);
+    expect(now.subtract(Duration(days: 1)).isPast, true);
+    expect(now.isFutureAnchored(epoch), true);
+    expect(now.isFutureAnchored(tt), false);
+    expect(now.isPastAnchored(epoch), false);
+    expect(now.isPastAnchored(tt), true);
+  });
 }

@@ -4,6 +4,13 @@ import 'package:moment_dart/src/extensions/constructor.dart';
 export 'duration.dart';
 
 extension MomentBenefits on DateTime {
+  bool get isFuture => isFutureAnchored();
+  bool get isPast => isPastAnchored();
+
+  bool isFutureAnchored([DateTime? anchor]) =>
+      isAfter(anchor ?? DateTime.now());
+  bool isPastAnchored([DateTime? anchor]) => isBefore(anchor ?? DateTime.now());
+
   /// Returns if [year] is leap year.
   ///
   /// More about leap years: [Leap Year](https://en.wikipedia.org/wiki/Leap_year)
