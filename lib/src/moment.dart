@@ -454,6 +454,7 @@ class Moment extends DateTime {
   static DateTime startOfToday() => DateTime.now().startOfDay();
 
   /// Start of tomorrow in the local timezone
+
   static DateTime startOfTomorrow() {
     final DateTime now = DateTime.now();
 
@@ -552,7 +553,7 @@ class Moment extends DateTime {
     return DateTime(now.year - 1, 12, 31, 23, 59, 59, 999, 999);
   }
 
-  /// epoch, but in local timezone
+  /// epoch, but in the local timezone
   static DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
 
   /// epoch in UTC
