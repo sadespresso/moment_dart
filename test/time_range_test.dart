@@ -49,7 +49,7 @@ void main() {
       );
       expect(
         TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfLastYear()),
+            YearTimeRange.fromDateTime(Moment.startOfPrevYear()),
         true,
       );
     });
@@ -93,7 +93,7 @@ void main() {
       );
       expect(
         TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfLastYear().toUtc()),
+            YearTimeRange.fromDateTime(Moment.startOfPrevYear().toUtc()),
         false,
       );
     });

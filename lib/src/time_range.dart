@@ -72,7 +72,7 @@ abstract class TimeRange {
 
   /// In the local timezone
   factory TimeRange.prevYear() =>
-      YearTimeRange.fromDateTime(Moment.startOfLastYear());
+      YearTimeRange.fromDateTime(Moment.startOfPrevYear());
 
   @override
   bool operator ==(Object other) {
