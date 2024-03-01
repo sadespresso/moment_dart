@@ -1,4 +1,5 @@
 export 'package:moment_dart/src/extensions.dart';
+export 'package:moment_dart/src/time_range.dart';
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/extensions/constructor.dart';
@@ -449,103 +450,110 @@ class Moment extends DateTime {
         minutes.toString();
   }
 
-  /// Start of today in a local timezone
+  /// Start of today in the local timezone
   static DateTime startOfToday() => DateTime.now().startOfDay();
 
-  /// Start of tomorrow in a local timezone
+  /// Start of tomorrow in the local timezone
+
   static DateTime startOfTomorrow() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month, now.day + 1);
   }
 
-  /// Start of yesterday in a local timezone
+  /// Start of yesterday in the local timezone
   static DateTime startOfYesterday() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month, now.day - 1);
   }
 
-  /// Start of the current month in a local timezone
+  /// Start of the current month in the local timezone
   static DateTime startOfThisMonth() => DateTime.now().startOfMonth();
 
-  /// Start of the next month in a local timezone
+  /// Start of the next month in the local timezone
   static DateTime startOfNextMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month + 1);
   }
 
-  /// Start of the previous month in a local timezone
+  /// Start of the previous month in the local timezone
   static DateTime startOfPrevMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month - 1);
   }
 
+  /// Start of the current year in the local timezone
   static DateTime startOfThisYear() => DateTime.now().startOfYear();
 
+  /// Start of the next year in the local timezone
   static DateTime startOfNextYear() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year + 1);
   }
 
-  static DateTime startOfLastYear() {
+  /// Start of the previous year in the local timezone
+  static DateTime startOfPrevYear() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year - 1);
   }
 
-  /// End of today in a local timezone
+  /// End of today in the local timezone
   static DateTime endOfToday() => DateTime.now().endOfDay();
 
-  /// End of tomorrow in a local timezone
+  /// End of tomorrow in the local timezone
   static DateTime endOfTomorrow() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month, now.day + 1, 23, 59, 59, 999, 999);
   }
 
-  /// End of yesterday in a local timezone
+  /// End of yesterday in the local timezone
   static DateTime endOfYesterday() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month, now.day - 1, 23, 59, 59, 999, 999);
   }
 
-  /// End of the current month in a local timezone
+  /// End of the current month in the local timezone
   static DateTime endOfThisMonth() => DateTime.now().endOfMonth();
 
-  /// End of the next month in a local timezone
+  /// End of the next month in the local timezone
   static DateTime endOfNextMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month + 1).endOfMonth();
   }
 
-  /// End of the previous month in a local timezone
+  /// End of the previous month in the local timezone
   static DateTime endOfPrevMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month - 1).endOfMonth();
   }
 
+  /// End of the current year in the local timezone
   static DateTime endOfThisYear() => DateTime.now().endOfYear();
 
+  /// End of the next year in the local timezone
   static DateTime endOfNextYear() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year + 1, 12, 31, 23, 59, 59, 999, 999);
   }
 
-  static DateTime endOfLastYear() {
+  /// End of the previous year in the local timezone
+  static DateTime endOfPrevYear() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year - 1, 12, 31, 23, 59, 59, 999, 999);
   }
 
-  /// epoch, but in local timezone
+  /// epoch, but in the local timezone
   static DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
 
   /// epoch in UTC
