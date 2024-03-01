@@ -1,4 +1,5 @@
 export 'package:moment_dart/src/extensions.dart';
+export 'package:moment_dart/src/time_range.dart';
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/extensions/constructor.dart';

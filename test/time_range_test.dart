@@ -1,6 +1,4 @@
-import 'package:moment_dart/src/extensions/benefits.dart';
-import 'package:moment_dart/src/extensions/end_of.dart';
-import 'package:moment_dart/src/extensions/start_of.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/time_range.dart';
 import 'package:test/test.dart';
 
@@ -9,38 +7,98 @@ const aMicrosecond = Duration(microseconds: 1);
 
 void main() {
   group("Equality", () {
+    final now = DateTime.now();
+
     test("TimeRange Factories", () {
       expect(
-        TimeRange.today() == DayTimeRange.fromDateTime(DateTime.now().toUtc()),
-        false,
+        TimeRange.today() == DayTimeRange.fromDateTime(now),
+        true,
       );
       expect(
-        TimeRange.thisMonth() ==
-            MonthTimeRange.fromDateTime(DateTime.now().toUtc()),
-        false,
+        TimeRange.tomorrow() ==
+            DayTimeRange.fromDateTime(Moment.startOfTomorrow()),
+        true,
       );
       expect(
-        TimeRange.thisYear() ==
-            YearTimeRange.fromDateTime(DateTime.now().toUtc()),
-        false,
+        TimeRange.yesterday() ==
+            DayTimeRange.fromDateTime(Moment.startOfYesterday()),
+        true,
+      );
+      expect(
+        TimeRange.thisMonth() == MonthTimeRange.fromDateTime(now),
+        true,
+      );
+      expect(
+        TimeRange.nextMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfNextMonth()),
+        true,
+      );
+      expect(
+        TimeRange.prevMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth()),
+        true,
+      );
+      expect(
+        TimeRange.thisYear() == YearTimeRange.fromDateTime(now),
+        true,
+      );
+      expect(
+        TimeRange.nextYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfNextYear()),
+        true,
+      );
+      expect(
+        TimeRange.prevYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear()),
+        true,
       );
     });
     test("Different timezones", () {
       expect(
-        TimeRange.today() == DayTimeRange.fromDateTime(DateTime.now()),
-        true,
+        TimeRange.today() == DayTimeRange.fromDateTime(now.toUtc()),
+        false,
       );
       expect(
-        TimeRange.thisMonth() == MonthTimeRange.fromDateTime(DateTime.now()),
-        true,
+        TimeRange.tomorrow() ==
+            DayTimeRange.fromDateTime(Moment.startOfTomorrow().toUtc()),
+        false,
       );
       expect(
-        TimeRange.thisYear() == YearTimeRange.fromDateTime(DateTime.now()),
-        true,
+        TimeRange.yesterday() ==
+            DayTimeRange.fromDateTime(Moment.startOfYesterday().toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.thisMonth() == MonthTimeRange.fromDateTime(now.toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.nextMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfNextMonth().toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.prevMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth().toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.thisYear() == YearTimeRange.fromDateTime(now.toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.nextYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfNextYear().toUtc()),
+        false,
+      );
+      expect(
+        TimeRange.prevYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear().toUtc()),
+        false,
       );
     });
     test("different types shouldn't be equal", () {
-      final DateTime now = DateTime.now().startOfDay();
+      final DateTime now = Moment.startOfToday();
 
       final TimeRange today = TimeRange.today();
       final CustomTimeRange todayCustom = CustomTimeRange(now, now.endOfDay());
