@@ -1,5 +1,4 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/time_range.dart';
 import 'package:test/test.dart';
 
 /// One microsecond
