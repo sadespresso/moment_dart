@@ -448,4 +448,107 @@ class Moment extends DateTime {
         (seperateWithColon ? ":" : "") +
         minutes.toString();
   }
+
+  /// Start of today in a local timezone
+  static DateTime startOfToday() => DateTime.now().startOfDay();
+
+  /// Start of tomorrow in a local timezone
+  static DateTime startOfTomorrow() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month, now.day + 1);
+  }
+
+  /// Start of yesterday in a local timezone
+  static DateTime startOfYesterday() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month, now.day - 1);
+  }
+
+  /// Start of the current month in a local timezone
+  static DateTime startOfThisMonth() => DateTime.now().startOfMonth();
+
+  /// Start of the next month in a local timezone
+  static DateTime startOfNextMonth() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month + 1);
+  }
+
+  /// Start of the previous month in a local timezone
+  static DateTime startOfPrevMonth() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month - 1);
+  }
+
+  static DateTime startOfThisYear() => DateTime.now().startOfYear();
+
+  static DateTime startOfNextYear() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year + 1);
+  }
+
+  static DateTime startOfLastYear() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year - 1);
+  }
+
+  /// End of today in a local timezone
+  static DateTime endOfToday() => DateTime.now().endOfDay();
+
+  /// End of tomorrow in a local timezone
+  static DateTime endOfTomorrow() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month, now.day + 1, 23, 59, 59, 999, 999);
+  }
+
+  /// End of yesterday in a local timezone
+  static DateTime endOfYesterday() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month, now.day - 1, 23, 59, 59, 999, 999);
+  }
+
+  /// End of the current month in a local timezone
+  static DateTime endOfThisMonth() => DateTime.now().endOfMonth();
+
+  /// End of the next month in a local timezone
+  static DateTime endOfNextMonth() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month + 1).endOfMonth();
+  }
+
+  /// End of the previous month in a local timezone
+  static DateTime endOfPrevMonth() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year, now.month - 1).endOfMonth();
+  }
+
+  static DateTime endOfThisYear() => DateTime.now().endOfYear();
+
+  static DateTime endOfNextYear() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year + 1, 12, 31, 23, 59, 59, 999, 999);
+  }
+
+  static DateTime endOfLastYear() {
+    final DateTime now = DateTime.now();
+
+    return DateTime(now.year - 1, 12, 31, 23, 59, 59, 999, 999);
+  }
+
+  /// epoch, but in local timezone
+  static DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
+
+  /// epoch in UTC
+  static DateTime epochUtc =
+      DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
 }
