@@ -42,14 +42,14 @@ void main() {
     test("different types shouldn't be equal", () {
       final DateTime now = DateTime.now().startOfDay();
 
-      final TimeRange today = TimeRange.today(now);
+      final TimeRange today = TimeRange.today();
       final CustomTimeRange todayCustom = CustomTimeRange(now, now.endOfDay());
 
       expect(today == todayCustom, false);
       expect(today.from == todayCustom.from, true);
       expect(today.to == todayCustom.to, true);
 
-      final TimeRange thisMonth = TimeRange.thisMonth(now);
+      final TimeRange thisMonth = TimeRange.thisMonth();
       final CustomTimeRange thisMonthCustom =
           CustomTimeRange(now.startOfMonth(), now.endOfMonth());
 
@@ -57,7 +57,7 @@ void main() {
       expect(thisMonth.from == thisMonthCustom.from, true);
       expect(thisMonth.to == thisMonthCustom.to, true);
 
-      final TimeRange thisYear = TimeRange.thisYear(now);
+      final TimeRange thisYear = TimeRange.thisYear();
       final CustomTimeRange thisYearCustom =
           CustomTimeRange(now.startOfYear(), now.endOfYear());
 
@@ -69,8 +69,7 @@ void main() {
 
   group("Duration", () {
     test("Day", () {
-      final DateTime now = DateTime.now();
-      final TimeRange today = TimeRange.today(now);
+      final TimeRange today = TimeRange.today();
       expect(today.duration, Duration(days: 1) - aMicrosecond);
     });
 
@@ -153,28 +152,32 @@ void main() {
   group("Contains", () {
     test("Day", () {
       final DateTime now = DateTime.now();
-      final TimeRange today = TimeRange.today(now);
+      final TimeRange today = TimeRange.today();
       expect(today.contains(now), true);
       expect(today.contains(now.startOfDay()), true);
       expect(today.contains(now.endOfDay()), true);
-      expect(today.contains(now.startOfDay() - aMicrosecond), false);
-      expect(today.contains(now.endOfDay() + aMicrosecond), false);
+      expect(today.contains(today.from - aMicrosecond), false);
+      expect(today.contains(today.to + aMicrosecond), false);
     });
 
     test("Month", () {
       final DateTime now = DateTime.now();
-      final TimeRange thisMonth = TimeRange.thisMonth(now);
+      final TimeRange thisMonth = TimeRange.thisMonth();
       expect(thisMonth.contains(now), true);
-      expect(thisMonth.contains(now.subtract(Duration(days: 1))), false);
-      expect(thisMonth.contains(now.add(Duration(days: 1))), true);
+      expect(thisMonth.contains(now.startOfMonth()), true);
+      expect(thisMonth.contains(now.endOfMonth()), true);
+      expect(thisMonth.contains(thisMonth.from - aMicrosecond), false);
+      expect(thisMonth.contains(thisMonth.to + aMicrosecond), false);
     });
 
     test("Year", () {
       final DateTime now = DateTime.now();
-      final TimeRange thisYear = TimeRange.thisYear(now);
+      final TimeRange thisYear = TimeRange.thisYear();
       expect(thisYear.contains(now), true);
-      expect(thisYear.contains(now.subtract(Duration(days: 366))), false);
-      expect(thisYear.contains(now.add(Duration(days: 366))), true);
+      expect(thisYear.contains(now.startOfYear()), true);
+      expect(thisYear.contains(now.endOfYear()), true);
+      expect(thisYear.contains(thisYear.from - aMicrosecond), false);
+      expect(thisYear.contains(thisYear.to + aMicrosecond), false);
     });
 
     test("Custom", () {
@@ -182,8 +185,10 @@ void main() {
       final CustomTimeRange customRange =
           CustomTimeRange(now, now.add(Duration(days: 1)));
       expect(customRange.contains(now), true);
-      expect(customRange.contains(now.subtract(Duration(days: 1))), false);
-      expect(customRange.contains(now.add(Duration(days: 1))), false);
+      expect(customRange.contains(customRange.from), true);
+      expect(customRange.contains(customRange.to), true);
+      expect(customRange.contains(customRange.from - aMicrosecond), false);
+      expect(customRange.contains(customRange.to + aMicrosecond), false);
     });
   });
 }

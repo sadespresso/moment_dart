@@ -21,16 +21,13 @@ abstract class TimeRange {
   TimeRange toUtc();
 
   /// In the local timezone
-  factory TimeRange.today([DateTime? anchor]) =>
-      DayTimeRange.fromDateTime(anchor ?? DateTime.now());
+  factory TimeRange.today() => DayTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.thisMonth([DateTime? anchor]) =>
-      MonthTimeRange.fromDateTime(anchor ?? DateTime.now());
+  factory TimeRange.thisMonth() => MonthTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.thisYear([DateTime? anchor]) =>
-      YearTimeRange.fromDateTime(anchor ?? DateTime.now());
+  factory TimeRange.thisYear() => YearTimeRange.fromDateTime(DateTime.now());
 
   @override
   bool operator ==(Object other) {
