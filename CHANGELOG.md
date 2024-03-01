@@ -1,3 +1,18 @@
+## 1.2.0
+
+- Added getter/method to check if `DateTime` is in the past or future
+  - `DateTime.isPast`
+  - `DateTime.isPastAnchored(DateTime anchor)`
+  - `DateTime.isFuture`
+  - `DateTime.isFutureAnchored(DateTime anchor)`
+- Added `Moment.startOfToday()`
+  - and similar ones for current month and year,
+  - and `endOf-` variants
+- Added `TimeRange`. Can be constructed in multiple ways:
+  - `TimeRange.today()` and similar ones for current month and year
+  - Create one of `YearTimeRange`, `MonthTimeRange`,`DayTimeRange` or
+  - `CustomTimeRange` for custom from/to values.
+
 ## 1.1.1
 
 - `es_ES` last week prefix has been fixed
