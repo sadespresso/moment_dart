@@ -449,125 +449,126 @@ class Moment extends DateTime {
         minutes.toString();
   }
 
+  /// Start of the current hour in the local timezone
+  static DateTime startOfThisHour() => DateTime.now().startOfHour();
+
+  /// Start of the next hour in the local timezone
+  static DateTime startOfNextHour() => DateTime.now().startOfNextHour();
+
+  /// Start of the last hour in the local timezone
+  static DateTime startOfLastHour() => DateTime.now().startOfLastHour();
+
   /// Start of today in the local timezone
   static DateTime startOfToday() => DateTime.now().startOfDay();
 
   /// Start of tomorrow in the local timezone
 
-  static DateTime startOfTomorrow() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year, now.month, now.day + 1);
-  }
+  static DateTime startOfTomorrow() => DateTime.now().startOfNextDay();
 
   /// Start of yesterday in the local timezone
-  static DateTime startOfYesterday() {
-    final DateTime now = DateTime.now();
+  static DateTime startOfYesterday() => DateTime.now().startOfLastDay();
 
-    return DateTime(now.year, now.month, now.day - 1);
-  }
-
+  /// Start of the current local week in the local timezone
   static DateTime startOfThisLocalWeek([int? weekStart]) =>
       DateTime.now().startOfLocalWeek(weekStart);
+
+  /// Start of the next local week in the local timezone
   static DateTime startOfNextLocalWeek([int? weekStart]) =>
       DateTime.now().startOfNextLocalWeek(weekStart);
+
+  /// Start of the last local week in the local timezone
   static DateTime startOfLastLocalWeek([int? weekStart]) =>
       DateTime.now().startOfLastLocalWeek(weekStart);
+
+  /// Start of the current ISO week in the local timezone
+  static DateTime startOfThisIsoWeek() =>
+      DateTime.now().startOfLocalWeek(DateTime.monday);
+
+  /// Start of the next ISO week in the local timezone
+  static DateTime startOfNextIsoWeek() =>
+      DateTime.now().startOfNextLocalWeek(DateTime.monday);
+
+  /// Start of the last ISO week in the local timezone
+  static DateTime startOfLastIsoWeek() =>
+      DateTime.now().startOfLastLocalWeek(DateTime.monday);
 
   /// Start of the current month in the local timezone
   static DateTime startOfThisMonth() => DateTime.now().startOfMonth();
 
   /// Start of the next month in the local timezone
-  static DateTime startOfNextMonth() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year, now.month + 1);
-  }
+  static DateTime startOfNextMonth() => DateTime.now().startOfNextMonth();
 
   /// Start of the previous month in the local timezone
-  static DateTime startOfLastMonth() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year, now.month - 1);
-  }
+  static DateTime startOfLastMonth() => DateTime.now().startOfLastMonth();
 
   /// Start of the current year in the local timezone
   static DateTime startOfThisYear() => DateTime.now().startOfYear();
 
   /// Start of the next year in the local timezone
-  static DateTime startOfNextYear() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year + 1);
-  }
+  static DateTime startOfNextYear() => DateTime.now().startOfNextYear();
 
   /// Start of the previous year in the local timezone
-  static DateTime startOfLastYear() {
-    final DateTime now = DateTime.now();
+  static DateTime startOfLastYear() => DateTime.now().startOfLastYear();
 
-    return DateTime(now.year - 1);
-  }
+  /// End of the current hour in the local timezone
+  static DateTime endOfThisHour() => DateTime.now().endOfHour();
+
+  /// End of the next hour in the local timezone
+  static DateTime endOfNextHour() => DateTime.now().endOfNextHour();
+
+  /// End of the last hour in the local timezone
+  static DateTime endOfLastHour() => DateTime.now().endOfLastHour();
 
   /// End of today in the local timezone
   static DateTime endOfToday() => DateTime.now().endOfDay();
 
   /// End of tomorrow in the local timezone
-  static DateTime endOfTomorrow() {
-    final DateTime now = DateTime.now();
-
-    return DateTimeConstructors.endOfYearWithTimezone(
-      false,
-      now.year,
-      now.month,
-      now.day + 1,
-    );
-  }
+  static DateTime endOfTomorrow() => DateTime.now().endOfNextDay();
 
   /// End of yesterday in the local timezone
-  static DateTime endOfYesterday() {
-    final DateTime now = DateTime.now();
+  static DateTime endOfYesterday() => DateTime.now().endOfLastDay();
 
-    return DateTimeConstructors.endOfYearWithTimezone(
-      false,
-      now.year,
-      now.month,
-      now.day - 1,
-    );
-  }
+  /// End of the current local week in the local timezone
+  static DateTime endOfThisLocalWeek([int? weekStart]) =>
+      DateTime.now().endOfLocalWeek(weekStart);
+
+  /// End of the next local week in the local timezone
+  static DateTime endOfNextLocalWeek([int? weekStart]) =>
+      DateTime.now().endOfNextLocalWeek(weekStart);
+
+  /// End of the last local week in the local timezone
+  static DateTime endOfLastLocalWeek([int? weekStart]) =>
+      DateTime.now().endOfLastLocalWeek(weekStart);
+
+  /// End of the current ISO week in the local timezone
+  static DateTime endOfThisIsoWeek() =>
+      DateTime.now().endOfLocalWeek(DateTime.monday);
+
+  /// End of the next ISO week in the local timezone
+  static DateTime endOfNextIsoWeek() =>
+      DateTime.now().endOfNextLocalWeek(DateTime.monday);
+
+  /// End of the last ISO week in the local timezone
+  static DateTime endOfLastIsoWeek() =>
+      DateTime.now().endOfLastLocalWeek(DateTime.monday);
 
   /// End of the current month in the local timezone
   static DateTime endOfThisMonth() => DateTime.now().endOfMonth();
 
   /// End of the next month in the local timezone
-  static DateTime endOfNextMonth() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year, now.month + 1).endOfMonth();
-  }
+  static DateTime endOfNextMonth() => DateTime.now().endOfNextMonth();
 
   /// End of the previous month in the local timezone
-  static DateTime endOfLastMonth() {
-    final DateTime now = DateTime.now();
-
-    return DateTime(now.year, now.month - 1).endOfMonth();
-  }
+  static DateTime endOfLastMonth() => DateTime.now().endOfLastMonth();
 
   /// End of the current year in the local timezone
   static DateTime endOfThisYear() => DateTime.now().endOfYear();
 
   /// End of the next year in the local timezone
-  static DateTime endOfNextYear() {
-    final DateTime now = DateTime.now();
-
-    return DateTimeConstructors.endOfYearWithTimezone(false, now.year + 1);
-  }
+  static DateTime endOfNextYear() => DateTime.now().endOfNextYear();
 
   /// End of the previous year in the local timezone
-  static DateTime endOfLastYear() {
-    final DateTime now = DateTime.now();
-
-    return DateTimeConstructors.endOfYearWithTimezone(false, now.year - 1);
-  }
+  static DateTime endOfLastYear() => DateTime.now().endOfLastYear();
 
   /// epoch, but in the local timezone
   static DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
