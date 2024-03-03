@@ -71,4 +71,31 @@ extension DateTimeConstructors on DateTime {
       0,
     );
   }
+
+  /// Anything after [year] defaults to **December 31, 23:59:59.999.999**
+  ///
+  /// If you've set the [month], don't forget to set the [day] as well. Not all
+  /// days have 31 days like December
+  static DateTime endOfYearWithTimezone(
+    bool isUtc,
+    int year, [
+    int month = 12,
+    int day = 31,
+    int hour = 23,
+    int minute = 59,
+    int second = 59,
+    int millisecond = 999,
+    int microsecond = 999,
+  ]) =>
+      DateTimeConstructors.withTimezone(
+        isUtc,
+        year,
+        month,
+        day,
+        hour,
+        minute,
+        second,
+        millisecond,
+        microsecond,
+      );
 }

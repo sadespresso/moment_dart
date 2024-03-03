@@ -33,8 +33,8 @@ void main() {
         true,
       );
       expect(
-        TimeRange.prevMonth() ==
-            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth()),
+        TimeRange.lastMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfLastMonth()),
         true,
       );
       expect(
@@ -47,8 +47,8 @@ void main() {
         true,
       );
       expect(
-        TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfPrevYear()),
+        TimeRange.lastYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear()),
         true,
       );
     });
@@ -77,8 +77,8 @@ void main() {
         false,
       );
       expect(
-        TimeRange.prevMonth() ==
-            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth().toUtc()),
+        TimeRange.lastMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfLastMonth().toUtc()),
         false,
       );
       expect(
@@ -91,8 +91,8 @@ void main() {
         false,
       );
       expect(
-        TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfPrevYear().toUtc()),
+        TimeRange.lastYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear().toUtc()),
         false,
       );
     });

@@ -3,6 +3,7 @@ export 'package:moment_dart/src/time_range.dart';
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/extensions/constructor.dart';
+import 'package:moment_dart/src/extensions/relative_finder.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// A subclass of DateTime. Therefore:
@@ -468,6 +469,13 @@ class Moment extends DateTime {
     return DateTime(now.year, now.month, now.day - 1);
   }
 
+  static DateTime startOfThisLocalWeek([int? weekStart]) =>
+      DateTime.now().startOfLocalWeek(weekStart);
+  static DateTime startOfNextLocalWeek([int? weekStart]) =>
+      DateTime.now().startOfNextLocalWeek(weekStart);
+  static DateTime startOfLastLocalWeek([int? weekStart]) =>
+      DateTime.now().startOfLastLocalWeek(weekStart);
+
   /// Start of the current month in the local timezone
   static DateTime startOfThisMonth() => DateTime.now().startOfMonth();
 
@@ -479,7 +487,7 @@ class Moment extends DateTime {
   }
 
   /// Start of the previous month in the local timezone
-  static DateTime startOfPrevMonth() {
+  static DateTime startOfLastMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month - 1);
@@ -496,7 +504,7 @@ class Moment extends DateTime {
   }
 
   /// Start of the previous year in the local timezone
-  static DateTime startOfPrevYear() {
+  static DateTime startOfLastYear() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year - 1);
@@ -509,14 +517,24 @@ class Moment extends DateTime {
   static DateTime endOfTomorrow() {
     final DateTime now = DateTime.now();
 
-    return DateTime(now.year, now.month, now.day + 1, 23, 59, 59, 999, 999);
+    return DateTimeConstructors.endOfYearWithTimezone(
+      false,
+      now.year,
+      now.month,
+      now.day + 1,
+    );
   }
 
   /// End of yesterday in the local timezone
   static DateTime endOfYesterday() {
     final DateTime now = DateTime.now();
 
-    return DateTime(now.year, now.month, now.day - 1, 23, 59, 59, 999, 999);
+    return DateTimeConstructors.endOfYearWithTimezone(
+      false,
+      now.year,
+      now.month,
+      now.day - 1,
+    );
   }
 
   /// End of the current month in the local timezone
@@ -530,7 +548,7 @@ class Moment extends DateTime {
   }
 
   /// End of the previous month in the local timezone
-  static DateTime endOfPrevMonth() {
+  static DateTime endOfLastMonth() {
     final DateTime now = DateTime.now();
 
     return DateTime(now.year, now.month - 1).endOfMonth();
@@ -543,14 +561,14 @@ class Moment extends DateTime {
   static DateTime endOfNextYear() {
     final DateTime now = DateTime.now();
 
-    return DateTime(now.year + 1, 12, 31, 23, 59, 59, 999, 999);
+    return DateTimeConstructors.endOfYearWithTimezone(false, now.year + 1);
   }
 
   /// End of the previous year in the local timezone
-  static DateTime endOfPrevYear() {
+  static DateTime endOfLastYear() {
     final DateTime now = DateTime.now();
 
-    return DateTime(now.year - 1, 12, 31, 23, 59, 59, 999, 999);
+    return DateTimeConstructors.endOfYearWithTimezone(false, now.year - 1);
   }
 
   /// epoch, but in the local timezone

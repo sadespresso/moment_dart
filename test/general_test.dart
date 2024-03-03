@@ -450,10 +450,10 @@ void main() {
           DateTime(now.year, now.month, now.day - 1));
       expect(Moment.startOfThisMonth(), DateTime(now.year, now.month));
       expect(Moment.startOfNextMonth(), DateTime(now.year, now.month + 1));
-      expect(Moment.startOfPrevMonth(), DateTime(now.year, now.month - 1));
+      expect(Moment.startOfLastMonth(), DateTime(now.year, now.month - 1));
       expect(Moment.startOfThisYear(), DateTime(now.year));
       expect(Moment.startOfNextYear(), DateTime(now.year + 1));
-      expect(Moment.startOfPrevYear(), DateTime(now.year - 1));
+      expect(Moment.startOfLastYear(), DateTime(now.year - 1));
     });
 
     test("end of", () {
@@ -467,11 +467,11 @@ void main() {
           Moment.endOfThisMonth(), DateTime(now.year, now.month).endOfMonth());
       expect(Moment.endOfNextMonth(),
           DateTime(now.year, now.month + 1).endOfMonth());
-      expect(Moment.endOfPrevMonth(),
+      expect(Moment.endOfLastMonth(),
           DateTime(now.year, now.month - 1).endOfMonth());
       expect(Moment.endOfThisYear(), DateTime(now.year).endOfYear());
       expect(Moment.endOfNextYear(), DateTime(now.year + 1).endOfYear());
-      expect(Moment.endOfPrevYear(), DateTime(now.year - 1).endOfYear());
+      expect(Moment.endOfLastYear(), DateTime(now.year - 1).endOfYear());
     });
   });
 
