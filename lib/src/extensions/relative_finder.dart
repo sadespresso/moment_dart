@@ -11,11 +11,11 @@ extension YearFinder on DateTime {
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfNextYear() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year + 1);
+      DateTimeConstructors.withTimezone(isUtc, year + 1).endOfYear();
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfLastYear() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year - 1);
+      DateTimeConstructors.withTimezone(isUtc, year - 1).endOfYear();
 }
 
 extension MonthFinder on DateTime {
@@ -29,11 +29,11 @@ extension MonthFinder on DateTime {
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfNextMonth() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year, month + 1);
+      DateTimeConstructors.withTimezone(isUtc, year, month + 1).endOfMonth();
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfLastMonth() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year, month - 1);
+      DateTimeConstructors.withTimezone(isUtc, year, month - 1).endOfMonth();
 }
 
 extension LocalWeekFinder on DateTime {
@@ -79,11 +79,11 @@ extension DayFinder on DateTime {
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfNextDay() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year, month, day + 1);
+      DateTimeConstructors.withTimezone(isUtc, year, month, day + 1).endOfDay();
 
   /// Returns a new [DateTime] of same timezone
   DateTime endOfLastDay() =>
-      DateTimeConstructors.endOfYearWithTimezone(isUtc, year, month, day - 1);
+      DateTimeConstructors.withTimezone(isUtc, year, month, day - 1).endOfDay();
 }
 
 extension HourFinder on DateTime {
@@ -96,21 +96,29 @@ extension HourFinder on DateTime {
       DateTimeConstructors.withTimezone(isUtc, year, month, day, hour - 1);
 
   /// Returns a new [DateTime] of same timezone
-  DateTime endOfNextHour() => DateTimeConstructors.endOfYearWithTimezone(
+  DateTime endOfNextHour() => DateTimeConstructors.withTimezone(
         isUtc,
         year,
         month,
         day,
         hour + 1,
+        59,
+        59,
+        999,
+        999,
       );
 
   /// Returns a new [DateTime] of same timezone
-  DateTime endOfLastHour() => DateTimeConstructors.endOfYearWithTimezone(
+  DateTime endOfLastHour() => DateTimeConstructors.withTimezone(
         isUtc,
         year,
         month,
         day,
         hour - 1,
+        59,
+        59,
+        999,
+        999,
       );
 }
 
@@ -124,24 +132,12 @@ extension MinuteFinder on DateTime {
       isUtc, year, month, day, hour, minute - 1);
 
   /// Returns a new [DateTime] of same timezone
-  DateTime endOfNextMinute() => DateTimeConstructors.endOfYearWithTimezone(
-        isUtc,
-        year,
-        month,
-        day,
-        hour,
-        minute + 1,
-      );
+  DateTime endOfNextMinute() => DateTimeConstructors.withTimezone(
+      isUtc, year, month, day, hour, minute + 1, 59, 999, 999);
 
   /// Returns a new [DateTime] of same timezone
-  DateTime endOfLastMinute() => DateTimeConstructors.endOfYearWithTimezone(
-        isUtc,
-        year,
-        month,
-        day,
-        hour,
-        minute - 1,
-      );
+  DateTime endOfLastMinute() => DateTimeConstructors.withTimezone(
+      isUtc, year, month, day, hour, minute - 1, 59, 999, 999);
 }
 
 extension YearFinderMoment on Moment {

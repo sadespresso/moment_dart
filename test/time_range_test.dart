@@ -244,4 +244,28 @@ void main() {
       expect(customRange.contains(customRange.to + aMicrosecond), false);
     });
   });
+
+  test("next/prev time ranges", () {
+    final HourTimeRange thisHour = TimeRange.thisHour();
+    final HourTimeRange nextHour = TimeRange.nextHour();
+    final HourTimeRange lastHour = TimeRange.lastHour();
+    final DayTimeRange today = TimeRange.today();
+    final DayTimeRange tomorrow = TimeRange.tomorrow();
+    final DayTimeRange yesterday = TimeRange.yesterday();
+    final MonthTimeRange thisMonth = TimeRange.thisMonth();
+    final MonthTimeRange nextMonth = TimeRange.nextMonth();
+    final MonthTimeRange lastMonth = TimeRange.lastMonth();
+    final YearTimeRange thisYear = TimeRange.thisYear();
+    final YearTimeRange nextYear = TimeRange.nextYear();
+    final YearTimeRange lastYear = TimeRange.lastYear();
+
+    expect(thisHour.next, nextHour);
+    expect(thisHour.last, lastHour);
+    expect(today.next, tomorrow);
+    expect(today.last, yesterday);
+    expect(thisMonth.next, nextMonth);
+    expect(thisMonth.last, lastMonth);
+    expect(thisYear.next, nextYear);
+    expect(thisYear.last, lastYear);
+  });
 }
