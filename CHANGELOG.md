@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Expose `PageableRange`
+
 ## 2.0.1
 
 - TimeRange
