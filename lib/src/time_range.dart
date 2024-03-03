@@ -1,5 +1,11 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
+
+export 'time_range/hour.dart';
+export 'time_range/day.dart';
+export 'time_range/week.dart';
+export 'time_range/month.dart';
+export 'time_range/year.dart';
+export 'time_range/custom.dart';
 
 abstract class TimeRange {
   const TimeRange();
@@ -42,37 +48,49 @@ abstract class TimeRange {
   TimeRange toUtc();
 
   /// In the local timezone
-  factory TimeRange.today() => DayTimeRange.fromDateTime(DateTime.now());
+  static HourTimeRange thisHour() => HourTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.tomorrow() =>
+  static HourTimeRange nextHour() =>
+      HourTimeRange.fromDateTime(Moment.startOfNextHour());
+
+  /// In the local timezone
+  static HourTimeRange lastHour() =>
+      HourTimeRange.fromDateTime(Moment.startOfLastHour());
+
+  /// In the local timezone
+  static DayTimeRange today() => DayTimeRange.fromDateTime(DateTime.now());
+
+  /// In the local timezone
+  static DayTimeRange tomorrow() =>
       DayTimeRange.fromDateTime(Moment.startOfTomorrow());
 
   /// In the local timezone
-  factory TimeRange.yesterday() =>
+  static DayTimeRange yesterday() =>
       DayTimeRange.fromDateTime(Moment.startOfYesterday());
 
   /// In the local timezone
-  factory TimeRange.thisMonth() => MonthTimeRange.fromDateTime(DateTime.now());
+  static MonthTimeRange thisMonth() =>
+      MonthTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.nextMonth() =>
+  static MonthTimeRange nextMonth() =>
       MonthTimeRange.fromDateTime(Moment.startOfNextMonth());
 
   /// In the local timezone
-  factory TimeRange.prevMonth() =>
-      MonthTimeRange.fromDateTime(Moment.startOfPrevMonth());
+  static MonthTimeRange lastMonth() =>
+      MonthTimeRange.fromDateTime(Moment.startOfLastMonth());
 
   /// In the local timezone
-  factory TimeRange.thisYear() => YearTimeRange.fromDateTime(DateTime.now());
+  static YearTimeRange thisYear() => YearTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.nextYear() =>
+  static YearTimeRange nextYear() =>
       YearTimeRange.fromDateTime(Moment.startOfNextYear());
 
   /// In the local timezone
-  factory TimeRange.prevYear() =>
-      YearTimeRange.fromDateTime(Moment.startOfPrevYear());
+  static YearTimeRange lastYear() =>
+      YearTimeRange.fromDateTime(Moment.startOfLastYear());
 
   @override
   bool operator ==(Object other) {
@@ -89,140 +107,4 @@ abstract class TimeRange {
 
   @override
   String toString() => "TimeRange($from -> $to)";
-}
-
-class CustomTimeRange extends TimeRange {
-  @override
-
-  /// Returns if [from] is in UTC timezone.
-  ///
-  /// Does NOT check it [to] is in UTC timezone.
-  bool get isUtc => from.isUtc;
-
-  @override
-  final DateTime from;
-  @override
-  final DateTime to;
-
-  /// The timezone is assumed by the [from] passed in here.
-  ///
-  /// [CustomTimeRange] does NOT ensure that [from] and [to] have the same timezone.
-  const CustomTimeRange(this.from, this.to)
-      : assert(from <= to, "[from] must be before or equal to [to]");
-
-  @override
-  CustomTimeRange toUtc() =>
-      isUtc ? this : CustomTimeRange(from.toUtc(), to.toUtc());
-}
-
-class DayTimeRange extends TimeRange {
-  @override
-  final bool isUtc;
-
-  final int year;
-  final int month;
-  final int day;
-
-  const DayTimeRange(
-    this.year,
-    this.month,
-    this.day, {
-    this.isUtc = false,
-  });
-
-  /// Will preserve the timezone of [dateTime]
-  factory DayTimeRange.fromDateTime(DateTime dateTime) => DayTimeRange(
-        dateTime.year,
-        dateTime.month,
-        dateTime.day,
-        isUtc: dateTime.isUtc,
-      );
-
-  @override
-  DateTime get from =>
-      DateTimeConstructors.withTimezone(isUtc, year, month, day);
-
-  @override
-  DateTime get to => from.endOfDay();
-
-  @override
-  DayTimeRange toUtc() =>
-      isUtc ? this : DayTimeRange(year, month, day, isUtc: true);
-}
-
-class LocalWeekTimeRange extends CustomTimeRange {
-  LocalWeekTimeRange(DateTime dateTime)
-      : super(dateTime.startOfLocalWeek(), dateTime.endOfLocalWeek());
-
-  @override
-  CustomTimeRange toUtc() => throw UnsupportedError(
-      "Local week time range cannot be converted to UTC");
-}
-
-class IsoWeekTimeRange extends CustomTimeRange {
-  IsoWeekTimeRange(DateTime dateTime)
-      : super(dateTime.startOfLocalWeek(1), dateTime.endOfLocalWeek(1));
-
-  int get weekYear => from.weekYear;
-  int get week => from.week;
-
-  @override
-  CustomTimeRange toUtc() => throw UnsupportedError(
-      "Local week time range cannot be converted to UTC");
-}
-
-class MonthTimeRange extends TimeRange {
-  @override
-  final bool isUtc;
-
-  final int year;
-  final int month;
-
-  const MonthTimeRange(
-    this.year,
-    this.month, {
-    this.isUtc = false,
-  });
-
-  /// Will preserve the timezone of [dateTime]
-  factory MonthTimeRange.fromDateTime(DateTime dateTime) => MonthTimeRange(
-        dateTime.year,
-        dateTime.month,
-        isUtc: dateTime.isUtc,
-      );
-
-  @override
-  DateTime get from => DateTimeConstructors.withTimezone(isUtc, year, month);
-
-  @override
-  DateTime get to => from.endOfMonth();
-
-  @override
-  MonthTimeRange toUtc() =>
-      isUtc ? this : MonthTimeRange(year, month, isUtc: true);
-}
-
-class YearTimeRange extends TimeRange {
-  @override
-  final bool isUtc;
-
-  final int year;
-
-  const YearTimeRange(
-    this.year, {
-    this.isUtc = false,
-  });
-
-  /// Will preserve the timezone of [dateTime]
-  factory YearTimeRange.fromDateTime(DateTime dateTime) =>
-      YearTimeRange(dateTime.year, isUtc: dateTime.isUtc);
-
-  @override
-  DateTime get from => DateTimeConstructors.withTimezone(isUtc, year);
-
-  @override
-  DateTime get to => from.endOfYear();
-
-  @override
-  YearTimeRange toUtc() => isUtc ? this : YearTimeRange(year, isUtc: true);
 }

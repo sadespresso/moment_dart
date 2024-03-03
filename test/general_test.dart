@@ -314,6 +314,10 @@ void main() {
         DateTime(2022, 6, 19),
       ); // Sunday as start of week (since 0.16.0)
       expect(
+        m.startOfIsoWeek(),
+        DateTime(2022, 6, 13),
+      ); // Monday
+      expect(
           () => m.startOf(DurationUnit.week), throwsA(isA<MomentException>()));
       expect(m.startOfMonth(), DateTime(2022, 6));
       expect(m.startOfYear(), DateTime(2022));
@@ -332,6 +336,10 @@ void main() {
         m.startOfLocalWeek(),
         DateTime(2003, 6, 1).toMoment(),
       ); // Sunday as start of week, dervied from en_US locale
+      expect(
+        m.startOfIsoWeek(),
+        DateTime(2003, 5, 26).toMoment(),
+      ); // Monday
       expect(m.startOf(DurationUnit.week), m.startOfLocalWeek());
       expect(m.startOfMonth(), DateTime(2003, 6).toMoment());
       expect(m.startOfYear(), DateTime(2003).toMoment());
@@ -352,6 +360,10 @@ void main() {
         m.endOfLocalWeek(),
         DateTime(2022, 6, 25, 23, 59, 59, 999, 999),
       ); // Sunday as start of week (since 0.16.0)
+      expect(
+        m.endOfIsoWeek(),
+        DateTime(2022, 6, 19, 23, 59, 59, 999, 999),
+      ); // Monday as start of week for ISO
       expect(() => m.endOf(DurationUnit.week), throwsA(isA<MomentException>()));
       expect(m.endOfMonth(), DateTime(2022, 6, 30, 23, 59, 59, 999, 999));
       expect(m.endOfYear(), DateTime(2022, 12, 31, 23, 59, 59, 999, 999));
@@ -374,6 +386,10 @@ void main() {
         m.endOfLocalWeek(),
         DateTime(2003, 6, 7, 23, 59, 59, 999, 999).toMoment(),
       ); // Week start on Sunday, derived from en_US locale
+      expect(
+        m.endOfIsoWeek(),
+        DateTime(2003, 6, 1, 23, 59, 59, 999, 999).toMoment(),
+      ); // Week start on Monday for ISO
       expect(m.endOf(DurationUnit.week), m.endOfLocalWeek());
       expect(m.endOfMonth(),
           DateTime(2003, 6, 30, 23, 59, 59, 999, 999).toMoment());
@@ -450,10 +466,10 @@ void main() {
           DateTime(now.year, now.month, now.day - 1));
       expect(Moment.startOfThisMonth(), DateTime(now.year, now.month));
       expect(Moment.startOfNextMonth(), DateTime(now.year, now.month + 1));
-      expect(Moment.startOfPrevMonth(), DateTime(now.year, now.month - 1));
+      expect(Moment.startOfLastMonth(), DateTime(now.year, now.month - 1));
       expect(Moment.startOfThisYear(), DateTime(now.year));
       expect(Moment.startOfNextYear(), DateTime(now.year + 1));
-      expect(Moment.startOfPrevYear(), DateTime(now.year - 1));
+      expect(Moment.startOfLastYear(), DateTime(now.year - 1));
     });
 
     test("end of", () {
@@ -467,11 +483,11 @@ void main() {
           Moment.endOfThisMonth(), DateTime(now.year, now.month).endOfMonth());
       expect(Moment.endOfNextMonth(),
           DateTime(now.year, now.month + 1).endOfMonth());
-      expect(Moment.endOfPrevMonth(),
+      expect(Moment.endOfLastMonth(),
           DateTime(now.year, now.month - 1).endOfMonth());
       expect(Moment.endOfThisYear(), DateTime(now.year).endOfYear());
       expect(Moment.endOfNextYear(), DateTime(now.year + 1).endOfYear());
-      expect(Moment.endOfPrevYear(), DateTime(now.year - 1).endOfYear());
+      expect(Moment.endOfLastYear(), DateTime(now.year - 1).endOfYear());
     });
   });
 

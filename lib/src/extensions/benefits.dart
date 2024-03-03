@@ -1,5 +1,4 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 
 export 'duration.dart';
 
@@ -217,6 +216,15 @@ extension MomentBenefits on DateTime {
     }
 
     return toMoment(localization: localization).format(payload, forceLocal);
+  }
+
+  /// Returns [CustomTimeRange] from [this] to [other]
+  ///
+  /// If [this] is after [other], it will be swapped.
+  CustomTimeRange to(DateTime other) {
+    if (this <= other) return CustomTimeRange(this, other);
+
+    return CustomTimeRange(other, this);
   }
 }
 
