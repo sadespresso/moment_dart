@@ -1,5 +1,6 @@
 import 'package:moment_dart/moment_dart.dart';
 
+export 'time_range/hour.dart';
 export 'time_range/day.dart';
 export 'time_range/week.dart';
 export 'time_range/month.dart';
