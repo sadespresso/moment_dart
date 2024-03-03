@@ -4,8 +4,11 @@ import 'package:moment_dart/src/time_range/pageable_range.dart';
 
 class LocalWeekTimeRange extends CustomTimeRange
     implements PageableRange<LocalWeekTimeRange> {
-  LocalWeekTimeRange(DateTime dateTime)
-      : super(dateTime.startOfLocalWeek(), dateTime.endOfLocalWeek());
+  LocalWeekTimeRange(DateTime dateTime, [int? weekStart])
+      : super(
+          dateTime.startOfLocalWeek(weekStart),
+          dateTime.startOfNextLocalWeek(weekStart),
+        );
 
   @override
   CustomTimeRange toUtc() => throw UnsupportedError(
@@ -21,7 +24,7 @@ class LocalWeekTimeRange extends CustomTimeRange
 class IsoWeekTimeRange extends CustomTimeRange
     with PageableRange<IsoWeekTimeRange> {
   IsoWeekTimeRange(DateTime dateTime)
-      : super(dateTime.startOfLocalWeek(1), dateTime.endOfLocalWeek(1));
+      : super(dateTime.startOfLocalWeek(1), dateTime.startOfNextLocalWeek(1));
 
   int get weekYear => from.weekYear;
   int get week => from.week;

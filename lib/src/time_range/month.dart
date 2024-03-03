@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/time_range.dart';
 import 'package:moment_dart/src/time_range/pageable_range.dart';
 
@@ -27,7 +26,7 @@ class MonthTimeRange extends TimeRange with PageableRange<MonthTimeRange> {
   DateTime get from => DateTimeConstructors.withTimezone(isUtc, year, month);
 
   @override
-  DateTime get to => from.endOfMonth();
+  DateTime get to => from.startOfNextMonth();
 
   @override
   MonthTimeRange toUtc() =>

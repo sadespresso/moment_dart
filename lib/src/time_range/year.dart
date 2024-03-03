@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/time_range.dart';
 import 'package:moment_dart/src/time_range/pageable_range.dart';
 
@@ -22,7 +21,7 @@ class YearTimeRange extends TimeRange with PageableRange<YearTimeRange> {
   DateTime get from => DateTimeConstructors.withTimezone(isUtc, year);
 
   @override
-  DateTime get to => from.endOfYear();
+  DateTime get to => from.startOfNextYear();
 
   @override
   YearTimeRange toUtc() => isUtc ? this : YearTimeRange(year, isUtc: true);

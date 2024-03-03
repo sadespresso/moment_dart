@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/time_range.dart';
 import 'package:moment_dart/src/time_range/pageable_range.dart';
 
@@ -31,7 +30,7 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
       DateTimeConstructors.withTimezone(isUtc, year, month, day);
 
   @override
-  DateTime get to => from.endOfDay();
+  DateTime get to => from.startOfNextDay();
 
   @override
   DayTimeRange toUtc() =>

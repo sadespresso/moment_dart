@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/time_range.dart';
 import 'package:moment_dart/src/time_range/pageable_range.dart';
 
@@ -34,7 +33,7 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
       DateTimeConstructors.withTimezone(isUtc, year, month, day, hour);
 
   @override
-  DateTime get to => from.endOfHour();
+  DateTime get to => from.startOfNextHour();
 
   @override
   HourTimeRange toUtc() =>
