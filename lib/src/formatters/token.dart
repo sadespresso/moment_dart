@@ -161,22 +161,6 @@ enum FormatterToken {
   /// [DateTime] complies ISO 8601 standard, therefore Moment.js's YYYYYY, Y are redundant
   YYYY,
 
-  /// [Year]
-  ///
-  /// -001970 -001971 ... +001907 +001971
-  ///
-  /// Note: Expanded Years (Covering the full time value range of approximately 273,790 years forward or backward from 01 January, 1970)
-  @Deprecated("[DateTime] complies ISO 8601 standard, so, please use YYYY")
-  YYYYYY,
-
-  /// [Year]
-  ///
-  /// 1970 1971 ... 9999 +10000 +10001
-  ///
-  /// Note: This complies with the ISO 8601 standard for dates past the year 9999
-  @Deprecated("[DateTime] complies ISO 8601 standard, so, please use YYYY")
-  Y,
-
   /// [Era Year]
   ///
   /// 1 2 ... 2020 ...

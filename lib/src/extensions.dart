@@ -9,3 +9,7 @@ export 'package:moment_dart/src/extensions/end_of.dart';
 export 'package:moment_dart/src/extensions/unit_comparison.dart';
 
 export 'package:moment_dart/src/extensions/weekday_finder.dart';
+
+export 'package:moment_dart/src/extensions/relative_finder.dart';
+
+export 'package:moment_dart/src/extensions/constructor.dart';

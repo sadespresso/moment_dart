@@ -1,3 +1,23 @@
+## 2.0.0
+
+- TimeRange
+  - **[BREAKING]** Renamed all variable/methods with "prev" to "last"
+  - Added `HourTimeRange`, `LocalWeekTimeRange` and `IsoWeekTimeRange`
+  - **[BREAKING]** TimeRange's `to` is now exclusive. This means
+    `DayTimeRange().duration` will equal to `Duration(days:1)` unless there's a
+    [daylight saving](https://en.wikipedia.org/wiki/Daylight_saving_time#Effects_on_social_relations)
+     going on.
+  - Added next/last getters on some TimeRange classes.
+- **[BREAKING]** Removes deprecated formatter tokens `YYYYYY` and `Y`
+- `Moment.` relative constructors
+  - **[BREAKING]** Renamed all variable/methods with "prev" to "last"
+  - Added `Moment.startOfThisLocalWeek()`, with `endOf` and `next`/`prev` variants
+  - Added `Moment.startOfThisIsoWeek()`, with `endOf` and `next`/`prev` variants
+  - Added `Moment.startOfThisHour()`, with `endOf` and `next`/`prev` variants
+- Added relative finder methods such as `.startOfNextDay()`.
+- Added `.startOfIsoWeek()` and `.endOfIsoWeek()`
+- Exposes `DateTimeConstructors` (no longer need to import)
+
 ## 1.2.0
 
 - Added getter/method to check if `DateTime` is in the past or future

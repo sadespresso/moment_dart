@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/exception.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension EndOfUnit on DateTime {
@@ -159,6 +158,11 @@ extension EndOfUnit on DateTime {
     return add(Duration(days: delta)).endOfDay();
   }
 
+  /// Returns end of the ISO week (always Sunday)
+  ///
+  /// Returned object will have same timezone as [this]
+  DateTime endOfIsoWeek() => endOfLocalWeek(DateTime.monday);
+
   /// Returns end of the month
   ///
   /// Returned object will have same timezone as [this]
@@ -224,6 +228,11 @@ extension EndOfUnitMoment on Moment {
         .endOfLocalWeek(weekStart ?? localization.weekStart)
         .toMoment(localization: setLocalization);
   }
+
+  /// Returns start of the ISO week (always Monday)
+  ///
+  /// Returned object will have same timezone as [this]
+  Moment endOfIsoWeek() => endOfLocalWeek(DateTime.monday);
 
   /// Returns end of the month
   ///

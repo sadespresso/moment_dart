@@ -1,10 +1,8 @@
 import 'package:moment_dart/moment_dart.dart';
 import 'package:test/test.dart';
 
-/// One microsecond
-const aMicrosecond = Duration(microseconds: 1);
-
 void main() {
+  const aMicrosecond = Duration(microseconds: 1);
   group("Equality", () {
     final now = DateTime.now();
 
@@ -33,8 +31,8 @@ void main() {
         true,
       );
       expect(
-        TimeRange.prevMonth() ==
-            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth()),
+        TimeRange.lastMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfLastMonth()),
         true,
       );
       expect(
@@ -47,8 +45,8 @@ void main() {
         true,
       );
       expect(
-        TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfPrevYear()),
+        TimeRange.lastYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear()),
         true,
       );
     });
@@ -77,8 +75,8 @@ void main() {
         false,
       );
       expect(
-        TimeRange.prevMonth() ==
-            MonthTimeRange.fromDateTime(Moment.startOfPrevMonth().toUtc()),
+        TimeRange.lastMonth() ==
+            MonthTimeRange.fromDateTime(Moment.startOfLastMonth().toUtc()),
         false,
       );
       expect(
@@ -91,8 +89,8 @@ void main() {
         false,
       );
       expect(
-        TimeRange.prevYear() ==
-            YearTimeRange.fromDateTime(Moment.startOfPrevYear().toUtc()),
+        TimeRange.lastYear() ==
+            YearTimeRange.fromDateTime(Moment.startOfLastYear().toUtc()),
         false,
       );
     });
@@ -100,7 +98,8 @@ void main() {
       final DateTime now = Moment.startOfToday();
 
       final TimeRange today = TimeRange.today();
-      final CustomTimeRange todayCustom = CustomTimeRange(now, now.endOfDay());
+      final CustomTimeRange todayCustom =
+          CustomTimeRange(now, now.startOfNextDay());
 
       expect(today == todayCustom, false);
       expect(today.from == todayCustom.from, true);
@@ -108,7 +107,7 @@ void main() {
 
       final TimeRange thisMonth = TimeRange.thisMonth();
       final CustomTimeRange thisMonthCustom =
-          CustomTimeRange(now.startOfMonth(), now.endOfMonth());
+          CustomTimeRange(now.startOfMonth(), now.startOfNextMonth());
 
       expect(thisMonth == thisMonthCustom, false);
       expect(thisMonth.from == thisMonthCustom.from, true);
@@ -116,7 +115,7 @@ void main() {
 
       final TimeRange thisYear = TimeRange.thisYear();
       final CustomTimeRange thisYearCustom =
-          CustomTimeRange(now.startOfYear(), now.endOfYear());
+          CustomTimeRange(now.startOfYear(), now.startOfNextYear());
 
       expect(thisYear == thisYearCustom, false);
       expect(thisYear.from == thisYearCustom.from, true);
@@ -127,18 +126,15 @@ void main() {
   group("Duration", () {
     test("Day", () {
       final TimeRange today = TimeRange.today();
-      expect(today.duration, Duration(days: 1) - aMicrosecond);
+      expect(today.duration, Duration(days: 1));
     });
 
     test("Month days", () {
       for (final year in [1970, 2000, 2020, 2021, 2024]) {
         for (final month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
           final MonthTimeRange monthRange = MonthTimeRange(year, month);
-          expect(
-            monthRange.duration,
-            Duration(days: DateTime(year, month).endOfMonth().day) -
-                aMicrosecond,
-          );
+          expect(monthRange.duration,
+              Duration(days: DateTime(year, month).endOfMonth().day));
         }
       }
     });
@@ -148,7 +144,7 @@ void main() {
         final YearTimeRange yearRange = YearTimeRange(year);
         expect(
           yearRange.duration,
-          Duration(days: DateTime(year).endOfYear().dayOfYear) - aMicrosecond,
+          Duration(days: DateTime(year).endOfYear().dayOfYear),
         );
       }
     });
@@ -182,8 +178,8 @@ void main() {
     // we can't do `month.from.toUtc()`
     expect(monthRange.toUtc().isUtc, true);
     expect(monthRange.toUtc().from, DateTime.utc(now.year, now.month));
-    expect(
-        monthRange.toUtc().to, DateTime.utc(now.year, now.month).endOfMonth());
+    expect(monthRange.toUtc().to,
+        DateTime.utc(now.year, now.month).startOfNextMonth());
   });
 
   test("YearTimeRange", () {
@@ -194,7 +190,7 @@ void main() {
     // we can't do `year.from.toUtc()`
     expect(yearRange.toUtc().isUtc, true);
     expect(yearRange.toUtc().from, DateTime.utc(now.year));
-    expect(yearRange.toUtc().to, DateTime.utc(now.year).endOfYear());
+    expect(yearRange.toUtc().to, DateTime.utc(now.year).startOfNextYear());
   });
 
   test("CustomTimeRange", () {
@@ -247,5 +243,29 @@ void main() {
       expect(customRange.contains(customRange.from - aMicrosecond), false);
       expect(customRange.contains(customRange.to + aMicrosecond), false);
     });
+  });
+
+  test("next/prev time ranges", () {
+    final HourTimeRange thisHour = TimeRange.thisHour();
+    final HourTimeRange nextHour = TimeRange.nextHour();
+    final HourTimeRange lastHour = TimeRange.lastHour();
+    final DayTimeRange today = TimeRange.today();
+    final DayTimeRange tomorrow = TimeRange.tomorrow();
+    final DayTimeRange yesterday = TimeRange.yesterday();
+    final MonthTimeRange thisMonth = TimeRange.thisMonth();
+    final MonthTimeRange nextMonth = TimeRange.nextMonth();
+    final MonthTimeRange lastMonth = TimeRange.lastMonth();
+    final YearTimeRange thisYear = TimeRange.thisYear();
+    final YearTimeRange nextYear = TimeRange.nextYear();
+    final YearTimeRange lastYear = TimeRange.lastYear();
+
+    expect(thisHour.next, nextHour);
+    expect(thisHour.last, lastHour);
+    expect(today.next, tomorrow);
+    expect(today.last, yesterday);
+    expect(thisMonth.next, nextMonth);
+    expect(thisMonth.last, lastMonth);
+    expect(thisYear.next, nextYear);
+    expect(thisYear.last, lastYear);
   });
 }
