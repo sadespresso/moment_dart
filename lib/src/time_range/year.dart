@@ -1,6 +1,5 @@
 import 'package:moment_dart/src/extensions.dart';
 import 'package:moment_dart/src/time_range.dart';
-import 'package:moment_dart/src/time_range/pageable_range.dart';
 
 class YearTimeRange extends TimeRange with PageableRange<YearTimeRange> {
   @override

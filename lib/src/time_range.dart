@@ -6,6 +6,7 @@ export 'time_range/week.dart';
 export 'time_range/month.dart';
 export 'time_range/year.dart';
 export 'time_range/custom.dart';
+export 'time_range/pageable_range.dart';
 
 abstract class TimeRange {
   const TimeRange();
