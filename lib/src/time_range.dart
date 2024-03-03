@@ -48,47 +48,48 @@ abstract class TimeRange {
   TimeRange toUtc();
 
   /// In the local timezone
-  factory TimeRange.thisHour() => HourTimeRange.fromDateTime(DateTime.now());
+  static HourTimeRange thisHour() => HourTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.nextHour() =>
+  static HourTimeRange nextHour() =>
       HourTimeRange.fromDateTime(Moment.startOfNextHour());
 
   /// In the local timezone
-  factory TimeRange.lastHour() =>
+  static HourTimeRange lastHour() =>
       HourTimeRange.fromDateTime(Moment.startOfLastHour());
 
   /// In the local timezone
-  factory TimeRange.today() => DayTimeRange.fromDateTime(DateTime.now());
+  static DayTimeRange today() => DayTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.tomorrow() =>
+  static DayTimeRange tomorrow() =>
       DayTimeRange.fromDateTime(Moment.startOfTomorrow());
 
   /// In the local timezone
-  factory TimeRange.yesterday() =>
+  static DayTimeRange yesterday() =>
       DayTimeRange.fromDateTime(Moment.startOfYesterday());
 
   /// In the local timezone
-  factory TimeRange.thisMonth() => MonthTimeRange.fromDateTime(DateTime.now());
+  static MonthTimeRange thisMonth() =>
+      MonthTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.nextMonth() =>
+  static MonthTimeRange nextMonth() =>
       MonthTimeRange.fromDateTime(Moment.startOfNextMonth());
 
   /// In the local timezone
-  factory TimeRange.lastMonth() =>
+  static MonthTimeRange lastMonth() =>
       MonthTimeRange.fromDateTime(Moment.startOfLastMonth());
 
   /// In the local timezone
-  factory TimeRange.thisYear() => YearTimeRange.fromDateTime(DateTime.now());
+  static YearTimeRange thisYear() => YearTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
-  factory TimeRange.nextYear() =>
+  static YearTimeRange nextYear() =>
       YearTimeRange.fromDateTime(Moment.startOfNextYear());
 
   /// In the local timezone
-  factory TimeRange.lastYear() =>
+  static YearTimeRange lastYear() =>
       YearTimeRange.fromDateTime(Moment.startOfLastYear());
 
   @override
