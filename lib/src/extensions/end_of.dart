@@ -225,6 +225,11 @@ extension EndOfUnitMoment on Moment {
         .toMoment(localization: setLocalization);
   }
 
+  /// Returns start of the ISO week (always Monday)
+  ///
+  /// Returned object will have same timezone as [this]
+  DateTime endOfIsoWeek() => endOfLocalWeek(DateTime.monday);
+
   /// Returns end of the month
   ///
   /// Returned object will have same timezone as [this]

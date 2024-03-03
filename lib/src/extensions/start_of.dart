@@ -116,6 +116,11 @@ extension StartOfUnit on DateTime {
     return subtract(Duration(days: delta)).startOfDay();
   }
 
+  /// Returns start of the ISO week (always Monday)
+  ///
+  /// Returned object will have same timezone as [this]
+  DateTime startOfIsoWeek() => startOfLocalWeek(DateTime.monday);
+
   /// Returns start of the month
   ///
   /// Returned object will have same timezone as [this]
