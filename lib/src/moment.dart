@@ -498,7 +498,7 @@ class Moment extends DateTime {
   /// Start of the next month in the local timezone
   static DateTime startOfNextMonth() => DateTime.now().startOfNextMonth();
 
-  /// Start of the previous month in the local timezone
+  /// Start of the last month in the local timezone
   static DateTime startOfLastMonth() => DateTime.now().startOfLastMonth();
 
   /// Start of the current year in the local timezone
@@ -507,7 +507,7 @@ class Moment extends DateTime {
   /// Start of the next year in the local timezone
   static DateTime startOfNextYear() => DateTime.now().startOfNextYear();
 
-  /// Start of the previous year in the local timezone
+  /// Start of the last year in the local timezone
   static DateTime startOfLastYear() => DateTime.now().startOfLastYear();
 
   /// End of the current hour in the local timezone
@@ -558,7 +558,7 @@ class Moment extends DateTime {
   /// End of the next month in the local timezone
   static DateTime endOfNextMonth() => DateTime.now().endOfNextMonth();
 
-  /// End of the previous month in the local timezone
+  /// End of the last month in the local timezone
   static DateTime endOfLastMonth() => DateTime.now().endOfLastMonth();
 
   /// End of the current year in the local timezone
@@ -567,7 +567,7 @@ class Moment extends DateTime {
   /// End of the next year in the local timezone
   static DateTime endOfNextYear() => DateTime.now().endOfNextYear();
 
-  /// End of the previous year in the local timezone
+  /// End of the last year in the local timezone
   static DateTime endOfLastYear() => DateTime.now().endOfLastYear();
 
   /// epoch, but in the local timezone

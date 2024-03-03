@@ -1,8 +1,8 @@
-## 2.0.0
+## 2.0.1
 
 - TimeRange
   - **[BREAKING]** Renamed all variable/methods with "prev" to "last"
-  - Added `HourTimeRange`, `LocalWeekTimeRange` and `IsoWeekTimeRange`
+  - Added `HourTimeRange`, `LocalWeekTimeRange` and `IsoWeekTimeRange`, alongside with the static constructors
   - **[BREAKING]** TimeRange's `to` is now exclusive. This means
     `DayTimeRange().duration` will equal to `Duration(days:1)` unless there's a
     [daylight saving](https://en.wikipedia.org/wiki/Daylight_saving_time#Effects_on_social_relations)
