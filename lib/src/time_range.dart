@@ -70,6 +70,30 @@ abstract class TimeRange {
       DayTimeRange.fromDateTime(Moment.startOfYesterday());
 
   /// In the local timezone
+  static LocalWeekTimeRange thisLocalWeek([int? weekStart]) =>
+      LocalWeekTimeRange(DateTime.now().startOfLocalWeek(weekStart));
+
+  /// In the local timezone
+  static LocalWeekTimeRange nextLocalWeek([int? weekStart]) =>
+      LocalWeekTimeRange(DateTime.now().startOfNextLocalWeek(weekStart));
+
+  /// In the local timezone
+  static LocalWeekTimeRange lastLocalWeek([int? weekStart]) =>
+      LocalWeekTimeRange(DateTime.now().startOfLastLocalWeek(weekStart));
+
+  /// In the local timezone
+  static IsoWeekTimeRange thisIsoWeek() =>
+      IsoWeekTimeRange(DateTime.now().startOfIsoWeek());
+
+  /// In the local timezone
+  static IsoWeekTimeRange nextIsoWeek() =>
+      IsoWeekTimeRange(DateTime.now().startOfNextIsoWeek());
+
+  /// In the local timezone
+  static IsoWeekTimeRange lastIsoWeek() =>
+      IsoWeekTimeRange(DateTime.now().startOfLastIsoWeek());
+
+  /// In the local timezone
   static MonthTimeRange thisMonth() =>
       MonthTimeRange.fromDateTime(DateTime.now());
 

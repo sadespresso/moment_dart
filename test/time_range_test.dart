@@ -245,13 +245,19 @@ void main() {
     });
   });
 
-  test("next/prev time ranges", () {
+  test("next/last time ranges", () {
     final HourTimeRange thisHour = TimeRange.thisHour();
     final HourTimeRange nextHour = TimeRange.nextHour();
     final HourTimeRange lastHour = TimeRange.lastHour();
     final DayTimeRange today = TimeRange.today();
     final DayTimeRange tomorrow = TimeRange.tomorrow();
     final DayTimeRange yesterday = TimeRange.yesterday();
+    final LocalWeekTimeRange thisLocalWeek = TimeRange.thisLocalWeek();
+    final LocalWeekTimeRange nextLocalWeek = TimeRange.nextLocalWeek();
+    final LocalWeekTimeRange lastLocalWeek = TimeRange.lastLocalWeek();
+    final IsoWeekTimeRange thisIsoWeek = TimeRange.thisIsoWeek();
+    final IsoWeekTimeRange nextIsoWeek = TimeRange.nextIsoWeek();
+    final IsoWeekTimeRange lastIsoWeek = TimeRange.lastIsoWeek();
     final MonthTimeRange thisMonth = TimeRange.thisMonth();
     final MonthTimeRange nextMonth = TimeRange.nextMonth();
     final MonthTimeRange lastMonth = TimeRange.lastMonth();
@@ -263,6 +269,10 @@ void main() {
     expect(thisHour.last, lastHour);
     expect(today.next, tomorrow);
     expect(today.last, yesterday);
+    expect(thisLocalWeek.next, nextLocalWeek);
+    expect(thisLocalWeek.last, lastLocalWeek);
+    expect(thisIsoWeek.next, nextIsoWeek);
+    expect(thisIsoWeek.last, lastIsoWeek);
     expect(thisMonth.next, nextMonth);
     expect(thisMonth.last, lastMonth);
     expect(thisYear.next, nextYear);

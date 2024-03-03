@@ -18,11 +18,11 @@ class LocalWeekTimeRange extends CustomTimeRange
 
   @override
   LocalWeekTimeRange get next =>
-      LocalWeekTimeRange(from.startOfLastLocalWeek(weekStart));
+      LocalWeekTimeRange(from.startOfNextLocalWeek(weekStart));
 
   @override
   LocalWeekTimeRange get last =>
-      LocalWeekTimeRange(from.startOfNextLocalWeek(weekStart));
+      LocalWeekTimeRange(from.startOfLastLocalWeek(weekStart));
 }
 
 class IsoWeekTimeRange extends CustomTimeRange
