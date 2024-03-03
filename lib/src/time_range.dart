@@ -48,6 +48,17 @@ abstract class TimeRange {
   TimeRange toUtc();
 
   /// In the local timezone
+  factory TimeRange.thisHour() => HourTimeRange.fromDateTime(DateTime.now());
+
+  /// In the local timezone
+  factory TimeRange.nextHour() =>
+      HourTimeRange.fromDateTime(Moment.startOfNextHour());
+
+  /// In the local timezone
+  factory TimeRange.lastHour() =>
+      HourTimeRange.fromDateTime(Moment.startOfLastHour());
+
+  /// In the local timezone
   factory TimeRange.today() => DayTimeRange.fromDateTime(DateTime.now());
 
   /// In the local timezone
