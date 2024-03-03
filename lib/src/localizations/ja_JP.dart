@@ -2,7 +2,6 @@
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';

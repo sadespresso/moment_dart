@@ -2,8 +2,6 @@ export 'package:moment_dart/src/extensions.dart';
 export 'package:moment_dart/src/time_range.dart';
 
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
-import 'package:moment_dart/src/extensions/relative_finder.dart';
 import 'package:moment_dart/src/formatters/format_match.dart';
 
 /// A subclass of DateTime. Therefore:
