@@ -1,5 +1,4 @@
 import 'package:moment_dart/src/exception.dart';
-import 'package:moment_dart/src/extensions/constructor.dart';
 import 'package:moment_dart/src/moment.dart';
 
 extension StartOfUnit on DateTime {
@@ -188,6 +187,11 @@ extension StartOfUnitMoment on Moment {
         .startOfLocalWeek(weekStart ?? localization.weekStart)
         .toMoment(localization: setLocalization);
   }
+
+  /// Returns start of the ISO week (always Monday)
+  ///
+  /// Returned object will have same timezone as [this]
+  Moment startOfIsoWeek() => startOfLocalWeek(DateTime.monday);
 
   /// Returns start of the month
   ///
