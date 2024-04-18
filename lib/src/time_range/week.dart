@@ -9,7 +9,7 @@ class LocalWeekTimeRange extends CustomTimeRange
   LocalWeekTimeRange(DateTime dateTime, [this.weekStart])
       : super(
           dateTime.startOfLocalWeek(weekStart),
-          dateTime.startOfNextLocalWeek(weekStart),
+          dateTime.endOfLocalWeek(weekStart),
         );
 
   @override
@@ -28,7 +28,7 @@ class LocalWeekTimeRange extends CustomTimeRange
 class IsoWeekTimeRange extends CustomTimeRange
     with PageableRange<IsoWeekTimeRange> {
   IsoWeekTimeRange(DateTime dateTime)
-      : super(dateTime.startOfLocalWeek(1), dateTime.startOfNextLocalWeek(1));
+      : super(dateTime.startOfLocalWeek(1), dateTime.endOfLocalWeek(1));
 
   int get weekYear => from.weekYear;
   int get week => from.week;
