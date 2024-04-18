@@ -1,3 +1,8 @@
+## 2.1.0
+
+- Fixed `LocalWeekTimeRange` and `IsoWeekTimeRange`'s `to` being 1 microsecond ahead
+- Now you can parse/serialize `TimeRange` by calling `TimeRange.parse()` and `TimeRange.toString()`
+
 ## 2.0.2
 
 - Expose `PageableRange`
