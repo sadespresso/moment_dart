@@ -13,6 +13,9 @@ class YearTimeRange extends TimeRange with PageableRange<YearTimeRange> {
   });
 
   /// Will preserve the timezone of [dateTime]
+  ///
+  /// Please note that [month], [day], [hour], [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
   factory YearTimeRange.fromDateTime(DateTime dateTime) =>
       YearTimeRange(dateTime.year, isUtc: dateTime.isUtc);
 

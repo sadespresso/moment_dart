@@ -1,3 +1,9 @@
+## 2.2.0
+
+- Fixed `.endOf(DurationUnit.week)` was incorrectly returning 7 days ahead [#19](https://github.com/sadespresso/moment_dart/issues/19)
+- Renamed `DateTime.to` to `.rangeTo` for clarity. Old method will be removed on the next released.
+- Added `Moment.maxValue` and `Moment.minValue`. For example, now you can use `CustomTimeRange(now, Moment.maxValue)` or `epoch.to(Moment.maxValue)`
+
 ## 2.1.0
 
 - Fixed `LocalWeekTimeRange` and `IsoWeekTimeRange`'s `to` being 1 microsecond ahead

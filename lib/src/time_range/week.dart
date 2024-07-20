@@ -6,6 +6,7 @@ class LocalWeekTimeRange extends CustomTimeRange
     implements PageableRange<LocalWeekTimeRange> {
   final int? weekStart;
 
+  /// from `.startOfLocalWeek` to `.endOfLocalWeek`, inclusive
   LocalWeekTimeRange(DateTime dateTime, [this.weekStart])
       : super(
           dateTime.startOfLocalWeek(weekStart),
