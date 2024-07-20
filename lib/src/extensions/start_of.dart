@@ -106,11 +106,7 @@ extension StartOfUnit on DateTime {
   DateTime startOfLocalWeek([int? weekStart]) {
     weekStart ??= Moment.defaultLocalization.weekStart;
 
-    int delta = weekday - weekStart;
-
-    if (delta < 0) {
-      delta += 7;
-    }
+    final int delta = (weekday - weekStart + 7) % 7;
 
     return subtract(Duration(days: delta)).startOfDay();
   }

@@ -9,6 +9,8 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
   final int month;
   final int day;
 
+  /// Please note that [hour], [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
   const DayTimeRange(
     this.year,
     this.month,

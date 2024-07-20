@@ -576,4 +576,9 @@ class Moment extends DateTime {
   /// epoch in UTC
   static DateTime epochUtc =
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
+
+  static DateTime maxValue =
+      DateTime.fromMicrosecondsSinceEpoch(8640000000000000000);
+  static DateTime minValue =
+      DateTime.fromMicrosecondsSinceEpoch(-8640000000000000000);
 }

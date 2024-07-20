@@ -315,7 +315,7 @@ abstract class MomentLocalization {
   /// Language name in English
   String get languageNameInEnglish;
 
-  /// Start of week. For example, Monday for most countries, Sunday for weird ones
+  /// Start of week. For example, Monday for most countries, Sunday for the weird ones
   int get weekStart => DateTime.monday;
 }
 
