@@ -10,6 +10,8 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
   final int day;
   final int hour;
 
+  /// Please note that  [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
   const HourTimeRange(
     this.year,
     this.month,

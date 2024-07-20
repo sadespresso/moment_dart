@@ -221,11 +221,25 @@ extension MomentBenefits on DateTime {
   /// Returns [CustomTimeRange] from [this] to [other]
   ///
   /// If [this] is after [other], it will be swapped.
-  CustomTimeRange to(DateTime other) {
-    if (this <= other) return CustomTimeRange(this, other);
+  CustomTimeRange rangeTo(DateTime other) {
+    if (this < other) return CustomTimeRange(this, other);
 
     return CustomTimeRange(other, this);
   }
+
+  /// Returns [CustomTimeRange] from [this] to [other]
+  ///
+  /// If [this] is after [other], it will be swapped.
+  CustomTimeRange rangeToMax() => CustomTimeRange(this, Moment.maxValue);
+
+  /// Returns [CustomTimeRange] from [this] to [other]
+  ///
+  /// If [this] is after [other], it will be swapped.
+  @Deprecated(
+    "This will be deprecated in the next major"
+    "release. Please use [rangeTo] instead.",
+  )
+  CustomTimeRange to(DateTime other) => rangeTo(other);
 }
 
 extension MomentBenefitsPlus on Moment {

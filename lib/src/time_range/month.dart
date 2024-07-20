@@ -8,6 +8,8 @@ class MonthTimeRange extends TimeRange with PageableRange<MonthTimeRange> {
   final int year;
   final int month;
 
+  /// Please note that [day], [hour], [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
   const MonthTimeRange(
     this.year,
     this.month, {

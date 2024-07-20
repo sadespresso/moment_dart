@@ -150,10 +150,7 @@ extension EndOfUnit on DateTime {
   DateTime endOfLocalWeek([int? weekStart]) {
     weekStart ??= Moment.defaultLocalization.weekStart;
 
-    int delta = (weekStart + 6) - weekday;
-    if (delta > 7) {
-      delta -= 7;
-    }
+    final int delta = (weekStart + 6 - weekday) % 7;
 
     return add(Duration(days: delta)).endOfDay();
   }
