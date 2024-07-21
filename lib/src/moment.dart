@@ -84,15 +84,19 @@ class Moment extends DateTime {
       Moment(DateTimeConstructors.nowWithTimezone(isUtc),
           localization: localization);
 
-  Moment.fromMillisecondsSinceEpoch(int millisecondsSinceEpoch,
-      {bool isUtc = false, MomentLocalization? localization})
-      : super.fromMillisecondsSinceEpoch(millisecondsSinceEpoch, isUtc: isUtc) {
+  Moment.fromMillisecondsSinceEpoch(
+    super.millisecondsSinceEpoch, {
+    super.isUtc,
+    MomentLocalization? localization,
+  }) : super.fromMillisecondsSinceEpoch() {
     _localization = localization;
   }
 
-  Moment.fromMicrosecondsSinceEpoch(int microsecondsSinceEpoch,
-      {bool isUtc = false, MomentLocalization? localization})
-      : super.fromMicrosecondsSinceEpoch(microsecondsSinceEpoch, isUtc: isUtc) {
+  Moment.fromMicrosecondsSinceEpoch(
+    super.microsecondsSinceEpoch, {
+    super.isUtc,
+    MomentLocalization? localization,
+  }) : super.fromMicrosecondsSinceEpoch() {
     _localization = localization;
   }
 

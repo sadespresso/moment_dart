@@ -3,8 +3,6 @@ import 'package:moment_dart/src/moment.dart';
 
 class SimpleRangeData {
   final String thisWeek;
-  final String nextWeek;
-  final String lastWeek;
 
   final String thisMonth;
 
@@ -16,13 +14,22 @@ class SimpleRangeData {
 
   /// When end date equals [Moment.maxValue]
   ///
-  /// For example: "After %", where "%" is same value as [srDelta]
-  final String customRangeAfter;
+  /// For example, in en_US,
+  /// (formattedDate) => "After $formattedDate"
+  final String Function(String formattedDate) customRangeAfter;
 
-  /// When end date equals [Moment.maxValue]
+  /// When start date equals [Moment.minValue]
   ///
-  /// For example: "Before %", where "%" is same value as [srDelta]
-  final String customRangeBefore;
+  /// For example, in en_US,
+  /// (formattedDate) => "Before $formattedDate"
+  final String Function(String formattedDate) customRangeBefore;
+
+  /// When range [from] is equal to [Moment.minValue] and
+  /// [to] is equal to [Moment.maxValue]
+  ///
+  /// For example, in en_US,
+  /// "All time"
+  final String customRangeAllTime;
 
   /// Delimiter for custom range
   ///
@@ -33,82 +40,91 @@ class SimpleRangeData {
   final String customRangeDelimiter;
 
   /// Reverses order of `from` and `to`
+  ///
+  /// Defaults to [false]
   final bool reverseRangeDates;
 
   const SimpleRangeData({
-    required this.reverseRangeDates,
     required this.thisWeek,
-    required this.nextWeek,
-    required this.lastWeek,
     required this.thisMonth,
     required this.thisYear,
     required this.year,
     required this.month,
     required this.customRangeAfter,
     required this.customRangeBefore,
-    required this.customRangeDelimiter,
+    required this.customRangeAllTime,
+    this.customRangeDelimiter = " - ",
+    this.reverseRangeDates = false,
   });
 }
 
 mixin SimpleRange on MomentLocalization {
-  /// This is used as a placeholder for date/range in since/before
-  String get srDelta => "%";
-
   SimpleRangeData get simpleRangeData;
 
-  String range(TimeRange range, {DateTime? anchor}) {
+  @override
+  String range(TimeRange range, {DateTime? anchor, bool useRelative = true}) {
     anchor ??= Moment.now();
 
-    if (range is CustomTimeRange) {
-      return SimpleRange.customRange(range, this);
-    }
+    if (range is HourTimeRange ||
+        range is DayTimeRange ||
+        range is IsoWeekTimeRange) {
+      return super.range(range, anchor: anchor, useRelative: useRelative);
+    } else if (range is LocalWeekTimeRange) {
+      if (useRelative && range.from == anchor.startOfLocalWeek(weekStart)) {
+        return simpleRangeData.thisWeek;
+      }
 
-    if (range is YearTimeRange) {
-      if (range.year == anchor.year) {
+      return super.range(range, anchor: anchor, useRelative: useRelative);
+    } else if (range is MonthTimeRange) {
+      if (useRelative && range.month == anchor.month) {
+        return simpleRangeData.thisMonth;
+      }
+
+      return simpleRangeData.month(range);
+    } else if (range is YearTimeRange) {
+      if (useRelative && range.year == anchor.year) {
         return simpleRangeData.thisYear;
       }
 
       return simpleRangeData.year(range);
     }
 
-    if (range is MonthTimeRange) {
-      if (range.month == anchor.month) {
-        return simpleRangeData.thisMonth;
-      }
-
-      return simpleRangeData.month(range);
-    }
-
-    if (range is DayTimeRange) {
-      return range.from.toMoment(localization: this).calendar(omitHours: true);
-    }
-
-    // if
-
-    return "";
+    return _customRange(range, this);
   }
 
-  static String customRange(CustomTimeRange custom, SimpleRange localization) {
+  static String _customRange(
+    TimeRange custom,
+    SimpleRange localization, {
+    DateTime? anchor,
+  }) {
     if (custom.to == Moment.maxValue) {
-      return localization.customRangeAfter.replaceAll(localization.srDelta,
-          custom.from.toMoment(localization: localization).calendar());
+      final String formattedDate = custom.from
+          .toMoment(localization: localization)
+          .calendar(omitHours: custom.from.isMidnight, reference: anchor);
+
+      return localization.simpleRangeData.customRangeAfter(formattedDate);
     }
     if (custom.from == Moment.minValue) {
-      return localization.customRangeBefore.replaceAll(localization.srDelta,
-          custom.to.toMoment(localization: localization).calendar());
+      final String formattedDate = custom.to
+          .toMoment(localization: localization)
+          .calendar(omitHours: custom.to.isMidnight, reference: anchor);
+
+      return localization.simpleRangeData.customRangeBefore(formattedDate);
     }
+
+    final bool omitHours = custom.from.isMidnight && custom.to.isMidnight;
 
     final String from = custom.from
         .toMoment(localization: localization)
-        .calendar(omitHours: true);
+        .calendar(omitHours: omitHours, reference: anchor);
     final String to = custom.to
         .toMoment(localization: localization)
-        .calendar(omitHours: true);
+        .calendar(omitHours: omitHours, reference: anchor);
 
     final List<String> parts = [from, to];
 
-    return localization.reverseRangeDates
-        ? parts.reversed.join(localization.customRangeDelimiter)
-        : parts.join(localization.customRangeDelimiter);
+    return localization.simpleRangeData.reverseRangeDates
+        ? parts.reversed.join(localization.simpleRangeData.customRangeDelimiter)
+        : parts.join(localization.simpleRangeData.customRangeDelimiter);
   }
 }

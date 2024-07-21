@@ -3,6 +3,7 @@
 
 import 'package:moment_dart/src/extensions.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
@@ -11,7 +12,7 @@ import 'package:moment_dart/src/types.dart';
 /// Language: Korean
 /// Country: Korea, Republic of
 class LocalizationKoKr extends MomentLocalization
-    with SimpleUnits, SimpleRelative, SimpleDuration {
+    with SimpleUnits, SimpleRelative, SimpleDuration, SimpleRange {
   static LocalizationKoKr? _instance;
 
   LocalizationKoKr._internal() : super();
@@ -143,4 +144,16 @@ class LocalizationKoKr extends MomentLocalization
         DurationInterval.aYear: UnitString.single("1년"),
         DurationInterval.years: UnitString.single("$srDelta년"),
       };
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "이번 주",
+        thisMonth: "이번 달",
+        thisYear: "올해",
+        year: (range) => "${range.year}년",
+        month: (range) => monthName(range.month),
+        customRangeAfter: (formattedDate) => "$formattedDate 이후",
+        customRangeBefore: (formattedDate) => "$formattedDate 이전",
+        customRangeAllTime: "전체 시간",
+      );
 }

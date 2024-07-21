@@ -6,6 +6,7 @@ import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
@@ -19,7 +20,8 @@ class LocalizationItIt extends MomentLocalization
         SimpleUnits,
         SimpleRelative,
         SimpleDuration,
-        ComplexCalendar {
+        ComplexCalendar,
+        SimpleRange {
   static LocalizationItIt? _instance;
 
   LocalizationItIt._internal() : super();
@@ -218,5 +220,17 @@ class LocalizationItIt extends MomentLocalization
           1: "domani",
           // 2: "dopodomani",
         },
+      );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "Questa settimana",
+        thisMonth: "Questo mese",
+        thisYear: "Quest'anno",
+        year: (range) => "Anno ${range.year}",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "Dopo $formattedDate",
+        customRangeBefore: (formattedDate) => "Prima di $formattedDate",
+        customRangeAllTime: "Tutto il tempo",
       );
 }

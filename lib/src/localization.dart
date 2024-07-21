@@ -169,6 +169,52 @@ abstract class MomentLocalization {
     );
   }
 
+  /// [useRelative] - When set to [true], returns relative strings whenever
+  /// possible. For example, in en_US, "This week", "This month", "This year"
+  /// whenever possible. Some localizations may not support relative, or non-relative
+  /// in some cases.
+  String range(TimeRange range, {DateTime? anchor, bool useRelative = true}) {
+    final Moment from = range.from.toMoment(localization: this);
+    final Moment to = range.to.toMoment(localization: this);
+
+    if (range is HourTimeRange) {
+      return "${from.LT} - ${to.LT}, ${from.calendar(omitHours: true, reference: anchor)}";
+    } else if (range is DayTimeRange) {
+      return useRelative
+          ? from.calendar(omitHours: true, reference: anchor)
+          : from.ll;
+    } else if (range is LocalWeekTimeRange || range is IsoWeekTimeRange) {
+      return useRelative
+          ? "${from.calendar(omitHours: true, reference: anchor)} - ${to.calendar(omitHours: true, reference: anchor)}"
+          : "${from.ll} - ${to.ll}";
+    } else if (range is MonthTimeRange) {
+      return from.format("MMMM yyyy");
+    } else if (range is YearTimeRange) {
+      return from.format("YYYY");
+    }
+
+    // CustomTimeRange or any other
+
+    final bool startless = range.from == Moment.minValue;
+    final bool endless = range.to == Moment.maxValue;
+
+    if (startless && endless) {
+      return "♾️";
+    }
+
+    if (startless) {
+      return "<= ${to.calendar(omitHours: to.isMidnight, reference: anchor)}";
+    }
+
+    if (endless) {
+      return ">= ${from.calendar(omitHours: from.isMidnight, reference: anchor)}";
+    }
+
+    final bool omitHours = from.isMidnight && to.isMidnight;
+
+    return "${from.calendar(omitHours: omitHours, reference: anchor)} - ${to.calendar(omitHours: omitHours, reference: anchor)}";
+  }
+
   final FormatSetOptional defaultFormatters = {
     FormatterToken.M: (dateTime) => dateTime.month.toString(),
     FormatterToken.MM: (dateTime) => dateTime.month.toString().padLeft(2, '0'),

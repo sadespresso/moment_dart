@@ -199,6 +199,9 @@ extension MomentBenefits on DateTime {
         isUtc,
       );
 
+  /// Whether it rquals [date]
+  bool get isMidnight => date == this;
+
   Moment toMoment({MomentLocalization? localization}) =>
       Moment(this, localization: localization);
 

@@ -5,6 +5,7 @@ import 'package:moment_dart/src/localizations/mixins/de_DE/units.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localization.dart';
@@ -13,7 +14,13 @@ import 'package:moment_dart/src/types.dart';
 /// Language: German
 /// Country: Germany
 class LocalizationDeDe extends MomentLocalization
-    with Ordinal, MonthNames, SimpleUnits, SimpleRelative, SimpleDuration {
+    with
+        Ordinal,
+        MonthNames,
+        SimpleUnits,
+        SimpleRelative,
+        SimpleDuration,
+        SimpleRange {
   static LocalizationDeDe? _instance;
 
   LocalizationDeDe._internal() : super();
@@ -150,82 +157,94 @@ class LocalizationDeDe extends MomentLocalization
         DurationInterval.aSecond: UnitStringDeDe(
           "einer Sekunde",
           "1 Sek.",
-          "1s",
+          "1 Sek.",
           standalone: "eine Sekunde",
         ),
         DurationInterval.seconds: UnitStringDeDe(
           "$srDelta Sekunden",
           "$srDelta Sek.",
-          "${srDelta}s",
+          "$srDelta Sek.",
         ),
         DurationInterval.aMinute: UnitStringDeDe(
           "einer Minute",
           "1 Min.",
-          "1m",
+          "1 Min.",
           standalone: "eine Minute",
         ),
         DurationInterval.minutes: UnitStringDeDe(
           "$srDelta Minuten",
           "$srDelta Min.",
-          "${srDelta}m",
+          "$srDelta Min.",
         ),
         DurationInterval.anHour: UnitStringDeDe(
           "einer Stunde",
           "1 Std.",
-          "1h",
+          "1 Std.",
           standalone: "eine Stunde",
         ),
         DurationInterval.hours: UnitStringDeDe(
           "$srDelta Stunden",
           "$srDelta Std.",
-          "${srDelta}h",
+          "$srDelta Std.",
         ),
         DurationInterval.aDay: UnitStringDeDe(
           "einem Tag",
-          "einem Tg.",
-          "1d",
+          "1 Tg.",
+          "1 T.",
           standalone: "ein Tag",
         ),
         DurationInterval.days: UnitStringDeDe(
           "$srDelta Tagen",
           "$srDelta Tg.",
-          "${srDelta}d",
+          "$srDelta T.",
           standalone: "$srDelta Tage",
         ),
         DurationInterval.aWeek: UnitStringDeDe(
           "einer Woche",
           "1 Woche",
-          "1w",
+          "1 W.",
           standalone: "eine Woche",
         ),
         DurationInterval.weeks: UnitStringDeDe(
           "$srDelta Wochen",
           "$srDelta Wochen",
-          "${srDelta}w",
+          "$srDelta W.",
         ),
         DurationInterval.aMonth: UnitStringDeDe(
           "einem Monat",
           "1 Mo.",
-          "1mo",
+          "1 Mo.",
           standalone: "ein Monat",
         ),
         DurationInterval.months: UnitStringDeDe(
           "$srDelta Monaten",
           "$srDelta Mo.",
-          "${srDelta}mo",
+          "$srDelta Mo.",
           standalone: "$srDelta Monate",
         ),
         DurationInterval.aYear: UnitStringDeDe(
           "einem Jahr",
           "1 Jr.",
-          "1y",
+          "1 J.",
           standalone: "ein Jahr",
         ),
         DurationInterval.years: UnitStringDeDe(
           "$srDelta Jahren",
           "$srDelta Jr.",
-          "${srDelta}y",
+          "$srDelta J.",
           standalone: "$srDelta Jahre",
         ),
       };
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "Diese Woche",
+        thisMonth: "Diesen Monat",
+        thisYear: "Dieses Jahr",
+        year: (range) => "Jahr ${range.year}",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "Nach $formattedDate",
+        customRangeBefore: (formattedDate) => "Vor $formattedDate",
+        customRangeAllTime: "Allzeit",
+      );
 }
