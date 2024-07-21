@@ -1,3 +1,9 @@
+## 2.2.1+beta.0
+
+- Added `TimeRange` readable format.
+- Fixed German (de_DE) full abbreviations were in English
+- Added `DateTime.isMidnight` helper
+
 ## 2.2.0
 
 - Fixed `.endOf(DurationUnit.week)` was incorrectly returning 7 days ahead [#19](https://github.com/sadespresso/moment_dart/issues/19)

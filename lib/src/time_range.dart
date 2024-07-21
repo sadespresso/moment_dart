@@ -200,4 +200,22 @@ abstract class TimeRange {
         return CustomTimeRange(from, to!);
     }
   }
+
+  /// Converts [TimeRange] into readable format.
+  ///
+  /// For example, `LocalWeekTimeRange(Moment.now())` will return "This week" in `en_US`
+  ///
+  /// - [localization] defaults to [Moment]'s default localization
+  /// - [anchor] defaults to [DateTime.now()]
+  /// - [useRelative] defaults to true
+  String format({
+    MomentLocalization? localization,
+    DateTime? anchor,
+    bool useRelative = true,
+  }) =>
+      (localization ?? Moment.defaultLocalization).range(
+        this,
+        anchor: anchor,
+        useRelative: useRelative,
+      );
 }

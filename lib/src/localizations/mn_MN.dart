@@ -4,6 +4,7 @@
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_MN/units.dart';
 import 'package:moment_dart/src/types.dart';
@@ -11,7 +12,7 @@ import 'package:moment_dart/src/types.dart';
 /// Language: Mongolian (Cyrillic)
 /// Country: Mongolia
 class LocalizationMnMn extends MomentLocalization
-    with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration {
+    with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration, SimpleRange {
   static LocalizationMnMn? _instance;
 
   LocalizationMnMn._internal() : super();
@@ -141,4 +142,16 @@ class LocalizationMnMn extends MomentLocalization
       lastWeekday: last,
     ),
   );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "Энэ долоо хоног",
+        thisMonth: "Энэ сар",
+        thisYear: "Энэ жил",
+        year: (range) => "${range.year} он",
+        month: (range) => monthName(range.month),
+        customRangeAfter: (formattedDate) => "$formattedDate-с хойш",
+        customRangeBefore: (formattedDate) => "$formattedDate-с өмнө",
+        customRangeAllTime: "Бүх цаг үе",
+      );
 }

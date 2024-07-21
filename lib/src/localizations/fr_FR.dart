@@ -6,6 +6,7 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
@@ -13,7 +14,13 @@ import 'package:moment_dart/src/types.dart';
 /// Language: French
 /// Country: France
 class LocalizationFrFr extends MomentLocalization
-    with MonthNames, Ordinal, SimpleUnits, SimpleRelative, SimpleDuration {
+    with
+        MonthNames,
+        Ordinal,
+        SimpleUnits,
+        SimpleRelative,
+        SimpleDuration,
+        SimpleRange {
   static LocalizationFrFr? _instance;
 
   LocalizationFrFr._internal() : super();
@@ -215,4 +222,16 @@ class LocalizationFrFr extends MomentLocalization
           "$srDelta ans",
         ),
       };
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "Cette semaine",
+        thisMonth: "Ce mois-ci",
+        thisYear: "Cette année",
+        year: (range) => "Année ${range.year}",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "Après $formattedDate",
+        customRangeBefore: (formattedDate) => "Avant $formattedDate",
+        customRangeAllTime: "Tout le temps",
+      );
 }

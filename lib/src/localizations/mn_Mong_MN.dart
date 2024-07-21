@@ -3,6 +3,7 @@
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/duration.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
@@ -11,7 +12,7 @@ import 'package:moment_dart/src/types.dart';
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
 class LocalizationMnMongMn extends MomentLocalization
-    with Ordinal, SimpleUnits, MnMongMnUnits, MnMongMnDuration {
+    with Ordinal, SimpleUnits, MnMongMnUnits, MnMongMnDuration, SimpleRange {
   static LocalizationMnMongMn? _instance;
 
   LocalizationMnMongMn._internal() : super();
@@ -175,6 +176,18 @@ class LocalizationMnMongMn extends MomentLocalization
       lastWeekday: last,
     ),
   );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
+        thisMonth: "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ",
+        thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
+        year: (range) => "${range.year} ᠣᠨ",
+        month: (range) => monthName(range.month),
+        customRangeAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
+        customRangeBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
+        customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
+      );
 }
 
 /// Language: Traditional Mongolian with Traditional Numbers
@@ -268,5 +281,17 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
                     value(dateTime),
                   ),
         ),
+      );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
+        thisMonth: "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ",
+        thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
+        year: (range) => "${toTraditionalNumber(range.year.toString())} ᠣᠨ",
+        month: (range) => monthName(range.month),
+        customRangeAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
+        customRangeBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
+        customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
       );
 }
