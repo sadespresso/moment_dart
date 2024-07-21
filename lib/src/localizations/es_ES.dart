@@ -6,6 +6,7 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
@@ -13,7 +14,13 @@ import 'package:moment_dart/src/types.dart';
 /// Language: Spanish
 /// Country: Spain
 class LocalizationEsEs extends MomentLocalization
-    with MonthNames, Ordinal, SimpleUnits, SimpleRelative, SimpleDuration {
+    with
+        MonthNames,
+        Ordinal,
+        SimpleUnits,
+        SimpleRelative,
+        SimpleDuration,
+        SimpleRange {
   static LocalizationEsEs? _instance;
 
   LocalizationEsEs._internal() : super();
@@ -208,4 +215,16 @@ class LocalizationEsEs extends MomentLocalization
           "$srDelta años",
         ),
       };
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "Esta semana",
+        thisMonth: "Este mes",
+        thisYear: "Este año",
+        year: (range) => "Año ${range.year}",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "Después $formattedDate",
+        customRangeBefore: (formattedDate) => "Antes $formattedDate",
+        customRangeAllTime: "Todo el tiempo",
+      );
 }

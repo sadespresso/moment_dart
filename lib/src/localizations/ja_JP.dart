@@ -4,6 +4,7 @@
 import 'package:moment_dart/src/extensions.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
@@ -12,7 +13,12 @@ import 'package:moment_dart/src/types.dart';
 /// Language: Japanese
 /// Country: Japan
 class LocalizationJaJp extends MomentLocalization
-    with SimpleUnits, SimpleRelative, SimpleDuration, ComplexCalendar {
+    with
+        SimpleUnits,
+        SimpleRelative,
+        SimpleDuration,
+        ComplexCalendar,
+        SimpleRange {
   static LocalizationJaJp? _instance;
 
   LocalizationJaJp._internal() : super();
@@ -167,5 +173,17 @@ class LocalizationJaJp extends MomentLocalization
             return dddd;
           },
         ),
+      );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "今週",
+        thisMonth: "今月",
+        thisYear: "今年",
+        year: (range) => "${range.year}年",
+        month: (range) => monthName(range.month),
+        customRangeAfter: (formattedDate) => "$formattedDate以降",
+        customRangeBefore: (formattedDate) => "$formattedDate以前",
+        customRangeAllTime: '全ての時間',
       );
 }

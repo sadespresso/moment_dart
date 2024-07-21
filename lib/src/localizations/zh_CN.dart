@@ -6,6 +6,7 @@ import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
@@ -25,7 +26,8 @@ class LocalizationZhCn extends MomentLocalization
         SimpleUnits,
         SimpleRelative,
         SimpleDuration,
-        ComplexCalendar {
+        ComplexCalendar,
+        SimpleRange {
   static LocalizationZhCn? _instance;
 
   LocalizationZhCn._internal() : super();
@@ -200,5 +202,17 @@ class LocalizationZhCn extends MomentLocalization
           1: "明天",
           2: "后天",
         },
+      );
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "本周",
+        thisMonth: "本月",
+        thisYear: "今年",
+        year: (range) => "${range.year}年",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "$formattedDate之后",
+        customRangeBefore: (formattedDate) => "$formattedDate之前",
+        customRangeAllTime: "全部时间", // All time
       );
 }

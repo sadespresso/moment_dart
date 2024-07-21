@@ -5,6 +5,7 @@ import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/english_like_ordinal.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
@@ -17,7 +18,8 @@ class LocalizationEnUs extends MomentLocalization
         EnglishLikeOrdinal,
         SimpleUnits,
         SimpleRelative,
-        SimpleDuration {
+        SimpleDuration,
+        SimpleRange {
   static LocalizationEnUs? _instance;
 
   LocalizationEnUs._internal() : super();
@@ -203,4 +205,16 @@ class LocalizationEnUs extends MomentLocalization
           "${srDelta}y",
         ),
       };
+
+  @override
+  SimpleRangeData get simpleRangeData => SimpleRangeData(
+        thisWeek: "This week",
+        thisMonth: "This month",
+        thisYear: "This year",
+        year: (range) => "Year ${range.year}",
+        month: (range) => monthNames[range.month]!,
+        customRangeAfter: (formattedDate) => "After $formattedDate",
+        customRangeBefore: (formattedDate) => "Before $formattedDate",
+        customRangeAllTime: "All time",
+      );
 }
