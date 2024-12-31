@@ -152,8 +152,8 @@ class LocalizationKoKr extends MomentLocalization
         thisYear: "올해",
         year: (range) => "${range.year}년",
         month: (range) => monthName(range.month),
-        customRangeAfter: (formattedDate) => "$formattedDate 이후",
-        customRangeBefore: (formattedDate) => "$formattedDate 이전",
+        allAfter: (formattedDate) => "$formattedDate 이후",
+        allBefore: (formattedDate) => "$formattedDate 이전",
         customRangeAllTime: "전체 시간",
       );
 }

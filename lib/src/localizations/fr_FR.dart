@@ -230,8 +230,8 @@ class LocalizationFrFr extends MomentLocalization
         thisYear: "Cette année",
         year: (range) => "Année ${range.year}",
         month: (range) => monthNames[range.month]!,
-        customRangeAfter: (formattedDate) => "Après $formattedDate",
-        customRangeBefore: (formattedDate) => "Avant $formattedDate",
+        allAfter: (formattedDate) => "Après $formattedDate",
+        allBefore: (formattedDate) => "Avant $formattedDate",
         customRangeAllTime: "Tout le temps",
       );
 }

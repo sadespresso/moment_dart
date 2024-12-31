@@ -243,8 +243,8 @@ class LocalizationDeDe extends MomentLocalization
         thisYear: "Dieses Jahr",
         year: (range) => "Jahr ${range.year}",
         month: (range) => monthNames[range.month]!,
-        customRangeAfter: (formattedDate) => "Nach $formattedDate",
-        customRangeBefore: (formattedDate) => "Vor $formattedDate",
+        allAfter: (formattedDate) => "Nach $formattedDate",
+        allBefore: (formattedDate) => "Vor $formattedDate",
         customRangeAllTime: "Allzeit",
       );
 }

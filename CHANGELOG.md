@@ -1,3 +1,12 @@
+## 3.0.0
+
+> This release has breaking changes!
+
+- Changed `TimeRange.toString()` delimiter to `@`
+- Fixed CustomTimeRange not being able to be parsed
+- Added `.encode()` and `.encodeShort()` methods on `TimeRange`
+- Added `TimeRange.fromStartAndDuration` constructor
+
 ## 2.2.1
 
 - Added `TimeRange` readable format.
@@ -67,7 +76,7 @@
 
 ## 1.1.0
 
-- `.startOf(DurationUnit.week)` and `endOf` now works, fixes [#13](https://github.com/sadespresso/moment_dart/issues/13) 
+- `.startOf(DurationUnit.week)` and `endOf` now works, fixes [#13](https://github.com/sadespresso/moment_dart/issues/13)
 
 ## 1.0.1
 
@@ -76,6 +85,7 @@
 ## 1.0.0
 
 > Features **breaking changes**
+
 - Now requires Dart v2.19.4
 - Added {reference} argument to `ComplexCalendar` methods
   - This fixes incorrect results of localizations that use `ComplexCalender` (i.e., zh_CN, it_IT)
@@ -96,6 +106,7 @@
 ## 1.0.0-rc.1
 
 > Features **breaking changes**
+
 - Added {reference} argument to `ComplexCalendar` methods
   - This fixes incorrect results of localizations that use `ComplexCalender` (i.e., zh_CN, it_IT)
 - Renamed `LocalizationKo` to `LocalizationKoKr` for consistency
@@ -157,6 +168,7 @@
 ## 0.16.0
 
 > This release has breaking changes!
+
 - `Duration().toDurationString()` first argument is now **named**, and ***optional***. When null, uses global localization set using `Moment.setGlobalLocalization(MomentLocalization)`
 - Now `weekStart` of `DateTime().startOfLocalWeek([int weekStart])` is nullable, and defaults to `Moment.defaultLocalization.weekStart`
 - Now `weekStart` of `DateTime().endOfLocalWeek([int weekStart])` is nullable, and defaults to `Moment.defaultLocalization.weekStart`
@@ -169,6 +181,7 @@
 ## 0.14.0
 
 > This release has breaking changes!
+
 - [BREAKING] moment.format("YY") now **no longer throws exception** when year doesn't fall in range (1970, 2030). Instead, it returns full year. e.g., `DateTime(1969).format("YY"); // 1969`
 - [BREAKING] moment.format("gg") now **no longer throws exception** when ISO week year doesn't fall in range (1970, 2030). Instead, it returns full year. e.g., `DateTime(1969).format("gg"); // 1969`
 - [BREAKING] `DateTime.format(...)` now expect named arguments instead of optional positional arguments
@@ -176,12 +189,14 @@
 ## 0.13.0
 
 > This release has breaking changes!
-- [BREAKING] `endOf_()` and `startOf_()` now _preserves_ the timezone instead of always returning local `DateTime` object
+
+- [BREAKING] `endOf_()` and `startOf_()` now *preserves* the timezone instead of always returning local `DateTime` object
 - `endOf(DurationUnit.microsecond)` and `startOf(DurationUnit.microsecond)` now returns `this.clone()` instead of throwing error
 
 ## 0.12.0
 
 > This release has breaking changes!
+
 - [BREAKING] `isAtSameUnit___As(other)` now doesn't take timezones into account. If you want the old behaviour, use `isAtSameUnit___As(other, enforceUTC: true)`
 - [BREAKING] Renamed `MomentLocalizations.deDE()` to `.de()`
 - [BREAKING] Removed `Moment().elapsed()` for sake of `Moment().fromPrecise()`
@@ -259,7 +274,7 @@
   - Restructured formatters. No need to override formatter for every `FormatterToken`
 - Removed following deprecated methods: `Moment.lastMondayAsDateTime()`, `Moment.lastSundayAsDateTime()`
 - Implemented `.endOf(DurationUnit unit)`, and it's children `.endOf~~~()`. Works on both `Moment` and `DateTime`
-- Added new locales: 
+- Added new locales:
   - Spanish (es) (Spain)
   - French (fr) (France)
 - Minor changes:

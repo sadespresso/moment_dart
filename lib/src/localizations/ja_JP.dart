@@ -182,8 +182,8 @@ class LocalizationJaJp extends MomentLocalization
         thisYear: "今年",
         year: (range) => "${range.year}年",
         month: (range) => monthName(range.month),
-        customRangeAfter: (formattedDate) => "$formattedDate以降",
-        customRangeBefore: (formattedDate) => "$formattedDate以前",
+        allAfter: (formattedDate) => "$formattedDate以降",
+        allBefore: (formattedDate) => "$formattedDate以前",
         customRangeAllTime: '全ての時間',
       );
 }
