@@ -211,8 +211,8 @@ class LocalizationZhCn extends MomentLocalization
         thisYear: "今年",
         year: (range) => "${range.year}年",
         month: (range) => monthNames[range.month]!,
-        customRangeAfter: (formattedDate) => "$formattedDate之后",
-        customRangeBefore: (formattedDate) => "$formattedDate之前",
+        allAfter: (formattedDate) => "$formattedDate之后",
+        allBefore: (formattedDate) => "$formattedDate之前",
         customRangeAllTime: "全部时间", // All time
       );
 }

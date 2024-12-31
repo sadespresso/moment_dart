@@ -239,8 +239,8 @@ class LocalizationPtPt extends MomentLocalization
         thisYear: "Este ano",
         year: (range) => "Ano ${range.year}",
         month: (range) => monthNames[range.month]!,
-        customRangeAfter: (formattedDate) => "Após $formattedDate",
-        customRangeBefore: (formattedDate) => "Antes de $formattedDate",
+        allAfter: (formattedDate) => "Após $formattedDate",
+        allBefore: (formattedDate) => "Antes de $formattedDate",
         customRangeAllTime: "Todo o tempo",
       );
 }

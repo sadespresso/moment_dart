@@ -150,8 +150,8 @@ class LocalizationMnMn extends MomentLocalization
         thisYear: "Энэ жил",
         year: (range) => "${range.year} он",
         month: (range) => monthName(range.month),
-        customRangeAfter: (formattedDate) => "$formattedDate-с хойш",
-        customRangeBefore: (formattedDate) => "$formattedDate-с өмнө",
+        allAfter: (formattedDate) => "$formattedDate-с хойш",
+        allBefore: (formattedDate) => "$formattedDate-с өмнө",
         customRangeAllTime: "Бүх цаг үе",
       );
 }

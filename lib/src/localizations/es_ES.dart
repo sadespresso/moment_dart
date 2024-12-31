@@ -223,8 +223,8 @@ class LocalizationEsEs extends MomentLocalization
         thisYear: "Este año",
         year: (range) => "Año ${range.year}",
         month: (range) => monthNames[range.month]!,
-        customRangeAfter: (formattedDate) => "Después $formattedDate",
-        customRangeBefore: (formattedDate) => "Antes $formattedDate",
+        allAfter: (formattedDate) => "Después $formattedDate",
+        allBefore: (formattedDate) => "Antes $formattedDate",
         customRangeAllTime: "Todo el tiempo",
       );
 }

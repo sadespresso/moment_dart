@@ -16,13 +16,13 @@ class SimpleRangeData {
   ///
   /// For example, in en_US,
   /// (formattedDate) => "After $formattedDate"
-  final String Function(String formattedDate) customRangeAfter;
+  final String Function(String formattedDate) allAfter;
 
   /// When start date equals [Moment.minValue]
   ///
   /// For example, in en_US,
   /// (formattedDate) => "Before $formattedDate"
-  final String Function(String formattedDate) customRangeBefore;
+  final String Function(String formattedDate) allBefore;
 
   /// When range [from] is equal to [Moment.minValue] and
   /// [to] is equal to [Moment.maxValue]
@@ -50,8 +50,8 @@ class SimpleRangeData {
     required this.thisYear,
     required this.year,
     required this.month,
-    required this.customRangeAfter,
-    required this.customRangeBefore,
+    required this.allAfter,
+    required this.allBefore,
     required this.customRangeAllTime,
     this.customRangeDelimiter = " - ",
     this.reverseRangeDates = false,
@@ -102,14 +102,14 @@ mixin SimpleRange on MomentLocalization {
           .toMoment(localization: localization)
           .calendar(omitHours: custom.from.isMidnight, reference: anchor);
 
-      return localization.simpleRangeData.customRangeAfter(formattedDate);
+      return localization.simpleRangeData.allAfter(formattedDate);
     }
     if (custom.from == Moment.minValue) {
       final String formattedDate = custom.to
           .toMoment(localization: localization)
           .calendar(omitHours: custom.to.isMidnight, reference: anchor);
 
-      return localization.simpleRangeData.customRangeBefore(formattedDate);
+      return localization.simpleRangeData.allBefore(formattedDate);
     }
 
     final bool omitHours = custom.from.isMidnight && custom.to.isMidnight;

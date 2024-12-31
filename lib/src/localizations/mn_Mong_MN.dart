@@ -184,8 +184,8 @@ class LocalizationMnMongMn extends MomentLocalization
         thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
         year: (range) => "${range.year} ᠣᠨ",
         month: (range) => monthName(range.month),
-        customRangeAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
-        customRangeBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
+        allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
+        allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
         customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
       );
 }
@@ -290,8 +290,8 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
         thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
         year: (range) => "${toTraditionalNumber(range.year.toString())} ᠣᠨ",
         month: (range) => monthName(range.month),
-        customRangeAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
-        customRangeBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
+        allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
+        allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
         customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
       );
 }

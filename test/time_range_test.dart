@@ -278,4 +278,78 @@ void main() {
     expect(thisYear.next, nextYear);
     expect(thisYear.last, lastYear);
   });
+
+  test("parsing test", () {
+    final HourTimeRange thisHour = TimeRange.thisHour();
+    expect(TimeRange.parse(thisHour.encode()), thisHour);
+    expect(TimeRange.parse(thisHour.encodeShort()), thisHour);
+
+    final HourTimeRange nextHour = TimeRange.nextHour();
+    expect(TimeRange.parse(nextHour.encode()), nextHour);
+    expect(TimeRange.parse(nextHour.encodeShort()), nextHour);
+
+    final HourTimeRange lastHour = TimeRange.lastHour();
+    expect(TimeRange.parse(lastHour.encode()), lastHour);
+    expect(TimeRange.parse(lastHour.encodeShort()), lastHour);
+
+    final DayTimeRange today = TimeRange.today();
+    expect(TimeRange.parse(today.encode()), today);
+    expect(TimeRange.parse(today.encodeShort()), today);
+
+    final DayTimeRange tomorrow = TimeRange.tomorrow();
+    expect(TimeRange.parse(tomorrow.encode()), tomorrow);
+    expect(TimeRange.parse(tomorrow.encodeShort()), tomorrow);
+
+    final DayTimeRange yesterday = TimeRange.yesterday();
+    expect(TimeRange.parse(yesterday.encode()), yesterday);
+    expect(TimeRange.parse(yesterday.encodeShort()), yesterday);
+
+    final LocalWeekTimeRange thisLocalWeek = TimeRange.thisLocalWeek();
+    expect(TimeRange.parse(thisLocalWeek.encode()), thisLocalWeek);
+    expect(TimeRange.parse(thisLocalWeek.encodeShort()), thisLocalWeek);
+
+    final LocalWeekTimeRange nextLocalWeek = TimeRange.nextLocalWeek();
+    expect(TimeRange.parse(nextLocalWeek.encode()), nextLocalWeek);
+    expect(TimeRange.parse(nextLocalWeek.encodeShort()), nextLocalWeek);
+
+    final LocalWeekTimeRange lastLocalWeek = TimeRange.lastLocalWeek();
+    expect(TimeRange.parse(lastLocalWeek.encode()), lastLocalWeek);
+    expect(TimeRange.parse(lastLocalWeek.encodeShort()), lastLocalWeek);
+
+    final IsoWeekTimeRange thisIsoWeek = TimeRange.thisIsoWeek();
+    expect(TimeRange.parse(thisIsoWeek.encode()), thisIsoWeek);
+    expect(TimeRange.parse(thisIsoWeek.encodeShort()), thisIsoWeek);
+
+    final IsoWeekTimeRange nextIsoWeek = TimeRange.nextIsoWeek();
+    expect(TimeRange.parse(nextIsoWeek.encode()), nextIsoWeek);
+    expect(TimeRange.parse(nextIsoWeek.encodeShort()), nextIsoWeek);
+
+    final IsoWeekTimeRange lastIsoWeek = TimeRange.lastIsoWeek();
+    expect(TimeRange.parse(lastIsoWeek.encode()), lastIsoWeek);
+    expect(TimeRange.parse(lastIsoWeek.encodeShort()), lastIsoWeek);
+
+    final MonthTimeRange thisMonth = TimeRange.thisMonth();
+    expect(TimeRange.parse(thisMonth.encode()), thisMonth);
+    expect(TimeRange.parse(thisMonth.encodeShort()), thisMonth);
+
+    final MonthTimeRange nextMonth = TimeRange.nextMonth();
+    expect(TimeRange.parse(nextMonth.encode()), nextMonth);
+    expect(TimeRange.parse(nextMonth.encodeShort()), nextMonth);
+
+    final MonthTimeRange lastMonth = TimeRange.lastMonth();
+    expect(TimeRange.parse(lastMonth.encode()), lastMonth);
+    expect(TimeRange.parse(lastMonth.encodeShort()), lastMonth);
+
+    final YearTimeRange thisYear = TimeRange.thisYear();
+    expect(TimeRange.parse(thisYear.encode()), thisYear);
+    expect(TimeRange.parse(thisYear.encodeShort()), thisYear);
+
+    final YearTimeRange nextYear = TimeRange.nextYear();
+    expect(TimeRange.parse(nextYear.encode()), nextYear);
+    expect(TimeRange.parse(nextYear.encodeShort()), nextYear);
+
+    final YearTimeRange lastYear = TimeRange.lastYear();
+    expect(TimeRange.parse(lastYear.encode()), lastYear);
+    expect(TimeRange.parse(lastYear.encodeShort()), lastYear);
+  });
 }
