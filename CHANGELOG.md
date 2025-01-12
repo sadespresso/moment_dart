@@ -1,3 +1,8 @@
+## 3.1.0
+
+- `TimeRange` now has a `unit` property that returns its corresponding
+  DurationUnit type if available.
+
 ## 3.0.0
 
 > This release has breaking changes!

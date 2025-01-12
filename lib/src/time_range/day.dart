@@ -34,6 +34,9 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
   DateTime get to => from.startOfNextDay();
 
   @override
+  DurationUnit get unit => DurationUnit.day;
+
+  @override
   DayTimeRange toUtc() =>
       isUtc ? this : DayTimeRange(year, month, day, isUtc: true);
 

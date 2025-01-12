@@ -30,6 +30,9 @@ class MonthTimeRange extends TimeRange with PageableRange<MonthTimeRange> {
   DateTime get to => from.startOfNextMonth();
 
   @override
+  DurationUnit get unit => DurationUnit.month;
+
+  @override
   MonthTimeRange toUtc() =>
       isUtc ? this : MonthTimeRange(year, month, isUtc: true);
 

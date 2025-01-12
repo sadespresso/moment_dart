@@ -14,6 +14,9 @@ class CustomTimeRange extends TimeRange {
   @override
   final DateTime to;
 
+  @override
+  DurationUnit? get unit => null;
+
   /// The timezone is assumed by the [from] passed in here.
   ///
   /// [CustomTimeRange] does NOT ensure that [from] and [to] have the same timezone.
