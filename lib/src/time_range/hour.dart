@@ -37,6 +37,9 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
   DateTime get to => from.startOfNextHour();
 
   @override
+  DurationUnit get unit => DurationUnit.hour;
+
+  @override
   HourTimeRange toUtc() =>
       isUtc ? this : HourTimeRange(year, month, day, hour, isUtc: true);
 

@@ -16,6 +16,8 @@ abstract class TimeRange {
   DateTime get from;
   DateTime get to;
 
+  DurationUnit? get unit;
+
   /// Returns true if [dateTime] is between [from] and [to] (inclusive)
   bool contains(DateTime dateTime) => from <= dateTime && dateTime <= to;
 

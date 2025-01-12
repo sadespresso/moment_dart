@@ -14,6 +14,9 @@ class LocalWeekTimeRange extends CustomTimeRange
         );
 
   @override
+  DurationUnit get unit => DurationUnit.week;
+
+  @override
   CustomTimeRange toUtc() => throw UnsupportedError(
       "Local week time range cannot be converted to UTC");
 
@@ -33,6 +36,9 @@ class IsoWeekTimeRange extends CustomTimeRange
 
   int get weekYear => from.weekYear;
   int get week => from.week;
+
+  @override
+  DurationUnit get unit => DurationUnit.week;
 
   @override
   CustomTimeRange toUtc() =>
