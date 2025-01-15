@@ -27,6 +27,9 @@ abstract class UnitString {
   factory UnitString.withForm(String full, String mid, String short) =>
       UnitStringWithForm._default(full, mid, short);
 
+  factory UnitString.duo(String full, String shorter) =>
+      UnitStringWithForm._default(full, shorter, shorter);
+
   /// Use same text for all forms.
   factory UnitString.single(String value) => UnitStringSingle._default(value);
 }
