@@ -21,7 +21,7 @@ import 'package:moment_dart/src/types.dart';
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
-  /// Defined intervals' upper-limit has been stored as <String,Duration?> map. Null [Duration] value indicates last possible case.
+  /// Defined intervals' upper-limit has been stored as [Map<String,Duration?>]. Null [Duration] value indicates last possible case.
   ///
   /// Used this table as guide:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]

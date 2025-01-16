@@ -1,5 +1,3 @@
-library moment_dart_localizations;
-
 import '../localization.dart';
 
 import 'it_IT.dart';
