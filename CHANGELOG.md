@@ -1,3 +1,7 @@
+## 3.2.1
+
+- Make static analyzer happy; +10 pts to Gryffindor
+
 ## 3.2.0
 
 - Added new locale:
