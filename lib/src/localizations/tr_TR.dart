@@ -11,8 +11,8 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
 
-/// Language: English (US)
-/// Country: United States of America
+/// Language: Turkish (Turkey)
+/// Country: Turkey
 class LocalizationTrTr extends MomentLocalization
     with
         MonthNames,
@@ -66,6 +66,14 @@ class LocalizationTrTr extends MomentLocalization
       };
 
   @override
+  Map<int, String> get monthNamesShort => monthNames.map(
+        (key, value) => MapEntry(
+          key,
+          value.substring(0, 3),
+        ),
+      );
+
+  @override
   Map<int, String> get weekdayName => {
         DateTime.monday: "Pazartesi",
         DateTime.tuesday: "Salı",
@@ -77,7 +85,7 @@ class LocalizationTrTr extends MomentLocalization
       };
 
   @override
-  Map<int, String> get monthNamesShort => {
+  Map<int, String> get weekdayNameShort => {
         DateTime.monday: "Pzt",
         DateTime.tuesday: "Sal",
         DateTime.wednesday: "Çar",
@@ -88,7 +96,7 @@ class LocalizationTrTr extends MomentLocalization
       };
 
   @override
-  Map<int, String> get weekdayNameShort => {
+  Map<int, String> get weekdayNameMin => {
         DateTime.monday: 'Pt',
         DateTime.tuesday: 'Sa',
         DateTime.wednesday: 'Ça',
