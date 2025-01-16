@@ -37,6 +37,10 @@ void main() {
       TypeMatcher<LocalizationFrFr>(),
     );
     expect(
+      MomentLocalizations.byLanguage('tr'),
+      TypeMatcher<LocalizationTrTr>(),
+    );
+    expect(
       MomentLocalizations.byLanguage('pt'),
       TypeMatcher<LocalizationPtPt>(),
     );

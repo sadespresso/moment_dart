@@ -64,8 +64,12 @@ class LocalizationEnUs extends MomentLocalization
       };
 
   @override
-  Map<int, String> get monthNamesShort =>
-      monthNames.map((key, value) => MapEntry(key, value.substring(0, 3)));
+  Map<int, String> get monthNamesShort => monthNames.map(
+        (key, value) => MapEntry(
+          key,
+          value.substring(0, 3),
+        ),
+      );
 
   @override
   Map<int, String> get weekdayName => {
