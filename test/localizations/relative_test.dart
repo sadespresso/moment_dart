@@ -486,4 +486,42 @@ void main() {
     expect(threeYearsAgo.from(now), "3年前");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3年");
   });
+
+  test("tr_TR localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.tr());
+
+    expect(fewMomentsAhead.from(now), "birkaç saniye sonra");
+    expect(fewMomentsAgo.from(now), "birkaç saniye önce");
+    expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "birkaç saniye");
+    expect(aMinuteAhead.from(now), "bir dakika sonra");
+    expect(aMinuteAgo.from(now), "bir dakika önce");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "bir dakika");
+    expect(fiveMinutesAhead.from(now), "5 dakika sonra");
+    expect(fiveMinutesAgo.from(now), "5 dakika önce");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 dakika");
+    expect(anHourAhead.from(now), "bir saat sonra");
+    expect(anHourAgo.from(now), "bir saat önce");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "bir saat");
+    expect(sixHoursAhead.from(now), "6 saat sonra");
+    expect(sixHoursAgo.from(now), "6 saat önce");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 saat");
+    expect(aDayAhead.from(now), "bir gün sonra");
+    expect(aDayAgo.from(now), "bir gün önce");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "bir gün");
+    expect(twoDaysAhead.from(now), "2 gün sonra");
+    expect(twoDaysAgo.from(now), "2 gün önce");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 gün");
+    expect(aMonthAhead.from(now), "bir ay sonra");
+    expect(aMonthAgo.from(now), "bir ay önce");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "bir ay");
+    expect(fourMonthsAhead.from(now), "4 ay sonra");
+    expect(fourMonthsAgo.from(now), "4 ay önce");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 ay");
+    expect(aYearAhead.from(now), "bir yıl sonra");
+    expect(aYearAgo.from(now), "bir yıl önce");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "bir yıl");
+    expect(threeYearsAhead.from(now), "3 yıl sonra");
+    expect(threeYearsAgo.from(now), "3 yıl önce");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 yıl");
+  });
 }

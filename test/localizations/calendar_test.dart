@@ -8,7 +8,7 @@ void main() {
   var tomorrow = today.add(const Duration(days: 1));
   var tueOrDayAfterTomorrow = today.add(const Duration(days: 2));
   var yesterday = today.subtract(const Duration(days: 1));
-  var friOrdayBeforeYesterday = today.subtract(const Duration(days: 2));
+  var fridayOrDayBeforeYesterday = today.subtract(const Duration(days: 2));
 
   // B
   var lastMonday = today.lastMonday();
@@ -30,7 +30,7 @@ void main() {
     expect(
         tueOrDayAfterTomorrow.calendar(reference: today), "übermorgen um 5:33");
     expect(yesterday.calendar(reference: today), "gestern um 5:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "vorgestern um 5:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
@@ -58,7 +58,7 @@ void main() {
     expect(
         tueOrDayAfterTomorrow.calendar(reference: today), "martedì alle 05:33");
     expect(yesterday.calendar(reference: today), "ieri alle 05:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "Lo scorso venerdì alle 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
@@ -108,7 +108,7 @@ void main() {
     expect(tomorrow.calendar(reference: today), "Demain à 05:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "mardi à 05:33");
     expect(yesterday.calendar(reference: today), "Hier à 05:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "vendredi dernier à 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
@@ -135,7 +135,7 @@ void main() {
     expect(tueOrDayAfterTomorrow.calendar(reference: today),
         "Terça-feira às 05:33");
     expect(yesterday.calendar(reference: today), "Ontem às 05:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "Última Sexta-feira às 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
@@ -164,7 +164,7 @@ void main() {
     expect(
         tueOrDayAfterTomorrow.calendar(reference: today), "martes a las 5:33");
     expect(yesterday.calendar(reference: today), "ayer a las 5:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "el viernes pasodo a las 5:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
@@ -191,7 +191,7 @@ void main() {
     expect(
         tueOrDayAfterTomorrow.calendar(reference: today), "Tuesday at 5:33 AM");
     expect(yesterday.calendar(reference: today), "Yesterday at 5:33 AM");
-    expect(friOrdayBeforeYesterday.calendar(reference: today),
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "Last Friday at 5:33 AM");
     // B
     expect(
@@ -218,8 +218,8 @@ void main() {
     expect(tomorrow.calendar(reference: today), "Маргааш 05:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "Нөгөөдөр 05:33");
     expect(yesterday.calendar(reference: today), "Өчигдөр 05:33");
-    expect(
-        friOrdayBeforeYesterday.calendar(reference: today), "Уржигдар 05:33");
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
+        "Уржигдар 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "Өнгөрсөн Даваа");
@@ -244,7 +244,8 @@ void main() {
     expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ 05:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ 05:33");
     expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ 05:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ 05:33");
+    expect(
+        fridayOrDayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ");
@@ -269,7 +270,8 @@ void main() {
     expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ ᠐᠕:᠓᠓");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
     expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ ᠐᠕:᠓᠓");
+    expect(
+        fridayOrDayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ ᠐᠕:᠓᠓");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ");
@@ -294,7 +296,8 @@ void main() {
     expect(tomorrow.calendar(reference: today), "내일 오전 5:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "모레 오전 5:33");
     expect(yesterday.calendar(reference: today), "어제 오전 5:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "그저께 오전 5:33");
+    expect(
+        fridayOrDayBeforeYesterday.calendar(reference: today), "그저께 오전 5:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true), "지난 월요일");
     expect(lastTuesday.calendar(reference: today, omitHours: true), "지난 화요일");
@@ -315,7 +318,7 @@ void main() {
     expect(tomorrow.calendar(reference: today), "明天 05:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "后天 05:33");
     expect(yesterday.calendar(reference: today), "昨天 05:33");
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "前天 05:33");
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today), "前天 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true), "本星期一");
     expect(lastTuesday.calendar(reference: today, omitHours: true), "本星期二");
@@ -337,7 +340,8 @@ void main() {
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "火曜日 05:33");
     expect(yesterday.calendar(reference: today), "昨日 05:33");
     // because japanese week start at Sunday, this is "last" week's friday
-    expect(friOrdayBeforeYesterday.calendar(reference: today), "先週金曜日 05:33");
+    expect(
+        fridayOrDayBeforeYesterday.calendar(reference: today), "先週金曜日 05:33");
 
     // B
 
@@ -350,5 +354,44 @@ void main() {
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "1970年1月1日 木曜日 00:00");
+  });
+
+  test("tr_TR localization calendar test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.tr());
+
+    // A
+    expect(today.calendar(reference: today), "Bugün saat 05:33");
+    expect(tomorrow.calendar(reference: today), "Yarın saat 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "Salı saat 05:33");
+    expect(yesterday.calendar(reference: today), "Dün saat 05:33");
+    expect(
+      fridayOrDayBeforeYesterday.calendar(reference: today),
+      "Geçen Cuma saat 05:33",
+    );
+    // B
+    expect(
+      lastMonday.calendar(reference: today, omitHours: true),
+      "Geçen Pazartesi",
+    );
+    expect(
+      lastTuesday.calendar(reference: today, omitHours: true),
+      "Geçen Salı",
+    );
+    expect(
+      lastWednesday.calendar(reference: today, omitHours: true),
+      "Geçen Çarşamba",
+    );
+    expect(
+      nextWednesday.calendar(reference: today, omitHours: true),
+      "Çarşamba",
+    );
+    expect(
+      nextThursday.calendar(reference: today, omitHours: true),
+      "Perşembe",
+    );
+    expect(nextFriday.calendar(reference: today, omitHours: true), "Cuma");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "Perşembe, 1 Ocak 1970 00:00");
   });
 }

@@ -2798,4 +2798,178 @@ void main() {
       "数秒",
     );
   });
+
+  test("tr_TR localization duration test", () {
+    final MomentLocalization l10n = LocalizationTrTr();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "bir yıl 2 ay",
+    );
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "1 yıl 2 ay",
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 yıl",
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 yıl",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 ay 17 gün",
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 ay 17 gün",
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "4 ay",
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "4 ay",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "3 hafta 2 gün",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "3 hft 2 gün",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "23 gün",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "23 gün",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "4 hafta",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "4 hft",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "28 gün",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "28 gün",
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 gün 7 saat",
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 gün 7 sa",
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 gün",
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 gün",
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 saat 8 dakika",
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 sa 8 dk",
+    );
+
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 saat",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 sa",
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "48 dakika 42 saniye",
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "48 dk 42 sn",
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "35 dakika",
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "35 dk",
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "42 saniye",
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "42 sn",
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "birkaç saniye",
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "birkaç sn",
+    );
+  });
 }

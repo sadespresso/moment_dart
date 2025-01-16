@@ -1,3 +1,8 @@
+## 3.2.0
+
+- Added new locale:
+  - tr_TR - Turkish (Turkey)
+
 ## 3.1.0
 
 - `TimeRange` now has a `unit` property that returns its corresponding
