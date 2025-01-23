@@ -12,7 +12,33 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
 
   /// Please note that  [minute], [second], [millisecond], [microsecond]
   /// will be ignored.
-  const HourTimeRange(
+  factory HourTimeRange(
+    int year,
+    int month,
+    int day,
+    int hour, {
+    bool isUtc = false,
+  }) {
+    final DateTime dateTime = DateTimeConstructors.withTimezone(
+      isUtc,
+      year,
+      month,
+      day,
+      hour,
+    );
+
+    return HourTimeRange._internal(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      dateTime.hour,
+      isUtc: dateTime.isUtc,
+    );
+  }
+
+  /// Please note that  [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
+  const HourTimeRange._internal(
     this.year,
     this.month,
     this.day,

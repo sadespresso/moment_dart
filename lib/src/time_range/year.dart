@@ -7,7 +7,15 @@ class YearTimeRange extends TimeRange with PageableRange<YearTimeRange> {
 
   final int year;
 
-  const YearTimeRange(
+  factory YearTimeRange(
+    int year, {
+    bool isUtc = false,
+  }) {
+    final DateTime dateTime = DateTimeConstructors.withTimezone(isUtc, year);
+    return YearTimeRange._internal(dateTime.year, isUtc: dateTime.isUtc);
+  }
+
+  const YearTimeRange._internal(
     this.year, {
     this.isUtc = false,
   });

@@ -9,9 +9,28 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
   final int month;
   final int day;
 
-  /// Please note that [hour], [minute], [second], [millisecond], [microsecond]
-  /// will be ignored.
-  const DayTimeRange(
+  factory DayTimeRange(
+    int year,
+    int month,
+    int day, {
+    bool isUtc = false,
+  }) {
+    final DateTime dateTime = DateTimeConstructors.withTimezone(
+      isUtc,
+      year,
+      month,
+      day,
+    );
+
+    return DayTimeRange._internal(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      isUtc: dateTime.isUtc,
+    );
+  }
+
+  const DayTimeRange._internal(
     this.year,
     this.month,
     this.day, {
@@ -19,6 +38,9 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
   }) : assert(month > 0 && month <= 12 && day > 0 && day <= 31);
 
   /// Will preserve the timezone of [dateTime]
+  ///
+  /// Please note that [hour], [minute], [second], [millisecond], [microsecond]
+  /// will be ignored.
   factory DayTimeRange.fromDateTime(DateTime dateTime) => DayTimeRange(
         dateTime.year,
         dateTime.month,

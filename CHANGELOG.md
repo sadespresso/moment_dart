@@ -1,3 +1,8 @@
+## 3.3.0
+
+- Fixed where `PageableRange.next` and/or `PageableRange.last` could end up with
+  illegal values such as month=13, day=32, etc...
+
 ## 3.2.1
 
 - Make static analyzer happy; +10 pts to Gryffindor
