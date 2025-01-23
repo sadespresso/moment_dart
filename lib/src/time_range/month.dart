@@ -14,7 +14,7 @@ class MonthTimeRange extends TimeRange with PageableRange<MonthTimeRange> {
     this.year,
     this.month, {
     this.isUtc = false,
-  });
+  }) : assert(month > 0 && month <= 12);
 
   /// Will preserve the timezone of [dateTime]
   factory MonthTimeRange.fromDateTime(DateTime dateTime) => MonthTimeRange(

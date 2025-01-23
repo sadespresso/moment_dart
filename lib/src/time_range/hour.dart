@@ -18,7 +18,12 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
     this.day,
     this.hour, {
     this.isUtc = false,
-  });
+  }) : assert(month > 0 &&
+            month <= 12 &&
+            day > 0 &&
+            day <= 31 &&
+            hour >= 0 &&
+            hour < 24);
 
   /// Will preserve the timezone of [dateTime]
   factory HourTimeRange.fromDateTime(DateTime dateTime) => HourTimeRange(

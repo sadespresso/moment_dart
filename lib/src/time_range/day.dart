@@ -16,7 +16,7 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
     this.month,
     this.day, {
     this.isUtc = false,
-  });
+  }) : assert(month > 0 && month <= 12 && day > 0 && day <= 31);
 
   /// Will preserve the timezone of [dateTime]
   factory DayTimeRange.fromDateTime(DateTime dateTime) => DayTimeRange(
