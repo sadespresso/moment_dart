@@ -1,3 +1,8 @@
+## 3.3.1
+
+- Fixed MonthTimeRange.format() would return "This month" for different year's
+same months.
+
 ## 3.3.0
 
 - Fixed where `PageableRange.next` and/or `PageableRange.last` could end up with

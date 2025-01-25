@@ -76,7 +76,9 @@ mixin SimpleRange on MomentLocalization {
 
       return super.range(range, anchor: anchor, useRelative: useRelative);
     } else if (range is MonthTimeRange) {
-      if (useRelative && range.month == anchor.month) {
+      if (useRelative &&
+          range.year == anchor.year &&
+          range.month == anchor.month) {
         return simpleRangeData.thisMonth;
       }
 
