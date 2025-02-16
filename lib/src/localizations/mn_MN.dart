@@ -146,10 +146,28 @@ class LocalizationMnMn extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Энэ долоо хоног",
-        thisMonth: "Энэ сар",
-        thisYear: "Энэ жил",
-        year: (range) => "${range.year} он",
-        month: (range) => monthName(range.month),
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "Энэ жил";
+          }
+
+          return "${range.year} он";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "Энэ сар";
+            }
+
+            return monthName(range.month);
+          }
+
+          return "${range.year} оны ${monthName(range.month)}";
+        },
         allAfter: (formattedDate) => "$formattedDate-с хойш",
         allBefore: (formattedDate) => "$formattedDate-с өмнө",
         customRangeAllTime: "Бүх цаг үе",

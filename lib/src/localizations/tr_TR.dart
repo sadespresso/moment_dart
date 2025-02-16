@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
-import 'package:moment_dart/src/localization.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -237,10 +237,28 @@ class LocalizationTrTr extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Bu hafta",
-        thisMonth: "Bu ay",
-        thisYear: "Bu yıl",
-        year: (range) => "${range.year} yılı",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "Bu yıl";
+          }
+
+          return "${range.year} yılı";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "Bu ay";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${monthNames[range.month]!} ${range.year}";
+        },
         allAfter: (formattedDate) => "$formattedDate tarihinden sonra",
         allBefore: (formattedDate) => "$formattedDate tarihinden önce",
         customRangeAllTime: "Tüm zamanlar",

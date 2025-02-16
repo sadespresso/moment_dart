@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
-import 'package:moment_dart/src/localization.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/english_like_ordinal.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -213,10 +213,28 @@ class LocalizationEnUs extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "This week",
-        thisMonth: "This month",
-        thisYear: "This year",
-        year: (range) => "Year ${range.year}",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "This year";
+          }
+
+          return "Year ${range.year}";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "This month";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${monthNames[range.month]!} ${range.year}";
+        },
         allAfter: (formattedDate) => "After $formattedDate",
         allBefore: (formattedDate) => "Before $formattedDate",
         customRangeAllTime: "All time",

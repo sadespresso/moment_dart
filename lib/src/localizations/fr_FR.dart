@@ -226,10 +226,28 @@ class LocalizationFrFr extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Cette semaine",
-        thisMonth: "Ce mois-ci",
-        thisYear: "Cette année",
-        year: (range) => "Année ${range.year}",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "Cette année";
+          }
+
+          return "Année ${range.year}";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "Ce mois-ci";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${monthNames[range.month]!} ${range.year}";
+        },
         allAfter: (formattedDate) => "Après $formattedDate",
         allBefore: (formattedDate) => "Avant $formattedDate",
         customRangeAllTime: "Tout le temps",

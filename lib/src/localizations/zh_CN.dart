@@ -1,8 +1,7 @@
 // ignore_for_file: file_names
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
-import 'package:moment_dart/src/extensions.dart';
-import 'package:moment_dart/src/localization.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -207,10 +206,28 @@ class LocalizationZhCn extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "本周",
-        thisMonth: "本月",
-        thisYear: "今年",
-        year: (range) => "${range.year}年",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "今年";
+          }
+
+          return "${range.year}年";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "本月";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${range.year}年${monthNames[range.month]!}";
+        },
         allAfter: (formattedDate) => "$formattedDate之后",
         allBefore: (formattedDate) => "$formattedDate之前",
         customRangeAllTime: "全部时间", // All time

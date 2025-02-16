@@ -1,3 +1,11 @@
+## 4.0.0
+
+- **[BREAKING]** TimeRange month translation now includes the year
+  - But year is omitted when `useRelative` is true and `anchor.year` is same
+    as the range year
+- Added `Moment.minValueUtc` and `Moment.maxValueUtc`
+- Fixed `Moment.minValue` and `Moment.maxValue` overflowing
+
 ## 3.3.2
 
 - Removed `DateTime.to` as per it's deprecated, use `DateTime.rangeTo` instead.

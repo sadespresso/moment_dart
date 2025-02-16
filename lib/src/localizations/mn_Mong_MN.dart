@@ -2,11 +2,11 @@
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/duration.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/duration.dart';
-import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
@@ -180,10 +180,28 @@ class LocalizationMnMongMn extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
-        thisMonth: "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ",
-        thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
-        year: (range) => "${range.year} ᠣᠨ",
-        month: (range) => monthName(range.month),
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "ᠡᠨᠡ ᠵᠢᠯ";
+          }
+
+          return "${range.year} ᠣᠨ";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ";
+            }
+
+            return monthName(range.month);
+          }
+
+          return "${range.year} ᠣᠨ ᠤ ${monthName(range.month)}";
+        },
         allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
         allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
         customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
@@ -286,10 +304,28 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
-        thisMonth: "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ",
-        thisYear: "ᠡᠨᠡ ᠵᠢᠯ",
-        year: (range) => "${toTraditionalNumber(range.year.toString())} ᠣᠨ",
-        month: (range) => monthName(range.month),
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "ᠡᠨᠡ ᠵᠢᠯ";
+          }
+
+          return "${range.year} ᠣᠨ";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ";
+            }
+
+            return monthName(range.month);
+          }
+
+          return "${toTraditionalNumber(range.year.toString())} ᠣᠨ ᠤ ${monthName(range.month)}";
+        },
         allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
         allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
         customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
