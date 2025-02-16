@@ -8,6 +8,16 @@ void main() {
 
     test("TimeRange Factories", () {
       expect(
+        TimeRange.allTime() ==
+            CustomTimeRange(Moment.minValue, Moment.maxValue),
+        true,
+      );
+      expect(
+        TimeRange.allTime() ==
+            CustomTimeRange(Moment.minValueUtc, Moment.maxValueUtc),
+        false,
+      );
+      expect(
         TimeRange.today() == DayTimeRange.fromDateTime(now),
         true,
       );

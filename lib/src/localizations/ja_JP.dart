@@ -1,12 +1,11 @@
 // ignore_for_file: file_names
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
-import 'package:moment_dart/src/extensions.dart';
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/complex_calendar.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
-import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/types.dart';
 
@@ -178,10 +177,27 @@ class LocalizationJaJp extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "今週",
-        thisMonth: "今月",
-        thisYear: "今年",
-        year: (range) => "${range.year}年",
-        month: (range) => monthName(range.month),
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "今年";
+          }
+
+          return "${range.year}年";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "今月";
+            }
+
+            return monthName(range.month);
+          }
+          return "${range.year}年${monthName(range.month)}";
+        },
         allAfter: (formattedDate) => "$formattedDate以降",
         allBefore: (formattedDate) => "$formattedDate以前",
         customRangeAllTime: '全ての時間',

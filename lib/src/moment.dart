@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 export 'package:moment_dart/src/extensions.dart';
 export 'package:moment_dart/src/time_range.dart';
 
@@ -581,8 +583,27 @@ class Moment extends DateTime {
   static DateTime epochUtc =
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
 
-  static DateTime maxValue =
-      DateTime.fromMicrosecondsSinceEpoch(8640000000000000000);
-  static DateTime minValue =
-      DateTime.fromMicrosecondsSinceEpoch(-8640000000000000000);
+  static DateTime maxValueUtc = DateTime.fromMicrosecondsSinceEpoch(
+    8640000000000000000,
+    isUtc: true,
+  );
+  static DateTime minValueUtc = DateTime.fromMicrosecondsSinceEpoch(
+    -8640000000000000000,
+    isUtc: true,
+  );
+
+  static DateTime maxValue = DateTime.fromMicrosecondsSinceEpoch(
+    math.min(
+      maxValueUtc.microsecondsSinceEpoch +
+          DateTime.now().timeZoneOffset.inMicroseconds,
+      maxValueUtc.microsecondsSinceEpoch,
+    ),
+  );
+  static DateTime minValue = DateTime.fromMicrosecondsSinceEpoch(
+    math.max(
+      minValueUtc.microsecondsSinceEpoch +
+          DateTime.now().timeZoneOffset.inMicroseconds,
+      minValueUtc.microsecondsSinceEpoch,
+    ),
+  );
 }

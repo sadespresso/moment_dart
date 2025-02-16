@@ -4,13 +4,11 @@ import 'package:moment_dart/src/moment.dart';
 class SimpleRangeData {
   final String thisWeek;
 
-  final String thisMonth;
+  final String Function(YearTimeRange yearTimeRange,
+      {DateTime? anchor, bool useRelative}) year;
 
-  final String thisYear;
-
-  final String Function(YearTimeRange) year;
-
-  final String Function(MonthTimeRange) month;
+  final String Function(MonthTimeRange monthTimeRange,
+      {DateTime? anchor, bool useRelative}) month;
 
   /// When end date equals [Moment.maxValue]
   ///
@@ -46,8 +44,6 @@ class SimpleRangeData {
 
   const SimpleRangeData({
     required this.thisWeek,
-    required this.thisMonth,
-    required this.thisYear,
     required this.year,
     required this.month,
     required this.allAfter,
@@ -70,25 +66,17 @@ mixin SimpleRange on MomentLocalization {
         range is IsoWeekTimeRange) {
       return super.range(range, anchor: anchor, useRelative: useRelative);
     } else if (range is LocalWeekTimeRange) {
-      if (useRelative && range.from == anchor.startOfLocalWeek(weekStart)) {
+      if (useRelative && LocalWeekTimeRange(anchor) == range) {
         return simpleRangeData.thisWeek;
       }
 
       return super.range(range, anchor: anchor, useRelative: useRelative);
     } else if (range is MonthTimeRange) {
-      if (useRelative &&
-          range.year == anchor.year &&
-          range.month == anchor.month) {
-        return simpleRangeData.thisMonth;
-      }
-
-      return simpleRangeData.month(range);
+      return simpleRangeData.month(range,
+          anchor: anchor, useRelative: useRelative);
     } else if (range is YearTimeRange) {
-      if (useRelative && range.year == anchor.year) {
-        return simpleRangeData.thisYear;
-      }
-
-      return simpleRangeData.year(range);
+      return simpleRangeData.year(range,
+          anchor: anchor, useRelative: useRelative);
     }
 
     return _customRange(range, this);
@@ -99,14 +87,19 @@ mixin SimpleRange on MomentLocalization {
     SimpleRange localization, {
     DateTime? anchor,
   }) {
-    if (custom.to == Moment.maxValue) {
+    if (custom.to == Moment.maxValue || custom.to == Moment.maxValueUtc) {
+      if (custom.from == Moment.minValue || custom.from == Moment.minValueUtc) {
+        return localization.simpleRangeData.customRangeAllTime;
+      }
+
       final String formattedDate = custom.from
           .toMoment(localization: localization)
           .calendar(omitHours: custom.from.isMidnight, reference: anchor);
 
       return localization.simpleRangeData.allAfter(formattedDate);
     }
-    if (custom.from == Moment.minValue) {
+
+    if (custom.from == Moment.minValue || custom.from == Moment.minValueUtc) {
       final String formattedDate = custom.to
           .toMoment(localization: localization)
           .calendar(omitHours: custom.to.isMidnight, reference: anchor);

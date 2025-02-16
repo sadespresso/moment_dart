@@ -219,10 +219,28 @@ class LocalizationEsEs extends MomentLocalization
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Esta semana",
-        thisMonth: "Este mes",
-        thisYear: "Este año",
-        year: (range) => "Año ${range.year}",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "Este año";
+          }
+
+          return "Año ${range.year}";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "Este mes";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${monthNames[range.month]!} ${range.year}";
+        },
         allAfter: (formattedDate) => "Después $formattedDate",
         allBefore: (formattedDate) => "Antes $formattedDate",
         customRangeAllTime: "Todo el tiempo",

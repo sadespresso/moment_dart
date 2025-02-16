@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 // Author: Batmend Ganbaatar (https://github.com/sadespresso)
 
+import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/de_DE/units.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
@@ -8,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/localization.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// Language: German
@@ -237,12 +237,33 @@ class LocalizationDeDe extends MomentLocalization
       };
 
   @override
+  int get weekStart => DateTime.monday;
+
+  @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Diese Woche",
-        thisMonth: "Diesen Monat",
-        thisYear: "Dieses Jahr",
-        year: (range) => "Jahr ${range.year}",
-        month: (range) => monthNames[range.month]!,
+        year: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && range.year == anchor.year) {
+            return "Dieses Jahr";
+          }
+
+          return "Jahr ${range.year}";
+        },
+        month: (range, {DateTime? anchor, bool useRelative = true}) {
+          anchor ??= Moment.now();
+
+          if (useRelative && anchor.year == range.year) {
+            if (anchor.month == range.month) {
+              return "Diesen Monat";
+            }
+
+            return monthNames[range.month]!;
+          }
+
+          return "${monthNames[range.month]!} ${range.year}";
+        },
         allAfter: (formattedDate) => "Nach $formattedDate",
         allBefore: (formattedDate) => "Vor $formattedDate",
         customRangeAllTime: "Allzeit",

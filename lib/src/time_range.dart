@@ -119,6 +119,9 @@ abstract class TimeRange {
   static YearTimeRange lastYear() =>
       YearTimeRange.fromDateTime(Moment.startOfLastYear());
 
+  static CustomTimeRange allTime() =>
+      CustomTimeRange(Moment.minValue, Moment.maxValue);
+
   /// Will preserve the timezone information of [start]
   ///
   /// This is same as `CustomTimeRange(start, start + duration)`
@@ -299,10 +302,11 @@ abstract class TimeRange {
     MomentLocalization? localization,
     DateTime? anchor,
     bool useRelative = true,
-  }) =>
-      (localization ?? Moment.defaultLocalization).range(
-        this,
-        anchor: anchor,
-        useRelative: useRelative,
-      );
+  }) {
+    return (localization ?? Moment.defaultLocalization).range(
+      this,
+      anchor: anchor,
+      useRelative: useRelative,
+    );
+  }
 }
