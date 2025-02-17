@@ -19,7 +19,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Diese Woche");
-    expect(thisWeekISO.format(), "letzten Montag - heute");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Diesen Monat");
     expect(thisYear.format(), "Dieses Jahr");
     expect(year.format(), "Jahr 2021");
@@ -43,7 +46,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Questa settimana");
-    expect(thisWeekISO.format(), "Lo scorso lunedì - oggi");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Questo mese");
     expect(thisYear.format(), "Quest'anno");
     expect(year.format(), "Anno 2021");
@@ -67,7 +73,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Cette semaine");
-    expect(thisWeekISO.format(), "lundi dernier - Aujourd'hui");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Ce mois-ci");
     expect(thisYear.format(), "Cette année");
     expect(year.format(), "Année 2021");
@@ -91,7 +100,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Esta semana");
-    expect(thisWeekISO.format(), "Última Segunda-feira - Hoje");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Este mês");
     expect(thisYear.format(), "Este ano");
     expect(year.format(), "Ano 2021");
@@ -115,7 +127,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Esta semana");
-    expect(thisWeekISO.format(), "el lunes pasodo - hoy");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Este mes");
     expect(thisYear.format(), "Este año");
     expect(year.format(), "Año 2021");
@@ -139,7 +154,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "This week");
-    expect(thisWeekISO.format(), "Last Monday - Today");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "This month");
     expect(thisYear.format(), "This year");
     expect(year.format(), "Year 2021");
@@ -163,7 +181,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Энэ долоо хоног");
-    expect(thisWeekISO.format(), "Өнгөрсөн Даваа - Өнөөдөр");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Энэ сар");
     expect(thisYear.format(), "Энэ жил");
     expect(year.format(), "2021 он");
@@ -187,7 +208,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ");
-    expect(thisWeekISO.format(), "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ - ᠥᠨᠦᠳᠦᠷ");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ");
     expect(thisYear.format(), "ᠡᠨᠡ ᠵᠢᠯ");
     expect(year.format(), "2021 ᠣᠨ");
@@ -211,7 +235,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ");
-    expect(thisWeekISO.format(), "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠰᠠᠷᠠᠨ - ᠥᠨᠦᠳᠦᠷ");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ");
     expect(thisYear.format(), "ᠡᠨᠡ ᠵᠢᠯ");
     expect(year.format(), "2021 ᠣᠨ");
@@ -235,7 +262,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "이번 주");
-    expect(thisWeekISO.format(), "지난 월요일 - 오늘");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "이번 달");
     expect(thisYear.format(), "올해");
     expect(year.format(), "2021년");
@@ -259,7 +289,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "本周");
-    expect(thisWeekISO.format(), "本星期一 - 今天");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "本月");
     expect(thisYear.format(), "今年");
     expect(year.format(), "2021年");
@@ -283,7 +316,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "今週");
-    expect(thisWeekISO.format(), "先週月曜日 - 今日");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "今月");
     expect(thisYear.format(), "今年");
     expect(year.format(), "2021年");
@@ -307,7 +343,10 @@ void main() {
     final allTime = TimeRange.allTime();
 
     expect(thisWeek.format(), "Bu hafta");
-    expect(thisWeekISO.format(), "Geçen Pazartesi - Bugün");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
     expect(thisMonth.format(), "Bu ay");
     expect(thisYear.format(), "Bu yıl");
     expect(year.format(), "2021 yılı");
