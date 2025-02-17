@@ -1,3 +1,7 @@
+## 4.0.1
+
+- Update docs
+
 ## 4.0.0
 
 - **[BREAKING]** TimeRange month translation now includes the year

@@ -583,15 +583,28 @@ class Moment extends DateTime {
   static DateTime epochUtc =
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
 
+  /// Max value of [DateTime] UTC timezone
+  ///
+  /// See also: [maxValue]
   static DateTime maxValueUtc = DateTime.fromMicrosecondsSinceEpoch(
     8640000000000000000,
     isUtc: true,
   );
+
+  /// Min value of [DateTime] UTC timezone
+  ///
+  /// See also: [minValue]
   static DateTime minValueUtc = DateTime.fromMicrosecondsSinceEpoch(
     -8640000000000000000,
     isUtc: true,
   );
 
+  /// Max value of [DateTime] in local timezone
+  ///
+  /// CAUTION: This value is not precise. It's calculated by adding the
+  /// current timezone offset to [maxValueUtc], and clamping to avoid overflowing.
+  ///
+  /// See also: [maxValueUtc]
   static DateTime maxValue = DateTime.fromMicrosecondsSinceEpoch(
     math.min(
       maxValueUtc.microsecondsSinceEpoch +
@@ -599,6 +612,13 @@ class Moment extends DateTime {
       maxValueUtc.microsecondsSinceEpoch,
     ),
   );
+
+  /// Min value of [DateTime] in local timezone
+  ///
+  /// CAUTION: This value is not precise. It's calculated by adding the
+  /// current timezone offset to [minValue], and clamping to avoid overflowing.
+  ///
+  /// See also: [minValueUtc]
   static DateTime minValue = DateTime.fromMicrosecondsSinceEpoch(
     math.max(
       minValueUtc.microsecondsSinceEpoch +
