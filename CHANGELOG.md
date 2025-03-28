@@ -1,3 +1,12 @@
+## 4.1.0
+
+- Added clamped setters that prevents DateTime's overflowing behaviour
+  - `DateTime.setClampedSecond`
+  - `DateTime.setClampedMinute`
+  - `DateTime.setClampedHour`
+  - `DateTime.setClampedDay`
+  - `DateTime.setClampedMonth`
+
 ## 4.0.1
 
 - Update docs

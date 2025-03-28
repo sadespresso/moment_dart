@@ -626,4 +626,54 @@ class Moment extends DateTime {
       minValueUtc.microsecondsSinceEpoch,
     ),
   );
+
+  /// Number of days in each month in a non leap year
+  ///
+  /// e.g., `daysInMonths[DateTime.february]` returns `29`.
+  ///
+  /// This list is only accurate for non-leap years.
+  ///
+  /// See also:
+  ///   * [daysInMonthsInLeapYear]
+  ///   * [isLeapYear]
+  static const List<int> daysInMonths = [
+    0,
+    31,
+    28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ];
+
+  /// Number of days in each month in a leap year
+  ///
+  /// e.g., `daysInMonths[DateTime.february]` returns `29`.
+  ///
+  /// This list is only accurate for leap years.
+  ///
+  /// See also:
+  ///   * [daysInMonths]
+  ///   * [isLeapYear]
+  static const List<int> daysInMonthsInLeapYear = [
+    0,
+    31,
+    29,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+  ];
 }
