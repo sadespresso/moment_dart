@@ -13,3 +13,5 @@ export 'package:moment_dart/src/extensions/weekday_finder.dart';
 export 'package:moment_dart/src/extensions/relative_finder.dart';
 
 export 'package:moment_dart/src/extensions/constructor.dart';
+
+export 'package:moment_dart/src/extensions/clamped_setters.dart';
