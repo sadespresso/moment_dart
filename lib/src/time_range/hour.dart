@@ -65,7 +65,7 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
       DateTimeConstructors.withTimezone(isUtc, year, month, day, hour);
 
   @override
-  DateTime get to => from.startOfNextHour();
+  DateTime get to => from.endOfHour();
 
   @override
   DurationUnit get unit => DurationUnit.hour;

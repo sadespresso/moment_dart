@@ -13,13 +13,16 @@ abstract class TimeRange {
 
   bool get isUtc;
 
+  /// Start of the range (inclusive)
   DateTime get from;
+
+  /// End of the range (inclusive)
   DateTime get to;
 
   DurationUnit? get unit;
 
-  /// Returns true if [dateTime] is between [from] (inclusive) and [to] (exclusive)
-  bool contains(DateTime dateTime) => from <= dateTime && dateTime < to;
+  /// Returns true if [dateTime] is between [from] (inclusive) and [to] (inclusive)
+  bool contains(DateTime dateTime) => from <= dateTime && dateTime <= to;
 
   /// Returns true if [this] contains [timeRange]
   bool containsRange(TimeRange timeRange) =>

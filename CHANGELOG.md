@@ -1,8 +1,18 @@
+## 5.0.1
+
+- **[BREAKING]** All time ranges' `to` is now inclusive, same as
+  `CustomTimeRange` and local/iso week ranges. It also means non-custom or
+  non-week time ranges `.duration` will now have one less microsecond.
+  
+  Affected classes are:
+  - HourTimeRange
+  - DayTimeRange
+  - MonthTimeRange
+  - YearTimeRange
+
 ## 5.0.0
 
-- **[BREAKING]** `TimeRange.contains(from, to)`'s `to` is no longer inclusive
-  Before: `YearTimeRange(2025).contains(DateTime(2026,1,1)) => true`
-  Now:    `YearTimeRange(2025).contains(DateTime(2026,1,1)) => false`
+> REDACTED
 
 ## 4.1.0
 

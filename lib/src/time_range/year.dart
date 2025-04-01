@@ -31,7 +31,7 @@ class YearTimeRange extends TimeRange with PageableRange<YearTimeRange> {
   DateTime get from => DateTimeConstructors.withTimezone(isUtc, year);
 
   @override
-  DateTime get to => from.startOfNextYear();
+  DateTime get to => from.endOfYear();
 
   @override
   DurationUnit get unit => DurationUnit.year;

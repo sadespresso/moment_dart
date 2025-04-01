@@ -53,7 +53,7 @@ class DayTimeRange extends TimeRange with PageableRange<DayTimeRange> {
       DateTimeConstructors.withTimezone(isUtc, year, month, day);
 
   @override
-  DateTime get to => from.startOfNextDay();
+  DateTime get to => from.endOfDay();
 
   @override
   DurationUnit get unit => DurationUnit.day;
