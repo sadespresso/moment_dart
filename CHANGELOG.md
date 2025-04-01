@@ -1,3 +1,9 @@
+## 5.0.0
+
+- **[BREAKING]** `TimeRange.contains(from, to)`'s `to` is no longer inclusive
+  Before: `YearTimeRange(2025).contains(DateTime(2026,1,1)) => true`
+  Now:    `YearTimeRange(2025).contains(DateTime(2026,1,1)) => false`
+
 ## 4.1.0
 
 - Added clamped setters that prevents DateTime's overflowing behaviour

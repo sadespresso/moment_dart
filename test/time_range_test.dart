@@ -249,7 +249,9 @@ void main() {
           CustomTimeRange(now, now.add(Duration(days: 1)));
       expect(customRange.contains(now), true);
       expect(customRange.contains(customRange.from), true);
-      expect(customRange.contains(customRange.to), true);
+      expect(customRange.contains(customRange.to), false);
+      expect(customRange.contains(customRange.to - Duration(microseconds: 1)),
+          true);
       expect(customRange.contains(customRange.from - aMicrosecond), false);
       expect(customRange.contains(customRange.to + aMicrosecond), false);
     });
@@ -361,5 +363,17 @@ void main() {
     final YearTimeRange lastYear = TimeRange.lastYear();
     expect(TimeRange.parse(lastYear.encode()), lastYear);
     expect(TimeRange.parse(lastYear.encodeShort()), lastYear);
+  });
+
+  test("karma", () {
+    expect(YearTimeRange(2025).contains(DateTime(2026, 1, 1)), false);
+    expect(YearTimeRange(2025).contains(DateTime(2025, 6, 15)), true);
+    expect(YearTimeRange(2025).contains(DateTime(2025, 1, 1)), true);
+    expect(
+        YearTimeRange(2025)
+            .contains(DateTime(2025, 1, 1) - Duration(microseconds: 1)),
+        false);
+    expect(
+        YearTimeRange(2025).contains(DateTime(2025, 12, 31, 23, 59, 59)), true);
   });
 }
