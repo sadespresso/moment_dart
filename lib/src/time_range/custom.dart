@@ -20,8 +20,10 @@ class CustomTimeRange extends TimeRange {
   /// The timezone is assumed by the [from] passed in here.
   ///
   /// [CustomTimeRange] does NOT ensure that [from] and [to] have the same timezone.
-  const CustomTimeRange(this.from, this.to)
-      : assert(from <= to, "[from] must be before or equal to [to]");
+  CustomTimeRange(this.from, this.to)
+      : assert(from <= to, "[from] must be before or equal to [to]"),
+        assert(from.isUtc == to.isUtc,
+            "[from] and [to] must have the same timezone");
 
   @override
   CustomTimeRange toUtc() =>

@@ -1,3 +1,19 @@
+## 5.0.1
+
+- **[BREAKING]** All time ranges' `to` is now inclusive, same as
+  `CustomTimeRange` and local/iso week ranges. It also means non-custom or
+  non-week time ranges `.duration` will now have one less microsecond.
+  
+  Affected classes are:
+  - HourTimeRange
+  - DayTimeRange
+  - MonthTimeRange
+  - YearTimeRange
+
+## 5.0.0
+
+> REDACTED
+
 ## 4.1.0
 
 - Added clamped setters that prevents DateTime's overflowing behaviour
