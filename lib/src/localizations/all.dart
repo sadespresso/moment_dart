@@ -1,5 +1,8 @@
 import '../localization.dart';
 
+import 'ar.dart';
+export 'ar.dart';
+  
 import 'it_IT.dart';
 export 'it_IT.dart';
 
@@ -43,6 +46,7 @@ abstract class MomentLocalizations {
 
   static Map<String, LocalizationFn> locales = {
     "en_US": () => LocalizationEnUs(),
+    "ar": () => LocalizationAr(),
     "mn_MN": () => LocalizationMnMn(),
     "mn_Mong_MN": () => LocalizationMnMongMn(),
     "mn_Qaaq_MN": () => LocalizationMnQaaqMn(),
@@ -142,7 +146,10 @@ abstract class MomentLocalizations {
 
   /// English (United States)
   static LocalizationEnUs enUS() => LocalizationEnUs();
-
+  
+  /// ARABIC (GENERIC)
+  static LocalizationAr ar() => LocalizationAr();
+  
   /// Mongolian (Cyrillic)
   static LocalizationMnMn mn() => LocalizationMnMn();
 
