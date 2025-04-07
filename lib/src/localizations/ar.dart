@@ -7,6 +7,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
 
 class LocalizationAr extends MomentLocalization
@@ -15,7 +16,8 @@ class LocalizationAr extends MomentLocalization
         SimpleUnits,
         SimpleRelative,
         SimpleDuration,
-        SimpleRange {
+        SimpleRange,
+        WeekdayShortForms {
   static LocalizationAr? _instance;
 
   LocalizationAr._internal() : super();
@@ -86,6 +88,7 @@ class LocalizationAr extends MomentLocalization
         DateTime.sunday: "الأحد",
       };
 
+  @override
   Map<int, String> get weekdayNameShort => {
         DateTime.monday: "إثن",
         DateTime.tuesday: "ثلا",
@@ -106,30 +109,27 @@ class LocalizationAr extends MomentLocalization
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD/MM/YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D/M/YYYY"),
       FormatterToken.LL: (dateTime) => reformat(dateTime, "D MMMM YYYY"),
-      FormatterToken.ll: (dateTime) => "${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year}",
-      FormatterToken.LLL: (dateTime) =>
-          reformat(dateTime, "D MMMM YYYY HH:mm"),
+      FormatterToken.ll: (dateTime) =>
+          "${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year}",
+      FormatterToken.LLL: (dateTime) => reformat(dateTime, "D MMMM YYYY HH:mm"),
       FormatterToken.lll: (dateTime) =>
-          "${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year} ${format(dateTime, 'HH:mm')}",
+          "${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year} ${reformat(dateTime, 'HH:mm')}",
       FormatterToken.LLLL: (dateTime) =>
-          "${weekdayName[dateTime.weekday]}، ${format(dateTime, 'D MMMM YYYY HH:mm')}",
+          "${weekdayName[dateTime.weekday]}، ${reformat(dateTime, 'D MMMM YYYY HH:mm')}",
       FormatterToken.llll: (dateTime) =>
-          "${getShortWeekday(dateTime)}، ${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year} ${format(dateTime, 'HH:mm')}",
+          "${getShortWeekday(dateTime)}، ${dateTime.day} ${getShortMonth(dateTime)} ${dateTime.year} ${reformat(dateTime, 'HH:mm')}",
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
     };
   }
 
   @override
-  List<String> get ordinalSuffixes => [];
-
-  @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataAr;
+  CalenderLocalizationData get calendarData => calendarLocalizationDataAr;
 
   static String last(String weekday) => "$weekday الماضي";
   static String at(String date, String time) => "$date الساعة $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataAr =
+  static const CalenderLocalizationData calendarLocalizationDataAr =
       CalenderLocalizationData(
     relativeDayNames: {
       -1: "الأمس",
@@ -147,21 +147,21 @@ class LocalizationAr extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.lessThanASecond: UnitString.simple("بضع ثوان"),
-        DurationInterval.aSecond: UnitString.simple("ثانية واحدة"),
-        DurationInterval.seconds: UnitString.simple("$srDelta ثوانٍ"),
-        DurationInterval.aMinute: UnitString.simple("دقيقة واحدة"),
-        DurationInterval.minutes: UnitString.simple("$srDelta دقائق"),
-        DurationInterval.anHour: UnitString.simple("ساعة واحدة"),
-        DurationInterval.hours: UnitString.simple("$srDelta ساعات"),
-        DurationInterval.aDay: UnitString.simple("يوم واحد"),
-        DurationInterval.days: UnitString.simple("$srDelta أيام"),
-        DurationInterval.aWeek: UnitString.simple("أسبوع واحد"),
-        DurationInterval.weeks: UnitString.simple("$srDelta أسابيع"),
-        DurationInterval.aMonth: UnitString.simple("شهر واحد"),
-        DurationInterval.months: UnitString.simple("$srDelta أشهر"),
-        DurationInterval.aYear: UnitString.simple("سنة واحدة"),
-        DurationInterval.years: UnitString.simple("$srDelta سنوات"),
+        DurationInterval.lessThanASecond: UnitString.single("بضع ثوان"),
+        DurationInterval.aSecond: UnitString.single("ثانية واحدة"),
+        DurationInterval.seconds: UnitString.single("$srDelta ثوانٍ"),
+        DurationInterval.aMinute: UnitString.single("دقيقة واحدة"),
+        DurationInterval.minutes: UnitString.single("$srDelta دقائق"),
+        DurationInterval.anHour: UnitString.single("ساعة واحدة"),
+        DurationInterval.hours: UnitString.single("$srDelta ساعات"),
+        DurationInterval.aDay: UnitString.single("يوم واحد"),
+        DurationInterval.days: UnitString.single("$srDelta أيام"),
+        DurationInterval.aWeek: UnitString.single("أسبوع واحد"),
+        DurationInterval.weeks: UnitString.single("$srDelta أسابيع"),
+        DurationInterval.aMonth: UnitString.single("شهر واحد"),
+        DurationInterval.months: UnitString.single("$srDelta أشهر"),
+        DurationInterval.aYear: UnitString.single("سنة واحدة"),
+        DurationInterval.years: UnitString.single("$srDelta سنوات"),
       };
 
   @override
