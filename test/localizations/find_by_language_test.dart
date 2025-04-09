@@ -16,6 +16,10 @@ void main() {
       MomentLocalizations.byLanguage('mn', scriptCode: 'Qaaq'),
       TypeMatcher<LocalizationMnQaaqMn>(),
     );
+      expect(
+      MomentLocalizations.byLanguage('ar'),
+      TypeMatcher<LocalizationAr>(),
+    );
     expect(
       MomentLocalizations.byLanguage('ko'),
       TypeMatcher<LocalizationKoKr>(),
@@ -105,6 +109,22 @@ void main() {
       TypeMatcher<LocalizationMnQaaqMn>(),
     );
 
+    expect(
+      MomentLocalizations.byLanguage(
+        'ar',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationAr>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'ar',
+        countryCode: '',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationAr>(),
+    );
+    
     expect(
       MomentLocalizations.byLanguage(
         'ko',
