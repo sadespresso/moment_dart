@@ -4,7 +4,7 @@ import 'package:test/scaffolding.dart';
 
 void main() {
   test("Locale ids for each localization", () {
-    expect(LocalizationAr().locale, "ar";
+    expect(LocalizationAr().locale, "ar");
     expect(LocalizationMnMn().locale, "mn_MN");
     expect(LocalizationMnMongMn().locale, "mn_Mong_MN");
     expect(LocalizationMnQaaqMn().locale, "mn_Qaaq_MN");
