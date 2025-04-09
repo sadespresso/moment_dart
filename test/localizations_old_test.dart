@@ -26,6 +26,31 @@ void main() {
     expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
   });
 
+
+  test('العربية', () {
+    MomentLocalization localization = LocalizationAr();
+    final moment = Moment.now(localization: localization) - Duration(days: 1);
+    final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
+        localization: localization);
+    final epochPlusFiveDays = epoch + Duration(days: 5);
+    final epochPlusAYear = epoch + Duration(days: 365);
+    expect(moment.lastMonday().weekday, 1);
+    expect(localization.relative(const Duration(seconds: 2)),
+        "خلال بضع ثوانٍ"); 
+    expect(localization.weekdayName[epoch.weekday], "الخميس");
+    expect(epochPlusFiveDays.from(epoch, dropPrefixOrSuffix: true), "5 أيام");
+    expect(epochPlusFiveDays.from(epoch), "بعد 5 أيام");
+    expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
+        "الخميس الماضي");
+    expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
+        "الثلاثاء"); 
+    expect(epochPlusAYear.from(epoch), "بعد عام"); 
+    expect(epochPlusAYear.calendar(reference: epoch),
+        "1971/1/1"); 
+    expect(epochPlusFiveDays.format("L LT"),
+        "06/01/1970 12:00 ص"); 
+  });
+
   test('English', () {
     MomentLocalization localization = LocalizationEnUs();
     final moment = Moment.now(localization: localization) - Duration(days: 1);
