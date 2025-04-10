@@ -33,6 +33,492 @@ void main() {
   /// 0s
   const Duration _zero = Duration(microseconds: 1); // s
 
+    test("ar (with suffix/prefix) localization duration test", () {
+    final MomentLocalization l10n = LocalizationAr();
+
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.none),
+      "خلال عام وشهرين",
+    );
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.semi),
+      "خلال 1 عام وشهرين",
+    );
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.full),
+      "خلال 1 ع وشهرين",
+    );
+
+    expect(
+      l10n.duration(_3y, form: Abbreviation.none),
+      "خلال 3 أعوام",
+    );
+    expect(
+      l10n.duration(_3y, form: Abbreviation.semi),
+      "خلال 3 أعوام",
+    );
+    expect(
+      l10n.duration(_3y, form: Abbreviation.full),
+      "خلال 3 ع",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.none),
+      "خلال 3 أشهر و 17 يوم",
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.semi),
+      "خلال 3 أشهر و 17 يوم",
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.full),
+      "خلال 3 ش و 17 ي",
+    );
+
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.none),
+      "خلال 4 أشهر",
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.semi),
+      "خلال 4 أشهر",
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.full),
+      "خلال 4 ش",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "خلال 3 أسابيع ويومين",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "خلال 3 أسابيع ويومين",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "خلال 3 أ ويومين",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.none),
+      "خلال 23 يوم",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
+      "خلال 23 يوم",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
+      "خلال 23 ي",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "خلال 4 أسابيع",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "خلال 4 أسابيع",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "خلال 4 أ",
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.none),
+      "خلال 28 يوم",
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.semi),
+      "خلال 28 يوم",
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.full),
+      "خلال 28 ي",
+    );
+
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.none),
+      "خلال 6 أيام و 7 ساعات",
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.semi),
+      "خلال 6 أيام و 7 ساعات",
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.full),
+      "خلال 6 ي و 7 س",
+    );
+
+    expect(
+      l10n.duration(_6d, form: Abbreviation.none),
+      "خلال 6 أيام",
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.semi),
+      "خلال 6 أيام",
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.full),
+      "خلال 6 ي",
+    );
+
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.none),
+      "خلال 8 ساعات و 8 دقائق",
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.semi),
+      "خلال 8 ساعات و 8 دقائق",
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.full),
+      "خلال 8 س و 8 د",
+    );
+
+    expect(
+      l10n.duration(_8h, form: Abbreviation.none),
+      "خلال 8 ساعات",
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.semi),
+      "خلال 8 ساعات",
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.full),
+      "خلال 8 س",
+    );
+
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.none),
+      "خلال 48 دقيقة و 42 ثانية",
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.semi),
+      "خلال 48 دقيقة و 42 ثانية",
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.full),
+      "خلال 48 د و 42 ث",
+    );
+
+    expect(
+      l10n.duration(_35m, form: Abbreviation.none),
+      "خلال 35 دقيقة",
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.semi),
+      "خلال 35 دقيقة",
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.full),
+      "خلال 35 د",
+    );
+
+    expect(
+      l10n.duration(_42s, form: Abbreviation.none),
+      "خلال 42 ثانية",
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.semi),
+      "خلال 42 ثانية",
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.full),
+      "خلال 42 ث",
+    );
+
+    expect(
+      l10n.duration(_zero, form: Abbreviation.none),
+      "خلال بضع ثوانٍ",
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.semi),
+      "خلال بضع ثوانٍ",
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.full),
+      "خلال بضع ثوانٍ",
+    );
+  });
+
+  test("ar (standalone) localization duration test", () {
+    final MomentLocalization l10n = LocalizationAr();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "عام وشهرين",
+    );
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "1 عام وشهرين",
+    );
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "1 ع وشهرين",
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 أعوام",
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 أعوام",
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "3 ع",
+    );
+
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "3 أشهر و 17 يوم",
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "3 أشهر و 17 يوم",
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "3 ش و 17 ي",
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "4 أشهر",
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "4 أشهر",
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "4 ش",
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "3 أسابيع ويومين",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "3 أسابيع ويومين",
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "3 أ ويومين",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "23 يوم",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "23 يوم",
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "23 ي",
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      "4 أسابيع",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      "4 أسابيع",
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      "4 أ",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "28 يوم",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "28 يوم",
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "28 ي",
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 أيام و 7 ساعات",
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 أيام و 7 ساعات",
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "6 ي و 7 س",
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "6 أيام",
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "6 أيام",
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "6 ي",
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 ساعات و 8 دقائق",
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 ساعات و 8 دقائق",
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "8 س و 8 د",
+    );
+
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "8 ساعات",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "8 ساعات",
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "8 س",
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "48 دقيقة و 42 ثانية",
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "48 دقيقة و 42 ثانية",
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "48 د و 42 ث",
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "35 دقيقة",
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "35 دقيقة",
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "35 د",
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "42 ثانية",
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "42 ثانية",
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "42 ث",
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      "بضع ثوانٍ",
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      "بضع ثوانٍ",
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      "بضع ثوانٍ",
+    );
+  });
+
   test("de_DE (with suffix/prefix) localization duration test", () {
     final MomentLocalization l10n = LocalizationDeDe();
 
