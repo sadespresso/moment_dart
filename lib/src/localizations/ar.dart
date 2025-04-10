@@ -35,7 +35,7 @@ class LocalizationAr extends MomentLocalization
   String get languageCode => "ar";
 
   @override
-  String get countryCode => "";
+  String? get countryCode => null;
 
   @override
   String get languageNameInEnglish => "Arabic";
