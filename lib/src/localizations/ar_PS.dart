@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-// المؤلف: ultrate (https://github.com/ultrate)
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
@@ -10,7 +8,7 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
 
-class LocalizationAr extends MomentLocalization
+class LocalizationArPs extends MomentLocalization
     with
         MonthNames,
         SimpleUnits,
@@ -18,13 +16,12 @@ class LocalizationAr extends MomentLocalization
         SimpleDuration,
         SimpleRange,
         WeekdayShortForms {
-  static LocalizationAr? _instance;
+  static LocalizationArPs? _instance;
 
-  LocalizationAr._internal() : super();
+  LocalizationArPs._internal() : super();
 
-  factory LocalizationAr() {
-    _instance ??= LocalizationAr._internal();
-
+  factory LocalizationArPs() {
+    _instance ??= LocalizationArPs._internal();
     return _instance!;
   }
 
@@ -35,7 +32,7 @@ class LocalizationAr extends MomentLocalization
   String get languageCode => "ar";
 
   @override
-  String? get countryCode => null;
+  String? get countryCode => "PS";
 
   @override
   String get languageNameInEnglish => "Arabic";
@@ -43,43 +40,23 @@ class LocalizationAr extends MomentLocalization
   @override
   String relativePast(String unit) => "منذ $unit";
   @override
-  String relativeFuture(String unit) => "في غضون $unit";
+  String relativeFuture(String unit) => "خلال $unit";
 
   @override
   Map<int, String> get monthNames => {
-        1: "يناير",
-        2: "فبراير",
-        3: "مارس",
-        4: "أبريل",
-        5: "ماي",
-        6: "يونيو",
-        7: "يوليوز",
-        8: "غشت",
-        9: "شتنبر",
-        10: "أكتوبر",
-        11: "نونبر",
-        12: "دجنبر",
+        1: "يناير", 2: "فبراير", 3: "مارس", 4: "أبريل", 5: "ماي", 6: "يونيو",
+        7: "يوليوز", 8: "غشت", 9: "شتنبر", 10: "أكتوبر", 11: "نونبر", 12: "دجنبر",
       };
 
   @override
   Map<int, String> get monthNamesShort => {
-        1: "ينا",
-        2: "فبر",
-        3: "مار",
-        4: "أبر",
-        5: "ماي",
-        6: "يون",
-        7: "يول",
-        8: "غشت",
-        9: "شتن",
-        10: "أكت",
-        11: "نون",
-        12: "دجن",
+        1: "ينا", 2: "فبر", 3: "مار", 4: "أبر", 5: "ماي", 6: "يون",
+        7: "يول", 8: "غشت", 9: "شتن", 10: "أكت", 11: "نون", 12: "دجن",
       };
 
   @override
   Map<int, String> get weekdayName => {
-        DateTime.monday: "الإثنين",
+        DateTime.monday: "الاثنين", 
         DateTime.tuesday: "الثلاثاء",
         DateTime.wednesday: "الأربعاء",
         DateTime.thursday: "الخميس",
@@ -90,7 +67,7 @@ class LocalizationAr extends MomentLocalization
 
   @override
   Map<int, String> get weekdayNameShort => {
-        DateTime.monday: "إثن",
+        DateTime.monday: "إثن", 
         DateTime.tuesday: "ثلا",
         DateTime.wednesday: "أرب",
         DateTime.thursday: "خمي",
@@ -106,6 +83,7 @@ class LocalizationAr extends MomentLocalization
 
     return {
       ...formattersForMonthNames,
+      ...formattersForWeekdayShortForms,
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD/MM/YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D/M/YYYY"),
       FormatterToken.LL: (dateTime) => reformat(dateTime, "D MMMM YYYY"),
@@ -124,21 +102,27 @@ class LocalizationAr extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calendarLocalizationDataAr;
+  CalenderLocalizationData get calendarData => _calendarLocalizationDataAr;
 
-  static String last(String weekday) => "$weekday الماضي";
-  static String at(String date, String time) => "$date الساعة $time";
+  static String _lastWeekdayGenderAware(String weekday) {
+    if (weekday.endsWith('ة')) {
+      return "$weekday الماضية";
+    }
+    return "$weekday الماضي";
+  }
 
-  static const CalenderLocalizationData calendarLocalizationDataAr =
+  static String _at(String date, String time) => "$date الساعة $time";
+
+  static final CalenderLocalizationData _calendarLocalizationDataAr =
       CalenderLocalizationData(
     relativeDayNames: {
-      -1: "الأمس",
+      -1: "أمس",
       0: "اليوم",
       1: "غداً",
     },
     keywords: CalenderLocalizationKeywords(
-      at: at,
-      lastWeekday: last,
+      at: _at,
+      lastWeekday: _lastWeekdayGenderAware,
     ),
   );
 
@@ -147,21 +131,21 @@ class LocalizationAr extends MomentLocalization
 
   @override
   Map<DurationInterval, UnitString> get units => {
-        DurationInterval.lessThanASecond: UnitString.single("بضع ثوان"),
-        DurationInterval.aSecond: UnitString.single("ثانية واحدة"),
+        DurationInterval.lessThanASecond: UnitString.single("بضع ثوانٍ"),
+        DurationInterval.aSecond: UnitString.single("ثانية"),
         DurationInterval.seconds: UnitString.single("$srDelta ثوانٍ"),
-        DurationInterval.aMinute: UnitString.single("دقيقة واحدة"),
+        DurationInterval.aMinute: UnitString.single("دقيقة"),
         DurationInterval.minutes: UnitString.single("$srDelta دقائق"),
-        DurationInterval.anHour: UnitString.single("ساعة واحدة"),
+        DurationInterval.anHour: UnitString.single("ساعة"),
         DurationInterval.hours: UnitString.single("$srDelta ساعات"),
-        DurationInterval.aDay: UnitString.single("يوم واحد"),
+        DurationInterval.aDay: UnitString.single("يوم"),
         DurationInterval.days: UnitString.single("$srDelta أيام"),
-        DurationInterval.aWeek: UnitString.single("أسبوع واحد"),
+        DurationInterval.aWeek: UnitString.single("أسبوع"),
         DurationInterval.weeks: UnitString.single("$srDelta أسابيع"),
-        DurationInterval.aMonth: UnitString.single("شهر واحد"),
+        DurationInterval.aMonth: UnitString.single("شهر"),
         DurationInterval.months: UnitString.single("$srDelta أشهر"),
-        DurationInterval.aYear: UnitString.single("سنة واحدة"),
-        DurationInterval.years: UnitString.single("$srDelta سنوات"),
+        DurationInterval.aYear: UnitString.single("عام"),
+        DurationInterval.years: UnitString.single("$srDelta أعوام"),
       };
 
   @override
@@ -186,6 +170,6 @@ class LocalizationAr extends MomentLocalization
         },
         allAfter: (formattedDate) => "بعد $formattedDate",
         allBefore: (formattedDate) => "قبل $formattedDate",
-        customRangeAllTime: "كل الأوقات",
+        customRangeAllTime: "كل الوقت",
       );
 }

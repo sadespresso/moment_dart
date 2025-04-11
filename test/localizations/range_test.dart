@@ -4,8 +4,8 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test("اختبار النطاقات الزمنية للغة العربية", () {
-    Moment.setGlobalLocalization(MomentLocalizations.ar());
+  test("ar_PS range test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.arPs());
 
     final thisWeek = TimeRange.thisLocalWeek();
     final thisWeekISO = TimeRange.thisIsoWeek();

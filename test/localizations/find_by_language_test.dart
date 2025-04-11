@@ -18,7 +18,7 @@ void main() {
     );
       expect(
       MomentLocalizations.byLanguage('ar'),
-      TypeMatcher<LocalizationAr>(),
+      TypeMatcher<LocalizationArPs>(),
     );
     expect(
       MomentLocalizations.byLanguage('ko'),
@@ -114,15 +114,15 @@ void main() {
         'ar',
         strict: true,
       ),
-      TypeMatcher<LocalizationAr>(),
+      TypeMatcher<LocalizationArPs>(),
     );
     expect(
       MomentLocalizations.byLanguage(
         'ar',
-        countryCode: '',
+        countryCode: 'PS',
         strict: true,
       ),
-      TypeMatcher<LocalizationAr>(),
+      TypeMatcher<LocalizationArPs>(),
     );
     
     expect(

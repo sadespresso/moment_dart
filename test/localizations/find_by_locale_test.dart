@@ -34,8 +34,8 @@ void main() {
     );
 
         expect(
-      MomentLocalizations.byLocale("ar"),
-      TypeMatcher<LocalizationAr>(),
+      MomentLocalizations.byLocale("ar_PS"),
+      TypeMatcher<LocalizationArPs>(),
     );
 
     expect(
