@@ -156,7 +156,7 @@ abstract class MomentLocalizations {
   /// Mongolian (Traditional Mongolian Script with Traditional Numerals)
   static LocalizationMnQaaqMn mnMongtn() => LocalizationMnQaaqMn();
 
-  /// ARABIC LANGUAGE (GENIRIC)
+  /// Arabic (Palestine)
   static LocalizationArPs arPs() => LocalizationArPs();
 
   /// Korean (South Korea)
