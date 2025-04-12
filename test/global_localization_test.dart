@@ -9,5 +9,7 @@ void main() {
     expect(Moment.now().localization.locale, "fr_FR");
     Moment.setGlobalLocalization(MomentLocalizations.jaJp());
     expect(Moment.now().localization.locale, "ja_JP");
+    Moment.setGlobalLocalization(MomentLocalizations.arPs());
+    expect(Moment.now().localization.locale, "ar_PS");
   });
 }

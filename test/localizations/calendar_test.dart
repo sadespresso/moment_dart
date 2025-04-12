@@ -21,6 +21,35 @@ void main() {
   // C
   var epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
+    test("ar_PS localization calendar test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.arPs());
+
+    // A - Times changed to HH:mm format
+    expect(today.calendar(reference: today), "اليوم الساعة 05:33"); // Changed from 5:33 ص
+    expect(tomorrow.calendar(reference: today), "غداً الساعة 05:33"); // Changed from 5:33 ص
+    expect(tueOrDayAfterTomorrow.calendar(reference: today), "الثلاثاء الساعة 05:33"); // Changed from 5:33 ص
+    expect(yesterday.calendar(reference: today), "أمس الساعة 05:33"); // Changed from 5:33 ص
+    expect(fridayOrDayBeforeYesterday.calendar(reference: today),
+        "الجمعة الماضية الساعة 05:33"); // Changed from 5:33 ص
+
+    // B - No time involved in these expectations
+    expect(lastMonday.calendar(reference: today, omitHours: true),
+        "الاثنين الماضي");
+    expect(lastTuesday.calendar(reference: today, omitHours: true),
+        "الثلاثاء الماضي");
+    expect(lastWednesday.calendar(reference: today, omitHours: true),
+        "الأربعاء الماضي");
+    expect(
+        nextWednesday.calendar(reference: today, omitHours: true), "الأربعاء");
+    expect(nextThursday.calendar(reference: today, omitHours: true), "الخميس");
+    expect(nextFriday.calendar(reference: today, omitHours: true), "الجمعة");
+
+    // C
+    // calendar format might use L, check definition. Assuming it uses L = DD/MM/YYYY
+    expect(epoch.format('L'), "01/01/1970"); 
+    expect(epoch.format("LLLL"), "الخميس، 1 يناير 1970 00:00"); // Changed from 12:00 ص
+  });
+  
   test("de_DE localization calendar test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
 

@@ -1,5 +1,8 @@
 import '../localization.dart';
 
+import 'ar_PS.dart';
+export 'ar_PS.dart';
+
 import 'it_IT.dart';
 export 'it_IT.dart';
 
@@ -46,6 +49,8 @@ abstract class MomentLocalizations {
     "mn_MN": () => LocalizationMnMn(),
     "mn_Mong_MN": () => LocalizationMnMongMn(),
     "mn_Qaaq_MN": () => LocalizationMnQaaqMn(),
+    "ar_PS": () => LocalizationArPs(),
+    "ar": () => LocalizationArPs(),
     "ko_KR": () => LocalizationKoKr(),
     "ja_JP": () => LocalizationJaJp(),
     "de_DE": () => LocalizationDeDe(),
@@ -151,6 +156,9 @@ abstract class MomentLocalizations {
 
   /// Mongolian (Traditional Mongolian Script with Traditional Numerals)
   static LocalizationMnQaaqMn mnMongtn() => LocalizationMnQaaqMn();
+
+  /// ARABIC LANGUAGE (GENIRIC)
+  static LocalizationArPs arPs() => LocalizationArPs();
 
   /// Korean (South Korea)
   static LocalizationKoKr koKr() => LocalizationKoKr();
