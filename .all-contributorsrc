@@ -20,7 +20,18 @@
         "translation",
         "doc"
       ]
+    },
+    {
+      "login": "Ultrate",
+      "name": "Ultrate",
+      "avatar_url": "https://avatars.githubusercontent.com/u/124692023?v=4",
+      "profile": "https://github.com/Ultrate",
+      "contributions": [
+        "code",
+        "translation"
+      ]
     }
   ],
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
