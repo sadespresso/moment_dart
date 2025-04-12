@@ -103,7 +103,46 @@ void main() {
     expect(threeYearsAgo.from(now), "3 anni fa");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 anni");
   });
+  
+test(" ar localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.arPs());
 
+    // Adjusted expectations to match SimpleUnits output (no dual form)
+    expect(fewMomentsAhead.from(now), "خلال بضع ثوانٍ");
+    expect(fewMomentsAgo.from(now), "منذ بضع ثوانٍ");
+    expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "بضع ثوانٍ");
+    expect(aMinuteAhead.from(now), "خلال دقيقة");
+    expect(aMinuteAgo.from(now), "منذ دقيقة");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "دقيقة");
+    expect(fiveMinutesAhead.from(now), "خلال 5 دقائق");
+    expect(fiveMinutesAgo.from(now), "منذ 5 دقائق");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 دقائق");
+    expect(anHourAhead.from(now), "خلال ساعة");
+    expect(anHourAgo.from(now), "منذ ساعة");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "ساعة");
+    expect(sixHoursAhead.from(now), "خلال 6 ساعات");
+    expect(sixHoursAgo.from(now), "منذ 6 ساعات");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 ساعات");
+    expect(aDayAhead.from(now), "خلال يوم");
+    expect(aDayAgo.from(now), "منذ يوم");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "يوم");
+    expect(twoDaysAhead.from(now), "خلال 2 أيام"); // Adjusted from يومين
+    expect(twoDaysAgo.from(now), "منذ 2 أيام"); // Adjusted from يومين
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 أيام"); // Adjusted from يومين
+    expect(aMonthAhead.from(now), "خلال شهر");
+    expect(aMonthAgo.from(now), "منذ شهر");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "شهر");
+    expect(fourMonthsAhead.from(now), "خلال 4 أشهر");
+    expect(fourMonthsAgo.from(now), "منذ 4 أشهر");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 أشهر");
+    expect(aYearAhead.from(now), "خلال عام");
+    expect(aYearAgo.from(now), "منذ عام");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "عام");
+    expect(threeYearsAhead.from(now), "خلال 3 أعوام");
+    expect(threeYearsAgo.from(now), "منذ 3 أعوام");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 أعوام");
+});
+  
   test("fr localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.fr());
 

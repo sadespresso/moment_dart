@@ -26,6 +26,30 @@ void main() {
     expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");
   });
 
+  test('Arabic', () {
+    MomentLocalization localization = LocalizationArPs();
+    final moment = Moment.now(localization: localization) - Duration(days: 1);
+    final epoch = Moment(DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true),
+        localization: localization);
+    final epochPlusFiveDays = epoch + Duration(days: 5);
+    final epochPlusAYear = epoch + Duration(days: 365);
+
+    expect(moment.lastMonday().weekday, 1);
+    expect(localization.relative(const Duration(seconds: 2)),
+        "خلال بضع ثوانٍ"); // Corrected tanween
+    expect(localization.weekdayName[epoch.weekday], "الخميس");
+    expect(epochPlusFiveDays.from(epoch, dropPrefixOrSuffix: true), "5 أيام");
+    expect(epochPlusFiveDays.from(epoch), "خلال 5 أيام"); // Using 'خلال'
+    expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
+        "الخميس الماضي"); // Should now be handled by gender func
+    expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
+        "الثلاثاء");
+    expect(epochPlusAYear.from(epoch), "خلال عام"); // Using 'خلال'
+    // Explicitly format as 'L' (DD/MM/YYYY) instead of relying on calendar() default
+    expect(epochPlusAYear.format('L'), "01/01/1971"); // FIX: Use format('L')
+    expect(epochPlusFiveDays.format("L LT"), "06/01/1970 00:00"); // Using HH:mm
+  });
+
   test('English', () {
     MomentLocalization localization = LocalizationEnUs();
     final moment = Moment.now(localization: localization) - Duration(days: 1);

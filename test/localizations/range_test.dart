@@ -4,6 +4,34 @@ import 'package:moment_dart/moment_dart.dart';
 import 'package:test/test.dart';
 
 void main() {
+  test("ar_PS range test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.arPs());
+
+    final thisWeek = TimeRange.thisLocalWeek();
+    final thisWeekISO = TimeRange.thisIsoWeek();
+    final thisMonth = TimeRange.thisMonth();
+    final thisYear = TimeRange.thisYear();
+    final year = YearTimeRange(2021);
+    final month = MonthTimeRange(1205, 3);
+    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allBeforeMyBirthday =
+        CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
+    final allTime = TimeRange.allTime();
+
+    expect(thisWeek.format(), "هذا الأسبوع");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
+    expect(thisMonth.format(), "هذا الشهر");
+    expect(thisYear.format(), "هذا العام");
+    expect(year.format(), "عام 2021");
+    expect(month.format(), "مارس 1205");
+    expect(allAfterEpoch.format(), "بعد 1/1/1970");
+    expect(allBeforeMyBirthday.format(), "قبل 1/6/2003");
+    expect(allTime.format(), "كل الوقت");
+  });
+  
   test("de_DE range test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
 
