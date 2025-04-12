@@ -10,7 +10,7 @@
 
 ### [📖 Read documentation](https://dev.gege.mn/moment_dart_docs)
 
-### [🆕 Migrate to 4.0.0](https://dev.gege.mn/moment_dart_docs/upgrading/)
+### [🆕 Migrate to 5.x.x](https://dev.gege.mn/moment_dart_docs/upgrading/)
 
 ## Usage
 
