@@ -1,3 +1,7 @@
+## 5.1.0
+
+- Added Arabic language, thanks to [Ultrate](https://github.com/Ultrate)
+
 ## 5.0.1
 
 - **[BREAKING]** All time ranges' `to` is now inclusive, same as

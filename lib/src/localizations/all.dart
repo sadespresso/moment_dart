@@ -50,7 +50,6 @@ abstract class MomentLocalizations {
     "mn_Mong_MN": () => LocalizationMnMongMn(),
     "mn_Qaaq_MN": () => LocalizationMnQaaqMn(),
     "ar_PS": () => LocalizationArPs(),
-    "ar": () => LocalizationArPs(),
     "ko_KR": () => LocalizationKoKr(),
     "ja_JP": () => LocalizationJaJp(),
     "de_DE": () => LocalizationDeDe(),

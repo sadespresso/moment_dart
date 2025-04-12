@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+// Author: Ultrate (https://github.com/Ultrate)
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
@@ -8,6 +10,8 @@ import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
 
+/// Language: Arabic
+/// Country: Palestine
 class LocalizationArPs extends MomentLocalization
     with
         MonthNames,
@@ -32,7 +36,7 @@ class LocalizationArPs extends MomentLocalization
   String get languageCode => "ar";
 
   @override
-  String? get countryCode => "PS";
+  String get countryCode => "PS";
 
   @override
   String get languageNameInEnglish => "Arabic";
@@ -44,19 +48,39 @@ class LocalizationArPs extends MomentLocalization
 
   @override
   Map<int, String> get monthNames => {
-        1: "يناير", 2: "فبراير", 3: "مارس", 4: "أبريل", 5: "ماي", 6: "يونيو",
-        7: "يوليوز", 8: "غشت", 9: "شتنبر", 10: "أكتوبر", 11: "نونبر", 12: "دجنبر",
+        1: "يناير",
+        2: "فبراير",
+        3: "مارس",
+        4: "أبريل",
+        5: "ماي",
+        6: "يونيو",
+        7: "يوليوز",
+        8: "غشت",
+        9: "شتنبر",
+        10: "أكتوبر",
+        11: "نونبر",
+        12: "دجنبر",
       };
 
   @override
   Map<int, String> get monthNamesShort => {
-        1: "ينا", 2: "فبر", 3: "مار", 4: "أبر", 5: "ماي", 6: "يون",
-        7: "يول", 8: "غشت", 9: "شتن", 10: "أكت", 11: "نون", 12: "دجن",
+        1: "ينا",
+        2: "فبر",
+        3: "مار",
+        4: "أبر",
+        5: "ماي",
+        6: "يون",
+        7: "يول",
+        8: "غشت",
+        9: "شتن",
+        10: "أكت",
+        11: "نون",
+        12: "دجن",
       };
 
   @override
   Map<int, String> get weekdayName => {
-        DateTime.monday: "الاثنين", 
+        DateTime.monday: "الاثنين",
         DateTime.tuesday: "الثلاثاء",
         DateTime.wednesday: "الأربعاء",
         DateTime.thursday: "الخميس",
@@ -67,7 +91,7 @@ class LocalizationArPs extends MomentLocalization
 
   @override
   Map<int, String> get weekdayNameShort => {
-        DateTime.monday: "إثن", 
+        DateTime.monday: "إثن",
         DateTime.tuesday: "ثلا",
         DateTime.wednesday: "أرب",
         DateTime.thursday: "خمي",
