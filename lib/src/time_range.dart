@@ -1,7 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
 
-import 'time_range/custom.dart';
-
 export 'time_range/custom.dart';
 export 'time_range/day.dart';
 export 'time_range/hour.dart';
