@@ -1,3 +1,7 @@
+## 5.2.2
+
+- Updated `README.md` to reflect docs domain change
+
 ## 5.2.1
 
 - Added `TimeRange.intersect(other)` (You can also turn `a.intersect(b)` as `a & b`)

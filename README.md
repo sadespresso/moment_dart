@@ -8,9 +8,9 @@
 
 ## References
 
-### [📖 Read documentation](https://dev.gege.mn/moment_dart_docs)
+### [📖 Read documentation](https://moment-dart.dev.gege.mn)
 
-### [🆕 Migrate to 5.x.x](https://dev.gege.mn/moment_dart_docs/upgrading/)
+### [🆕 Migrate to 5.x.x](https://moment-dart.dev.gege.mn/upgrading/)
 
 ## Usage
 
@@ -41,7 +41,7 @@ Moment.setGlobalLocalization(MomentLocalizations.fr());
 Relative durations are rather inprecise. See [precise duration](#precise-duration)
 for accuracy and flexibility.
 
-Read about thresholds, and more on [docs](https://dev.gege.mn/moment_dart_docs/duration)
+Read about thresholds, and more on [docs](https://moment-dart.dev.gege.mn/duration)
 
 ```dart
 final yesterday = Moment.now() - const Duration(days: 1);
@@ -56,7 +56,7 @@ add5sec.fromNow(dropPrefixOrSuffix: true); // a few seconds
 You can create localized human-readable duration text with
 abbreviation, highly-customizable units.
 
-See more on [docs](https://dev.gege.mn/moment_dart_docs/duration/precise).
+See more on [docs](https://moment-dart.dev.gege.mn/duration/precise).
 (delimiter, custom units, abbreviation...)
 
 On `Duration` objects:
@@ -89,7 +89,7 @@ print(now.calendar()); // Today at 03:00 PM
 
 `moment_dart` provides numerous convenience methods. Works on both `Moment` and `DateTime`.
 
-See all available options in the [docs](https://dev.gege.mn/moment_dart_docs/extension/)
+See all available options in the [docs](https://moment-dart.dev.gege.mn/extension/)
 
 ```dart
 final now = DateTime.now(); // July 19 2023 03:12 PM (UTC+8)
