@@ -1,3 +1,16 @@
+## 5.2.2
+
+- Updated `README.md` to reflect docs domain change
+
+## 5.2.1
+
+- Added `TimeRange.intersect(other)` (You can also turn `a.intersect(b)` as `a & b`)
+- Added `TimeRange.toCustom()` and `TimeRange.asCustom`
+
+## 5.2.0
+
+> REDACTED
+
 ## 5.1.0
 
 - Added Arabic language, thanks to [Ultrate](https://github.com/Ultrate)

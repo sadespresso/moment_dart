@@ -8,9 +8,9 @@
 
 ## References
 
-### [📖 Read documentation](https://dev.gege.mn/moment_dart_docs)
+### [📖 Read documentation](https://moment-dart.dev.gege.mn)
 
-### [🆕 Migrate to 4.0.0](https://dev.gege.mn/moment_dart_docs/upgrading/)
+### [🆕 Migrate to 5.x.x](https://moment-dart.dev.gege.mn/upgrading/)
 
 ## Usage
 
@@ -41,7 +41,7 @@ Moment.setGlobalLocalization(MomentLocalizations.fr());
 Relative durations are rather inprecise. See [precise duration](#precise-duration)
 for accuracy and flexibility.
 
-Read about thresholds, and more on [docs](https://dev.gege.mn/moment_dart_docs/duration)
+Read about thresholds, and more on [docs](https://moment-dart.dev.gege.mn/duration)
 
 ```dart
 final yesterday = Moment.now() - const Duration(days: 1);
@@ -56,7 +56,7 @@ add5sec.fromNow(dropPrefixOrSuffix: true); // a few seconds
 You can create localized human-readable duration text with
 abbreviation, highly-customizable units.
 
-See more on [docs](https://dev.gege.mn/moment_dart_docs/duration/precise).
+See more on [docs](https://moment-dart.dev.gege.mn/duration/precise).
 (delimiter, custom units, abbreviation...)
 
 On `Duration` objects:
@@ -89,7 +89,7 @@ print(now.calendar()); // Today at 03:00 PM
 
 `moment_dart` provides numerous convenience methods. Works on both `Moment` and `DateTime`.
 
-See all available options in the [docs](https://dev.gege.mn/moment_dart_docs/extension/)
+See all available options in the [docs](https://moment-dart.dev.gege.mn/extension/)
 
 ```dart
 final now = DateTime.now(); // July 19 2023 03:12 PM (UTC+8)
@@ -123,6 +123,7 @@ Contributions of any kind are welcome! Please refer to [CONTRIBUTE.md](CONTRIBUT
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sadespresso"><img src="https://avatars.githubusercontent.com/u/51638223?v=4?s=80" width="80px;" alt="Батмэнд Ганбаатар"/><br /><sub><b>Батмэнд Ганбаатар</b></sub></a><br /><a href="https://github.com/sadespresso/moment_dart/commits?author=sadespresso" title="Code">💻</a> <a href="#maintenance-sadespresso" title="Maintenance">🚧</a> <a href="#translation-sadespresso" title="Translation">🌍</a> <a href="https://github.com/sadespresso/moment_dart/commits?author=sadespresso" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ultrate"><img src="https://avatars.githubusercontent.com/u/124692023?v=4?s=80" width="80px;" alt="Ultrate"/><br /><sub><b>Ultrate</b></sub></a><br /><a href="https://github.com/sadespresso/moment_dart/commits?author=Ultrate" title="Code">💻</a> <a href="#translation-Ultrate" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>

@@ -28,7 +28,41 @@ abstract class TimeRange {
   bool containsRange(TimeRange timeRange) =>
       timeRange.from >= from && timeRange.to <= to;
 
+  /// When the two ranges are overlapping, returns the intersection of the
+  /// two ranges.
+  ///
+  /// Returns null if the two ranges are not overlapping.
+  TimeRange? intersect(TimeRange other) {
+    if (other == this) return this;
+    if (other.from == from && other.to == to) return this;
+
+    if (other.from.isAfter(to) || other.to.isBefore(from)) {
+      return null;
+    }
+
+    final DateTime newFrom = from.isAfter(other.from) ? from : other.from;
+    final DateTime newTo = to.isBefore(other.to) ? to : other.to;
+
+    return CustomTimeRange(newFrom, newTo);
+  }
+
+  TimeRange? operator &(TimeRange other) => intersect(other);
+
   Duration get duration => to.difference(from);
+
+  /// Converts [this] to [CustomTimeRange]
+  ///
+  /// If [this] is [CustomTimeRange], it will return [this]
+  CustomTimeRange toCustom() {
+    if (this is CustomTimeRange) {
+      return this as CustomTimeRange;
+    }
+
+    return CustomTimeRange(from, to);
+  }
+
+  /// Alias for [toCustom]
+  CustomTimeRange get asCustom => toCustom();
 
   /// Unless you're using CustomTimeRange, this will always keep the
   /// properties like [year], [month] the same.

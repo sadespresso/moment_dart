@@ -375,4 +375,141 @@ void main() {
     expect(
         YearTimeRange(2025).contains(DateTime(2025, 12, 31, 23, 59, 59)), true);
   });
+
+  group("toCustom and asCustom", () {
+    test("CustomTimeRange should return itself", () {
+      final custom =
+          CustomTimeRange(DateTime(2025, 1, 1), DateTime(2025, 12, 31));
+      expect(custom.toCustom(), same(custom));
+      expect(custom.asCustom, same(custom));
+    });
+
+    test("DayTimeRange conversion to CustomTimeRange", () {
+      final day = DayTimeRange.fromDateTime(DateTime(2025, 3, 15));
+      final customDay = day.toCustom();
+
+      expect(customDay, isA<CustomTimeRange>());
+      expect(customDay.from, day.from);
+      expect(customDay.to, day.to);
+      expect(day == customDay, isFalse); // Different types
+    });
+
+    test("MonthTimeRange conversion to CustomTimeRange", () {
+      final month = MonthTimeRange(2025, 3);
+      final customMonth = month.toCustom();
+
+      expect(customMonth, isA<CustomTimeRange>());
+      expect(customMonth.from, month.from);
+      expect(customMonth.to, month.to);
+      expect(month == customMonth, isFalse); // Different types
+    });
+
+    test("YearTimeRange conversion to CustomTimeRange", () {
+      final year = YearTimeRange(2025);
+      final customYear = year.toCustom();
+
+      expect(customYear, isA<CustomTimeRange>());
+      expect(customYear.from, year.from);
+      expect(customYear.to, year.to);
+      expect(year == customYear, isFalse); // Different types
+    });
+
+    test("asCustom is alias for toCustom", () {
+      final day = TimeRange.today();
+      final customViaToCustom = day.toCustom();
+      final customViaAsCustom = day.asCustom;
+
+      expect(customViaToCustom.from, customViaAsCustom.from);
+      expect(customViaToCustom.to, customViaAsCustom.to);
+      expect(customViaToCustom, equals(customViaAsCustom));
+    });
+
+    test("Converted custom ranges preserve timezone", () {
+      final utcDay = DayTimeRange.fromDateTime(DateTime.utc(2025, 3, 15));
+      final localDay = DayTimeRange.fromDateTime(DateTime(2025, 3, 15));
+
+      final utcCustom = utcDay.toCustom();
+      final localCustom = localDay.toCustom();
+
+      expect(utcCustom.isUtc, isTrue);
+      expect(localCustom.isUtc, isFalse);
+    });
+  });
+
+  group("Intersection", () {
+    test("Same ranges return original range", () {
+      final timeRange = TimeRange.today();
+      expect(timeRange.intersect(timeRange), timeRange);
+      expect(timeRange & timeRange, timeRange);
+    });
+
+    test("Ranges with identical from/to but different types", () {
+      final day = TimeRange.today();
+      final custom = CustomTimeRange(day.from, day.to);
+
+      final intersection = day.intersect(custom);
+      expect(intersection, isNotNull);
+      expect(intersection, isA<DayTimeRange>());
+      expect(intersection!.from, day.from);
+      expect(intersection.to, day.to);
+    });
+
+    test("Non-overlapping ranges return null", () {
+      final today = TimeRange.today();
+      final tomorrow = TimeRange.tomorrow();
+
+      expect(today.intersect(tomorrow), isNull);
+      expect(tomorrow.intersect(today), isNull);
+      expect(today & tomorrow, isNull);
+    });
+
+    test("Partially overlapping ranges return intersection", () {
+      final thisMonth = TimeRange.thisMonth();
+      final customRange = CustomTimeRange(
+          thisMonth.from.subtract(const Duration(days: 10)),
+          thisMonth.from.add(const Duration(days: 10)));
+
+      final intersection = thisMonth.intersect(customRange);
+      expect(intersection, isNotNull);
+      expect(intersection!.from, thisMonth.from);
+      expect(intersection.to, customRange.to);
+    });
+
+    test("Contained range returns inner range", () {
+      final thisYear = TimeRange.thisYear();
+      final thisMonth = TimeRange.thisMonth();
+
+      final intersection = thisYear.intersect(thisMonth);
+      expect(intersection, isNotNull);
+      expect(intersection!.from, thisMonth.from);
+      expect(intersection.to, thisMonth.to);
+    });
+
+    test("Operator & works the same as intersect", () {
+      final range1 =
+          CustomTimeRange(DateTime(2025, 1, 1), DateTime(2025, 3, 31));
+      final range2 =
+          CustomTimeRange(DateTime(2025, 3, 1), DateTime(2025, 6, 30));
+
+      final intersection1 = range1.intersect(range2);
+      final intersection2 = range1 & range2;
+
+      expect(intersection1, intersection2);
+      expect(intersection1!.from, DateTime(2025, 3, 1));
+      expect(intersection1.to, DateTime(2025, 3, 31));
+    });
+
+    test("Edge case - ranges touching at endpoints", () {
+      final range1 =
+          CustomTimeRange(DateTime(2025, 1, 1), DateTime(2025, 3, 31));
+      final range2 =
+          CustomTimeRange(DateTime(2025, 3, 31), DateTime(2025, 6, 30));
+
+      final intersection = range1.intersect(range2);
+      expect(intersection, isNotNull);
+      expect(intersection!.from, DateTime(2025, 3, 31));
+      expect(intersection.to, DateTime(2025, 3, 31));
+      // The intersection is a valid time range with the same start and end
+    });
+  });
 }
