@@ -1,3 +1,8 @@
+## 5.2.3
+
+- Arabic (ar_PS) ordinals to return the number. (I don't know any Arabic, ur
+  welcome to submit a PR)
+
 ## 5.2.2
 
 - Updated `README.md` to reflect docs domain change
