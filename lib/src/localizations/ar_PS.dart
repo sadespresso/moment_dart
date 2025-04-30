@@ -3,6 +3,7 @@
 
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
+import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
@@ -14,6 +15,7 @@ import 'package:moment_dart/src/types.dart';
 /// Country: Palestine
 class LocalizationArPs extends MomentLocalization
     with
+        Ordinal,
         MonthNames,
         SimpleUnits,
         SimpleRelative,
@@ -106,6 +108,7 @@ class LocalizationArPs extends MomentLocalization
     String getShortWeekday(DateTime dt) => weekdayNameShort[dt.weekday]!;
 
     return {
+      ...formattersWithOrdinal,
       ...formattersForMonthNames,
       ...formattersForWeekdayShortForms,
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD/MM/YYYY"),
@@ -196,4 +199,7 @@ class LocalizationArPs extends MomentLocalization
         allBefore: (formattedDate) => "قبل $formattedDate",
         customRangeAllTime: "كل الوقت",
       );
+
+  @override
+  String ordinalNumber(int n) => n.toString();
 }
