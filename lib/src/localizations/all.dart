@@ -36,6 +36,9 @@ export 'tr_TR.dart';
 import 'pt_PT.dart';
 export 'pt_PT.dart';
 
+import 'ru_RU.dart';
+export 'ru_RU.dart';
+
 import 'zh_CN.dart';
 export 'zh_CN.dart';
 
@@ -55,9 +58,10 @@ abstract class MomentLocalizations {
     "de_DE": () => LocalizationDeDe(),
     "es_ES": () => LocalizationEsEs(),
     "fr_FR": () => LocalizationFrFr(),
-    "pt_PT": () => LocalizationPtPt(),
-    "tr_TR": () => LocalizationTrTr(),
     "it_IT": () => LocalizationItIt(),
+    "pt_PT": () => LocalizationPtPt(),
+    "ru_RU": () => LocalizationRuRu(),
+    "tr_TR": () => LocalizationTrTr(),
     "zh_CN": () => LocalizationZhCn(),
   };
 
@@ -179,6 +183,9 @@ abstract class MomentLocalizations {
 
   /// Portuguese (Portuguese Republic)
   static LocalizationPtPt pt() => LocalizationPtPt();
+
+  /// Russian (Russia)
+  static LocalizationRuRu ruRu() => LocalizationRuRu();
 
   /// Italian (Italy)
   static LocalizationItIt it() => LocalizationItIt();
