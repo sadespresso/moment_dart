@@ -8,9 +8,8 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
-
-// TODO: Potentially add specific mixins for Russian if needed, e.g., for complex grammar rules.
 
 /// Language: Russian
 /// Country: Russia
@@ -21,7 +20,8 @@ class LocalizationRuRu extends MomentLocalization
         SimpleUnits,
         SimpleRelative,
         SimpleDuration,
-        SimpleRange {
+        SimpleRange,
+        WeekdayShortForms {
   static LocalizationRuRu? _instance;
 
   LocalizationRuRu._internal() : super();
@@ -42,8 +42,6 @@ class LocalizationRuRu extends MomentLocalization
 
   @override
   String get languageNameInEnglish => "Russian (Russia)";
-
-  // TODO: Implement all abstract members and provide Russian translations.
 
   @override
   Map<int, String> get monthNames => {
@@ -116,24 +114,25 @@ class LocalizationRuRu extends MomentLocalization
     // This function is for Ordinal mixin, used by `Mo` (Month ordinal) and `Do` (Day of month ordinal)
     // `Do` -> 1st, 2nd, 3rd
     // Russian: 1-е, 2-е, 3-е, ... 31-е
-    return "\${n}-е";
+    return "$n-е";
   }
 
   @override
-  String relativePast(String unit) => "\$unit назад";
+  String relativePast(String unit) => "$unit назад";
   @override
-  String relativeFuture(String unit) => "через \$unit";
+  String relativeFuture(String unit) => "через $unit";
 
   @override
   FormatSetOptional overrideFormatters() {
     return {
       ...formattersWithOrdinal,
       ...formattersForMonthNames,
+      ...formattersForWeekdayShortForms,
       // Russian specific date/time formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD.MM.YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D.M.YYYY"),
-      FormatterToken.LL: (dateTime) =>
-          reformat(dateTime, "D MMMM YYYY г."), // Note: "г." is for "года" - year
+      FormatterToken.LL: (dateTime) => reformat(
+          dateTime, "D MMMM YYYY г."), // Note: "г." is for "года" - year
       FormatterToken.ll: (dateTime) => reformat(dateTime, "D MMM YYYY г."),
       FormatterToken.LLL: (dateTime) =>
           reformat(dateTime, "D MMMM YYYY г., HH:mm"),
@@ -151,7 +150,7 @@ class LocalizationRuRu extends MomentLocalization
   @override
   CalenderLocalizationData get calendarData => calenderLocalizationDataRu;
 
-  static const CalenderLocalizationData calenderLocalizationDataRu =
+  static final CalenderLocalizationData calenderLocalizationDataRu =
       CalenderLocalizationData(
     relativeDayNames: {
       -1: "Вчера",
@@ -159,9 +158,9 @@ class LocalizationRuRu extends MomentLocalization
       1: "Завтра",
     },
     keywords: CalenderLocalizationKeywords(
-      at: (date, time) => "\$date в \$time", // e.g., "Сегодня в 14:00"
+      at: (date, time) => "$date в $time", // e.g., "Сегодня в 14:00"
       lastWeekday: (weekday) =>
-          "Прошлый \$weekday", // e.g., "Прошлый понедельник"
+          "Прошлый $weekday", // e.g., "Прошлый понедельник"
     ),
   );
 
@@ -181,9 +180,9 @@ class LocalizationRuRu extends MomentLocalization
           "1с",
         ),
         DurationInterval.seconds: UnitString.withForm(
-          "\$srDelta секунд", // Genitive plural, common for 5+ or if specific logic isn't handled by SimpleUnits
-          "\$srDelta сек.",
-          "\$srDeltaс",
+          "$srDelta секунд", // Genitive plural, common for 5+ or if specific logic isn't handled by SimpleUnits
+          "$srDelta сек.",
+          "$srDeltaс",
         ),
         DurationInterval.aMinute: UnitString.withForm(
           "минута",
@@ -191,9 +190,9 @@ class LocalizationRuRu extends MomentLocalization
           "1м",
         ),
         DurationInterval.minutes: UnitString.withForm(
-          "\$srDelta минут", // Genitive plural
-          "\$srDelta мин.",
-          "\$srDeltaм",
+          "$srDelta минут", // Genitive plural
+          "$srDelta мин.",
+          "$srDeltaм",
         ),
         DurationInterval.anHour: UnitString.withForm(
           "час",
@@ -201,9 +200,9 @@ class LocalizationRuRu extends MomentLocalization
           "1ч",
         ),
         DurationInterval.hours: UnitString.withForm(
-          "\$srDelta часов", // Genitive plural
-          "\$srDelta ч.",
-          "\$srDeltaч",
+          "$srDelta часов", // Genitive plural
+          "$srDelta ч.",
+          "$srDeltaч",
         ),
         DurationInterval.aDay: UnitString.withForm(
           "день",
@@ -211,9 +210,9 @@ class LocalizationRuRu extends MomentLocalization
           "1д",
         ),
         DurationInterval.days: UnitString.withForm(
-          "\$srDelta дней", // Genitive plural
-          "\$srDelta д.",
-          "\$srDeltaд",
+          "$srDelta дней", // Genitive plural
+          "$srDelta д.",
+          "$srDeltaд",
         ),
         DurationInterval.aWeek: UnitString.withForm(
           "неделя",
@@ -221,9 +220,9 @@ class LocalizationRuRu extends MomentLocalization
           "1н",
         ),
         DurationInterval.weeks: UnitString.withForm(
-          "\$srDelta недель", // Genitive plural
-          "\$srDelta нед.",
-          "\$srDeltaн",
+          "$srDelta недель", // Genitive plural
+          "$srDelta нед.",
+          "$srDeltaн",
         ),
         DurationInterval.aMonth: UnitString.withForm(
           "месяц",
@@ -231,9 +230,9 @@ class LocalizationRuRu extends MomentLocalization
           "1мес",
         ),
         DurationInterval.months: UnitString.withForm(
-          "\$srDelta месяцев", // Genitive plural
-          "\$srDelta мес.",
-          "\$srDeltaмес",
+          "$srDelta месяцев", // Genitive plural
+          "$srDelta мес.",
+          "$srDeltaмес",
         ),
         DurationInterval.aYear: UnitString.withForm(
           "год",
@@ -241,25 +240,21 @@ class LocalizationRuRu extends MomentLocalization
           "1г",
         ),
         DurationInterval.years: UnitString.withForm(
-          "\$srDelta лет", // Genitive plural
-          "\$srDelta г.",
-          "\$srDeltaл",
+          "$srDelta лет", // Genitive plural
+          "$srDelta г.",
+          "$srDeltaл",
         ),
       };
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "На этой неделе",
-        thisYear: (DateTime anchor) => "В этом году",
         year: (range, {DateTime? anchor, bool useRelative = true}) {
-          if (useRelative &&
-              anchor != null &&
-              anchor.year == range.year) {
+          if (useRelative && anchor != null && anchor.year == range.year) {
             return "В этом году";
           }
-          return "Год \${range.year}";
+          return "Год ${range.year}";
         },
-        thisMonth: (DateTime anchor) => "В этом месяце",
         month: (range, {DateTime? anchor, bool useRelative = true}) {
           final now = anchor ?? DateTime.now();
           if (useRelative &&
@@ -270,16 +265,10 @@ class LocalizationRuRu extends MomentLocalization
           if (useRelative && now.year == range.year) {
             return monthNames[range.month]!; // Full month name
           }
-          return "\${monthNames[range.month]!} \${range.year}";
+          return "${monthNames[range.month]!} ${range.year}";
         },
-        allAfter: (formattedDate) => "После \$formattedDate",
-        allBefore: (formattedDate) => "До \$formattedDate",
+        allAfter: (formattedDate) => "После $formattedDate",
+        allBefore: (formattedDate) => "До $formattedDate",
         customRangeAllTime: "За все время",
       );
-
-  // If Russian has specific word forms for weekdays, override this.
-  // @override
-  // String getWeekdayNameShort(int weekday) => super.getWeekdayNameShort(weekday);
-  // @override
-  // String getWeekdayNameMin(int weekday) => super.getWeekdayNameMin(weekday);
 }
