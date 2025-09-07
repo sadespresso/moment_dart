@@ -178,7 +178,7 @@ abstract class MomentLocalization {
     final Moment to = range.to.toMoment(localization: this);
 
     if (range is HourTimeRange) {
-      return "${from.LT} - ${to.LT}, ${from.calendar(omitHours: true, reference: anchor)}";
+      return "${from.LT} - ${to.LT}, ${useRelative ? from.calendar(omitHours: true, reference: anchor) : from.ll}";
     } else if (range is DayTimeRange) {
       return useRelative
           ? from.calendar(omitHours: true, reference: anchor)
@@ -212,7 +212,11 @@ abstract class MomentLocalization {
 
     final bool omitHours = from.isMidnight && to.isMidnight;
 
-    return "${from.calendar(omitHours: omitHours, reference: anchor)} - ${to.calendar(omitHours: omitHours, reference: anchor)}";
+    if (useRelative) {
+      return "${from.calendar(omitHours: omitHours, reference: anchor)} - ${to.calendar(omitHours: omitHours, reference: anchor)}";
+    }
+
+    return "${from.lll} - ${to.lll}";
   }
 
   final FormatSetOptional defaultFormatters = {

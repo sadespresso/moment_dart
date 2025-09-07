@@ -1,3 +1,7 @@
+## 5.2.4
+
+- Fix: TimeRange.format() now respects `useRelative=false` for custom time ranges.
+
 ## 5.2.3
 
 - Arabic (ar_PS) ordinals to return the number. (I don't know any Arabic, ur
