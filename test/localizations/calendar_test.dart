@@ -21,14 +21,18 @@ void main() {
   // C
   var epoch = Moment.fromMillisecondsSinceEpoch(0, isUtc: true);
 
-    test("ar_PS localization calendar test", () {
+  test("ar_PS localization calendar test", () {
     Moment.setGlobalLocalization(MomentLocalizations.arPs());
 
     // A - Times changed to HH:mm format
-    expect(today.calendar(reference: today), "اليوم الساعة 05:33"); // Changed from 5:33 ص
-    expect(tomorrow.calendar(reference: today), "غداً الساعة 05:33"); // Changed from 5:33 ص
-    expect(tueOrDayAfterTomorrow.calendar(reference: today), "الثلاثاء الساعة 05:33"); // Changed from 5:33 ص
-    expect(yesterday.calendar(reference: today), "أمس الساعة 05:33"); // Changed from 5:33 ص
+    expect(today.calendar(reference: today),
+        "اليوم الساعة 05:33"); // Changed from 5:33 ص
+    expect(tomorrow.calendar(reference: today),
+        "غداً الساعة 05:33"); // Changed from 5:33 ص
+    expect(tueOrDayAfterTomorrow.calendar(reference: today),
+        "الثلاثاء الساعة 05:33"); // Changed from 5:33 ص
+    expect(yesterday.calendar(reference: today),
+        "أمس الساعة 05:33"); // Changed from 5:33 ص
     expect(fridayOrDayBeforeYesterday.calendar(reference: today),
         "الجمعة الماضية الساعة 05:33"); // Changed from 5:33 ص
 
@@ -46,10 +50,11 @@ void main() {
 
     // C
     // calendar format might use L, check definition. Assuming it uses L = DD/MM/YYYY
-    expect(epoch.format('L'), "01/01/1970"); 
-    expect(epoch.format("LLLL"), "الخميس، 1 يناير 1970 00:00"); // Changed from 12:00 ص
+    expect(epoch.format('L'), "01/01/1970");
+    expect(epoch.format("LLLL"),
+        "الخميس، 1 يناير 1970 00:00"); // Changed from 12:00 ص
   });
-  
+
   test("de_DE localization calendar test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
 
@@ -430,11 +435,12 @@ void main() {
     // A
     expect(today.calendar(reference: today), "Сегодня в 05:33");
     expect(tomorrow.calendar(reference: today), "Завтра в 05:33");
-    expect(tueOrDayAfterTomorrow.calendar(reference: today), "Вторник в 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today),
+        "Послезавтра в 05:33");
     expect(yesterday.calendar(reference: today), "Вчера в 05:33");
     expect(
       fridayOrDayBeforeYesterday.calendar(reference: today),
-      "Прошлая пятница в 05:33",
+      "Позавчера в 05:33",
     );
     // B
     expect(

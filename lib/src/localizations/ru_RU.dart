@@ -3,9 +3,10 @@
 import 'package:moment_dart/moment_dart.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
-import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
+import 'package:moment_dart/src/localizations/mixins/ru_RU/duration.dart';
+import 'package:moment_dart/src/localizations/mixins/ru_RU/relative.dart';
+import 'package:moment_dart/src/localizations/mixins/ru_RU/units.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
-import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/types.dart';
@@ -17,8 +18,9 @@ class LocalizationRuRu extends MomentLocalization
         MonthNames,
         Ordinal,
         SimpleUnits,
-        SimpleRelative,
-        SimpleDuration,
+        RuRuUnits,
+        RuRuRelative,
+        RuRuDuration,
         SimpleRange,
         WeekdayShortForms {
   static LocalizationRuRu? _instance;
@@ -41,11 +43,6 @@ class LocalizationRuRu extends MomentLocalization
 
   @override
   String get languageNameInEnglish => "Russian (Russia)";
-
-  @override
-  String relativePast(String unit) => "$unit назад";
-  @override
-  String relativeFuture(String unit) => "через $unit";
 
   @override
   Map<int, String> get monthNames => {
@@ -151,9 +148,11 @@ class LocalizationRuRu extends MomentLocalization
   static const CalenderLocalizationData calenderLocalizationDataRuRu =
       CalenderLocalizationData(
     relativeDayNames: {
+      -2: "Позавчера",
       -1: "Вчера",
       0: "Сегодня",
       1: "Завтра",
+      2: "Послезавтра",
     },
     keywords: CalenderLocalizationKeywords(
       at: at,
@@ -163,70 +162,6 @@ class LocalizationRuRu extends MomentLocalization
 
   @override
   int get weekStart => DateTime.monday;
-
-  @override
-  Map<DurationInterval, UnitString> get units => {
-        DurationInterval.lessThanASecond: UnitString.duo(
-          "несколько секунд",
-          "неск. сек",
-        ),
-        DurationInterval.aSecond: UnitString.duo(
-          "секунда",
-          "сек",
-        ),
-        DurationInterval.seconds: UnitString.duo(
-          "$srDelta секунд",
-          "$srDelta сек",
-        ),
-        DurationInterval.aMinute: UnitString.duo(
-          "минута",
-          "мин",
-        ),
-        DurationInterval.minutes: UnitString.duo(
-          "$srDelta минут",
-          "$srDelta мин",
-        ),
-        DurationInterval.anHour: UnitString.duo(
-          "час",
-          "час",
-        ),
-        DurationInterval.hours: UnitString.duo(
-          "$srDelta часов",
-          "$srDelta час",
-        ),
-        DurationInterval.aDay: UnitString.duo(
-          "день",
-          "день",
-        ),
-        DurationInterval.days: UnitString.duo(
-          "$srDelta дней",
-          "$srDelta дн",
-        ),
-        DurationInterval.aWeek: UnitString.duo(
-          "неделя",
-          "нед",
-        ),
-        DurationInterval.weeks: UnitString.duo(
-          "$srDelta недель",
-          "$srDelta нед",
-        ),
-        DurationInterval.aMonth: UnitString.duo(
-          "месяц",
-          "мес",
-        ),
-        DurationInterval.months: UnitString.duo(
-          "$srDelta месяцев",
-          "$srDelta мес",
-        ),
-        DurationInterval.aYear: UnitString.duo(
-          "год",
-          "год",
-        ),
-        DurationInterval.years: UnitString.duo(
-          "$srDelta лет",
-          "$srDelta лет",
-        ),
-      };
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(

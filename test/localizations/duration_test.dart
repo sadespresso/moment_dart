@@ -173,7 +173,7 @@ void main() {
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.semi),
-      "خلال 6 أيام 7 ساعات", 
+      "خلال 6 أيام 7 ساعات",
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.full),
@@ -526,7 +526,6 @@ void main() {
       "بضع ثوانٍ", // Added tanween
     );
   });
-
 
   test("de_DE (with suffix/prefix) localization duration test", () {
     final MomentLocalization l10n = LocalizationDeDe();
@@ -3465,6 +3464,483 @@ void main() {
     expect(
       l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
       "birkaç sn",
+    );
+  });
+
+  test('ru_RU (with suffix) localization duration test', () {
+    final MomentLocalization l10n = LocalizationRuRu();
+
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.none),
+      'через год и 2 месяца',
+    );
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.semi),
+      'через 1г 2мес',
+    );
+
+    expect(
+      l10n.duration(_3y, form: Abbreviation.none),
+      'через 3 года',
+    );
+    expect(
+      l10n.duration(_3y, form: Abbreviation.full),
+      'через 3г.',
+    );
+
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.none),
+      'через 3 месяца и 17 дней',
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.semi),
+      'через 3мес 17дн',
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.full),
+      'через 3мес 17дн',
+    );
+
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.none),
+      'через 4 месяца',
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.semi),
+      'через 4мес',
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.full),
+      'через 4мес',
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      'через 3 недели и 2 дня',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      'через 3нед 2дн',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      'через 3нед 2дн',
+    );
+    // Without includeWeeks
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.none),
+      'через 23 дня',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
+      'через 23дн',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
+      'через 23дн',
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      'через 4 недели',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      'через 4нед',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      'через 4нед',
+    );
+    // Without includeWeeks
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.none),
+      'через 28 дней',
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.semi),
+      'через 28дн',
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.full),
+      'через 28дн',
+    );
+
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.none),
+      'через 6 дней и 7 часов',
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.semi),
+      'через 6дн 7ч',
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.full),
+      'через 6дн 7ч',
+    );
+
+    expect(
+      l10n.duration(_6d, form: Abbreviation.none),
+      'через 6 дней',
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.semi),
+      'через 6дн',
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.full),
+      'через 6дн',
+    );
+
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.none),
+      'через 8 часов и 8 минут',
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.semi),
+      'через 8ч 8мин',
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.full),
+      'через 8ч 8мин',
+    );
+
+    expect(
+      l10n.duration(_8h, form: Abbreviation.none),
+      'через 8 часов',
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.semi),
+      'через 8ч',
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.full),
+      'через 8ч',
+    );
+
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.none),
+      'через 48 минут и 42 секунды',
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.semi),
+      'через 48мин 42сек',
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.full),
+      'через 48мин 42сек',
+    );
+
+    expect(
+      l10n.duration(_35m, form: Abbreviation.none),
+      'через 35 минут',
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.semi),
+      'через 35мин',
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.full),
+      'через 35мин',
+    );
+
+    expect(
+      l10n.duration(_42s, form: Abbreviation.none),
+      'через 42 секунды',
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.semi),
+      'через 42сек',
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.full),
+      'через 42сек',
+    );
+
+    expect(
+      l10n.duration(_zero, form: Abbreviation.none),
+      'через несколько секунд',
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.semi),
+      'через неск. сек',
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.full),
+      'через неск. сек',
+    );
+  });
+
+  test('ru_RU (standalone) localization duration test', () {
+    final MomentLocalization l10n = LocalizationRuRu();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      'год и 2 месяца',
+    );
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '1г 2мес',
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '3 года',
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '3г.',
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '3г.',
+    );
+
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '3 месяца и 17 дней',
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '3мес 17дн',
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '3мес 17дн',
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '4 месяца',
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '4мес',
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '4мес',
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      '3 недели и 2 дня',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      '3нед 2дн',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      '3нед 2дн',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '23 дня',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '23дн',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '23дн',
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      '4 недели',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      '4нед',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      '4нед',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '28 дней',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '28дн',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '28дн',
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '6 дней и 7 часов',
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '6дн 7ч',
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '6дн 7ч',
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '6 дней',
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '6дн',
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '6дн',
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '8 часов и 8 минут',
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '8ч 8мин',
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '8ч 8мин',
+    );
+
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '8 часов',
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '8ч',
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '8ч',
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '48 минут и 42 секунды',
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '48мин 42сек',
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '48мин 42сек',
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '35 минут',
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '35мин',
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '35мин',
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '42 секунды',
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '42сек',
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '42сек',
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      'несколько секунд',
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      'неск. сек',
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      'неск. сек',
     );
   });
 }
