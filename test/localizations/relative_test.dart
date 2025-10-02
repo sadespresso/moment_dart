@@ -18,14 +18,20 @@ void main() {
   var aDayAgo = now - const Duration(hours: 35);
   var twoDaysAhead = now + const Duration(days: 2);
   var twoDaysAgo = now - const Duration(days: 2);
+  var sixDaysAhead = now + const Duration(days: 6);
+  var sixDaysAgo = now - const Duration(days: 6);
   var aMonthAhead = now + const Duration(days: 44);
   var aMonthAgo = now - const Duration(days: 44);
   var fourMonthsAhead = now + const Duration(days: 120);
   var fourMonthsAgo = now - const Duration(days: 120);
+  var tenMonthsAhead = now + const Duration(days: 300);
+  var tenMonthsAgo = now - const Duration(days: 300);
   var aYearAhead = now + const Duration(days: 547);
   var aYearAgo = now - const Duration(days: 547);
   var threeYearsAhead = now + const Duration(days: 365 * 3 + 1);
   var threeYearsAgo = now - const Duration(days: 365 * 3 + 1);
+  var fiveYearsAgo = now - const Duration(days: 365 * 5 + 1);
+  var tenYearsAgo = now - const Duration(days: 365 * 10 + 1);
 
   test("de_DE localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
@@ -103,8 +109,8 @@ void main() {
     expect(threeYearsAgo.from(now), "3 anni fa");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 anni");
   });
-  
-test(" ar localization relative time test", () {
+
+  test(" ar localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.arPs());
 
     // Adjusted expectations to match SimpleUnits output (no dual form)
@@ -128,7 +134,8 @@ test(" ar localization relative time test", () {
     expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "يوم");
     expect(twoDaysAhead.from(now), "خلال 2 أيام"); // Adjusted from يومين
     expect(twoDaysAgo.from(now), "منذ 2 أيام"); // Adjusted from يومين
-    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 أيام"); // Adjusted from يومين
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true),
+        "2 أيام"); // Adjusted from يومين
     expect(aMonthAhead.from(now), "خلال شهر");
     expect(aMonthAgo.from(now), "منذ شهر");
     expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "شهر");
@@ -141,8 +148,8 @@ test(" ar localization relative time test", () {
     expect(threeYearsAhead.from(now), "خلال 3 أعوام");
     expect(threeYearsAgo.from(now), "منذ 3 أعوام");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 أعوام");
-});
-  
+  });
+
   test("fr localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.fr());
 
@@ -562,5 +569,54 @@ test(" ar localization relative time test", () {
     expect(threeYearsAhead.from(now), "3 yıl sonra");
     expect(threeYearsAgo.from(now), "3 yıl önce");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 yıl");
+  });
+
+  test("ru_RU localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.ru());
+
+    expect(fewMomentsAhead.from(now), "через несколько секунд");
+    expect(fewMomentsAgo.from(now), "несколько секунд назад");
+    expect(
+        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "несколько секунд");
+    expect(aMinuteAhead.from(now), "через минуту");
+    expect(aMinuteAgo.from(now), "минуту назад");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 минута");
+    expect(fiveMinutesAhead.from(now), "через 5 минут");
+    expect(fiveMinutesAgo.from(now), "5 минут назад");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 минут");
+    expect(anHourAhead.from(now), "через час");
+    expect(anHourAgo.from(now), "час назад");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "час");
+    expect(sixHoursAhead.from(now), "через 6 часов");
+    expect(sixHoursAgo.from(now), "6 часов назад");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 часов");
+    expect(aDayAhead.from(now), "через день");
+    expect(aDayAgo.from(now), "день назад");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "день");
+    expect(twoDaysAhead.from(now), "через 2 дня");
+    expect(twoDaysAgo.from(now), "2 дня назад");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 дня");
+    expect(sixDaysAhead.from(now), "через 6 дней");
+    expect(sixDaysAgo.from(now), "6 дней назад");
+    expect(sixDaysAgo.from(now, dropPrefixOrSuffix: true), "6 дней");
+    expect(aMonthAhead.from(now), "через месяц");
+    expect(aMonthAgo.from(now), "месяц назад");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "месяц");
+    expect(fourMonthsAhead.from(now), "через 4 месяца");
+    expect(fourMonthsAgo.from(now), "4 месяца назад");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 месяца");
+    expect(tenMonthsAhead.from(now), "через 10 месяцев");
+    expect(tenMonthsAgo.from(now), "10 месяцев назад");
+    expect(tenMonthsAgo.from(now, dropPrefixOrSuffix: true), "10 месяцев");
+    expect(aYearAhead.from(now), "через год");
+    expect(aYearAgo.from(now), "год назад");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "год");
+    expect(threeYearsAhead.from(now), "через 3 года");
+    expect(threeYearsAgo.from(now), "3 года назад");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 года");
+    expect(fiveYearsAgo.from(now), "5 лет назад");
+    expect(fiveYearsAgo.from(now, dropPrefixOrSuffix: true), "5 лет");
+    expect(tenYearsAgo.from(now), "10 лет назад");
+    expect(tenYearsAgo.from(now, dropPrefixOrSuffix: true), "10 лет");
   });
 }

@@ -1,3 +1,8 @@
+## 5.3.0
+
+- Added new locale:
+  - ru_RU - Russian (Russia)
+
 ## 5.2.4
 
 - Fix: TimeRange.format() now respects `useRelative=false` for custom time ranges.

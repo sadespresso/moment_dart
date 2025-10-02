@@ -95,5 +95,14 @@ void main() {
       MomentLocalizations.byLocale("zh_CN"),
       TypeMatcher<LocalizationZhCn>(),
     );
+
+    expect(
+      MomentLocalizations.byLocale("ru_RU"),
+      TypeMatcher<LocalizationRuRu>(),
+    );
+    expect(
+      MomentLocalizations.byLocale("ru"),
+      TypeMatcher<LocalizationRuRu>(),
+    );
   });
 }
