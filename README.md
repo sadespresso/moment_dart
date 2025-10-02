@@ -124,6 +124,7 @@ Contributions of any kind are welcome! Please refer to [CONTRIBUTE.md](CONTRIBUT
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sadespresso"><img src="https://avatars.githubusercontent.com/u/51638223?v=4?s=80" width="80px;" alt="Батмэнд Ганбаатар"/><br /><sub><b>Батмэнд Ганбаатар</b></sub></a><br /><a href="https://github.com/sadespresso/moment_dart/commits?author=sadespresso" title="Code">💻</a> <a href="#maintenance-sadespresso" title="Maintenance">🚧</a> <a href="#translation-sadespresso" title="Translation">🌍</a> <a href="https://github.com/sadespresso/moment_dart/commits?author=sadespresso" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ultrate"><img src="https://avatars.githubusercontent.com/u/124692023?v=4?s=80" width="80px;" alt="Ultrate"/><br /><sub><b>Ultrate</b></sub></a><br /><a href="https://github.com/sadespresso/moment_dart/commits?author=Ultrate" title="Code">💻</a> <a href="#translation-Ultrate" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/muhammadyusuf-kurbonov-2b6ba8235/"><img src="https://avatars.githubusercontent.com/u/45625440?v=4?s=80" width="80px;" alt="Muhammadyusuf"/><br /><sub><b>Muhammadyusuf</b></sub></a><br /><a href="#translation-muhammadyusuf-kurbonov" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
