@@ -1,3 +1,8 @@
+## 5.3.0+1
+
+- Added new locale:
+  - ru_RU - Russian (Russia)
+
 ## 5.3.0
 
 - Added new locale:
