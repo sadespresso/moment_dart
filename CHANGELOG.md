@@ -1,3 +1,7 @@
+## 5.3.1
+
+- Made linter happy
+
 ## 5.3.0+1
 
 - Added new locale:
