@@ -1,16 +1,16 @@
 name: moment_dart
 description: Multi-purpose immutable DateTime subclass. Supports multiple localizations to easily convert DateTime and Duration into human-readable format
-version: 5.3.0+1
+version: 5.3.1
 homepage: https://github.com/sadespresso/moment_dart
 repository: https://github.com/sadespresso/moment_dart
 issue_tracker: https://github.com/sadespresso/moment_dart/issues
 funding:
   - https://buymeacoffee.com/sadespresso
-documentation: https://dev.gege.mn/moment_dart_docs
+documentation: https://moment-dart.dev.gege.mn/
 
 environment:
   sdk: ">=2.19.4 <4.0.0"
 
 dev_dependencies:
-  lints: ^5.1.1
+  lints: ^6.1.0
   test: ^1.23.1

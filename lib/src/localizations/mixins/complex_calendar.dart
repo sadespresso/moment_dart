@@ -142,6 +142,8 @@ class ComplexCalenderLocalizationKeywords {
     this.at = ComplexCalenderLocalizationKeywords._defaultAt,
   });
 
-  static String _defaultAt(dateTime, dateString, timeString, {reference}) =>
+  static String _defaultAt(
+          DateTime dateTime, String dateString, String timeString,
+          {DateTime? reference}) =>
       "$dateString $timeString";
 }
