@@ -136,22 +136,23 @@ extension MomentBenefits on DateTime {
   }
 
   /// Equivalent to `add(other)`
-  operator +(Duration other) => add(other);
+  DateTime operator +(Duration other) => add(other);
 
   /// Equivalent to `subtract(other)`
-  operator -(Duration other) => subtract(other);
+  DateTime operator -(Duration other) => subtract(other);
 
   /// Equivalent to `isAfter(other)`
-  operator >(DateTime other) => isAfter(other);
+  bool operator >(DateTime other) => isAfter(other);
 
   /// Equivalent to `isBefore(other)`
-  operator <(DateTime other) => isBefore(other);
+  bool operator <(DateTime other) => isBefore(other);
 
   /// Equivalent to `isAfter(other) || isAtSameMomentAs(other)`
-  operator >=(DateTime other) => isAfter(other) || isAtSameMomentAs(other);
+  bool operator >=(DateTime other) => isAfter(other) || isAtSameMomentAs(other);
 
   /// Equivalent to `isBefore(other) || isAtSameMomentAs(other)`
-  operator <=(DateTime other) => isBefore(other) || isAtSameMomentAs(other);
+  bool operator <=(DateTime other) =>
+      isBefore(other) || isAtSameMomentAs(other);
 
   /// Returns timezone:
   ///

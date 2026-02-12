@@ -49,7 +49,7 @@ class Moment extends DateTime {
   ///   Moment frenchMoment = Moment.now(localization: MomentLocalizations.fr();
   ///   frenchMoment.LL; // 14 février 2023
   /// ```
-  static setGlobalLocalization(MomentLocalization localization) {
+  static void setGlobalLocalization(MomentLocalization localization) {
     Moment.defaultLocalization = localization;
   }
 

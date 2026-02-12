@@ -30,6 +30,16 @@
         "code",
         "translation"
       ]
+    },
+    {
+      "login": "muhammadyusuf-kurbonov",
+      "name": "Muhammadyusuf",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45625440?v=4",
+      "profile": "https://www.linkedin.com/in/muhammadyusuf-kurbonov-2b6ba8235/",
+      "contributions": [
+        "translation",
+        "code"
+      ]
     }
   ],
   "commitConvention": "angular",
