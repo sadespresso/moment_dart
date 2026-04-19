@@ -411,4 +411,32 @@ void main() {
     expect(allBeforeMyBirthday.format(), "До 1.6.2003");
     expect(allTime.format(), "За все время");
   });
+
+  test("pl_PL range test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.pl());
+
+    final thisWeek = TimeRange.thisLocalWeek();
+    final thisWeekISO = TimeRange.thisIsoWeek();
+    final thisMonth = TimeRange.thisMonth();
+    final thisYear = TimeRange.thisYear();
+    final year = YearTimeRange(2021);
+    final month = MonthTimeRange(1205, 3);
+    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allBeforeMyBirthday =
+        CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
+    final allTime = TimeRange.allTime();
+
+    expect(thisWeek.format(), "Ten tydzień");
+    expect(
+      thisWeekISO.format(),
+      "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
+    );
+    expect(thisMonth.format(), "W tym miesiącu");
+    expect(thisYear.format(), "W tym roku");
+    expect(year.format(), "2021 rok");
+    expect(month.format(), "Marzec 1205");
+    expect(allAfterEpoch.format(), "Po 1.1.1970");
+    expect(allBeforeMyBirthday.format(), "Przed 1.6.2003");
+    expect(allTime.format(), "Cały czas");
+  });
 }

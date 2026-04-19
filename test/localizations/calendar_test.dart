@@ -468,4 +468,44 @@ void main() {
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "Четверг, 1 Январь 1970 00:00");
   });
+
+  test("pl_PL localization calendar test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.pl());
+
+    // A
+    expect(today.calendar(reference: today), "Dzisiaj o 05:33");
+    expect(tomorrow.calendar(reference: today), "Jutro o 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today),
+        "Pojutrze o 05:33");
+    expect(yesterday.calendar(reference: today), "Wczoraj o 05:33");
+    expect(
+      fridayOrDayBeforeYesterday.calendar(reference: today),
+      "Przedwczoraj o 05:33",
+    );
+    // B
+    expect(
+      lastMonday.calendar(reference: today, omitHours: true),
+      "Ostatni poniedziałek",
+    );
+    expect(
+      lastTuesday.calendar(reference: today, omitHours: true),
+      "Ostatni wtorek",
+    );
+    expect(
+      lastWednesday.calendar(reference: today, omitHours: true),
+      "Ostatnia środa",
+    );
+    expect(
+      nextWednesday.calendar(reference: today, omitHours: true),
+      "Środa",
+    );
+    expect(
+      nextThursday.calendar(reference: today, omitHours: true),
+      "Czwartek",
+    );
+    expect(nextFriday.calendar(reference: today, omitHours: true), "Piątek");
+    // C
+    expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
+    expect(epoch.format("LLLL"), "Czwartek, 1 stycznia 1970 00:00");
+  });
 }

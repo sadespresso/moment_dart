@@ -619,4 +619,53 @@ void main() {
     expect(tenYearsAgo.from(now), "10 лет назад");
     expect(tenYearsAgo.from(now, dropPrefixOrSuffix: true), "10 лет");
   });
+
+  test("pl_PL localization relative time test", () {
+    Moment.setGlobalLocalization(MomentLocalizations.pl());
+
+    expect(fewMomentsAhead.from(now), "za kilka sekund");
+    expect(fewMomentsAgo.from(now), "kilka sekund temu");
+    expect(
+        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "kilka sekund");
+    expect(aMinuteAhead.from(now), "za minutę");
+    expect(aMinuteAgo.from(now), "minutę temu");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 minuta");
+    expect(fiveMinutesAhead.from(now), "za 5 minut");
+    expect(fiveMinutesAgo.from(now), "5 minut temu");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 minut");
+    expect(anHourAhead.from(now), "za godzinę");
+    expect(anHourAgo.from(now), "godzinę temu");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "godzina");
+    expect(sixHoursAhead.from(now), "za 6 godzin");
+    expect(sixHoursAgo.from(now), "6 godzin temu");
+    expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 godzin");
+    expect(aDayAhead.from(now), "za dzień");
+    expect(aDayAgo.from(now), "dzień temu");
+    expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "dzień");
+    expect(twoDaysAhead.from(now), "za 2 dni");
+    expect(twoDaysAgo.from(now), "2 dni temu");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 dni");
+    expect(sixDaysAhead.from(now), "za 6 dni");
+    expect(sixDaysAgo.from(now), "6 dni temu");
+    expect(sixDaysAgo.from(now, dropPrefixOrSuffix: true), "6 dni");
+    expect(aMonthAhead.from(now), "za miesiąc");
+    expect(aMonthAgo.from(now), "miesiąc temu");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "miesiąc");
+    expect(fourMonthsAhead.from(now), "za 4 miesiące");
+    expect(fourMonthsAgo.from(now), "4 miesiące temu");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 miesiące");
+    expect(tenMonthsAhead.from(now), "za 10 miesięcy");
+    expect(tenMonthsAgo.from(now), "10 miesięcy temu");
+    expect(tenMonthsAgo.from(now, dropPrefixOrSuffix: true), "10 miesięcy");
+    expect(aYearAhead.from(now), "za rok");
+    expect(aYearAgo.from(now), "rok temu");
+    expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "rok");
+    expect(threeYearsAhead.from(now), "za 3 lata");
+    expect(threeYearsAgo.from(now), "3 lata temu");
+    expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 lata");
+    expect(fiveYearsAgo.from(now), "5 lat temu");
+    expect(fiveYearsAgo.from(now, dropPrefixOrSuffix: true), "5 lat");
+    expect(tenYearsAgo.from(now), "10 lat temu");
+    expect(tenYearsAgo.from(now, dropPrefixOrSuffix: true), "10 lat");
+  });
 }

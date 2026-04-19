@@ -18,5 +18,6 @@ void main() {
     expect(LocalizationItIt().locale, "it_IT");
     expect(LocalizationZhCn().locale, "zh_CN");
     expect(LocalizationRuRu().locale, "ru_RU");
+    expect(LocalizationPlPl().locale, "pl_PL");
   });
 }
