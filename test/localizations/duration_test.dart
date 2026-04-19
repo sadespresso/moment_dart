@@ -3943,4 +3943,481 @@ void main() {
       'неск. сек',
     );
   });
+
+  test('pl_PL (with suffix) localization duration test', () {
+    final MomentLocalization l10n = LocalizationPlPl();
+
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.none),
+      'za rok i 2 miesiące',
+    );
+    expect(
+      l10n.duration(_1y_2mo, form: Abbreviation.semi),
+      'za 1 r. 2 mies.',
+    );
+
+    expect(
+      l10n.duration(_3y, form: Abbreviation.none),
+      'za 3 lata',
+    );
+    expect(
+      l10n.duration(_3y, form: Abbreviation.full),
+      'za 3 l.',
+    );
+
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.none),
+      'za 3 miesiące i 17 dni',
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.semi),
+      'za 3 mies. 17 dn.',
+    );
+    expect(
+      l10n.duration(_3mo_17d, form: Abbreviation.full),
+      'za 3 mies. 17 dn.',
+    );
+
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.none),
+      'za 4 miesiące',
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.semi),
+      'za 4 mies.',
+    );
+    expect(
+      l10n.duration(_4mo, form: Abbreviation.full),
+      'za 4 mies.',
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      'za 3 tygodnie i 2 dni',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      'za 3 tyg. 2 dn.',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      'za 3 tyg. 2 dn.',
+    );
+    // Without includeWeeks
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.none),
+      'za 23 dni',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
+      'za 23 dn.',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
+      'za 23 dn.',
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      'za 4 tygodnie',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      'za 4 tyg.',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      'za 4 tyg.',
+    );
+    // Without includeWeeks
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.none),
+      'za 28 dni',
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.semi),
+      'za 28 dn.',
+    );
+    expect(
+      l10n.duration(_4w_or_28d, form: Abbreviation.full),
+      'za 28 dn.',
+    );
+
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.none),
+      'za 6 dni i 7 godzin',
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.semi),
+      'za 6 dn. 7 godz.',
+    );
+    expect(
+      l10n.duration(_6d_7h, form: Abbreviation.full),
+      'za 6 dn. 7 godz.',
+    );
+
+    expect(
+      l10n.duration(_6d, form: Abbreviation.none),
+      'za 6 dni',
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.semi),
+      'za 6 dn.',
+    );
+    expect(
+      l10n.duration(_6d, form: Abbreviation.full),
+      'za 6 dn.',
+    );
+
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.none),
+      'za 8 godzin i 8 minut',
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.semi),
+      'za 8 godz. 8 min',
+    );
+    expect(
+      l10n.duration(_8h_8m, form: Abbreviation.full),
+      'za 8 godz. 8 min',
+    );
+
+    expect(
+      l10n.duration(_8h, form: Abbreviation.none),
+      'za 8 godzin',
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.semi),
+      'za 8 godz.',
+    );
+    expect(
+      l10n.duration(_8h, form: Abbreviation.full),
+      'za 8 godz.',
+    );
+
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.none),
+      'za 48 minut i 42 sekundy',
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.semi),
+      'za 48 min 42 sek.',
+    );
+    expect(
+      l10n.duration(_48m_42s, form: Abbreviation.full),
+      'za 48 min 42 sek.',
+    );
+
+    expect(
+      l10n.duration(_35m, form: Abbreviation.none),
+      'za 35 minut',
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.semi),
+      'za 35 min',
+    );
+    expect(
+      l10n.duration(_35m, form: Abbreviation.full),
+      'za 35 min',
+    );
+
+    expect(
+      l10n.duration(_42s, form: Abbreviation.none),
+      'za 42 sekundy',
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.semi),
+      'za 42 sek.',
+    );
+    expect(
+      l10n.duration(_42s, form: Abbreviation.full),
+      'za 42 sek.',
+    );
+
+    expect(
+      l10n.duration(_zero, form: Abbreviation.none),
+      'za kilka sekund',
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.semi),
+      'za kilka sek.',
+    );
+    expect(
+      l10n.duration(_zero, form: Abbreviation.full),
+      'za kilka sek.',
+    );
+  });
+
+  test('pl_PL (standalone) localization duration test', () {
+    final MomentLocalization l10n = LocalizationPlPl();
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      'rok i 2 miesiące',
+    );
+
+    expect(
+      l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '1 r. 2 mies.',
+    );
+
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '3 lata',
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '3 l.',
+    );
+    expect(
+      l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '3 l.',
+    );
+
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '3 miesiące i 17 dni',
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '3 mies. 17 dn.',
+    );
+    expect(
+      l10n.duration(_3mo_17d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '3 mies. 17 dn.',
+    );
+
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '4 miesiące',
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '4 mies.',
+    );
+    expect(
+      l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '4 mies.',
+    );
+
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      '3 tygodnie i 2 dni',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      '3 tyg. 2 dn.',
+    );
+    expect(
+      l10n.duration(
+        _3w_2d_or_23d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      '3 tyg. 2 dn.',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '23 dni',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '23 dn.',
+    );
+    expect(
+      l10n.duration(_3w_2d_or_23d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '23 dn.',
+    );
+
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.none,
+      ),
+      '4 tygodnie',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.semi,
+      ),
+      '4 tyg.',
+    );
+    expect(
+      l10n.duration(
+        _4w_or_28d,
+        dropPrefixOrSuffix: true,
+        includeWeeks: true,
+        form: Abbreviation.full,
+      ),
+      '4 tyg.',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '28 dni',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '28 dn.',
+    );
+    expect(
+      l10n.duration(_4w_or_28d,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '28 dn.',
+    );
+
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '6 dni i 7 godzin',
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '6 dn. 7 godz.',
+    );
+    expect(
+      l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '6 dn. 7 godz.',
+    );
+
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '6 dni',
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '6 dn.',
+    );
+    expect(
+      l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '6 dn.',
+    );
+
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '8 godzin i 8 minut',
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '8 godz. 8 min',
+    );
+    expect(
+      l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '8 godz. 8 min',
+    );
+
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '8 godzin',
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '8 godz.',
+    );
+    expect(
+      l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '8 godz.',
+    );
+
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '48 minut i 42 sekundy',
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '48 min 42 sek.',
+    );
+    expect(
+      l10n.duration(_48m_42s,
+          dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '48 min 42 sek.',
+    );
+
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '35 minut',
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '35 min',
+    );
+    expect(
+      l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '35 min',
+    );
+
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '42 sekundy',
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      '42 sek.',
+    );
+    expect(
+      l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      '42 sek.',
+    );
+
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      'kilka sekund',
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
+      'kilka sek.',
+    );
+    expect(
+      l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
+      'kilka sek.',
+    );
+  });
 }

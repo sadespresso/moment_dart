@@ -42,6 +42,9 @@ export 'pt_PT.dart';
 import 'zh_CN.dart';
 export 'zh_CN.dart';
 
+import 'pl_PL.dart';
+export 'pl_PL.dart';
+
 typedef LocalizationFn = MomentLocalization Function();
 
 abstract class MomentLocalizations {
@@ -63,6 +66,7 @@ abstract class MomentLocalizations {
     "ru_RU": () => LocalizationRuRu(),
     "it_IT": () => LocalizationItIt(),
     "zh_CN": () => LocalizationZhCn(),
+    "pl_PL": () => LocalizationPlPl(),
   };
 
   /// Retreives locale
@@ -192,4 +196,7 @@ abstract class MomentLocalizations {
 
   /// Simplified Chinese (China)
   static LocalizationZhCn zhCn() => LocalizationZhCn();
+
+  /// Polish (Poland)
+  static LocalizationPlPl pl() => LocalizationPlPl();
 }
