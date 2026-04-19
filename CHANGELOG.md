@@ -1,3 +1,7 @@
+## 5.3.2
+
+- Added pl_PL - Polish (Poland) thanks to [@PawiX25](https://github.com/PawiX25)
+
 ## 5.3.1
 
 - Made linter happy
