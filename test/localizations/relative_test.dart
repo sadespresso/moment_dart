@@ -33,6 +33,12 @@ void main() {
   var fiveYearsAgo = now - const Duration(days: 365 * 5 + 1);
   var tenYearsAgo = now - const Duration(days: 365 * 10 + 1);
 
+  // Extra fixtures for testing Polish pluralization with numbers ending in 1
+  var twentyOneMinutesAgo = now - const Duration(minutes: 21);
+  var twentyOneHoursAgo = now - const Duration(hours: 21);
+  var twentyOneDaysAgo = now - const Duration(days: 21);
+  var twentyOneYearsAgo = now - const Duration(days: 365 * 21 + 5);
+
   test("de_DE localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
 
@@ -667,5 +673,16 @@ void main() {
     expect(fiveYearsAgo.from(now, dropPrefixOrSuffix: true), "5 lat");
     expect(tenYearsAgo.from(now), "10 lat temu");
     expect(tenYearsAgo.from(now, dropPrefixOrSuffix: true), "10 lat");
+
+    // Polish plural rule: numbers ending in 1 (except 1 itself) use "many" form,
+    // NOT singular. This differs from Russian where 21, 31, etc. use singular.
+    expect(twentyOneMinutesAgo.from(now), "21 minut temu");
+    expect(twentyOneMinutesAgo.from(now, dropPrefixOrSuffix: true), "21 minut");
+    expect(twentyOneHoursAgo.from(now), "21 godzin temu");
+    expect(twentyOneHoursAgo.from(now, dropPrefixOrSuffix: true), "21 godzin");
+    expect(twentyOneDaysAgo.from(now), "21 dni temu");
+    expect(twentyOneDaysAgo.from(now, dropPrefixOrSuffix: true), "21 dni");
+    expect(twentyOneYearsAgo.from(now), "21 lat temu");
+    expect(twentyOneYearsAgo.from(now, dropPrefixOrSuffix: true), "21 lat");
   });
 }

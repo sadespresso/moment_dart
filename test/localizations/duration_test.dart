@@ -4420,4 +4420,55 @@ void main() {
       'kilka sek.',
     );
   });
+
+  test('pl_PL Polish plural rules for numbers ending in 1', () {
+    final MomentLocalization l10n = LocalizationPlPl();
+
+    // Polish: 21, 31, etc. use "many" form (NOT singular like Russian)
+    // 21 minutes = "21 minut" (many), NOT "21 minuta" (singular)
+    const Duration _21m = Duration(minutes: 21);
+    const Duration _21h = Duration(hours: 21);
+    const Duration _21d = Duration(days: 21);
+    const Duration _21y = Duration(days: 365 * 21 + 5);
+
+    // With suffix
+    expect(
+      l10n.duration(_21m, form: Abbreviation.none),
+      'za 21 minut',
+    );
+    expect(
+      l10n.duration(_21h, form: Abbreviation.none),
+      'za 21 godzin',
+    );
+    expect(
+      l10n.duration(_21d, form: Abbreviation.none),
+      'za 21 dni',
+    );
+    expect(
+      l10n.duration(_21y, form: Abbreviation.none),
+      'za 21 lat',
+    );
+
+    // Standalone
+    expect(
+      l10n.duration(_21m, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '21 minut',
+    );
+    expect(
+      l10n.duration(_21h, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '21 godzin',
+    );
+    expect(
+      l10n.duration(_21d, dropPrefixOrSuffix: true, form: Abbreviation.none),
+      '21 dni',
+    );
+
+    // Also verify count=1 still uses singular (regression check)
+    const Duration _1m = Duration(minutes: 1);
+    expect(
+      l10n.duration(_1m, dropPrefixOrSuffix: true, form: Abbreviation.none,
+          format: DurationFormat.ms),
+      '1 minuta',
+    );
+  });
 }

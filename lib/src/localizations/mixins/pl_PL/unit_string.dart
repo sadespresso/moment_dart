@@ -44,11 +44,11 @@ class PolishPluralUnitString extends CountDependentUnitString {
     if (form != Abbreviation.none) {
       return short;
     }
-    // Rules for Polish pluralization (same as Russian/Slavic):
-    // 1. If number ends with 1 but not 11: singular
+    // Polish pluralization rules (differ from Russian for "one"):
+    // 1. Exactly 1: singular (unlike Russian where 21, 31, etc. are also singular)
     // 2. If number ends with 2-4 but not 12-14: few
     // 3. Otherwise: many
-    if ((count % 10) == 1 && (count % 100) != 11) {
+    if (count == 1) {
       return singular;
     } else if ([2, 3, 4].contains(count % 10) &&
         ![12, 13, 14].contains(count % 100)) {
