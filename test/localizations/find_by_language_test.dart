@@ -64,6 +64,10 @@ void main() {
       MomentLocalizations.byLanguage('ru'),
       TypeMatcher<LocalizationRuRu>(),
     );
+    expect(
+      MomentLocalizations.byLanguage('pl'),
+      TypeMatcher<LocalizationPlPl>(),
+    );
   });
 
   test("MomentLocalizations.byLanguage strict test", () {
@@ -269,6 +273,22 @@ void main() {
         strict: true,
       ),
       TypeMatcher<LocalizationRuRu>(),
+    );
+
+    expect(
+      MomentLocalizations.byLanguage(
+        'pl',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationPlPl>(),
+    );
+    expect(
+      MomentLocalizations.byLanguage(
+        'pl',
+        countryCode: 'PL',
+        strict: true,
+      ),
+      TypeMatcher<LocalizationPlPl>(),
     );
   });
 }
