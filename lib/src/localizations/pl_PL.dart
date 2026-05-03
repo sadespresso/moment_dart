@@ -160,7 +160,7 @@ class LocalizationPlPl extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataPlPl;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataPlPl;
 
   /// Returns "Ostatni/Ostatnia/Ostatnie" based on grammatical gender
   /// of the Polish weekday name.
@@ -182,8 +182,8 @@ class LocalizationPlPl extends MomentLocalization
 
   static String at(String date, String time) => "$date o $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataPlPl =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataPlPl =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "Przedwczoraj",
       -1: "Wczoraj",
@@ -191,11 +191,16 @@ class LocalizationPlPl extends MomentLocalization
       1: "Jutro",
       2: "Pojutrze",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataPlPl instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataPlPl =
+      calendarLocalizationDataPlPl;
 
   @override
   int get weekStart => DateTime.monday;

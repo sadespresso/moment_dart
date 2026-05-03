@@ -1,3 +1,19 @@
+## 5.3.4
+
+- Fixed several DST-related off-by-one bugs in `startOf`/`endOf` week helpers
+  and their `next`/`last` variants.
+- Fixed `Moment.calendar()` returning the wrong relative day when `moment` and
+  `reference` had different timezones.
+- Fixed `Moment.timeZoneFormatted()` output for negative offsets (now properly
+  zero-padded, e.g. `-05:00`).
+- Renamed misspelled `Calender*` types and `calender*` constants to
+  `Calendar*` / `calendar*`. Old names remain as `@Deprecated` aliases.
+- Misc typo fixes.
+
+## 5.3.3
+
+- Polish singular fix by [@PawiX25](https://github.com/PawiX25)
+
 ## 5.3.2
 
 - Added pl_PL - Polish (Poland) thanks to [@PawiX25](https://github.com/PawiX25)

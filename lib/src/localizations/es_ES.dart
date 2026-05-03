@@ -114,10 +114,10 @@ class LocalizationEsEs extends MomentLocalization
   static String at(String date, String time) => "$date a $time";
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataEs;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataEs;
 
-  static const CalenderLocalizationData calenderLocalizationDataEs =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataEs =
+      CalendarLocalizationData(
     relativeDayNames: {
       // -2: "anteayer",
       -1: "ayer",
@@ -125,11 +125,16 @@ class LocalizationEsEs extends MomentLocalization
       1: "mañana",
       // 2: "pasado mañana",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataEs instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataEs =
+      calendarLocalizationDataEs;
 
   @override
   String ordinalNumber(int n) => "$nº";

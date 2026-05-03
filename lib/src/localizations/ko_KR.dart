@@ -103,12 +103,12 @@ class LocalizationKoKr extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataKo;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataKo;
 
   static String last(String weekday) => "지난 $weekday";
 
-  static const CalenderLocalizationData calenderLocalizationDataKo =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataKo =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "그저께",
       -1: "어제",
@@ -116,10 +116,15 @@ class LocalizationKoKr extends MomentLocalization
       1: "내일",
       2: "모레",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataKo instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataKo =
+      calendarLocalizationDataKo;
 
   @override
   int get weekStart => DateTime.sunday;

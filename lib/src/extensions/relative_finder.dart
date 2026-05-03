@@ -38,20 +38,58 @@ extension MonthFinder on DateTime {
 
 extension LocalWeekFinder on DateTime {
   /// Assumes [this] is in local timezone, but will preserve the timezone
-  DateTime startOfNextLocalWeek([int? weekStart]) =>
-      startOfLocalWeek(weekStart).add(const Duration(days: 7));
+  DateTime startOfNextLocalWeek([int? weekStart]) {
+    final base = startOfLocalWeek(weekStart);
+    return DateTimeConstructors.withTimezone(
+      base.isUtc,
+      base.year,
+      base.month,
+      base.day + 7,
+    );
+  }
 
   /// Assumes [this] is in local timezone, but will preserve the timezone
-  DateTime startOfLastLocalWeek([int? weekStart]) =>
-      startOfLocalWeek(weekStart).subtract(const Duration(days: 7));
+  DateTime startOfLastLocalWeek([int? weekStart]) {
+    final base = startOfLocalWeek(weekStart);
+    return DateTimeConstructors.withTimezone(
+      base.isUtc,
+      base.year,
+      base.month,
+      base.day - 7,
+    );
+  }
 
   /// Assumes [this] is in local timezone, but will preserve the timezone
-  DateTime endOfNextLocalWeek([int? weekStart]) =>
-      endOfLocalWeek(weekStart).add(const Duration(days: 7));
+  DateTime endOfNextLocalWeek([int? weekStart]) {
+    final base = endOfLocalWeek(weekStart);
+    return DateTimeConstructors.withTimezone(
+      base.isUtc,
+      base.year,
+      base.month,
+      base.day + 7,
+      23,
+      59,
+      59,
+      999,
+      999,
+    );
+  }
 
   /// Assumes [this] is in local timezone, but will preserve the timezone
-  DateTime endOfLastLocalWeek([int? weekStart]) =>
-      endOfLocalWeek(weekStart).subtract(const Duration(days: 7));
+  DateTime endOfLastLocalWeek([int? weekStart]) {
+    final base = endOfLocalWeek(weekStart);
+    return DateTimeConstructors.withTimezone(
+      base.isUtc,
+      base.year,
+      base.month,
+      base.day - 7,
+      23,
+      59,
+      59,
+      999,
+      999,
+    );
+  }
 }
 
 extension IsoWeekFinder on DateTime {

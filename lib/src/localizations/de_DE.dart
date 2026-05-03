@@ -127,13 +127,13 @@ class LocalizationDeDe extends MomentLocalization
       };
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataDeDe;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataDeDe;
 
   static String last(String weekday) => "letzten $weekday";
   static String at(String date, String time) => "$date um $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataDeDe =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataDeDe =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "vorgestern",
       -1: "gestern",
@@ -141,11 +141,16 @@ class LocalizationDeDe extends MomentLocalization
       1: "morgen",
       2: "übermorgen",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataDeDe instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataDeDe =
+      calendarLocalizationDataDeDe;
 
   @override
   Map<DurationInterval, UnitStringDeDe> get units => {

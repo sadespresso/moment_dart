@@ -108,7 +108,12 @@ extension StartOfUnit on DateTime {
 
     final int delta = (weekday - weekStart + 7) % 7;
 
-    return subtract(Duration(days: delta)).startOfDay();
+    return DateTimeConstructors.withTimezone(
+      isUtc,
+      year,
+      month,
+      day - delta,
+    );
   }
 
   /// Returns start of the ISO week (always Monday)

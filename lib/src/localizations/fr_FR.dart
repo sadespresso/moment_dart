@@ -115,25 +115,30 @@ class LocalizationFrFr extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataEs;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataEs;
 
   /// Tryna keep everything constant
 
   static String last(String weekday) => "$weekday dernier";
   static String at(String date, String time) => "$date à $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataEs =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataEs =
+      CalendarLocalizationData(
     relativeDayNames: {
       -1: "Hier",
       0: "Aujourd'hui",
       1: "Demain",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataEs instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataEs =
+      calendarLocalizationDataEs;
 
   @override
   String ordinalNumber(int n) {

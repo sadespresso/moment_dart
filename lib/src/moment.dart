@@ -445,16 +445,6 @@ class Moment extends DateTime {
   @override
   String toString() => format("LLL");
 
-  String timeZoneFormatted([bool seperateWithColon = true]) {
-    final int hours = timeZoneOffset.inMinutes ~/ 60;
-    final int minutes = timeZoneOffset.inMinutes - (hours * 60);
-
-    return (timeZoneOffset.isNegative ? "-" : "+") +
-        hours.toString() +
-        (seperateWithColon ? ":" : "") +
-        minutes.toString();
-  }
-
   /// Start of the current hour in the local timezone
   static DateTime startOfThisHour() => DateTime.now().startOfHour();
 

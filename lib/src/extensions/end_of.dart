@@ -77,7 +77,8 @@ extension EndOfUnit on DateTime {
           999,
         );
       case DurationUnit.month:
-        return DateTime(
+        return DateTimeConstructors.withTimezone(
+          isUtc,
           year,
           month,
           isLeapYear
@@ -137,7 +138,17 @@ extension EndOfUnit on DateTime {
 
     final int delta = (weekStart + 6 - weekday) % 7;
 
-    return add(Duration(days: delta)).endOfDay();
+    return DateTimeConstructors.withTimezone(
+      isUtc,
+      year,
+      month,
+      day + delta,
+      23,
+      59,
+      59,
+      999,
+      999,
+    );
   }
 
   /// Returns end of the ISO week (always Sunday)

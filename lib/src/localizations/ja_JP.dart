@@ -137,14 +137,14 @@ class LocalizationJaJp extends MomentLocalization
       };
 
   @override
-  ComplexCalenderLocalizationData get complexCalendarData =>
-      ComplexCalenderLocalizationData(
+  ComplexCalendarLocalizationData get complexCalendarData =>
+      ComplexCalendarLocalizationData(
         relativeDayNames: {
           -1: "昨日",
           0: "今日",
           1: "明日",
         },
-        keywords: ComplexCalenderLocalizationKeywords(
+        keywords: ComplexCalendarLocalizationKeywords(
           lastWeekday: (dateTime, {reference}) {
             final String dddd = reformat(dateTime, "dddd");
             final bool sameWeek = dateTime.isSameLocalWeekAs(

@@ -125,12 +125,12 @@ class LocalizationMnMn extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataMn;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataMn;
 
   static String last(String weekday) => "Өнгөрсөн $weekday";
 
-  static const CalenderLocalizationData calenderLocalizationDataMn =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataMn =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "Уржигдар",
       -1: "Өчигдөр",
@@ -138,10 +138,15 @@ class LocalizationMnMn extends MomentLocalization
       1: "Маргааш",
       2: "Нөгөөдөр",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataMn instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataMn =
+      calendarLocalizationDataMn;
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
