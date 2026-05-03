@@ -168,9 +168,9 @@ class LocalizationZhCn extends MomentLocalization
       };
 
   @override
-  ComplexCalenderLocalizationData get complexCalendarData =>
-      ComplexCalenderLocalizationData(
-        keywords: ComplexCalenderLocalizationKeywords(
+  ComplexCalendarLocalizationData get complexCalendarData =>
+      ComplexCalendarLocalizationData(
+        keywords: ComplexCalendarLocalizationKeywords(
           lastWeekday: (dateTime, {reference}) {
             final bool isSameWeek = (reference ??
                     DateTimeConstructors.nowWithTimezone(dateTime.isUtc))

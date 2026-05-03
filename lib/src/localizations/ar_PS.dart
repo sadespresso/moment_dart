@@ -129,7 +129,7 @@ class LocalizationArPs extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => _calendarLocalizationDataAr;
+  CalendarLocalizationData get calendarData => _calendarLocalizationDataAr;
 
   static String _lastWeekdayGenderAware(String weekday) {
     if (weekday.endsWith('ة')) {
@@ -140,14 +140,14 @@ class LocalizationArPs extends MomentLocalization
 
   static String _at(String date, String time) => "$date الساعة $time";
 
-  static final CalenderLocalizationData _calendarLocalizationDataAr =
-      CalenderLocalizationData(
+  static final CalendarLocalizationData _calendarLocalizationDataAr =
+      CalendarLocalizationData(
     relativeDayNames: {
       -1: "أمس",
       0: "اليوم",
       1: "غداً",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: _at,
       lastWeekday: _lastWeekdayGenderAware,
     ),

@@ -124,7 +124,7 @@ class LocalizationRuRu extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataRuRu;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataRuRu;
 
   static String last(String weekday) {
     switch (weekday) {
@@ -145,8 +145,8 @@ class LocalizationRuRu extends MomentLocalization
 
   static String at(String date, String time) => "$date в $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataRuRu =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataRuRu =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "Позавчера",
       -1: "Вчера",
@@ -154,11 +154,16 @@ class LocalizationRuRu extends MomentLocalization
       1: "Завтра",
       2: "Послезавтра",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataRuRu instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataRuRu =
+      calendarLocalizationDataRuRu;
 
   @override
   int get weekStart => DateTime.monday;

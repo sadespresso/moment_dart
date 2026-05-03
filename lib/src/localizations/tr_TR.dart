@@ -149,23 +149,28 @@ class LocalizationTrTr extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataTrTr;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataTrTr;
 
   static String last(String weekday) => "Geçen $weekday";
   static String at(String date, String time) => "$date saat $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataTrTr =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataTrTr =
+      CalendarLocalizationData(
     relativeDayNames: {
       -1: "Dün",
       0: "Bugün",
       1: "Yarın",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataTrTr instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataTrTr =
+      calendarLocalizationDataTrTr;
 
   @override
   int get weekStart => DateTime.monday;

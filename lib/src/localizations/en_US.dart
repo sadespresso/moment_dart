@@ -110,23 +110,28 @@ class LocalizationEnUs extends MomentLocalization
   List<String> get ordinalSuffixes => ["th", "st", "nd", "rd"];
 
   @override
-  CalenderLocalizationData get calendarData => calenderLocalizationDataEnUs;
+  CalendarLocalizationData get calendarData => calendarLocalizationDataEnUs;
 
   static String last(String weekday) => "Last $weekday";
   static String at(String date, String time) => "$date at $time";
 
-  static const CalenderLocalizationData calenderLocalizationDataEnUs =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataEnUs =
+      CalendarLocalizationData(
     relativeDayNames: {
       -1: "Yesterday",
       0: "Today",
       1: "Tomorrow",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       at: at,
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataEnUs instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataEnUs =
+      calendarLocalizationDataEnUs;
 
   @override
   int get weekStart => DateTime.sunday;

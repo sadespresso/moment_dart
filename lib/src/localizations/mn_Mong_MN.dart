@@ -158,13 +158,13 @@ class LocalizationMnMongMn extends MomentLocalization
   }
 
   @override
-  CalenderLocalizationData get calendarData =>
-      calenderLocalizationDataMnTraditional;
+  CalendarLocalizationData get calendarData =>
+      calendarLocalizationDataMnTraditional;
 
   static String last(String weekday) => "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ $weekday";
 
-  static const CalenderLocalizationData calenderLocalizationDataMnTraditional =
-      CalenderLocalizationData(
+  static const CalendarLocalizationData calendarLocalizationDataMnTraditional =
+      CalendarLocalizationData(
     relativeDayNames: {
       -2: "ᠤᠷᠵᠢᠳᠤᠷ",
       -1: "ᠦᠴᠦᠭᠡᠳᠦᠷ",
@@ -172,10 +172,15 @@ class LocalizationMnMongMn extends MomentLocalization
       1: "ᠮᠠᠷᠭᠠᠰᠢ",
       2: "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ",
     },
-    keywords: CalenderLocalizationKeywords(
+    keywords: CalendarLocalizationKeywords(
       lastWeekday: last,
     ),
   );
+
+  @Deprecated('Use calendarLocalizationDataMnTraditional instead')
+  // ignore: constant_identifier_names
+  static const CalendarLocalizationData calenderLocalizationDataMnTraditional =
+      calendarLocalizationDataMnTraditional;
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(

@@ -189,9 +189,9 @@ class LocalizationItIt extends MomentLocalization
   String ordinalNumber(int n) => "$nº";
 
   @override
-  ComplexCalenderLocalizationData get complexCalendarData =>
-      ComplexCalenderLocalizationData(
-        keywords: ComplexCalenderLocalizationKeywords(
+  ComplexCalendarLocalizationData get complexCalendarData =>
+      ComplexCalendarLocalizationData(
+        keywords: ComplexCalendarLocalizationKeywords(
           at: (DateTime dateTime, String dateString, String timeString,
               {reference}) {
             late final String suffix;

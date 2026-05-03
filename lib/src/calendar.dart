@@ -1,4 +1,4 @@
-class CalenderLocalizationData {
+class CalendarLocalizationData {
   /// Relative days on calendar.
   ///
   /// For example, -1 is Yestderday, 0 is Today, 1 is Tomorrow
@@ -9,9 +9,9 @@ class CalenderLocalizationData {
   final Map<int, String> relativeDayNames;
 
   /// Time keywords. If value is absent or null for [CalendarKeyword], Moment will assume the language doesn't require the keyword.
-  final CalenderLocalizationKeywords keywords;
+  final CalendarLocalizationKeywords keywords;
 
-  const CalenderLocalizationData({
+  const CalendarLocalizationData({
     required this.relativeDayNames,
     required this.keywords,
   });
@@ -28,16 +28,22 @@ typedef CalendarKeywordDateAtTimeString = String Function(
 String defaultCalendarKeywordDateAtTimeString(String date, String time) =>
     "$date $time";
 
-class CalenderLocalizationKeywords {
+class CalendarLocalizationKeywords {
   final CalendarKeywordLastWeekdayString lastWeekday;
 
   final CalendarKeywordNextWeekdayString nextWeekday;
 
   final CalendarKeywordDateAtTimeString at;
 
-  const CalenderLocalizationKeywords({
+  const CalendarLocalizationKeywords({
     this.lastWeekday = defaultCalendarKeywordLastString,
     this.nextWeekday = defaultCalendarKeywordNextString,
     this.at = defaultCalendarKeywordDateAtTimeString,
   });
 }
+
+@Deprecated('Use CalendarLocalizationData instead')
+typedef CalenderLocalizationData = CalendarLocalizationData;
+
+@Deprecated('Use CalendarLocalizationKeywords instead')
+typedef CalenderLocalizationKeywords = CalendarLocalizationKeywords;

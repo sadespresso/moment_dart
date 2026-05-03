@@ -111,10 +111,11 @@ abstract class MomentLocalization {
     // After this check, we can use `_calendarData` for non-null data
     if (calendarData == null) {
       throw MomentException(
-          "Moment.calendar() for this localization $locale ($endonym) must be overriden since [calendarData] is null");
+          "Moment.calendar() for this localization $locale ($endonym) must be overridden since [calendarData] is null");
     }
 
     reference ??= Moment.nowWithTimezone(moment.isUtc);
+    reference = moment.isUtc ? reference.toUtc() : reference.toLocal();
 
     late final String dateString;
 
@@ -330,9 +331,9 @@ abstract class MomentLocalization {
   String reformat(DateTime dateTime, String payload) =>
       Moment(dateTime, localization: this).format(payload);
 
-  CalenderLocalizationData? get calendarData;
+  CalendarLocalizationData? get calendarData;
   // Forced non-null type
-  CalenderLocalizationData get _calendarData => calendarData!;
+  CalendarLocalizationData get _calendarData => calendarData!;
 
   /// Weekdays range from 1-7
   Map<int, String> get weekdayName;

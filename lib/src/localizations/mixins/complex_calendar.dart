@@ -8,8 +8,8 @@ import 'package:moment_dart/src/moment.dart';
 /// And **overrides** [MomentLocalization.calendar]
 mixin ComplexCalendar on MomentLocalization {
   @override
-  CalenderLocalizationData? get calendarData => null;
-  ComplexCalenderLocalizationData get complexCalendarData;
+  CalendarLocalizationData? get calendarData => null;
+  ComplexCalendarLocalizationData get complexCalendarData;
 
   /// Calendar string
   @override
@@ -88,7 +88,7 @@ mixin ComplexCalendar on MomentLocalization {
   }
 }
 
-class ComplexCalenderLocalizationData {
+class ComplexCalendarLocalizationData {
   /// Relative days on calendar.
   ///
   /// For example, -1 is Yestderday, 0 is Today, 1 is Tomorrow
@@ -99,9 +99,9 @@ class ComplexCalenderLocalizationData {
   final Map<int, String> relativeDayNames;
 
   /// Time keywords. If value is absent or null for [CalendarKeyword], Moment will assume the language doesn't require the keyword.
-  final ComplexCalenderLocalizationKeywords keywords;
+  final ComplexCalendarLocalizationKeywords keywords;
 
-  const ComplexCalenderLocalizationData({
+  const ComplexCalendarLocalizationData({
     required this.relativeDayNames,
     required this.keywords,
   });
@@ -124,7 +124,7 @@ typedef CalendarKeywordDateAtTimeString = String Function(
   DateTime? reference,
 });
 
-class ComplexCalenderLocalizationKeywords {
+class ComplexCalendarLocalizationKeywords {
   final CalendarKeywordLastWeekdayString lastWeekday;
 
   final CalendarKeywordNextWeekdayString nextWeekday;
@@ -136,10 +136,10 @@ class ComplexCalenderLocalizationKeywords {
   /// ```
   final CalendarKeywordDateAtTimeString at;
 
-  const ComplexCalenderLocalizationKeywords({
+  const ComplexCalendarLocalizationKeywords({
     required this.lastWeekday,
     required this.nextWeekday,
-    this.at = ComplexCalenderLocalizationKeywords._defaultAt,
+    this.at = ComplexCalendarLocalizationKeywords._defaultAt,
   });
 
   static String _defaultAt(
@@ -147,3 +147,9 @@ class ComplexCalenderLocalizationKeywords {
           {DateTime? reference}) =>
       "$dateString $timeString";
 }
+
+@Deprecated('Use ComplexCalendarLocalizationData instead')
+typedef ComplexCalenderLocalizationData = ComplexCalendarLocalizationData;
+
+@Deprecated('Use ComplexCalendarLocalizationKeywords instead')
+typedef ComplexCalenderLocalizationKeywords = ComplexCalendarLocalizationKeywords;
