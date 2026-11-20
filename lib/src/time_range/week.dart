@@ -21,12 +21,18 @@ class LocalWeekTimeRange extends CustomTimeRange
       "Local week time range cannot be converted to UTC");
 
   @override
-  LocalWeekTimeRange get next =>
-      LocalWeekTimeRange(from.startOfNextLocalWeek(weekStart));
+  LocalWeekTimeRange get next => LocalWeekTimeRange(
+        DateTimeConstructors.withTimezone(
+            isUtc, from.year, from.month, from.day + 7),
+        weekStart,
+      );
 
   @override
-  LocalWeekTimeRange get last =>
-      LocalWeekTimeRange(from.startOfLastLocalWeek(weekStart));
+  LocalWeekTimeRange get last => LocalWeekTimeRange(
+        DateTimeConstructors.withTimezone(
+            isUtc, from.year, from.month, from.day - 7),
+        weekStart,
+      );
 }
 
 class IsoWeekTimeRange extends CustomTimeRange
@@ -45,8 +51,14 @@ class IsoWeekTimeRange extends CustomTimeRange
       throw UnsupportedError("ISO week time range cannot be converted to UTC");
 
   @override
-  IsoWeekTimeRange get next => IsoWeekTimeRange(from.nextMonday());
+  IsoWeekTimeRange get next => IsoWeekTimeRange(
+        DateTimeConstructors.withTimezone(
+            isUtc, from.year, from.month, from.day + 7),
+      );
 
   @override
-  IsoWeekTimeRange get last => IsoWeekTimeRange(from.lastMonday());
+  IsoWeekTimeRange get last => IsoWeekTimeRange(
+        DateTimeConstructors.withTimezone(
+            isUtc, from.year, from.month, from.day - 7),
+      );
 }

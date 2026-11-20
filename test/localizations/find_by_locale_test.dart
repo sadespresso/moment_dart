@@ -33,7 +33,7 @@ void main() {
       TypeMatcher<LocalizationJaJp>(),
     );
 
-        expect(
+    expect(
       MomentLocalizations.byLocale("ar_PS"),
       TypeMatcher<LocalizationArPs>(),
     );

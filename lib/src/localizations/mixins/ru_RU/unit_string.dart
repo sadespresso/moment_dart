@@ -32,11 +32,17 @@ class RussianPluralUnitString extends CountDependentUnitString {
   final String many;
   final String short;
 
-  RussianPluralUnitString(
-      {required this.singular,
-      required this.few,
-      required this.many,
-      required this.short});
+  /// Used instead of [singular] after "через"/"назад" ("21 минуту назад").
+  /// Defaults to [singular], which is already correct for masculine nouns.
+  final String? singularAccusative;
+
+  RussianPluralUnitString({
+    required this.singular,
+    required this.few,
+    required this.many,
+    required this.short,
+    this.singularAccusative,
+  });
 
   @override
   String get(Abbreviation form, bool dropPrefixOrSuffix, [int count = 1]) {
@@ -48,7 +54,7 @@ class RussianPluralUnitString extends CountDependentUnitString {
     // 2. If number ends with 2-4 but not 12-14: few
     // 3. Otherwise: many
     if ((count % 10) == 1 && (count % 100) != 11) {
-      return singular;
+      return dropPrefixOrSuffix ? singular : (singularAccusative ?? singular);
     } else if ([2, 3, 4].contains(count % 10) &&
         ![12, 13, 14].contains(count % 100)) {
       return few;

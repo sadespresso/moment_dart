@@ -30,10 +30,11 @@ mixin PlPlUnits on SimpleUnits {
         DurationInterval.aSecond: PolishSingularUnitString(
           "sekunda",
           "sekundę",
-          "sek.",
+          "1 sek.",
         ),
         DurationInterval.seconds: PolishPluralUnitString(
           singular: "$srDelta sekunda",
+          singularAccusative: "$srDelta sekundę",
           few: "$srDelta sekundy",
           many: "$srDelta sekund",
           short: "$srDelta sek.",
@@ -41,10 +42,11 @@ mixin PlPlUnits on SimpleUnits {
         DurationInterval.aMinute: PolishSingularUnitString(
           "1 minuta",
           "minutę",
-          "min",
+          "1 min",
         ),
         DurationInterval.minutes: PolishPluralUnitString(
           singular: "$srDelta minuta",
+          singularAccusative: "$srDelta minutę",
           few: "$srDelta minuty",
           many: "$srDelta minut",
           short: "$srDelta min",
@@ -52,10 +54,11 @@ mixin PlPlUnits on SimpleUnits {
         DurationInterval.anHour: PolishSingularUnitString(
           "godzina",
           "godzinę",
-          "godz.",
+          "1 godz.",
         ),
         DurationInterval.hours: PolishPluralUnitString(
           singular: "$srDelta godzina",
+          singularAccusative: "$srDelta godzinę",
           few: "$srDelta godziny",
           many: "$srDelta godzin",
           short: "$srDelta godz.",
@@ -63,7 +66,7 @@ mixin PlPlUnits on SimpleUnits {
         DurationInterval.aDay: PolishSingularUnitString(
           "dzień",
           "dzień",
-          "dz.",
+          "1 dz.",
         ),
         DurationInterval.days: PolishPluralUnitString(
           singular: "$srDelta dzień",

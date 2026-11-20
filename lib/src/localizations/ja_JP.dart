@@ -7,7 +7,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Japanese
 /// Country: Japan
@@ -97,11 +96,11 @@ class LocalizationJaJp extends MomentLocalization
       FormatterToken.a: (dateTime) => dateTime.hour < 12 ? "午前" : "午後",
       // Custom Ordinals
       FormatterToken.Mo: (dateTime) => "${dateTime.month}月",
-      FormatterToken.Qo: (dateTime) => "${dateTime.quarter}분기",
+      FormatterToken.Qo: (dateTime) => "第${dateTime.quarter}四半期",
       FormatterToken.Do: (dateTime) => "${dateTime.day}日",
       FormatterToken.DDDo: (dateTime) => "${dateTime.dayOfYear}日",
       FormatterToken.d_o: (dateTime) => "${dateTime.weekday}日",
-      FormatterToken.wo: (dateTime) => "${dateTime.week}주째",
+      FormatterToken.wo: (dateTime) => "第${dateTime.week}週",
       // Weekday
       FormatterToken.dd: (dateTime) => weekdayNameShort[dateTime.weekday]!,
       // Controversial :))
@@ -116,7 +115,6 @@ class LocalizationJaJp extends MomentLocalization
   @override
   int get weekStart => DateTime.sunday;
 
-  // Korean hangul is compact enough
   @override
   Map<DurationInterval, UnitString> get units => {
         DurationInterval.lessThanASecond: UnitString.single("数秒"),
@@ -200,6 +198,6 @@ class LocalizationJaJp extends MomentLocalization
         },
         allAfter: (formattedDate) => "$formattedDate以降",
         allBefore: (formattedDate) => "$formattedDate以前",
-        customRangeAllTime: '全ての時間',
+        customRangeAllTime: '全期間',
       );
 }

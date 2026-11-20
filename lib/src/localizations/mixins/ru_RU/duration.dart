@@ -1,4 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/localizations/utils/duration_rounding.dart';
 import 'package:moment_dart/src/localizations/mixins/ru_RU/units.dart';
 
 mixin RuRuDuration on RuRuUnits {
@@ -22,11 +23,16 @@ mixin RuRuDuration on RuRuUnits {
   }) {
     final bool past = duration.isNegative;
 
-    Duration left = duration.abs();
+    final RoundedDuration rounded = roundDurationForFormat(
+      duration,
+      format,
+      includeWeeks: includeWeeks,
+      round: round,
+    );
 
-    if (format.isAuto) {
-      format = DurationFormat.resolveAuto(duration, includeWeeks);
-    }
+    format = rounded.format;
+
+    Duration left = rounded.duration;
 
     final List<String> result = [];
 
@@ -39,8 +45,12 @@ mixin RuRuDuration on RuRuUnits {
           ? (_roundOrTruncate(left.inMicroseconds / unit.microseconds, round))
           : (left.inMicroseconds ~/ unit.microseconds);
 
-      final DurationInterval interval =
-          DurationInterval.findByUnit(unitValue, unit);
+      // The full singular strings are relative-time wording without the
+      // number ("час назад"); durations always show it ("1 час и 5 минут").
+      final DurationInterval interval = DurationInterval.findByUnit(
+        unitValue == 1 && form == Abbreviation.none ? 2 : unitValue,
+        unit,
+      );
 
       final String unitString =
           units[interval]?.get(form, dropPrefixOrSuffix, unitValue) ??
@@ -62,12 +72,21 @@ mixin RuRuDuration on RuRuUnits {
 
       value = unitString;
     } else {
-      value = result.join(delimiter ?? durationDelimiter[form]!);
+      value = _join(result, form, delimiter);
     }
 
     if (dropPrefixOrSuffix) return value;
 
     return past ? relativePast(value) : relativeFuture(value);
+  }
+
+  String _join(List<String> parts, Abbreviation form, String? delimiter) {
+    if (delimiter != null || form != Abbreviation.none || parts.length < 3) {
+      return parts.join(delimiter ?? durationDelimiter[form]!);
+    }
+
+    return "${parts.sublist(0, parts.length - 1).join(", ")}"
+        "${durationDelimiter[form]!}${parts.last}";
   }
 
   int _roundOrTruncate(num x, bool round) {

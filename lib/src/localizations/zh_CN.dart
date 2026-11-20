@@ -10,7 +10,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 import 'package:moment_dart/src/localizations/mixins/zh_CN/ordinal_number.dart';
-import 'package:moment_dart/src/types.dart';
 
 import 'mixins/zh_CN/chinese_numbers.dart';
 

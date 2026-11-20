@@ -15,7 +15,44 @@ extension StartOfUnit on DateTime {
         return clone();
       case DurationUnit.week:
         throw MomentException(
-            "endOf(DurationUnit.week) is not supported on DateTime. You can use Moment(...).startOf(DurationUnit.week)");
+            "startOf(DurationUnit.week) is not supported on DateTime. You can use Moment(...).startOf(DurationUnit.week)");
+      case DurationUnit.millisecond:
+      case DurationUnit.second:
+      case DurationUnit.minute:
+      case DurationUnit.hour:
+        // Wall-clock fields are ambiguous during the repeated hour of a DST
+        // fall-back, so truncate the instant itself. Falls back to fields if
+        // a transition inside the unit (e.g. half-hour DST) breaks that.
+        final DateTime truncated = DateTime.fromMicrosecondsSinceEpoch(
+          microsecondsSinceEpoch - _remainderWithin(unit),
+          isUtc: isUtc,
+        );
+        if (truncated._remainderWithin(unit) == 0) return truncated;
+        return _startOfByFields(unit);
+      case DurationUnit.day:
+      case DurationUnit.month:
+      case DurationUnit.year:
+        return _startOfByFields(unit);
+    }
+  }
+
+  int _remainderWithin(DurationUnit unit) {
+    int remainder = 0;
+    if (unit.value <= DurationUnit.microsecond.value) return remainder;
+    remainder += microsecond;
+    if (unit.value <= DurationUnit.millisecond.value) return remainder;
+    remainder += millisecond * Duration.microsecondsPerMillisecond;
+    if (unit.value <= DurationUnit.second.value) return remainder;
+    remainder += second * Duration.microsecondsPerSecond;
+    if (unit.value <= DurationUnit.minute.value) return remainder;
+    return remainder + minute * Duration.microsecondsPerMinute;
+  }
+
+  DateTime _startOfByFields(DurationUnit unit) {
+    switch (unit) {
+      case DurationUnit.microsecond:
+      case DurationUnit.week:
+        throw StateError("unreachable");
       case DurationUnit.millisecond:
         return DateTimeConstructors.withTimezone(
           isUtc,

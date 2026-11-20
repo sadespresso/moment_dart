@@ -6,7 +6,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Korean
 /// Country: Korea, Republic of
@@ -72,11 +71,11 @@ class LocalizationKoKr extends MomentLocalization
       FormatterToken.LL: (dateTime) => reformat(dateTime, "YYYY년 MMMM D일"),
       FormatterToken.ll: (dateTime) => reformat(dateTime, "YYYY년 MMM D일"),
       FormatterToken.LLL: (dateTime) =>
-          reformat(dateTime, "YYYY년 MMMM D일 A hh:mm"),
+          reformat(dateTime, "YYYY년 MMMM D일 A h:mm"),
       FormatterToken.lll: (dateTime) =>
           reformat(dateTime, "YYYY년 MMM D일 A h:mm"),
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "YYYY년 MMMM D일 dddd A hh:mm"),
+          reformat(dateTime, "YYYY년 MMMM D일 dddd A h:mm"),
       FormatterToken.llll: (dateTime) =>
           reformat(dateTime, "YYYY년 MMM D일 ddd A h:mm"),
       FormatterToken.LT: (dateTime) => reformat(dateTime, "A h:mm"),
@@ -120,11 +119,6 @@ class LocalizationKoKr extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataKo instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataKo =
-      calendarLocalizationDataKo;
 
   @override
   int get weekStart => DateTime.sunday;
@@ -176,6 +170,6 @@ class LocalizationKoKr extends MomentLocalization
         },
         allAfter: (formattedDate) => "$formattedDate 이후",
         allBefore: (formattedDate) => "$formattedDate 이전",
-        customRangeAllTime: "전체 시간",
+        customRangeAllTime: "전체 기간",
       );
 }

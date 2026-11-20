@@ -8,7 +8,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: English (US)
 /// Country: United States of America
@@ -92,15 +91,16 @@ class LocalizationEnUs extends MomentLocalization
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "MM/DD/YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "M/D/YYYY"),
-      FormatterToken.LL: (dateTime) => reformat(dateTime, "MMMM D YYYY"),
-      FormatterToken.ll: (dateTime) => reformat(dateTime, "MMM D YYYY"),
+      FormatterToken.LL: (dateTime) => reformat(dateTime, "MMMM D, YYYY"),
+      FormatterToken.ll: (dateTime) => reformat(dateTime, "MMM D, YYYY"),
       FormatterToken.LLL: (dateTime) =>
-          reformat(dateTime, "MMMM D YYYY hh:mm A"),
-      FormatterToken.lll: (dateTime) => reformat(dateTime, "MMM D YYYY h:mm A"),
+          reformat(dateTime, "MMMM D, YYYY h:mm A"),
+      FormatterToken.lll: (dateTime) =>
+          reformat(dateTime, "MMM D, YYYY h:mm A"),
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "dddd, MMMM D YYYY hh:mm A"),
+          reformat(dateTime, "dddd, MMMM D, YYYY h:mm A"),
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, MMM D YYYY h:mm A"),
+          reformat(dateTime, "ddd, MMM D, YYYY h:mm A"),
       FormatterToken.LT: (dateTime) => reformat(dateTime, "h:mm A"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "h:mm:ss A"),
     };
@@ -127,11 +127,6 @@ class LocalizationEnUs extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataEnUs instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataEnUs =
-      calendarLocalizationDataEnUs;
 
   @override
   int get weekStart => DateTime.sunday;
@@ -180,7 +175,7 @@ class LocalizationEnUs extends MomentLocalization
         ),
         DurationInterval.days: UnitString.withForm(
           "$srDelta days",
-          "$srDelta day",
+          "$srDelta days",
           "${srDelta}d",
         ),
         DurationInterval.aWeek: UnitString.withForm(
@@ -212,6 +207,46 @@ class LocalizationEnUs extends MomentLocalization
           "$srDelta years",
           "$srDelta yr",
           "${srDelta}y",
+        ),
+      };
+
+  @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.withForm(
+          "1 second",
+          "1 sec",
+          "1s",
+        ),
+        DurationInterval.aMinute: UnitString.withForm(
+          "1 minute",
+          "1 min",
+          "1m",
+        ),
+        DurationInterval.anHour: UnitString.withForm(
+          "1 hour",
+          "1 hr",
+          "1h",
+        ),
+        DurationInterval.aDay: UnitString.withForm(
+          "1 day",
+          "1 day",
+          "1d",
+        ),
+        DurationInterval.aWeek: UnitString.withForm(
+          "1 week",
+          "1 wk",
+          "1w",
+        ),
+        DurationInterval.aMonth: UnitString.withForm(
+          "1 month",
+          "1 mo",
+          "1mo",
+        ),
+        DurationInterval.aYear: UnitString.withForm(
+          "1 year",
+          "1 yr",
+          "1y",
         ),
       };
 

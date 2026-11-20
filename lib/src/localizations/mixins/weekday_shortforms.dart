@@ -1,5 +1,4 @@
 import 'package:moment_dart/moment_dart.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// This mixin provides:
 ///

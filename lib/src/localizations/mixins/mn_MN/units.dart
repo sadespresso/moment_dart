@@ -16,18 +16,17 @@ mixin MnMnUnits on SimpleUnits {
 
   String getUnit(DurationInterval interval, Abbreviation form,
       {bool dropPrefixOrSuffix = false}) {
-    if (!dropPrefixOrSuffix) {
+    // Abbreviated forms ("5 мин", "5м") take no genitive suffix
+    if (!dropPrefixOrSuffix && form == Abbreviation.none) {
       final bool useMasculineSuffix =
           interval == DurationInterval.lessThanASecond ||
+              interval.unit == DurationUnit.second ||
               interval.unit == DurationUnit.minute ||
               interval.unit == DurationUnit.month;
 
-      final String suffix =
-          form != Abbreviation.none ? "" : (useMasculineSuffix ? "ын" : "ийн");
-
       return unitsWithSuffixConsidered[interval]!
               .get(form, dropPrefixOrSuffix) +
-          suffix;
+          (useMasculineSuffix ? "ын" : "ийн");
     }
 
     return units[interval]?.get(form, dropPrefixOrSuffix) ?? "¯\\_(ツ)_/¯";

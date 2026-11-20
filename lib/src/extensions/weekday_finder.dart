@@ -10,7 +10,7 @@ extension WeekdayFinder on DateTime {
 
     final int requiredDelta = (weekday - this.weekday) % 7;
 
-    return this + Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
+    return _addDays(requiredDelta == 0 ? 7 : requiredDelta);
   }
 
   /// Returns new [DateTime] instance of nearest Monday in the Future
@@ -57,7 +57,7 @@ extension WeekdayFinder on DateTime {
 
     final int requiredDelta = (this.weekday - weekday) % 7;
 
-    return this - Duration(days: requiredDelta == 0 ? 7 : requiredDelta);
+    return _addDays(-(requiredDelta == 0 ? 7 : requiredDelta));
   }
 
   /// Returns new [DateTime] instance of nearest Monday in the past
@@ -94,6 +94,18 @@ extension WeekdayFinder on DateTime {
   ///
   /// If [this] is Sunday, will return `7 days in the past`
   DateTime lastSunday() => lastWeekday(DateTime.sunday);
+
+  DateTime _addDays(int days) => DateTimeConstructors.withTimezone(
+        isUtc,
+        year,
+        month,
+        day + days,
+        hour,
+        minute,
+        second,
+        millisecond,
+        microsecond,
+      );
 }
 
 extension WeekdayFinderMoment on Moment {

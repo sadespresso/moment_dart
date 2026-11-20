@@ -14,15 +14,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Install dependencies
         run: dart pub get
 
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
       - name: Analyze project source
         run: dart analyze
 
       - name: Run tests
         run: dart test
+
+      # DST and offset bugs only show up outside UTC, which is what CI runs in.
+      - name: Run tests (America/New_York)
+        run: dart test
+        env:
+          TZ: America/New_York
+
+      - name: Run tests (Asia/Tokyo)
+        run: dart test
+        env:
+          TZ: Asia/Tokyo

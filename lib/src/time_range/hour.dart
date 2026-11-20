@@ -10,6 +10,10 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
   final int day;
   final int hour;
 
+  /// Set only for the second occurrence of a local hour that repeats when the
+  /// clock falls back, which [year]..[hour] alone can't tell apart.
+  final DateTime? _from;
+
   /// Please note that  [minute], [second], [millisecond], [microsecond]
   /// will be ignored.
   factory HourTimeRange(
@@ -44,7 +48,9 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
     this.day,
     this.hour, {
     this.isUtc = false,
-  }) : assert(month > 0 &&
+    DateTime? from,
+  })  : _from = from,
+        assert(month > 0 &&
             month <= 12 &&
             day > 0 &&
             day <= 31 &&
@@ -52,20 +58,46 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
             hour < 24);
 
   /// Will preserve the timezone of [dateTime]
-  factory HourTimeRange.fromDateTime(DateTime dateTime) => HourTimeRange(
-        dateTime.year,
-        dateTime.month,
-        dateTime.day,
-        dateTime.hour,
-        isUtc: dateTime.isUtc,
-      );
+  factory HourTimeRange.fromDateTime(DateTime dateTime) {
+    final HourTimeRange range = HourTimeRange(
+      dateTime.year,
+      dateTime.month,
+      dateTime.day,
+      dateTime.hour,
+      isUtc: dateTime.isUtc,
+    );
+
+    final DateTime startOfHour = dateTime.subtract(Duration(
+      minutes: dateTime.minute,
+      seconds: dateTime.second,
+      milliseconds: dateTime.millisecond,
+      microseconds: dateTime.microsecond,
+    ));
+
+    if (startOfHour == range.from ||
+        startOfHour.hour != range.hour ||
+        startOfHour.minute != 0) {
+      return range;
+    }
+
+    return HourTimeRange._internal(
+      range.year,
+      range.month,
+      range.day,
+      range.hour,
+      isUtc: range.isUtc,
+      from: startOfHour,
+    );
+  }
 
   @override
   DateTime get from =>
-      DateTimeConstructors.withTimezone(isUtc, year, month, day, hour);
+      _from ?? DateTimeConstructors.withTimezone(isUtc, year, month, day, hour);
 
   @override
-  DateTime get to => from.endOfHour();
+  DateTime get to => _from == null
+      ? from.endOfHour()
+      : from.add(const Duration(hours: 1) - const Duration(microseconds: 1));
 
   @override
   DurationUnit get unit => DurationUnit.hour;
@@ -75,20 +107,10 @@ class HourTimeRange extends TimeRange with PageableRange<HourTimeRange> {
       isUtc ? this : HourTimeRange(year, month, day, hour, isUtc: true);
 
   @override
-  HourTimeRange get next => HourTimeRange(
-        year,
-        month,
-        day,
-        hour + 1,
-        isUtc: isUtc,
-      );
+  HourTimeRange get next =>
+      HourTimeRange.fromDateTime(from.add(const Duration(hours: 1)));
 
   @override
-  HourTimeRange get last => HourTimeRange(
-        year,
-        month,
-        day,
-        hour - 1,
-        isUtc: isUtc,
-      );
+  HourTimeRange get last =>
+      HourTimeRange.fromDateTime(from.subtract(const Duration(hours: 1)));
 }

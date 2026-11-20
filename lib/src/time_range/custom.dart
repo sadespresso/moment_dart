@@ -20,10 +20,15 @@ class CustomTimeRange extends TimeRange {
   /// The timezone is assumed by the [from] passed in here.
   ///
   /// [CustomTimeRange] does NOT ensure that [from] and [to] have the same timezone.
+  ///
+  /// Throws [ArgumentError] when [to] is before [from].
   CustomTimeRange(this.from, this.to)
-      : assert(from <= to, "[from] must be before or equal to [to]"),
-        assert(from.isUtc == to.isUtc,
-            "[from] and [to] must have the same timezone");
+      : assert(from.isUtc == to.isUtc,
+            "[from] and [to] must have the same timezone") {
+    if (from > to) {
+      throw ArgumentError.value(to, "to", "must not be before [from] ($from)");
+    }
+  }
 
   @override
   CustomTimeRange toUtc() =>

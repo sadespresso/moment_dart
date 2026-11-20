@@ -66,7 +66,11 @@ mixin SimpleRange on MomentLocalization {
         range is IsoWeekTimeRange) {
       return super.range(range, anchor: anchor, useRelative: useRelative);
     } else if (range is LocalWeekTimeRange) {
-      if (useRelative && LocalWeekTimeRange(anchor) == range) {
+      final DateTime zonedAnchor =
+          range.isUtc ? anchor.toUtc() : anchor.toLocal();
+
+      if (useRelative &&
+          LocalWeekTimeRange(zonedAnchor, range.weekStart) == range) {
         return simpleRangeData.thisWeek;
       }
 
@@ -79,13 +83,19 @@ mixin SimpleRange on MomentLocalization {
           anchor: anchor, useRelative: useRelative);
     }
 
-    return _customRange(range, this);
+    return _customRange(
+      range,
+      this,
+      anchor: anchor,
+      useRelative: useRelative,
+    );
   }
 
   static String _customRange(
     TimeRange custom,
     SimpleRange localization, {
     DateTime? anchor,
+    bool useRelative = true,
   }) {
     if (custom.to == Moment.maxValue || custom.to == Moment.maxValueUtc) {
       if (custom.from == Moment.minValue || custom.from == Moment.minValueUtc) {
@@ -109,12 +119,15 @@ mixin SimpleRange on MomentLocalization {
 
     final bool omitHours = custom.from.isMidnight && custom.to.isMidnight;
 
-    final String from = custom.from
-        .toMoment(localization: localization)
-        .calendar(omitHours: omitHours, reference: anchor);
-    final String to = custom.to
-        .toMoment(localization: localization)
-        .calendar(omitHours: omitHours, reference: anchor);
+    final Moment start = custom.from.toMoment(localization: localization);
+    final Moment end = custom.to.toMoment(localization: localization);
+
+    final String from = useRelative
+        ? start.calendar(omitHours: omitHours, reference: anchor)
+        : start.lll;
+    final String to = useRelative
+        ? end.calendar(omitHours: omitHours, reference: anchor)
+        : end.lll;
 
     final List<String> parts = [from, to];
 

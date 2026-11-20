@@ -9,10 +9,10 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
+import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
 
 /// Language: Portuguese
-/// Country: Portuguese Republic
+/// Country: Portugal
 class LocalizationPtPt extends MomentLocalization
     with
         MonthNames,
@@ -21,7 +21,8 @@ class LocalizationPtPt extends MomentLocalization
         SimpleRelative,
         SimpleDuration,
         ComplexCalendar,
-        SimpleRange {
+        SimpleRange,
+        WeekdayShortForms {
   static LocalizationPtPt? _instance;
 
   LocalizationPtPt._internal() : super();
@@ -33,7 +34,7 @@ class LocalizationPtPt extends MomentLocalization
   }
 
   @override
-  String get endonym => "República Portuguesa";
+  String get endonym => "Português";
 
   @override
   String get languageCode => "pt";
@@ -71,15 +72,27 @@ class LocalizationPtPt extends MomentLocalization
 
   @override
   Map<int, String> get weekdayName => {
-        DateTime.monday: "Segunda-feira",
-        DateTime.tuesday: "Terça-feira",
-        DateTime.wednesday: "Quarta-feira",
-        DateTime.thursday: "Quinta-feira",
-        DateTime.friday: "Sexta-feira",
-        DateTime.saturday: "Sábado",
-        DateTime.sunday: "Domingo",
+        DateTime.monday: "segunda-feira",
+        DateTime.tuesday: "terça-feira",
+        DateTime.wednesday: "quarta-feira",
+        DateTime.thursday: "quinta-feira",
+        DateTime.friday: "sexta-feira",
+        DateTime.saturday: "sábado",
+        DateTime.sunday: "domingo",
       };
 
+  @override
+  Map<int, String> get weekdayNameShort => {
+        DateTime.monday: "seg",
+        DateTime.tuesday: "ter",
+        DateTime.wednesday: "qua",
+        DateTime.thursday: "qui",
+        DateTime.friday: "sex",
+        DateTime.saturday: "sáb",
+        DateTime.sunday: "dom",
+      };
+
+  @override
   Map<int, String> get weekdayNameMin => {
         DateTime.monday: "2ª",
         DateTime.tuesday: "3ª",
@@ -97,21 +110,23 @@ class LocalizationPtPt extends MomentLocalization
       ...formattersWithOrdinal,
       // From [MonthNames] mixin
       ...formattersForMonthNames,
+      // From [WeekdayShortForms] mixin
+      ...formattersForWeekdayShortForms,
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD/MM/YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D/M/YYYY"),
       FormatterToken.LL: (dateTime) =>
-          reformat(dateTime, "Do [de] MMMM [de] YYYY"),
+          reformat(dateTime, "D [de] MMMM [de] YYYY"),
       FormatterToken.ll: (dateTime) =>
-          reformat(dateTime, "Do [de] MMM [de] YYYY"),
+          reformat(dateTime, "D [de] MMM [de] YYYY"),
       FormatterToken.LLL: (dateTime) =>
-          reformat(dateTime, "Do [de] MMMM [de] YYYY HH:mm"),
+          reformat(dateTime, "D [de] MMMM [de] YYYY HH:mm"),
       FormatterToken.lll: (dateTime) =>
-          reformat(dateTime, "Do [de] MMM [de] YYYY HH:mm"),
+          reformat(dateTime, "D [de] MMM [de] YYYY HH:mm"),
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "dddd, Do [de] MMMM [de] YYYY HH:mm"),
+          reformat(dateTime, "dddd, D [de] MMMM [de] YYYY HH:mm"),
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, Do [de] MMM [de] YYYY HH:mm"),
+          reformat(dateTime, "ddd, D [de] MMM [de] YYYY HH:mm"),
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
     };
@@ -180,12 +195,12 @@ class LocalizationPtPt extends MomentLocalization
         DurationInterval.aMonth: UnitString.withForm(
           "um mês",
           "1 mês",
-          "1 mê",
+          "1 mês",
         ),
         DurationInterval.months: UnitString.withForm(
-          "$srDelta mêses",
-          "$srDelta mêses",
-          "$srDelta mê",
+          "$srDelta meses",
+          "$srDelta meses",
+          "$srDelta meses",
         ),
         DurationInterval.aYear: UnitString.withForm(
           "um ano",
@@ -196,6 +211,46 @@ class LocalizationPtPt extends MomentLocalization
           "$srDelta anos",
           "$srDelta anos",
           "$srDelta a",
+        ),
+      };
+
+  @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.withForm(
+          "1 segundo",
+          "1 seg",
+          "1 s",
+        ),
+        DurationInterval.aMinute: UnitString.withForm(
+          "1 minuto",
+          "1 min",
+          "1 m",
+        ),
+        DurationInterval.anHour: UnitString.withForm(
+          "1 hora",
+          "1 hora",
+          "1 h",
+        ),
+        DurationInterval.aDay: UnitString.withForm(
+          "1 dia",
+          "1 dia",
+          "1 d",
+        ),
+        DurationInterval.aWeek: UnitString.withForm(
+          "1 semana",
+          "1 sem",
+          "1 sem",
+        ),
+        DurationInterval.aMonth: UnitString.withForm(
+          "1 mês",
+          "1 mês",
+          "1 mês",
+        ),
+        DurationInterval.aYear: UnitString.withForm(
+          "1 ano",
+          "1 ano",
+          "1 a",
         ),
       };
 
@@ -222,8 +277,11 @@ class LocalizationPtPt extends MomentLocalization
                 return "Última ${reformat(dateTime, "dddd")}";
             }
           },
-          nextWeekday: (DateTime dateTime, {reference}) =>
-              reformat(dateTime, "dddd"),
+          nextWeekday: (DateTime dateTime, {reference}) {
+            final String weekday = reformat(dateTime, "dddd");
+
+            return weekday[0].toUpperCase() + weekday.substring(1);
+          },
         ),
         relativeDayNames: {
           -1: "Ontem",

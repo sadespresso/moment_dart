@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: French
 /// Country: France
@@ -69,7 +68,7 @@ class LocalizationFrFr extends MomentLocalization
         1: "janv.",
         2: "févr.",
         3: "mars",
-        4: "avril",
+        4: "avr.",
         5: "mai",
         6: "juin",
         7: "juil.",
@@ -98,6 +97,12 @@ class LocalizationFrFr extends MomentLocalization
       ...formattersWithOrdinal,
       // From [MonthNames] mixin
       ...formattersForMonthNames,
+      // Day of month is a cardinal except the 1st: "1er janvier", "2 janvier"
+      FormatterToken.Do: (dateTime) =>
+          dateTime.day == 1 ? "1er" : "${dateTime.day}",
+      // "semaine" is feminine
+      FormatterToken.wo: (dateTime) =>
+          dateTime.week == 1 ? "1re" : "${dateTime.week}e",
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD/MM/YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D/M/YYYY"),
@@ -134,11 +139,6 @@ class LocalizationFrFr extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataEs instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataEs =
-      calendarLocalizationDataEs;
 
   @override
   String ordinalNumber(int n) {
@@ -225,6 +225,46 @@ class LocalizationFrFr extends MomentLocalization
           "$srDelta ans",
           "$srDelta ans",
           "$srDelta ans",
+        ),
+      };
+
+  @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.withForm(
+          "1 seconde",
+          "1 sec.",
+          "1 s",
+        ),
+        DurationInterval.aMinute: UnitString.withForm(
+          "1 minute",
+          "1 min",
+          "1 min",
+        ),
+        DurationInterval.anHour: UnitString.withForm(
+          "1 heure",
+          "1 heure",
+          "1 h",
+        ),
+        DurationInterval.aDay: UnitString.withForm(
+          "1 jour",
+          "1 jour",
+          "1 j",
+        ),
+        DurationInterval.aWeek: UnitString.withForm(
+          "1 semaine",
+          "1 sem.",
+          "1 sem.",
+        ),
+        DurationInterval.aMonth: UnitString.withForm(
+          "1 mois",
+          "1 mois",
+          "1 mois",
+        ),
+        DurationInterval.aYear: UnitString.withForm(
+          "1 an",
+          "1 an",
+          "1 an",
         ),
       };
 

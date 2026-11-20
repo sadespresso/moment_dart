@@ -1,3 +1,113 @@
+## 6.0.0
+
+### Breaking changes
+
+- `Moment.epoch`, `epochUtc`, `maxValue`, `maxValueUtc`, `minValue` and
+  `minValueUtc` are now `final`.
+- `isAtSameYearAs` … `isAtSameMicrosecondAs` convert `other` to the timezone of
+  `this` and compare unit starts as instants, like moment.js `isSame`. Before,
+  they compared raw wall-clock fields, so a UTC and a local date of the same
+  instant usually didn't match.
+- `CustomTimeRange` throws `ArgumentError` when `to` is before `from` (it was
+  only an assert, so release builds accepted it).
+- `MomentLocalizations.byLocale` falls back to the closest localization of the
+  same language (`"en_GB"` → en_US, `"pt-BR"` → pt_PT). Pass `strict: true`
+  for the old `null` result.
+- Removed the deprecated `Calender*` typedefs and `calender*` constants; use
+  the `Calendar*` / `calendar*` names.
+- `MomentLocalization.formatters` returns an unmodifiable map (it is cached).
+- Many localized strings changed; see "Fixed: localizations" below.
+
+### Added
+
+- `Moment.copyWith` takes the `DateTime` fields too
+  (`moment.copyWith(year: 2020)`), applied on top of `dateTime`. Before, it
+  hid `DateTime.copyWith`.
+- `types.dart` (`FormatSet`, `FormatSetOptional`) is exported, so custom
+  localizations don't need to import `src/`.
+- `SimpleUnits.durationUnits`: unit strings `duration()` uses, defaulting to
+  `units`. Built-in localizations use it so precise durations show the number:
+  "in 2 hours 1 minute" instead of "in 2 hours a minute" (`relative()` still
+  says "in an hour").
+
+### Migrating from 5.x
+
+- Assigning to `Moment.epoch`/`maxValue`/… no longer compiles; keep your own
+  variable instead.
+- If you used `isAtSame*As` to compare wall-clock fields across timezones,
+  convert both dates yourself first (or use `enforceUTC: true`).
+- Wrap `CustomTimeRange(a, b)` with a check if `b` can be before `a`.
+- If you relied on `byLocale` returning `null` for unsupported locales, use
+  `byLocale(code, strict: true)`.
+- Rename `CalenderLocalizationData` → `CalendarLocalizationData` and
+  `calenderLocalizationData…` → `calendarLocalizationData…`.
+
+### Fixed: dates, DST and time ranges
+
+- `differenceInDays` was off by one across a 23-hour DST day, which also made
+  `calendar()` say "Today" instead of "Yesterday"/"Tomorrow".
+- `nextMonday()`, `lastFriday()` and the other weekday finders no longer
+  drift by an hour across DST.
+- `clone()`, `startOf`/`endOf` and the hour/minute finders now return the right
+  instant during a repeated (fall-back) hour; `endOf(day/month/year)` and
+  week ends stay after the instant where DST falls back at midnight.
+- `fromPrecise(dropPrefixOrSuffix: true)` (and `fromNowPrecise`) ignored the flag.
+- `Moment.maxValue`/`minValue` are now the same instants as their UTC
+  versions in every timezone.
+- `IsoWeekTimeRange.next/last` got stuck or skipped a week at DST;
+  `LocalWeekTimeRange.next/last` dropped `weekStart`; `HourTimeRange.last` got
+  stuck at spring-forward.
+- `TimeRange.encodeShort()`/`parse` now keep UTC and `weekStart` (old strings
+  still parse the same).
+- Custom ranges in built-in localizations now honour `anchor` and `useRelative`.
+- `calendar()`: "last <weekday>"/"<weekday>" now means 1–6 calendar days
+  back/ahead regardless of time of day; the timezone fix from 5.3.4 now also
+  applies to it/pt/ja/zh.
+- Durations round before splitting into units: 59m59.6s is "an hour", not
+  "59 minutes 60 seconds".
+- Relative-time thresholds compare the rounded value, like moment.js
+  (44m30s is "an hour", 21h30m is "a day").
+- Format tokens: `y` for BC years, `X` for negative timestamps, `DDDo`
+  fallback, and the base `range()` month format.
+- `MomentLocalizations.byLocale` is case-insensitive; `byLanguage("e")` no
+  longer matches `en`.
+- `format()` is about 40% faster (formatter map is cached).
+
+### Fixed: localizations
+
+- `mn_Mong_MN` / `mn_Qaaq_MN`: updated to the Unicode 16 encoding model.
+  Output strings change byte-wise, though they render the same in current fonts.
+  - Suffixes are joined with MVS (U+180E) instead of the legacy NNBSP (U+202F).
+  - The ablative suffix (e.g. "after noon", "after/before <date>") is now
+    joined to its word instead of standing after a plain space.
+  - Removed invalid variation selectors in abbreviations (FVS placed after
+    nirugu, and FVS3 on NA), and fixed the spelling of second and minute.
+  - Spelling fixes: yesterday, Wednesday, "after" (хойш), "before" and "all time".
+  - "Year" now takes the feminine genitive suffix; durations keep the genitive
+    when their last unit is zero.
+  - `LLLL`/`llll` use the Mongolian comma.
+  - `mn_Qaaq_MN`: year ranges now use traditional digits.
+- `mn_MN`: durations now take the genitive ("3 цагийн дараа"), like `relative()`.
+- `ru_RU`: genitive months in dates ("5 января 2024"), accusative after
+  через/назад ("21 минуту назад"), numbers kept in short and singular duration
+  forms, "2 часа, 3 минуты и 4 секунды", "Пн", "В прошлую пятницу в 13:05".
+- `pl_PL`: same duration fixes, "W zeszły czwartek o 13:05", lowercase
+  weekdays and months in formats, "Cały okres".
+- `ar_PS`: Arabic plural categories (dual, 3–10, 11+), Levantine month names,
+  proper `dd`/`ddd` weekday forms, "و" between duration units.
+- `es_ES`: "pasado", "una hora", endonym "Español", "Desde el …"/"Hasta el …".
+- `pt_PT`: endonym "Português", "meses", unambiguous `dd`, lowercase weekdays,
+  no ordinal day in long dates.
+- `en_US`: "January 5, 2024", unpadded hours in `LLL`/`LLLL`, "3 days".
+- `de_DE`: "HH:mm" times, "Dieser Monat". `fr_FR`: "avr.", "1er".
+- `ja_JP`: removed Korean strings from `Qo`/`wo`. `zh_CN`: "第1周".
+  `ko_KR`: "오전 9:05".
+
+### Other
+
+- Fixed the analyzer warning in `analysis_options.yaml`; CI now checks
+  formatting and runs the tests in New York and Tokyo time.
+
 ## 5.3.4
 
 - Fixed several DST-related off-by-one bugs in `startOf`/`endOf` week helpers

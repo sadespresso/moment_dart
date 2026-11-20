@@ -1,4 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/localizations/utils/duration_rounding.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 
 /// Depends on [SimpleUnits]
@@ -40,11 +41,18 @@ mixin SimpleDuration on SimpleUnits {
   }) {
     final bool past = duration.isNegative;
 
-    Duration left = duration.abs();
+    final RoundedDuration rounded = roundDurationForFormat(
+      duration,
+      format,
+      includeWeeks: includeWeeks,
+      round: round,
+    );
 
-    if (format.isAuto) {
-      format = DurationFormat.resolveAuto(duration, includeWeeks);
-    }
+    format = rounded.format;
+
+    Duration left = rounded.duration;
+
+    final Map<DurationInterval, UnitString> units = durationUnits;
 
     final List<String> result = [];
 

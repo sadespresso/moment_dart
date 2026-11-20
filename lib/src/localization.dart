@@ -16,26 +16,41 @@ export 'package:moment_dart/src/localizations/utils/abbreviation.dart';
 import 'package:moment_dart/src/calendar.dart';
 export 'package:moment_dart/src/calendar.dart';
 
+import 'package:moment_dart/src/localizations/utils/calendar_day_delta.dart';
+
 import 'package:moment_dart/src/moment.dart';
 import 'package:moment_dart/src/types.dart';
 
 /// Extend this class to create new localization
 abstract class MomentLocalization {
-  /// Defined intervals' upper-limit has been stored as [Map<String,Duration?>]. Null [Duration] value indicates last possible case.
+  /// Exclusive upper limit of each interval, compared against the duration
+  /// rounded to the interval's unit (see [DurationUnit.relativeDuration]),
+  /// which is also the number that gets printed. Null indicates last possible
+  /// case.
   ///
   /// Used this table as guide:
   /// [https://momentjs.com/docs/#/displaying/fromnow/]
-  static const Map<DurationInterval, Duration?> _relativeThresholds = {
-    DurationInterval.lessThanASecond: Duration(seconds: 45),
-    DurationInterval.aMinute: Duration(seconds: 90),
-    DurationInterval.minutes: Duration(minutes: 45),
-    DurationInterval.anHour: Duration(minutes: 90),
-    DurationInterval.hours: Duration(hours: 22),
-    DurationInterval.aDay: Duration(hours: 36),
-    DurationInterval.days: Duration(days: 26),
-    DurationInterval.aMonth: Duration(days: 45),
-    DurationInterval.months: Duration(days: 320),
-    DurationInterval.aYear: Duration(days: 548),
+  static const Map<DurationInterval, int?> _relativeThresholds = {
+    // switches at 44.5 seconds
+    DurationInterval.lessThanASecond: 45,
+    // switches at 90 seconds
+    DurationInterval.aMinute: 2,
+    // switches at 44 minutes 30 seconds
+    DurationInterval.minutes: 45,
+    // switches at 90 minutes
+    DurationInterval.anHour: 2,
+    // switches at 21 hours 30 minutes
+    DurationInterval.hours: 22,
+    // switches at 36 hours
+    DurationInterval.aDay: 2,
+    // switches at 25 days 12 hours
+    DurationInterval.days: 26,
+    // switches at 45 days
+    DurationInterval.aMonth: 2,
+    // switches at 315 days
+    DurationInterval.months: 11,
+    // switches at 548 days
+    DurationInterval.aYear: 2,
     DurationInterval.years: null,
   };
 
@@ -45,11 +60,11 @@ abstract class MomentLocalization {
     final Duration absoluteDuration = duration.abs();
 
     for (DurationInterval key in _relativeThresholds.keys) {
-      final Duration? maxDuration = _relativeThresholds[key];
+      final int? limit = _relativeThresholds[key];
 
-      if (maxDuration == null) return key;
+      if (limit == null) return key;
 
-      if (absoluteDuration < maxDuration) {
+      if (DurationUnit.relativeDuration(absoluteDuration, key.unit) < limit) {
         return key;
       }
     }
@@ -119,42 +134,28 @@ abstract class MomentLocalization {
 
     late final String dateString;
 
-    final int deltaDays = moment.differenceInDays(reference);
+    final int deltaDays = calendarDayDelta(moment, reference);
     final String? deltaDaysName = _calendarData.relativeDayNames[deltaDays];
 
     if (deltaDaysName != null) {
       dateString = deltaDaysName;
     } else {
-      /// If it occured before [reference]
-      if (moment < reference) {
-        final DateTime weekBefore = reference.subtract(const Duration(days: 7));
-
-        if (moment.isBefore(weekBefore)) {
-          if (omitHoursIfDistant) {
-            omitHours = true;
-          }
-          dateString =
-              moment.format(customFormat ?? localizationDefaultDateFormat);
-        } else {
+      switch (calendarWeekdayWindow(deltaDays, moment < reference)) {
+        case CalendarWeekdayWindow.last:
           dateString =
               _calendarData.keywords.lastWeekday(weekdayName[moment.weekday]!);
-        }
-      }
-
-      /// If it occured after [reference]
-      else {
-        final DateTime weekAfter = reference.add(const Duration(days: 7));
-
-        /// If it's this or next week (relative to the reference)
-        if (moment.isBefore(weekAfter)) {
-          dateString = weekdayName[moment.weekday]!;
-        } else {
+          break;
+        case CalendarWeekdayWindow.next:
+          dateString =
+              _calendarData.keywords.nextWeekday(weekdayName[moment.weekday]!);
+          break;
+        case CalendarWeekdayWindow.distant:
           if (omitHoursIfDistant) {
             omitHours = true;
           }
           dateString =
               moment.format(customFormat ?? localizationDefaultDateFormat);
-        }
+          break;
       }
     }
 
@@ -189,7 +190,7 @@ abstract class MomentLocalization {
           ? "${from.calendar(omitHours: true, reference: anchor)} - ${to.calendar(omitHours: true, reference: anchor)}"
           : "${from.ll} - ${to.ll}";
     } else if (range is MonthTimeRange) {
-      return from.format("MMMM yyyy");
+      return from.format("MMMM YYYY");
     } else if (range is YearTimeRange) {
       return from.format("YYYY");
     }
@@ -240,7 +241,8 @@ abstract class MomentLocalization {
     },
     FormatterToken.YYYY: (dateTime) => dateTime.year.toString(),
 
-    FormatterToken.y: (dateTime) => dateTime.year.abs().toString(),
+    FormatterToken.y: (dateTime) =>
+        (dateTime.year < 1 ? 1 - dateTime.year : dateTime.year).toString(),
     FormatterToken.NN: (dateTime) => dateTime.year < 1 ? "B.C." : "A.D.",
     FormatterToken.NNNN: (dateTime) =>
         dateTime.year < 1 ? "Before Christ" : "Anno Domini",
@@ -279,8 +281,10 @@ abstract class MomentLocalization {
     FormatterToken.Z: (dateTime) => dateTime.timeZoneFormatted(),
     FormatterToken.ZZ: (dateTime) => dateTime.timeZoneFormatted(false),
     FormatterToken.ZZZ: (dateTime) => dateTime.timeZoneName,
-    FormatterToken.X: (dateTime) =>
-        (dateTime.millisecondsSinceEpoch ~/ 1000).toString(),
+    FormatterToken.X: (dateTime) {
+      final int ms = dateTime.millisecondsSinceEpoch;
+      return ((ms - ms % 1000) ~/ 1000).toString();
+    },
     FormatterToken.x: (dateTime) => dateTime.millisecondsSinceEpoch.toString(),
     FormatterToken.xx: (dateTime) => dateTime.microsecondsSinceEpoch.toString(),
 
@@ -292,7 +296,7 @@ abstract class MomentLocalization {
     FormatterToken.Qo: (dateTime) => "Q${dateTime.quarter} (ordered)",
     FormatterToken.Do: (dateTime) => "Day ${dateTime.day} of the month",
     FormatterToken.DDDo: (dateTime) =>
-        "Day ${dateTime.day} of the year (ordered)",
+        "Day ${dateTime.dayOfYear} of the year (ordered)",
     FormatterToken.d_o: (dateTime) =>
         "Day #${dateTime.weekday} of the week (ordered)",
     FormatterToken.dd: (dateTime) => "Day #${dateTime.weekday} of the week",
@@ -312,11 +316,15 @@ abstract class MomentLocalization {
       };
 
   FormatSetOptional overrideFormatters();
-  FormatSetOptional get formatters => {
+
+  FormatSetOptional? _formatters;
+
+  /// Built once per instance, as [Moment.format] looks it up for every token.
+  FormatSetOptional get formatters => _formatters ??= Map.unmodifiable({
         ...defaultFormatters,
         ...nonFinalFormatters,
         ...overrideFormatters(),
-      };
+      });
 
   static Moment startOfWeek(Moment refernce,
           [int startingWeekday = DateTime.monday]) =>
@@ -346,7 +354,7 @@ abstract class MomentLocalization {
   /// For example,
   /// * Français (in English - French)
   /// * Italiano (in English - Italian)
-  /// * ᠮᠣᠩᠭᠤᠯ ᠬᠯᠡ (in English - Mongolian)
+  /// * ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ (in English - Mongolian)
   String get endonym;
 
   /// Country code as defined in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)

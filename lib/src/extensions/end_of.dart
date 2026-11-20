@@ -17,93 +17,42 @@ extension EndOfUnit on DateTime {
         throw MomentException(
             "endOf(DurationUnit.week) is not supported on DateTime object. You can use it on Moment objects");
       case DurationUnit.millisecond:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          day,
-          hour,
-          minute,
-          second,
-          millisecond,
-          999,
-        );
       case DurationUnit.second:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          day,
-          hour,
-          minute,
-          second,
-          999,
-          999,
-        );
       case DurationUnit.minute:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          day,
-          hour,
-          minute,
-          59,
-          999,
-          999,
-        );
       case DurationUnit.hour:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          day,
-          hour,
-          59,
-          59,
-          999,
-          999,
+        // See [startOf]. A wall-clock unit can last longer than
+        // [unit.microseconds] (half-hour DST shifts), so step until the next
+        // unit actually starts after [this].
+        final int start = startOf(unit).microsecondsSinceEpoch;
+        DateTime next = this;
+        for (int k = 1; !next.isAfter(this); k++) {
+          next = DateTime.fromMicrosecondsSinceEpoch(
+            start + k * unit.microseconds,
+            isUtc: isUtc,
+          ).startOf(unit);
+        }
+        return DateTime.fromMicrosecondsSinceEpoch(
+          next.microsecondsSinceEpoch - 1,
+          isUtc: isUtc,
         );
+      // One microsecond before the next unit starts. Building 23:59:59.999999
+      // from fields would pick the first copy of a repeated hour, which is
+      // before [this] where DST falls back at midnight (e.g. America/Santiago)
       case DurationUnit.day:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          day,
-          23,
-          59,
-          59,
-          999,
-          999,
-        );
+        return _justBefore(
+            DateTimeConstructors.withTimezone(isUtc, year, month, day + 1));
       case DurationUnit.month:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          month,
-          isLeapYear
-              ? Moment.daysInMonthsInLeapYear[month]
-              : Moment.daysInMonths[month],
-          23,
-          59,
-          59,
-          999,
-          999,
-        );
+        return _justBefore(
+            DateTimeConstructors.withTimezone(isUtc, year, month + 1));
       case DurationUnit.year:
-        return DateTimeConstructors.withTimezone(
-          isUtc,
-          year,
-          12,
-          31,
-          23,
-          59,
-          59,
-          999,
-          999,
-        );
+        return _justBefore(DateTimeConstructors.withTimezone(isUtc, year + 1));
     }
   }
+
+  DateTime _justBefore(DateTime next) => DateTime.fromMicrosecondsSinceEpoch(
+        next.microsecondsSinceEpoch - 1,
+        isUtc: isUtc,
+      );
 
   /// Returns end of the millisecond
   ///
@@ -138,17 +87,12 @@ extension EndOfUnit on DateTime {
 
     final int delta = (weekStart + 6 - weekday) % 7;
 
-    return DateTimeConstructors.withTimezone(
+    return _justBefore(DateTimeConstructors.withTimezone(
       isUtc,
       year,
       month,
-      day + delta,
-      23,
-      59,
-      59,
-      999,
-      999,
-    );
+      day + delta + 1,
+    ));
   }
 
   /// Returns end of the ISO week (always Sunday)

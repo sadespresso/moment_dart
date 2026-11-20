@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Turkish (Turkey)
 /// Country: Turkey
@@ -121,11 +120,11 @@ class LocalizationTrTr extends MomentLocalization
       FormatterToken.LL: (dateTime) => reformat(dateTime, "D MMMM YYYY"),
       FormatterToken.ll: (dateTime) => reformat(dateTime, "D MMM YYYY"),
       FormatterToken.LLL: (dateTime) => reformat(dateTime, "D MMMM YYYY HH:mm"),
-      FormatterToken.lll: (dateTime) => reformat(dateTime, "D MMM YYYY H:mm"),
+      FormatterToken.lll: (dateTime) => reformat(dateTime, "D MMM YYYY HH:mm"),
       FormatterToken.LLLL: (dateTime) =>
           reformat(dateTime, "dddd, D MMMM YYYY HH:mm"),
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, D MMM YYYY H:mm"),
+          reformat(dateTime, "ddd, D MMM YYYY HH:mm"),
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
     };
@@ -166,11 +165,6 @@ class LocalizationTrTr extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataTrTr instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataTrTr =
-      calendarLocalizationDataTrTr;
 
   @override
   int get weekStart => DateTime.monday;
@@ -236,6 +230,39 @@ class LocalizationTrTr extends MomentLocalization
         DurationInterval.years: UnitString.duo(
           "$srDelta yıl",
           "$srDelta yıl",
+        ),
+      };
+
+  @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.duo(
+          "1 saniye",
+          "1 sn",
+        ),
+        DurationInterval.aMinute: UnitString.duo(
+          "1 dakika",
+          "1 dk",
+        ),
+        DurationInterval.anHour: UnitString.duo(
+          "1 saat",
+          "1 sa",
+        ),
+        DurationInterval.aDay: UnitString.duo(
+          "1 gün",
+          "1 gün",
+        ),
+        DurationInterval.aWeek: UnitString.duo(
+          "1 hafta",
+          "1 hft",
+        ),
+        DurationInterval.aMonth: UnitString.duo(
+          "1 ay",
+          "1 ay",
+        ),
+        DurationInterval.aYear: UnitString.duo(
+          "1 yıl",
+          "1 yıl",
         ),
       };
 

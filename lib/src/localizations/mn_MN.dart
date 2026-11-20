@@ -6,13 +6,19 @@ import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
+import 'package:moment_dart/src/localizations/mixins/mn_MN/duration.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_MN/units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Mongolian (Cyrillic)
 /// Country: Mongolia
 class LocalizationMnMn extends MomentLocalization
-    with Ordinal, SimpleUnits, MnMnUnits, SimpleDuration, SimpleRange {
+    with
+        Ordinal,
+        SimpleUnits,
+        MnMnUnits,
+        SimpleDuration,
+        MnMnDuration,
+        SimpleRange {
   static LocalizationMnMn? _instance;
 
   LocalizationMnMn._internal() : super();
@@ -142,11 +148,6 @@ class LocalizationMnMn extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataMn instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataMn =
-      calendarLocalizationDataMn;
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(

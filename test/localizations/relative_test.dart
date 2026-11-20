@@ -138,10 +138,9 @@ void main() {
     expect(aDayAhead.from(now), "خلال يوم");
     expect(aDayAgo.from(now), "منذ يوم");
     expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "يوم");
-    expect(twoDaysAhead.from(now), "خلال 2 أيام"); // Adjusted from يومين
-    expect(twoDaysAgo.from(now), "منذ 2 أيام"); // Adjusted from يومين
-    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true),
-        "2 أيام"); // Adjusted from يومين
+    expect(twoDaysAhead.from(now), "خلال يومين");
+    expect(twoDaysAgo.from(now), "منذ يومين");
+    expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "يومان");
     expect(aMonthAhead.from(now), "خلال شهر");
     expect(aMonthAgo.from(now), "منذ شهر");
     expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "شهر");
@@ -207,9 +206,9 @@ void main() {
     expect(fiveMinutesAhead.from(now), "en 5 minutos");
     expect(fiveMinutesAgo.from(now), "hace 5 minutos");
     expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 minutos");
-    expect(anHourAhead.from(now), "en un hora");
-    expect(anHourAgo.from(now), "hace un hora");
-    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "un hora");
+    expect(anHourAhead.from(now), "en una hora");
+    expect(anHourAgo.from(now), "hace una hora");
+    expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "una hora");
     expect(sixHoursAhead.from(now), "en 6 horas");
     expect(sixHoursAgo.from(now), "hace 6 horas");
     expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 horas");
@@ -261,9 +260,9 @@ void main() {
     expect(aMonthAhead.from(now), "em um mês");
     expect(aMonthAgo.from(now), "há um mês");
     expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "um mês");
-    expect(fourMonthsAhead.from(now), "em 4 mêses");
-    expect(fourMonthsAgo.from(now), "há 4 mêses");
-    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 mêses");
+    expect(fourMonthsAhead.from(now), "em 4 meses");
+    expect(fourMonthsAgo.from(now), "há 4 meses");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 meses");
     expect(aYearAhead.from(now), "em um ano");
     expect(aYearAgo.from(now), "há um ano");
     expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "um ano");
@@ -351,76 +350,76 @@ void main() {
   test("mn (Traditional) localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.mnMong());
 
-    expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ");
-    expect(aMinuteAhead.from(now), "1 ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aMinuteAgo.from(now), "1 ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 ᠮᠢᠨᠦᠢᠲ");
-    expect(fiveMinutesAhead.from(now), "5 ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fiveMinutesAgo.from(now), "5 ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 ᠮᠢᠨᠦᠢᠲ");
-    expect(anHourAhead.from(now), "1 ᠴᠠᠭ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(anHourAgo.from(now), "1 ᠴᠠᠭ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aMinuteAhead.from(now), "1 ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aMinuteAgo.from(now), "1 ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 ᠮᠢᠨᠦ\u180Bᠲ");
+    expect(fiveMinutesAhead.from(now), "5 ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fiveMinutesAgo.from(now), "5 ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "5 ᠮᠢᠨᠦ\u180Bᠲ");
+    expect(anHourAhead.from(now), "1 ᠴᠠᠭ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(anHourAgo.from(now), "1 ᠴᠠᠭ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "1 ᠴᠠᠭ");
-    expect(sixHoursAhead.from(now), "6 ᠴᠠᠭ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(sixHoursAgo.from(now), "6 ᠴᠠᠭ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(sixHoursAhead.from(now), "6 ᠴᠠᠭ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(sixHoursAgo.from(now), "6 ᠴᠠᠭ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "6 ᠴᠠᠭ");
-    expect(aDayAhead.from(now), "1 ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aDayAgo.from(now), "1 ᠡᠳᠦᠷ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aDayAhead.from(now), "1 ᠡᠳᠦᠷ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aDayAgo.from(now), "1 ᠡᠳᠦᠷ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "1 ᠡᠳᠦᠷ");
-    expect(twoDaysAhead.from(now), "2 ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(twoDaysAgo.from(now), "2 ᠡᠳᠦᠷ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(twoDaysAhead.from(now), "2 ᠡᠳᠦᠷ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(twoDaysAgo.from(now), "2 ᠡᠳᠦᠷ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "2 ᠡᠳᠦᠷ");
-    expect(aMonthAhead.from(now), "1 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aMonthAgo.from(now), "1 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "1 ᠰᠠᠷ᠎ᠠ");
-    expect(fourMonthsAhead.from(now), "4 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fourMonthsAgo.from(now), "4 ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 ᠰᠠᠷ᠎ᠠ");
-    expect(aYearAhead.from(now), "1 ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aYearAgo.from(now), "1 ᠵᠢᠯ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aMonthAhead.from(now), "1 ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aMonthAgo.from(now), "1 ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "1 ᠰᠠᠷ\u180Eᠠ");
+    expect(fourMonthsAhead.from(now), "4 ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fourMonthsAgo.from(now), "4 ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "4 ᠰᠠᠷ\u180Eᠠ");
+    expect(aYearAhead.from(now), "1 ᠵᠢᠯ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aYearAgo.from(now), "1 ᠵᠢᠯ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "1 ᠵᠢᠯ");
-    expect(threeYearsAhead.from(now), "3 ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(threeYearsAgo.from(now), "3 ᠵᠢᠯ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(threeYearsAhead.from(now), "3 ᠵᠢᠯ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(threeYearsAgo.from(now), "3 ᠵᠢᠯ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "3 ᠵᠢᠯ");
   });
 
   test("mn (Traditional with numbers) localization relative time test", () {
     Moment.setGlobalLocalization(MomentLocalizations.mnMongtn());
 
-    expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(fewMomentsAhead.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fewMomentsAgo.from(now), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ");
-    expect(aMinuteAhead.from(now), "᠑ ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aMinuteAgo.from(now), "᠑ ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠮᠢᠨᠦᠢᠲ");
-    expect(fiveMinutesAhead.from(now), "᠕ ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fiveMinutesAgo.from(now), "᠕ ᠮᠢᠨᠦᠢᠲ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "᠕ ᠮᠢᠨᠦᠢᠲ");
-    expect(anHourAhead.from(now), "᠑ ᠴᠠᠭ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(anHourAgo.from(now), "᠑ ᠴᠠᠭ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aMinuteAhead.from(now), "᠑ ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aMinuteAgo.from(now), "᠑ ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠮᠢᠨᠦ\u180Bᠲ");
+    expect(fiveMinutesAhead.from(now), "᠕ ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fiveMinutesAgo.from(now), "᠕ ᠮᠢᠨᠦ\u180Bᠲ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(fiveMinutesAgo.from(now, dropPrefixOrSuffix: true), "᠕ ᠮᠢᠨᠦ\u180Bᠲ");
+    expect(anHourAhead.from(now), "᠑ ᠴᠠᠭ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(anHourAgo.from(now), "᠑ ᠴᠠᠭ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(anHourAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠴᠠᠭ");
-    expect(sixHoursAhead.from(now), "᠖ ᠴᠠᠭ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(sixHoursAgo.from(now), "᠖ ᠴᠠᠭ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(sixHoursAhead.from(now), "᠖ ᠴᠠᠭ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(sixHoursAgo.from(now), "᠖ ᠴᠠᠭ\u180Eᠤᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(sixHoursAgo.from(now, dropPrefixOrSuffix: true), "᠖ ᠴᠠᠭ");
-    expect(aDayAhead.from(now), "᠑ ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aDayAgo.from(now), "᠑ ᠡᠳᠦᠷ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aDayAhead.from(now), "᠑ ᠡᠳᠦᠷ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aDayAgo.from(now), "᠑ ᠡᠳᠦᠷ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(aDayAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠡᠳᠦᠷ");
-    expect(twoDaysAhead.from(now), "᠒ ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(twoDaysAgo.from(now), "᠒ ᠡᠳᠦᠷ ᠦᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(twoDaysAhead.from(now), "᠒ ᠡᠳᠦᠷ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(twoDaysAgo.from(now), "᠒ ᠡᠳᠦᠷ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(twoDaysAgo.from(now, dropPrefixOrSuffix: true), "᠒ ᠡᠳᠦᠷ");
-    expect(aMonthAhead.from(now), "᠑ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aMonthAgo.from(now), "᠑ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠰᠠᠷ᠎ᠠ");
-    expect(fourMonthsAhead.from(now), "᠔ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(fourMonthsAgo.from(now), "᠔ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠡᠮᠦᠨ᠎ᠡ");
-    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "᠔ ᠰᠠᠷ᠎ᠠ");
-    expect(aYearAhead.from(now), "᠑ ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(aYearAgo.from(now), "᠑ ᠵᠢᠯ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(aMonthAhead.from(now), "᠑ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aMonthAgo.from(now), "᠑ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(aMonthAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠰᠠᠷ\u180Eᠠ");
+    expect(fourMonthsAhead.from(now), "᠔ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(fourMonthsAgo.from(now), "᠔ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(fourMonthsAgo.from(now, dropPrefixOrSuffix: true), "᠔ ᠰᠠᠷ\u180Eᠠ");
+    expect(aYearAhead.from(now), "᠑ ᠵᠢᠯ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(aYearAgo.from(now), "᠑ ᠵᠢᠯ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(aYearAgo.from(now, dropPrefixOrSuffix: true), "᠑ ᠵᠢᠯ");
-    expect(threeYearsAhead.from(now), "᠓ ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
-    expect(threeYearsAgo.from(now), "᠓ ᠵᠢᠯ ᠤᠨ ᠡᠮᠦᠨ᠎ᠡ");
+    expect(threeYearsAhead.from(now), "᠓ ᠵᠢᠯ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
+    expect(threeYearsAgo.from(now), "᠓ ᠵᠢᠯ\u180Eᠦᠨ ᠡᠮᠦᠨ\u180Eᠡ");
     expect(threeYearsAgo.from(now, dropPrefixOrSuffix: true), "᠓ ᠵᠢᠯ");
   });
 
@@ -631,8 +630,7 @@ void main() {
 
     expect(fewMomentsAhead.from(now), "za kilka sekund");
     expect(fewMomentsAgo.from(now), "kilka sekund temu");
-    expect(
-        fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "kilka sekund");
+    expect(fewMomentsAgo.from(now, dropPrefixOrSuffix: true), "kilka sekund");
     expect(aMinuteAhead.from(now), "za minutę");
     expect(aMinuteAgo.from(now), "minutę temu");
     expect(aMinuteAgo.from(now, dropPrefixOrSuffix: true), "1 minuta");

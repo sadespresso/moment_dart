@@ -13,7 +13,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -26,7 +26,7 @@ void main() {
     expect(thisMonth.format(), "هذا الشهر");
     expect(thisYear.format(), "هذا العام");
     expect(year.format(), "عام 2021");
-    expect(month.format(), "مارس 1205");
+    expect(month.format(), "آذار 1205");
     expect(allAfterEpoch.format(), "بعد 1/1/1970");
     expect(allBeforeMyBirthday.format(), "قبل 1/6/2003");
     expect(allTime.format(), "كل الوقت");
@@ -41,7 +41,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -51,7 +51,7 @@ void main() {
       thisWeekISO.format(),
       "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
     );
-    expect(thisMonth.format(), "Diesen Monat");
+    expect(thisMonth.format(), "Dieser Monat");
     expect(thisYear.format(), "Dieses Jahr");
     expect(year.format(), "Jahr 2021");
     expect(month.format(), "März 1205");
@@ -68,7 +68,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -95,7 +95,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -122,7 +122,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -149,7 +149,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -163,8 +163,8 @@ void main() {
     expect(thisYear.format(), "Este año");
     expect(year.format(), "Año 2021");
     expect(month.format(), "marzo 1205");
-    expect(allAfterEpoch.format(), "Después 1/1/1970");
-    expect(allBeforeMyBirthday.format(), "Antes 1/6/2003");
+    expect(allAfterEpoch.format(), "Desde el 1/1/1970");
+    expect(allBeforeMyBirthday.format(), "Hasta el 1/6/2003");
     expect(allTime.format(), "Todo el tiempo");
   });
   test("en_US range test", () {
@@ -176,7 +176,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -203,7 +203,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -230,23 +230,23 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
 
-    expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ");
+    expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ");
     expect(
       thisWeekISO.format(),
       "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
     );
-    expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ");
+    expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ\u180Eᠠ");
     expect(thisYear.format(), "ᠡᠨᠡ ᠵᠢᠯ");
     expect(year.format(), "2021 ᠣᠨ");
-    expect(month.format(), "1205 ᠣᠨ ᠤ 3 ᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ");
-    expect(allAfterEpoch.format(), "1970/1/1 ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ");
-    expect(allBeforeMyBirthday.format(), "2003/6/1 ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ");
-    expect(allTime.format(), "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ");
+    expect(month.format(), "1205 ᠣᠨ\u180Eᠤ 3\u180Eᠳᠤᠭᠠᠷ ᠰᠠᠷ\u180Eᠠ");
+    expect(allAfterEpoch.format(), "1970/1/1\u180Eᠡᠴᠡ ᠬᠣᠢᠰᠢ");
+    expect(allBeforeMyBirthday.format(), "2003/6/1\u180Eᠡᠴᠡ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(allTime.format(), "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠶ\u180Eᠡ");
   });
   test("mn_Qaaq_MN range test", () {
     Moment.setGlobalLocalization(MomentLocalizations.mnMongtn());
@@ -257,23 +257,23 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
 
-    expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ");
+    expect(thisWeek.format(), "ᠡᠨᠡ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ");
     expect(
       thisWeekISO.format(),
       "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
     );
-    expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ");
+    expect(thisMonth.format(), "ᠡᠨᠡ ᠰᠠᠷ\u180Eᠠ");
     expect(thisYear.format(), "ᠡᠨᠡ ᠵᠢᠯ");
-    expect(year.format(), "2021 ᠣᠨ");
-    expect(month.format(), "᠑᠒᠐᠕ ᠣᠨ ᠤ ᠓ ᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ");
-    expect(allAfterEpoch.format(), "᠑᠙᠗᠐/᠑/᠑ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ");
-    expect(allBeforeMyBirthday.format(), "᠒᠐᠐᠓/᠖/᠑ ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ");
-    expect(allTime.format(), "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ");
+    expect(year.format(), "᠒᠐᠒᠑ ᠣᠨ");
+    expect(month.format(), "᠑᠒᠐᠕ ᠣᠨ\u180Eᠤ ᠓\u180Eᠳᠤᠭᠠᠷ ᠰᠠᠷ\u180Eᠠ");
+    expect(allAfterEpoch.format(), "᠑᠙᠗᠐/᠑/᠑\u180Eᠡᠴᠡ ᠬᠣᠢᠰᠢ");
+    expect(allBeforeMyBirthday.format(), "᠒᠐᠐᠓/᠖/᠑\u180Eᠡᠴᠡ ᠡᠮᠦᠨ\u180Eᠡ");
+    expect(allTime.format(), "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠶ\u180Eᠡ");
   });
   test("ko_KO range test", () {
     Moment.setGlobalLocalization(MomentLocalizations.koKr());
@@ -284,7 +284,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -300,7 +300,7 @@ void main() {
     expect(month.format(), "1205년 3월");
     expect(allAfterEpoch.format(), "1970.1.1. 이후");
     expect(allBeforeMyBirthday.format(), "2003.6.1. 이전");
-    expect(allTime.format(), "전체 시간");
+    expect(allTime.format(), "전체 기간");
   });
   test("zh_CN range test", () {
     Moment.setGlobalLocalization(MomentLocalizations.zhCn());
@@ -311,7 +311,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -338,7 +338,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -354,7 +354,7 @@ void main() {
     expect(month.format(), "1205年3月");
     expect(allAfterEpoch.format(), "1970/01/01以降");
     expect(allBeforeMyBirthday.format(), "2003/06/01以前");
-    expect(allTime.format(), "全ての時間");
+    expect(allTime.format(), "全期間");
   });
   test("tr_TR range test", () {
     Moment.setGlobalLocalization(MomentLocalizations.tr());
@@ -365,7 +365,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -393,7 +393,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -403,8 +403,8 @@ void main() {
       thisWeekISO.format(),
       "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
     );
-    expect(thisMonth.format(), "В этом месяце");
-    expect(thisYear.format(), "В этом году");
+    expect(thisMonth.format(), "Этот месяц");
+    expect(thisYear.format(), "Этот год");
     expect(year.format(), "2021 год");
     expect(month.format(), "Март 1205");
     expect(allAfterEpoch.format(), "После 1.1.1970");
@@ -421,7 +421,7 @@ void main() {
     final thisYear = TimeRange.thisYear();
     final year = YearTimeRange(2021);
     final month = MonthTimeRange(1205, 3);
-    final allAfterEpoch = CustomTimeRange(Moment.epoch, Moment.maxValue);
+    final allAfterEpoch = CustomTimeRange(DateTime(1970), Moment.maxValue);
     final allBeforeMyBirthday =
         CustomTimeRange(Moment.minValue, DateTime(2003, 6, 1));
     final allTime = TimeRange.allTime();
@@ -431,12 +431,12 @@ void main() {
       thisWeekISO.format(),
       "${thisWeekISO.from.toMoment().calendar(omitHours: true)} - ${thisWeekISO.to.toMoment().calendar(omitHours: true)}",
     );
-    expect(thisMonth.format(), "W tym miesiącu");
-    expect(thisYear.format(), "W tym roku");
+    expect(thisMonth.format(), "Ten miesiąc");
+    expect(thisYear.format(), "Ten rok");
     expect(year.format(), "2021 rok");
     expect(month.format(), "Marzec 1205");
     expect(allAfterEpoch.format(), "Po 1.1.1970");
     expect(allBeforeMyBirthday.format(), "Przed 1.6.2003");
-    expect(allTime.format(), "Cały czas");
+    expect(allTime.format(), "Cały okres");
   });
 }

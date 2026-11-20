@@ -7,7 +7,7 @@ import 'chinese_numbers.dart';
 /// * [formattersWithZnCnOrdinal] - getter for set of formatters related to Chinese ordinal numbers
 mixin ZnCnOrdinal on ChineseNumbers {
   String ordinalNumberDay(int n) => "$n日";
-  String ordinalNumberWeek(int n) => "$n周";
+  String ordinalNumberWeek(int n) => "第$n周";
   String ordinalNumberMonth(int n) => "$n月";
 
   /// Overrides:

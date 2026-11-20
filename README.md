@@ -95,7 +95,7 @@ See all available options in the [docs](https://moment-dart.dev.gege.mn/extensio
 final now = DateTime.now(); // July 19 2023 03:12 PM (UTC+8)
 
 // ISO week, ISO week year
-now.week; // 48
+now.week; // 29
 now.weekYear; // 2023
 
 now.isLeapYear; // false

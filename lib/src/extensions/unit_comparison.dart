@@ -1,45 +1,27 @@
 import 'package:moment_dart/moment_dart.dart';
 
 extension UnitComparision on DateTime {
-  /// [unit]: 0-7
-  ///
-  /// year, month, day, hour, minute, second, millisecond, microsecond
   bool _isAtSameUnitAs(
     DateTime other,
     DurationUnit unit, {
     bool enforceUTC = false,
   }) {
     if (enforceUTC) {
-      return toUtc()._isAtSameUnitAs(other.toUtc(), unit, enforceUTC: false);
+      return toUtc()._isAtSameUnitAs(other.toUtc(), unit);
     }
 
-    if (other.year != year) return false;
-    if (unit == DurationUnit.year) return true;
+    final DateTime converted = other.isUtc == isUtc
+        ? other
+        : (isUtc ? other.toUtc() : other.toLocal());
 
-    if (other.month != month) return false;
-    if (unit == DurationUnit.month) return true;
-
-    if (other.day != day) return false;
-    if (unit == DurationUnit.day) return true;
-
-    if (other.hour != hour) return false;
-    if (unit == DurationUnit.hour) return true;
-
-    if (other.minute != minute) return false;
-    if (unit == DurationUnit.minute) return true;
-
-    if (other.second != second) return false;
-    if (unit == DurationUnit.second) return true;
-
-    if (other.millisecond != millisecond) return false;
-    if (unit == DurationUnit.millisecond) return true;
-
-    return other.microsecond == microsecond;
+    // Comparing unit starts as instants (not wall-clock fields) keeps the two
+    // copies of a repeated DST hour apart
+    return startOf(unit).isAtSameMomentAs(converted.startOf(unit));
   }
 
   /// Returns if two dates are in same year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameYearAs(
@@ -54,7 +36,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameMonthAs(
@@ -69,7 +51,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameDayAs(
@@ -84,7 +66,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same hour, day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameHourAs(
@@ -99,7 +81,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same minute, hour, day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameMinuteAs(
@@ -114,7 +96,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same second, minute, hour, day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameSecondAs(
@@ -129,7 +111,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same millisecond, second, minute, hour, day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameMillisecondAs(
@@ -144,7 +126,7 @@ extension UnitComparision on DateTime {
 
   /// Returns if two dates are in same microsecond, millisecond, second, minute, hour, day, month, year.
   ///
-  /// Assumes both [this] and [other] has same timezone
+  /// [other] is converted to the timezone of [this] first
   ///
   /// To convert both to `UTC` before comparison, set [enforceUTC] to `true`
   bool isAtSameMicrosecondAs(

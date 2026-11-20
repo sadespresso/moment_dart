@@ -85,15 +85,15 @@ void main() {
 
     expect(moment.lastMonday().weekday, 1);
     expect(localization.relative(const Duration(seconds: 2)),
-        "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
+        "ᠬᠡᠳᠦᠨ ᠬᠣᠷᠤᠮ\u180Eᠤᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
     expect(localization.weekdayName[epoch.weekday], "ᠭᠠᠳᠠᠰᠤ");
     expect(epochPlusFiveDays.from(epoch, dropPrefixOrSuffix: true), "5 ᠡᠳᠦᠷ");
-    expect(epochPlusFiveDays.from(epoch), "5 ᠡᠳᠦᠷ ᠦᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
+    expect(epochPlusFiveDays.from(epoch), "5 ᠡᠳᠦᠷ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
     expect(epoch.calendar(reference: epochPlusFiveDays, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠭᠠᠳᠠᠰᠤ");
     expect(epochPlusFiveDays.calendar(reference: epoch, omitHours: true),
         "ᠤᠯᠠᠭᠠᠨ");
-    expect(epochPlusAYear.from(epoch), "1 ᠵᠢᠯ ᠤᠨ ᠳᠠᠷᠠᠭ᠎ᠠ");
+    expect(epochPlusAYear.from(epoch), "1 ᠵᠢᠯ\u180Eᠦᠨ ᠳᠠᠷᠠᠭ\u180Eᠠ");
     expect(epochPlusAYear.calendar(reference: epoch), "1971/1/1");
 
     expect(epochPlusFiveDays.format("L LT"), "1970/01/06 00:00");

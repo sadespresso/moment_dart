@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: German
 /// Country: Germany
@@ -65,13 +64,13 @@ class LocalizationDeDe extends MomentLocalization
       FormatterToken.ll: (dateTime) => reformat(dateTime, "D. MMM YYYY"),
       FormatterToken.LLL: (dateTime) =>
           reformat(dateTime, "D. MMMM YYYY HH:mm"),
-      FormatterToken.lll: (dateTime) => reformat(dateTime, "D. MMM YYYY H:mm"),
+      FormatterToken.lll: (dateTime) => reformat(dateTime, "D. MMM YYYY HH:mm"),
       FormatterToken.LLLL: (dateTime) =>
           reformat(dateTime, "dddd, D. MMMM YYYY HH:mm"),
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, D. MMM YYYY H:mm"),
-      FormatterToken.LT: (dateTime) => reformat(dateTime, "H:mm"),
-      FormatterToken.LTS: (dateTime) => reformat(dateTime, "H:mm:ss"),
+          reformat(dateTime, "ddd, D. MMM YYYY HH:mm"),
+      FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
+      FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
       // Missing formatters
       FormatterToken.A: (dateTime) => dateTime.hour < 12 ? "AM" : "PM",
       FormatterToken.a: (dateTime) => dateTime.hour < 12 ? "am" : "pm",
@@ -146,11 +145,6 @@ class LocalizationDeDe extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataDeDe instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataDeDe =
-      calendarLocalizationDataDeDe;
 
   @override
   Map<DurationInterval, UnitStringDeDe> get units => {
@@ -242,6 +236,46 @@ class LocalizationDeDe extends MomentLocalization
       };
 
   @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitStringDeDe(
+          "1 Sekunde",
+          "1 Sek.",
+          "1 Sek.",
+        ),
+        DurationInterval.aMinute: UnitStringDeDe(
+          "1 Minute",
+          "1 Min.",
+          "1 Min.",
+        ),
+        DurationInterval.anHour: UnitStringDeDe(
+          "1 Stunde",
+          "1 Std.",
+          "1 Std.",
+        ),
+        DurationInterval.aDay: UnitStringDeDe(
+          "1 Tag",
+          "1 Tg.",
+          "1 T.",
+        ),
+        DurationInterval.aWeek: UnitStringDeDe(
+          "1 Woche",
+          "1 Woche",
+          "1 W.",
+        ),
+        DurationInterval.aMonth: UnitStringDeDe(
+          "1 Monat",
+          "1 Mo.",
+          "1 Mo.",
+        ),
+        DurationInterval.aYear: UnitStringDeDe(
+          "1 Jahr",
+          "1 Jr.",
+          "1 J.",
+        ),
+      };
+
+  @override
   int get weekStart => DateTime.monday;
 
   @override
@@ -261,7 +295,7 @@ class LocalizationDeDe extends MomentLocalization
 
           if (useRelative && anchor.year == range.year) {
             if (anchor.month == range.month) {
-              return "Diesen Monat";
+              return "Dieser Monat";
             }
 
             return monthNames[range.month]!;

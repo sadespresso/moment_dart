@@ -41,9 +41,3 @@ class CalendarLocalizationKeywords {
     this.at = defaultCalendarKeywordDateAtTimeString,
   });
 }
-
-@Deprecated('Use CalendarLocalizationData instead')
-typedef CalenderLocalizationData = CalendarLocalizationData;
-
-@Deprecated('Use CalendarLocalizationKeywords instead')
-typedef CalenderLocalizationKeywords = CalendarLocalizationKeywords;

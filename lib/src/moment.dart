@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 export 'package:moment_dart/src/extensions.dart';
 export 'package:moment_dart/src/time_range.dart';
 
@@ -103,13 +101,50 @@ class Moment extends DateTime {
   }
 
   /// Returns new [Moment] with new values
-  Moment copyWith({DateTime? dateTime, MomentLocalization? localization}) {
-    final Moment value = Moment(
-      dateTime ?? this,
+  ///
+  /// Date and time fields work like [DateTime.copyWith] and are applied on top
+  /// of [dateTime] (or [this] when it's omitted).
+  Moment copyWith({
+    int? year,
+    int? month,
+    int? day,
+    int? hour,
+    int? minute,
+    int? second,
+    int? millisecond,
+    int? microsecond,
+    bool? isUtc,
+    DateTime? dateTime,
+    MomentLocalization? localization,
+  }) {
+    final DateTime base = dateTime ?? this;
+
+    final bool hasFields = year != null ||
+        month != null ||
+        day != null ||
+        hour != null ||
+        minute != null ||
+        second != null ||
+        millisecond != null ||
+        microsecond != null ||
+        isUtc != null;
+
+    return Moment(
+      hasFields
+          ? DateTimeCopyWith(base).copyWith(
+              year: year,
+              month: month,
+              day: day,
+              hour: hour,
+              minute: minute,
+              second: second,
+              millisecond: millisecond,
+              microsecond: microsecond,
+              isUtc: isUtc,
+            )
+          : base,
       localization: localization ?? _localization,
     );
-
-    return value;
   }
 
   /// Returns new [Moment] with added duration
@@ -331,6 +366,7 @@ class Moment extends DateTime {
       form: form,
       delimiter: delimiter,
       format: format,
+      dropPrefixOrSuffix: dropPrefixOrSuffix,
     );
   }
 
@@ -567,16 +603,16 @@ class Moment extends DateTime {
   static DateTime endOfLastYear() => DateTime.now().endOfLastYear();
 
   /// epoch, but in the local timezone
-  static DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
+  static final DateTime epoch = DateTime.fromMicrosecondsSinceEpoch(0);
 
   /// epoch in UTC
-  static DateTime epochUtc =
+  static final DateTime epochUtc =
       DateTime.fromMicrosecondsSinceEpoch(0, isUtc: true);
 
   /// Max value of [DateTime] UTC timezone
   ///
   /// See also: [maxValue]
-  static DateTime maxValueUtc = DateTime.fromMicrosecondsSinceEpoch(
+  static final DateTime maxValueUtc = DateTime.fromMicrosecondsSinceEpoch(
     8640000000000000000,
     isUtc: true,
   );
@@ -584,42 +620,32 @@ class Moment extends DateTime {
   /// Min value of [DateTime] UTC timezone
   ///
   /// See also: [minValue]
-  static DateTime minValueUtc = DateTime.fromMicrosecondsSinceEpoch(
+  static final DateTime minValueUtc = DateTime.fromMicrosecondsSinceEpoch(
     -8640000000000000000,
     isUtc: true,
   );
 
   /// Max value of [DateTime] in local timezone
   ///
-  /// CAUTION: This value is not precise. It's calculated by adding the
-  /// current timezone offset to [maxValueUtc], and clamping to avoid overflowing.
+  /// Same instant as [maxValueUtc]
   ///
   /// See also: [maxValueUtc]
-  static DateTime maxValue = DateTime.fromMicrosecondsSinceEpoch(
-    math.min(
-      maxValueUtc.microsecondsSinceEpoch +
-          DateTime.now().timeZoneOffset.inMicroseconds,
-      maxValueUtc.microsecondsSinceEpoch,
-    ),
+  static final DateTime maxValue = DateTime.fromMicrosecondsSinceEpoch(
+    maxValueUtc.microsecondsSinceEpoch,
   );
 
   /// Min value of [DateTime] in local timezone
   ///
-  /// CAUTION: This value is not precise. It's calculated by adding the
-  /// current timezone offset to [minValue], and clamping to avoid overflowing.
+  /// Same instant as [minValueUtc]
   ///
   /// See also: [minValueUtc]
-  static DateTime minValue = DateTime.fromMicrosecondsSinceEpoch(
-    math.max(
-      minValueUtc.microsecondsSinceEpoch +
-          DateTime.now().timeZoneOffset.inMicroseconds,
-      minValueUtc.microsecondsSinceEpoch,
-    ),
+  static final DateTime minValue = DateTime.fromMicrosecondsSinceEpoch(
+    minValueUtc.microsecondsSinceEpoch,
   );
 
   /// Number of days in each month in a non leap year
   ///
-  /// e.g., `daysInMonths[DateTime.february]` returns `29`.
+  /// e.g., `daysInMonths[DateTime.february]` returns `28`.
   ///
   /// This list is only accurate for non-leap years.
   ///
@@ -644,7 +670,7 @@ class Moment extends DateTime {
 
   /// Number of days in each month in a leap year
   ///
-  /// e.g., `daysInMonths[DateTime.february]` returns `29`.
+  /// e.g., `daysInMonthsInLeapYear[DateTime.february]` returns `29`.
   ///
   /// This list is only accurate for leap years.
   ///

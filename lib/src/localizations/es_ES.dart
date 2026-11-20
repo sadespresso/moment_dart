@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Spanish
 /// Country: Spain
@@ -32,7 +31,7 @@ class LocalizationEsEs extends MomentLocalization
   }
 
   @override
-  String get endonym => "Español (Espana)";
+  String get endonym => "Español";
 
   @override
   String get languageCode => "es";
@@ -110,7 +109,7 @@ class LocalizationEsEs extends MomentLocalization
     };
   }
 
-  static String last(String weekday) => "el $weekday pasodo";
+  static String last(String weekday) => "el $weekday pasado";
   static String at(String date, String time) => "$date a $time";
 
   @override
@@ -130,11 +129,6 @@ class LocalizationEsEs extends MomentLocalization
       lastWeekday: last,
     ),
   );
-
-  @Deprecated('Use calendarLocalizationDataEs instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataEs =
-      calendarLocalizationDataEs;
 
   @override
   String ordinalNumber(int n) => "$nº";
@@ -170,7 +164,7 @@ class LocalizationEsEs extends MomentLocalization
           "$srDelta min",
         ),
         DurationInterval.anHour: UnitString.withForm(
-          "un hora",
+          "una hora",
           "1 hora",
           "1 h",
         ),
@@ -222,6 +216,46 @@ class LocalizationEsEs extends MomentLocalization
       };
 
   @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.withForm(
+          "1 segundo",
+          "1 seg.",
+          "1 s",
+        ),
+        DurationInterval.aMinute: UnitString.withForm(
+          "1 minuto",
+          "1 min.",
+          "1 min.",
+        ),
+        DurationInterval.anHour: UnitString.withForm(
+          "1 hora",
+          "1 hora",
+          "1 h",
+        ),
+        DurationInterval.aDay: UnitString.withForm(
+          "1 día",
+          "1 día",
+          "1 d",
+        ),
+        DurationInterval.aWeek: UnitString.withForm(
+          "1 semana",
+          "1 semana",
+          "1 sem.",
+        ),
+        DurationInterval.aMonth: UnitString.withForm(
+          "1 mes",
+          "1 mes",
+          "1 ms.",
+        ),
+        DurationInterval.aYear: UnitString.withForm(
+          "1 año",
+          "1 año",
+          "1 año",
+        ),
+      };
+
+  @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
         thisWeek: "Esta semana",
         year: (range, {DateTime? anchor, bool useRelative = true}) {
@@ -246,8 +280,21 @@ class LocalizationEsEs extends MomentLocalization
 
           return "${monthNames[range.month]!} ${range.year}";
         },
-        allAfter: (formattedDate) => "Después $formattedDate",
-        allBefore: (formattedDate) => "Antes $formattedDate",
+        allAfter: (formattedDate) => "Desde ${_withArticle(formattedDate)}",
+        allBefore: (formattedDate) => "Hasta ${_withArticle(formattedDate)}",
         customRangeAllTime: "Todo el tiempo",
       );
+
+  // "Desde el 1/3/2024", "Desde el viernes", but "Desde ayer" and
+  // "Desde el jueves pasado" (already has its article).
+  String _withArticle(String formattedDate) {
+    if (formattedDate.startsWith("el ")) return formattedDate;
+
+    for (final String dayName
+        in calendarLocalizationDataEs.relativeDayNames.values) {
+      if (formattedDate.startsWith(dayName)) return formattedDate;
+    }
+
+    return "el $formattedDate";
+  }
 }

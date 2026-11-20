@@ -7,7 +7,6 @@ import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Traditional Mongolian with Arabic numbers
 /// Country: Mongolia
@@ -92,7 +91,7 @@ class LocalizationMnMongMn extends MomentLocalization
     return feminine;
   }
 
-  String monthName(int i) => "${ordinalNumber(i)} ᠰᠠᠷ᠎ᠠ";
+  String monthName(int i) => "${ordinalNumber(i)} ᠰᠠᠷ\u180Eᠠ";
 
   @override
   FormatSetOptional overrideFormatters() {
@@ -103,26 +102,28 @@ class LocalizationMnMongMn extends MomentLocalization
       FormatterToken.L: (dateTime) => reformat(dateTime, "YYYY/MM/DD"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "YYYY/M/D"),
       FormatterToken.LL: (dateTime) =>
-          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D"),
+          reformat(dateTime, "YYYY ᠣᠨ\u180Eᠤ MMMM\u180Eᠶᠢᠨ D"),
       FormatterToken.ll: (dateTime) =>
-          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D"),
+          reformat(dateTime, "YYYY ᠣᠨ\u180Eᠤ MMM\u180Eᠶᠢᠨ D"),
       FormatterToken.LLL: (dateTime) =>
-          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D᠂ HH:mm"),
+          reformat(dateTime, "YYYY ᠣᠨ\u180Eᠤ MMMM\u180Eᠶᠢᠨ D᠂ HH:mm"),
       FormatterToken.lll: (dateTime) =>
-          reformat(dateTime, "YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D᠂ H:mm"),
+          reformat(dateTime, "YYYY ᠣᠨ\u180Eᠤ MMM\u180Eᠶᠢᠨ D᠂ H:mm"),
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "dddd, YYYY ᠣᠨ ᠤ MMMM ᠶᠢᠨ D᠂ HH:mm"),
+          reformat(dateTime, "dddd᠂ YYYY ᠣᠨ\u180Eᠤ MMMM\u180Eᠶᠢᠨ D᠂ HH:mm"),
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, YYYY ᠣᠨ ᠤ MMM ᠶᠢᠨ D᠂ H:mm"),
+          reformat(dateTime, "ddd᠂ YYYY ᠣᠨ\u180Eᠤ MMM\u180Eᠶᠢᠨ D᠂ H:mm"),
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
       // Missings
-      FormatterToken.MMM: (dateTime) => "${dateTime.month} ᠰᠠᠷ᠎ᠠ",
+      FormatterToken.MMM: (dateTime) => "${dateTime.month} ᠰᠠᠷ\u180Eᠠ",
       FormatterToken.MMMM: (dateTime) => monthName(dateTime.month),
-      FormatterToken.A: (dateTime) =>
-          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ" : "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
-      FormatterToken.a: (dateTime) =>
-          dateTime.hour < 12 ? "ᠦᠳᠡ ᠡᠴᠡ ᠡᠮᠦᠨ᠎ᠡ" : "ᠦᠳᠡ ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
+      FormatterToken.A: (dateTime) => dateTime.hour < 12
+          ? "ᠦᠳᠡ\u180Eᠡᠴᠡ ᠡᠮᠦᠨ\u180Eᠡ"
+          : "ᠦᠳᠡ\u180Eᠡᠴᠡ ᠬᠣᠢᠰᠢ",
+      FormatterToken.a: (dateTime) => dateTime.hour < 12
+          ? "ᠦᠳᠡ\u180Eᠡᠴᠡ ᠡᠮᠦᠨ\u180Eᠡ"
+          : "ᠦᠳᠡ\u180Eᠡᠴᠡ ᠬᠣᠢᠰᠢ",
 
       FormatterToken.dd: (dateTime) => weekdayNameShort[dateTime.weekday]!,
       FormatterToken.ddd: (dateTime) => weekdayName[dateTime.weekday]!,
@@ -135,7 +136,7 @@ class LocalizationMnMongMn extends MomentLocalization
   Map<int, String> get weekdayName => {
         DateTime.monday: "ᠰᠠᠷᠠᠨ",
         DateTime.tuesday: "ᠤᠯᠠᠭᠠᠨ",
-        DateTime.wednesday: "ᠥᠯᠡᠮᠵᠢ",
+        DateTime.wednesday: "ᠦᠯᠡᠮᠵᠢ",
         DateTime.thursday: "ᠭᠠᠳᠠᠰᠤ",
         DateTime.friday: "ᠴᠣᠯᠮᠤᠨ",
         DateTime.saturday: "ᠬᠡᠰᠢᠭ",
@@ -144,7 +145,7 @@ class LocalizationMnMongMn extends MomentLocalization
   Map<int, String> get weekdayNameShort => {
         1: "ᠰᠠ᠊",
         2: "ᠤᠯ᠊",
-        3: "ᠥᠯ᠊",
+        3: "ᠦᠯ᠊",
         4: "ᠭᠠ᠊",
         5: "ᠴᠣ᠊",
         6: "ᠬᠡ᠊",
@@ -154,7 +155,7 @@ class LocalizationMnMongMn extends MomentLocalization
   @override
   String ordinalNumber(int n) {
     return n.toString() +
-        (LocalizationMnMongMn.isFeminine(n) ? " ᠳᠦᠭᠡᠷ" : " ᠳᠤᠭᠠᠷ");
+        (LocalizationMnMongMn.isFeminine(n) ? "\u180Eᠳᠦᠭᠡᠷ" : "\u180Eᠳᠤᠭᠠᠷ");
   }
 
   @override
@@ -167,7 +168,7 @@ class LocalizationMnMongMn extends MomentLocalization
       CalendarLocalizationData(
     relativeDayNames: {
       -2: "ᠤᠷᠵᠢᠳᠤᠷ",
-      -1: "ᠦᠴᠦᠭᠡᠳᠦᠷ",
+      -1: "ᠥᠴᠦᠭᠡᠳᠦᠷ",
       0: "ᠥᠨᠦᠳᠦᠷ",
       1: "ᠮᠠᠷᠭᠠᠰᠢ",
       2: "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ",
@@ -177,14 +178,9 @@ class LocalizationMnMongMn extends MomentLocalization
     ),
   );
 
-  @Deprecated('Use calendarLocalizationDataMnTraditional instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataMnTraditional =
-      calendarLocalizationDataMnTraditional;
-
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(
-        thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
+        thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ",
         year: (range, {DateTime? anchor, bool useRelative = true}) {
           anchor ??= Moment.now();
 
@@ -199,23 +195,23 @@ class LocalizationMnMongMn extends MomentLocalization
 
           if (useRelative && anchor.year == range.year) {
             if (anchor.month == range.month) {
-              return "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ";
+              return "ᠡᠨᠡ ᠰᠠᠷ\u180Eᠠ";
             }
 
             return monthName(range.month);
           }
 
-          return "${range.year} ᠣᠨ ᠤ ${monthName(range.month)}";
+          return "${range.year} ᠣᠨ\u180Eᠤ ${monthName(range.month)}";
         },
-        allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
-        allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
-        customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
+        allAfter: (formattedDate) => "$formattedDate\u180Eᠡᠴᠡ ᠬᠣᠢᠰᠢ",
+        allBefore: (formattedDate) => "$formattedDate\u180Eᠡᠴᠡ ᠡᠮᠦᠨ\u180Eᠡ",
+        customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠶ\u180Eᠡ",
       );
 }
 
 /// Language: Traditional Mongolian with Traditional Numbers
 /// Country: Mongolia
-class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
+class LocalizationMnQaaqMn extends LocalizationMnMongMn {
   static LocalizationMnQaaqMn? _instance;
 
   LocalizationMnQaaqMn._internal() : super._internal();
@@ -307,32 +303,22 @@ class LocalizationMnQaaqMn extends LocalizationMnMongMn with Ordinal {
       );
 
   @override
-  SimpleRangeData get simpleRangeData => SimpleRangeData(
-        thisWeek: "ᠡᠨᠡ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
-        year: (range, {DateTime? anchor, bool useRelative = true}) {
-          anchor ??= Moment.now();
+  SimpleRangeData get simpleRangeData {
+    final SimpleRangeData base = super.simpleRangeData;
 
-          if (useRelative && range.year == anchor.year) {
-            return "ᠡᠨᠡ ᠵᠢᠯ";
-          }
-
-          return "${range.year} ᠣᠨ";
-        },
-        month: (range, {DateTime? anchor, bool useRelative = true}) {
-          anchor ??= Moment.now();
-
-          if (useRelative && anchor.year == range.year) {
-            if (anchor.month == range.month) {
-              return "ᠡᠨᠡ ᠰᠠᠷ᠎ᠠ";
-            }
-
-            return monthName(range.month);
-          }
-
-          return "${toTraditionalNumber(range.year.toString())} ᠣᠨ ᠤ ${monthName(range.month)}";
-        },
-        allAfter: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠬᠣᠢᠢᠰᠢ",
-        allBefore: (formattedDate) => "$formattedDate ᠡᠴᠡ ᠡᠮᠥᠨ᠎ᠡ",
-        customRangeAllTime: "ᠪᠦᠬᠦ ᠴᠠᠭ ᠦᠢ᠎ᠡ",
-      );
+    return SimpleRangeData(
+      thisWeek: base.thisWeek,
+      year: (range, {DateTime? anchor, bool useRelative = true}) =>
+          toTraditionalNumber(
+              base.year(range, anchor: anchor, useRelative: useRelative)),
+      month: (range, {DateTime? anchor, bool useRelative = true}) =>
+          toTraditionalNumber(
+              base.month(range, anchor: anchor, useRelative: useRelative)),
+      allAfter: base.allAfter,
+      allBefore: base.allBefore,
+      customRangeAllTime: base.customRangeAllTime,
+      customRangeDelimiter: base.customRangeDelimiter,
+      reverseRangeDates: base.reverseRangeDates,
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/localizations/utils/duration_rounding.dart';
 import 'package:moment_dart/src/localizations/mixins/mn_Mong_MN/units.dart';
 
 mixin MnMongMnDuration on MnMongMnUnits {
@@ -22,13 +23,19 @@ mixin MnMongMnDuration on MnMongMnUnits {
   }) {
     final bool past = duration.isNegative;
 
-    Duration left = duration.abs();
+    final RoundedDuration rounded = roundDurationForFormat(
+      duration,
+      format,
+      includeWeeks: includeWeeks,
+      round: round,
+    );
 
-    if (format.isAuto) {
-      format = DurationFormat.resolveAuto(duration, includeWeeks);
-    }
+    format = rounded.format;
 
-    final List<String> result = [];
+    Duration left = rounded.duration;
+
+    final List<DurationInterval> intervals = [];
+    final List<int> values = [];
 
     for (int i = 0; i < format.length; i++) {
       final bool last = i == format.length - 1;
@@ -39,18 +46,23 @@ mixin MnMongMnDuration on MnMongMnUnits {
           ? (_roundOrTruncate(left.inMicroseconds / unit.microseconds, round))
           : (left.inMicroseconds ~/ unit.microseconds);
 
-      final DurationInterval interval =
-          DurationInterval.findByUnit(unitValue, unit);
-
-      final String unitString = getUnit(interval, form,
-          dropPrefixOrSuffix: !last || dropPrefixOrSuffix);
-
       if (!(omitZeros && unitValue == 0)) {
-        result.add(unitString.replaceAll(srDelta, unitValue.toString()));
+        intervals.add(DurationInterval.findByUnit(unitValue, unit));
+        values.add(unitValue);
       }
 
       left -= Duration(microseconds: unit.microseconds * unitValue);
     }
+
+    // Only the word before the postposition takes the genitive, so the suffix
+    // goes on the last part that is actually printed
+    final List<String> result = [
+      for (int i = 0; i < values.length; i++)
+        getUnit(intervals[i], form,
+                dropPrefixOrSuffix:
+                    i != values.length - 1 || dropPrefixOrSuffix)
+            .replaceAll(srDelta, values[i].toString()),
+    ];
 
     late final String value;
 

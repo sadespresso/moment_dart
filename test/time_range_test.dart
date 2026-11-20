@@ -142,9 +142,11 @@ void main() {
       for (final year in [1970, 2000, 2020, 2021, 2024]) {
         for (final month in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) {
           final MonthTimeRange monthRange = MonthTimeRange(year, month);
+          // A wall-clock month gains or loses an hour when it contains a
+          // DST transition, so compare against the real elapsed time
           expect(
               monthRange.duration,
-              Duration(days: DateTime(year, month).endOfMonth().day) -
+              DateTime(year, month + 1).difference(DateTime(year, month)) -
                   aMicrosecond);
         }
       }

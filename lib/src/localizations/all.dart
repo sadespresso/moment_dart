@@ -99,9 +99,13 @@ abstract class MomentLocalizations {
     if (scriptCode != null) prefix += "_$scriptCode";
     if (countryCode != null) prefix += "_$countryCode";
 
+    prefix = prefix.toLowerCase();
+
     try {
-      final String key =
-          locales.keys.firstWhere((element) => element.startsWith(prefix));
+      final String key = locales.keys.firstWhere((element) {
+        final String lower = element.toLowerCase();
+        return lower == prefix || lower.startsWith("${prefix}_");
+      });
 
       return locales[key]!();
     } on StateError {
@@ -123,7 +127,7 @@ abstract class MomentLocalizations {
     }
   }
 
-  static final RegExp _soleLanguageCode = RegExp(r'^[a-z]{2}$');
+  static final RegExp _soleLanguageCode = RegExp(r'^[a-zA-Z]{2}$');
 
   /// Retreives locale by code.
   ///
@@ -131,25 +135,56 @@ abstract class MomentLocalizations {
   /// * "en_US" // English (United States)
   /// * "es-ES" // Spanish (Spain)
   /// * "es" // Spanish (Spain) - Here, language code is same as country code, so Moment will return "es_ES".
-  /// * "en" // **Throws error** since [MomentLocalization] with such locale doesn't exist
+  /// * "en" // English (United States) - closest match by language
+  /// * "en_GB" // English (United States) - closest match by language
   ///
   /// Note that you can use dash or underscore interchangeably. **But underscore is preferred**
-  static MomentLocalization? byLocale(String locale) => _byLocale(locale);
+  ///
+  /// Matching is case-insensitive, e.g. "EN-us" finds "en_US".
+  ///
+  /// When there's no exact match, falls back to the closest localization of
+  /// the same language (and script) via [byLanguage]. Set [strict] to `true`
+  /// to get `null` instead.
+  static MomentLocalization? byLocale(String locale, {bool strict = false}) {
+    final MomentLocalization? exact = _byLocale(locale);
+
+    if (exact != null || strict) return exact;
+
+    final List<String> parts = locale.split(RegExp(r'[-_]'));
+
+    String? scriptCode;
+    String? countryCode;
+
+    for (final String part in parts.skip(1)) {
+      if (part.length == 4) {
+        scriptCode ??= part;
+      } else {
+        countryCode ??= part;
+      }
+    }
+
+    return _byLanguage(
+      parts.first,
+      countryCode: countryCode,
+      scriptCode: scriptCode,
+    );
+  }
 
   static MomentLocalization? _byLocale(
     String locale, [
     bool tryAddCountryCode = true,
   ]) {
-    final String localeFormatted = locale.replaceAll('-', '_');
+    final String localeFormatted = locale.replaceAll('-', '_').toLowerCase();
 
-    if (locales[localeFormatted] == null) {
-      if (tryAddCountryCode && _soleLanguageCode.hasMatch(locale)) {
-        return _byLocale("${locale}_${locale.toUpperCase()}", false);
-      }
-      return null;
+    for (final MapEntry<String, LocalizationFn> entry in locales.entries) {
+      if (entry.key.toLowerCase() == localeFormatted) return entry.value();
     }
 
-    return locales[localeFormatted]!();
+    if (tryAddCountryCode && _soleLanguageCode.hasMatch(locale)) {
+      return _byLocale("${locale}_$locale", false);
+    }
+
+    return null;
   }
 
   /// English (United States)

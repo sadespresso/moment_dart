@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/ru_RU/units.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Russian (Russia)
 /// Country: Russia
@@ -60,13 +59,51 @@ class LocalizationRuRu extends MomentLocalization
         12: "Декабрь",
       };
 
+  static const Map<int, String> _monthNamesGenitive = {
+    1: "января",
+    2: "февраля",
+    3: "марта",
+    4: "апреля",
+    5: "мая",
+    6: "июня",
+    7: "июля",
+    8: "августа",
+    9: "сентября",
+    10: "октября",
+    11: "ноября",
+    12: "декабря",
+  };
+
   @override
-  Map<int, String> get monthNamesShort => monthNames.map(
-        (key, value) => MapEntry(
-          key,
-          value.substring(0, 3),
-        ),
-      );
+  Map<int, String> get monthNamesShort => {
+        1: "Янв.",
+        2: "Февр.",
+        3: "Март",
+        4: "Апр.",
+        5: "Май",
+        6: "Июнь",
+        7: "Июль",
+        8: "Авг.",
+        9: "Сент.",
+        10: "Окт.",
+        11: "Нояб.",
+        12: "Дек.",
+      };
+
+  static const Map<int, String> _monthNamesShortGenitive = {
+    1: "янв.",
+    2: "февр.",
+    3: "мар.",
+    4: "апр.",
+    5: "мая",
+    6: "июн.",
+    7: "июл.",
+    8: "авг.",
+    9: "сент.",
+    10: "окт.",
+    11: "нояб.",
+    12: "дек.",
+  };
 
   @override
   Map<int, String> get weekdayName => {
@@ -81,7 +118,7 @@ class LocalizationRuRu extends MomentLocalization
 
   @override
   Map<int, String> get weekdayNameShort => {
-        DateTime.monday: "Пон",
+        DateTime.monday: "Пн",
         DateTime.tuesday: "Вт",
         DateTime.wednesday: "Ср",
         DateTime.thursday: "Чт",
@@ -102,20 +139,38 @@ class LocalizationRuRu extends MomentLocalization
       ...formattersForMonthNames,
       // From [WeekdayShortForms] mixin
       ...formattersForWeekdayShortForms,
+      // The name maps are capitalized for standalone labels (calendar, range);
+      // inside a date Russian writes month and weekday names in lowercase.
+      FormatterToken.MMMM: (dateTime) =>
+          monthNames[dateTime.month]!.toLowerCase(),
+      FormatterToken.MMM: (dateTime) =>
+          monthNamesShort[dateTime.month]!.toLowerCase(),
+      FormatterToken.dddd: (dateTime) =>
+          weekdayName[dateTime.weekday]!.toLowerCase(),
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD.MM.YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D.M.YYYY"),
-      FormatterToken.LL: (dateTime) => reformat(dateTime, "D MMMM YYYY"),
-      FormatterToken.ll: (dateTime) => reformat(dateTime, "D MMM YYYY"),
-      FormatterToken.LLL: (dateTime) => reformat(dateTime, "D MMMM YYYY HH:mm"),
-      FormatterToken.lll: (dateTime) => reformat(dateTime, "D MMM YYYY H:mm"),
+      FormatterToken.LL: (dateTime) => _dayMonthYear(dateTime),
+      FormatterToken.ll: (dateTime) => _dayMonthYear(dateTime, short: true),
+      FormatterToken.LLL: (dateTime) =>
+          "${_dayMonthYear(dateTime)} ${reformat(dateTime, "HH:mm")}",
+      FormatterToken.lll: (dateTime) =>
+          "${_dayMonthYear(dateTime, short: true)} ${reformat(dateTime, "H:mm")}",
       FormatterToken.LLLL: (dateTime) =>
-          reformat(dateTime, "dddd, D MMMM YYYY HH:mm"),
+          "${reformat(dateTime, "dddd")}, ${_dayMonthYear(dateTime)} ${reformat(dateTime, "HH:mm")}",
       FormatterToken.llll: (dateTime) =>
-          reformat(dateTime, "ddd, D MMM YYYY H:mm"),
+          "${weekdayNameShort[dateTime.weekday]}, ${_dayMonthYear(dateTime, short: true)} ${reformat(dateTime, "H:mm")}",
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
     };
+  }
+
+  String _dayMonthYear(DateTime dateTime, {bool short = false}) {
+    final String month = short
+        ? _monthNamesShortGenitive[dateTime.month]!
+        : _monthNamesGenitive[dateTime.month]!;
+
+    return "${dateTime.day} $month ${dateTime.year}";
   }
 
   @override
@@ -143,7 +198,27 @@ class LocalizationRuRu extends MomentLocalization
     }
   }
 
-  static String at(String date, String time) => "$date в $time";
+  // The base calendar hands `at` only the label it built ("Прошлая пятница",
+  // "Пятница"); with a time attached Russian needs the accusative phrase.
+  static const Map<String, String> _weekdayPhrases = {
+    "Прошлый понедельник": "В прошлый понедельник",
+    "Прошлый вторник": "В прошлый вторник",
+    "Прошлая среда": "В прошлую среду",
+    "Прошлый четверг": "В прошлый четверг",
+    "Прошлая пятница": "В прошлую пятницу",
+    "Прошлая суббота": "В прошлую субботу",
+    "Прошлое воскресенье": "В прошлое воскресенье",
+    "Понедельник": "В понедельник",
+    "Вторник": "Во вторник",
+    "Среда": "В среду",
+    "Четверг": "В четверг",
+    "Пятница": "В пятницу",
+    "Суббота": "В субботу",
+    "Воскресенье": "В воскресенье",
+  };
+
+  static String at(String date, String time) =>
+      "${_weekdayPhrases[date] ?? date} в $time";
 
   static const CalendarLocalizationData calendarLocalizationDataRuRu =
       CalendarLocalizationData(
@@ -160,11 +235,6 @@ class LocalizationRuRu extends MomentLocalization
     ),
   );
 
-  @Deprecated('Use calendarLocalizationDataRuRu instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataRuRu =
-      calendarLocalizationDataRuRu;
-
   @override
   int get weekStart => DateTime.monday;
 
@@ -175,7 +245,7 @@ class LocalizationRuRu extends MomentLocalization
           anchor ??= Moment.now();
 
           if (useRelative && range.year == anchor.year) {
-            return "В этом году";
+            return "Этот год";
           }
 
           return "${range.year} год";
@@ -185,7 +255,7 @@ class LocalizationRuRu extends MomentLocalization
 
           if (useRelative && anchor.year == range.year) {
             if (anchor.month == range.month) {
-              return "В этом месяце";
+              return "Этот месяц";
             }
 
             return monthNames[range.month]!;

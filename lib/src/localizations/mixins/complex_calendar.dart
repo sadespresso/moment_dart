@@ -1,4 +1,5 @@
 import 'package:moment_dart/src/localization.dart';
+import 'package:moment_dart/src/localizations/utils/calendar_day_delta.dart';
 import 'package:moment_dart/src/moment.dart';
 
 /// This mixin provides:
@@ -21,47 +22,31 @@ mixin ComplexCalendar on MomentLocalization {
     bool omitHoursIfDistant = true,
   }) {
     reference ??= Moment.nowWithTimezone(moment.isUtc);
+    reference = moment.isUtc ? reference.toUtc() : reference.toLocal();
 
     late final String dateString;
 
-    final int deltaDays = moment.differenceInDays(reference);
+    final int deltaDays = calendarDayDelta(moment, reference);
     final String? deltaDaysName =
         complexCalendarData.relativeDayNames[deltaDays];
 
     if (deltaDaysName != null) {
       dateString = deltaDaysName;
     } else {
-      /// If it occured before [reference]
-      if (moment < reference) {
-        final DateTime weekBefore = reference.subtract(const Duration(days: 7));
-
-        if (moment.isBefore(weekBefore)) {
-          if (omitHoursIfDistant) {
-            omitHours = true;
-          }
-
-          dateString = moment.format(
-            customFormat ?? MomentLocalization.localizationDefaultDateFormat,
-          );
-        } else {
+      switch (calendarWeekdayWindow(deltaDays, moment < reference)) {
+        case CalendarWeekdayWindow.last:
           dateString = complexCalendarData.keywords.lastWeekday(
             moment,
             reference: reference,
           );
-        }
-      }
-
-      /// If it occured after [reference]
-      else {
-        final DateTime weekAfter = reference.add(const Duration(days: 7));
-
-        /// If it's this or next week (relative to the reference)
-        if (moment.isBefore(weekAfter)) {
+          break;
+        case CalendarWeekdayWindow.next:
           dateString = complexCalendarData.keywords.nextWeekday(
             moment,
             reference: reference,
           );
-        } else {
+          break;
+        case CalendarWeekdayWindow.distant:
           if (omitHoursIfDistant) {
             omitHours = true;
           }
@@ -69,7 +54,7 @@ mixin ComplexCalendar on MomentLocalization {
           dateString = moment.format(
             customFormat ?? MomentLocalization.localizationDefaultDateFormat,
           );
-        }
+          break;
       }
     }
 
@@ -147,9 +132,3 @@ class ComplexCalendarLocalizationKeywords {
           {DateTime? reference}) =>
       "$dateString $timeString";
 }
-
-@Deprecated('Use ComplexCalendarLocalizationData instead')
-typedef ComplexCalenderLocalizationData = ComplexCalendarLocalizationData;
-
-@Deprecated('Use ComplexCalendarLocalizationKeywords instead')
-typedef ComplexCalenderLocalizationKeywords = ComplexCalendarLocalizationKeywords;

@@ -27,25 +27,26 @@ mixin MnMongMnUnits on SimpleUnits {
     final useFeminineSuffix = interval != DurationInterval.lessThanASecond &&
         (interval.unit == DurationUnit.minute ||
             interval.unit == DurationUnit.second ||
-            interval.unit == DurationUnit.day);
+            interval.unit == DurationUnit.day ||
+            interval.unit == DurationUnit.year);
 
     late final String suffix; // Language specific stuff
 
     if (form != Abbreviation.none) {
       suffix = "";
     } else if (interval.unit == DurationUnit.month) {
-      suffix = " ᠶᠢᠨ";
+      suffix = "\u180Eᠶᠢᠨ";
     } else {
-      suffix = (useFeminineSuffix ? " ᠦᠨ" : " ᠤᠨ");
+      suffix = (useFeminineSuffix ? "\u180Eᠦᠨ" : "\u180Eᠤᠨ");
     }
 
     return result + suffix;
   }
 
   @override
-  String relativePast(String unit) => "$unit ᠡᠮᠦᠨ᠎ᠡ";
+  String relativePast(String unit) => "$unit ᠡᠮᠦᠨ\u180Eᠡ";
   @override
-  String relativeFuture(String unit) => "$unit ᠳᠠᠷᠠᠭ᠎ᠠ";
+  String relativeFuture(String unit) => "$unit ᠳᠠᠷᠠᠭ\u180Eᠠ";
 
   @override
   Map<DurationInterval, UnitString> get units => {
@@ -55,23 +56,23 @@ mixin MnMongMnUnits on SimpleUnits {
           "ᠬᠣᠷᠤᠮ",
         ),
         DurationInterval.aSecond: UnitString.withForm(
-          "1 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
-          "1 ᠰᠧᠻ᠊᠍",
+          "1 ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
+          "1 ᠰᠧᠻ᠊",
           "1ᠰ",
         ),
         DurationInterval.seconds: UnitString.withForm(
-          "$srDelta ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
-          "$srDelta ᠰᠧᠻ᠍᠊᠍",
+          "$srDelta ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
+          "$srDelta ᠰᠧᠻ᠊",
           "$srDeltaᠰ",
         ),
         DurationInterval.aMinute: UnitString.withForm(
-          "1 ᠮᠢᠨᠦᠢᠲ",
-          "1 ᠮᠢᠨ᠊᠍",
+          "1 ᠮᠢᠨᠦ\u180Bᠲ",
+          "1 ᠮᠢᠨ\u180B᠊",
           "1ᠮ",
         ),
         DurationInterval.minutes: UnitString.withForm(
-          "$srDelta ᠮᠢᠨᠦᠢᠲ",
-          "$srDelta ᠮᠢᠨ᠊᠍",
+          "$srDelta ᠮᠢᠨᠦ\u180Bᠲ",
+          "$srDelta ᠮᠢᠨ\u180B᠊",
           "$srDeltaᠮ",
         ),
         DurationInterval.anHour: UnitString.withForm(
@@ -95,24 +96,24 @@ mixin MnMongMnUnits on SimpleUnits {
           "$srDeltaᠥ",
         ),
         DurationInterval.aWeek: UnitString.withForm(
-          "1 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
-          "1 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
-          "1ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
+          "1 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ",
+          "1 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊",
+          "1ᠳᠣ.ᠬᠣᠨ\u180B᠊",
         ),
         DurationInterval.weeks: UnitString.withForm(
-          "$srDelta ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
-          "$srDelta ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
-          "$srDeltaᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
+          "$srDelta ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ",
+          "$srDelta ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊",
+          "$srDeltaᠳᠣ.ᠬᠣᠨ\u180B᠊",
         ),
         DurationInterval.aMonth: UnitString.withForm(
-          "1 ᠰᠠᠷ᠎ᠠ",
-          "1 ᠰᠠ᠊᠍",
-          "1ᠰᠠ᠊᠍",
+          "1 ᠰᠠᠷ\u180Eᠠ",
+          "1 ᠰᠠ᠊",
+          "1ᠰᠠ᠊",
         ),
         DurationInterval.months: UnitString.withForm(
-          "$srDelta ᠰᠠᠷ᠎ᠠ",
-          "$srDelta ᠰᠠ᠊᠍",
-          "$srDeltaᠰᠠ᠊᠍",
+          "$srDelta ᠰᠠᠷ\u180Eᠠ",
+          "$srDelta ᠰᠠ᠊",
+          "$srDeltaᠰᠠ᠊",
         ),
         DurationInterval.aYear: UnitString.withForm(
           "1 ᠵᠢᠯ",

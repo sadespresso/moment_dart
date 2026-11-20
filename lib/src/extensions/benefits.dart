@@ -116,10 +116,9 @@ extension MomentBenefits on DateTime {
 
   /// Difference calculated after omitting hour, minute, ..., microsecond
   ///
-  /// Does not take timezones of [this] and [other]!
-  ///
-  /// Uses DateTime.difference(), therefore behaves same.
-  /// So, be careful with UTC and local timezones.
+  /// Does not take timezones of [this] and [other]! Compares the calendar
+  /// dates ([year], [month], [day]) of each as they are, so DST transitions
+  /// don't affect the result.
   ///
   /// -------
   ///
@@ -132,7 +131,9 @@ extension MomentBenefits on DateTime {
   /// // 0 means [this] and [other] occured at the same day.
   /// ```
   int differenceInDays(DateTime other) {
-    return date.difference(other.date).inDays;
+    return DateTime.utc(year, month, day)
+        .difference(DateTime.utc(other.year, other.month, other.day))
+        .inDays;
   }
 
   /// Equivalent to `add(other)`
@@ -179,16 +180,9 @@ extension MomentBenefits on DateTime {
 
   /// Returns new `DateTime`, preserves timezone
   DateTime clone() {
-    return DateTimeConstructors.withTimezone(
-      isUtc,
-      year,
-      month,
-      day,
-      hour,
-      minute,
-      second,
-      millisecond,
-      microsecond,
+    return DateTime.fromMicrosecondsSinceEpoch(
+      microsecondsSinceEpoch,
+      isUtc: isUtc,
     );
   }
 

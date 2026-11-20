@@ -63,29 +63,21 @@ void main() {
       final int hour = 5;
       final int minute = 7;
 
-      final Duration delta = Duration(hours: hour, minutes: minute);
-
       final Moment local = DateTime(2003, 6, 1, hour, minute, 8, 600)
           .toMoment(); // June 1 2003 05:07 AM
       final Moment utc = DateTime(2003, 6, 1, hour, minute, 8, 600, 1)
           .toMoment()
           .toUtc(); // May 31 2003 09:07 PM
 
-      final bool timezoneDifferenceDependent = local.timeZoneOffset <= delta;
-
-      expect(local.isAtSameYearAs(utc), true); // "same year"
-      expect(local.isAtSameMonthAs(utc),
-          timezoneDifferenceDependent); // "same month"
-      expect(
-          local.isAtSameDayAs(utc), timezoneDifferenceDependent); // "same day"
-      expect(local.isAtSameHourAs(utc),
-          timezoneDifferenceDependent); // "same hour"
-      expect(local.isAtSameMinuteAs(utc),
-          timezoneDifferenceDependent); // "same minute"
-      expect(local.isAtSameSecondAs(utc),
-          timezoneDifferenceDependent); // "same second"
-      expect(local.isAtSameMillisecondAs(utc),
-          timezoneDifferenceDependent); // "same millis"
+      // [utc] is converted to the timezone of [local] before comparing, so the
+      // result doesn't depend on the zone the test runs in
+      expect(local.isAtSameYearAs(utc), true);
+      expect(local.isAtSameMonthAs(utc), true);
+      expect(local.isAtSameDayAs(utc), true);
+      expect(local.isAtSameHourAs(utc), true);
+      expect(local.isAtSameMinuteAs(utc), true);
+      expect(local.isAtSameSecondAs(utc), true);
+      expect(local.isAtSameMillisecondAs(utc), true);
       expect(local.isAtSameMicrosecondAs(utc), false); // "same microsecond"
       expect(local.isAtSameMomentAs(utc), false); // "same microsecond"
     });

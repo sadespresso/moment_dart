@@ -7,6 +7,7 @@ import 'package:moment_dart/moment_dart.dart';
 ///
 /// * [srDelta] - string getter;
 /// * [units] - map of unit translations that use [srDelta] as unit placeholder
+/// * [durationUnits] - map of unit translations used by `simple_duration`
 /// * [relativePast] - A function suffixes/prefixes given duration
 /// * [relativeFuture] - A function suffixes/prefixes given duration
 mixin SimpleUnits on MomentLocalization {
@@ -14,6 +15,13 @@ mixin SimpleUnits on MomentLocalization {
   String get srDelta => "%";
 
   Map<DurationInterval, UnitString> get units;
+
+  /// Unit translations used by `simple_duration`. Defaults to [units].
+  ///
+  /// [units] serves fuzzy relative time ("in an hour"), while `duration()` is
+  /// precise, so override this to spell singular units with the number
+  /// ("in 1 hour 1 minute" rather than "in an hour a minute").
+  Map<DurationInterval, UnitString> get durationUnits => units;
 
   String relativePast(String unit);
   String relativeFuture(String unit);

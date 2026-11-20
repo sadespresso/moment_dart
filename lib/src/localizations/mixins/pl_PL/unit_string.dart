@@ -32,11 +32,16 @@ class PolishPluralUnitString extends CountDependentUnitString {
   final String many;
   final String short;
 
+  /// Used instead of [singular] after "za"/"temu" ("1 minutę temu").
+  /// Defaults to [singular], which is already correct for masculine nouns.
+  final String? singularAccusative;
+
   const PolishPluralUnitString({
     required this.singular,
     required this.few,
     required this.many,
     required this.short,
+    this.singularAccusative,
   });
 
   @override
@@ -49,7 +54,7 @@ class PolishPluralUnitString extends CountDependentUnitString {
     // 2. If number ends with 2-4 but not 12-14: few
     // 3. Otherwise: many
     if (count == 1) {
-      return singular;
+      return dropPrefixOrSuffix ? singular : (singularAccusative ?? singular);
     } else if ([2, 3, 4].contains(count % 10) &&
         ![12, 13, 14].contains(count % 100)) {
       return few;

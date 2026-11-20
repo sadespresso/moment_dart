@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Italian
 /// Country: Italy
@@ -182,6 +181,46 @@ class LocalizationItIt extends MomentLocalization
           "$srDelta anni",
           "$srDelta anni",
           "$srDelta a.",
+        ),
+      };
+
+  @override
+  Map<DurationInterval, UnitString> get durationUnits => {
+        ...units,
+        DurationInterval.aSecond: UnitString.withForm(
+          "1 secondo",
+          "1 sec",
+          "1 s",
+        ),
+        DurationInterval.aMinute: UnitString.withForm(
+          "1 minuto",
+          "1 min",
+          "1 m",
+        ),
+        DurationInterval.anHour: UnitString.withForm(
+          "1 ora",
+          "1 ora",
+          "1 h",
+        ),
+        DurationInterval.aDay: UnitString.withForm(
+          "1 giorno",
+          "1 giorno",
+          "1 g.",
+        ),
+        DurationInterval.aWeek: UnitString.withForm(
+          "1 settimana",
+          "1 sett.",
+          "1 sett.",
+        ),
+        DurationInterval.aMonth: UnitString.withForm(
+          "1 mese",
+          "1 mese",
+          "1 ms.",
+        ),
+        DurationInterval.aYear: UnitString.withForm(
+          "1 anno",
+          "1 anno",
+          "1 a.",
         ),
       };
 

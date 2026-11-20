@@ -52,20 +52,20 @@ void main() {
     // calendar format might use L, check definition. Assuming it uses L = DD/MM/YYYY
     expect(epoch.format('L'), "01/01/1970");
     expect(epoch.format("LLLL"),
-        "الخميس، 1 يناير 1970 00:00"); // Changed from 12:00 ص
+        "الخميس، 1 كانون الثاني 1970 00:00"); // Changed from 12:00 ص
   });
 
   test("de_DE localization calendar test", () {
     Moment.setGlobalLocalization(MomentLocalizations.de());
 
     // A
-    expect(today.calendar(reference: today), "heute um 5:33");
-    expect(tomorrow.calendar(reference: today), "morgen um 5:33");
-    expect(
-        tueOrDayAfterTomorrow.calendar(reference: today), "übermorgen um 5:33");
-    expect(yesterday.calendar(reference: today), "gestern um 5:33");
+    expect(today.calendar(reference: today), "heute um 05:33");
+    expect(tomorrow.calendar(reference: today), "morgen um 05:33");
+    expect(tueOrDayAfterTomorrow.calendar(reference: today),
+        "übermorgen um 05:33");
+    expect(yesterday.calendar(reference: today), "gestern um 05:33");
     expect(fridayOrDayBeforeYesterday.calendar(reference: today),
-        "vorgestern um 5:33");
+        "vorgestern um 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
         "letzten Montag");
@@ -109,13 +109,13 @@ void main() {
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"), "giovedì 1 gennaio 1970 00:00");
 
-    // Sunday
+    // Sunday, 7 days back: past the "last <weekday>" window
     expect(
       lastMonday.subtract(const Duration(days: 1)).calendar(
             reference: today,
             omitHours: true,
           ),
-      "La scorsa domenica",
+      "25/5/2003",
     );
 
     // at zero
@@ -170,14 +170,14 @@ void main() {
         "Terça-feira às 05:33");
     expect(yesterday.calendar(reference: today), "Ontem às 05:33");
     expect(fridayOrDayBeforeYesterday.calendar(reference: today),
-        "Última Sexta-feira às 05:33");
+        "Última sexta-feira às 05:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
-        "Última Segunda-feira");
+        "Última segunda-feira");
     expect(lastTuesday.calendar(reference: today, omitHours: true),
-        "Última Terça-feira");
+        "Última terça-feira");
     expect(lastWednesday.calendar(reference: today, omitHours: true),
-        "Última Quarta-feira");
+        "Última quarta-feira");
     expect(nextWednesday.calendar(reference: today, omitHours: true),
         "Quarta-feira");
     expect(nextThursday.calendar(reference: today, omitHours: true),
@@ -186,7 +186,7 @@ void main() {
         nextFriday.calendar(reference: today, omitHours: true), "Sexta-feira");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "Quinta-feira, 1º de janeiro de 1970 00:00");
+    expect(epoch.format("LLLL"), "quinta-feira, 1 de janeiro de 1970 00:00");
   });
 
   test("es localization calendar test", () {
@@ -199,14 +199,14 @@ void main() {
         tueOrDayAfterTomorrow.calendar(reference: today), "martes a las 5:33");
     expect(yesterday.calendar(reference: today), "ayer a las 5:33");
     expect(fridayOrDayBeforeYesterday.calendar(reference: today),
-        "el viernes pasodo a las 5:33");
+        "el viernes pasado a las 5:33");
     // B
     expect(lastMonday.calendar(reference: today, omitHours: true),
-        "el lunes pasodo");
+        "el lunes pasado");
     expect(lastTuesday.calendar(reference: today, omitHours: true),
-        "el martes pasodo");
+        "el martes pasado");
     expect(lastWednesday.calendar(reference: today, omitHours: true),
-        "el miércoles pasodo");
+        "el miércoles pasado");
     expect(
         nextWednesday.calendar(reference: today, omitHours: true), "miércoles");
     expect(nextThursday.calendar(reference: today, omitHours: true), "jueves");
@@ -241,7 +241,7 @@ void main() {
     expect(nextFriday.calendar(reference: today, omitHours: true), "Friday");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "Thursday, January 1 1970 12:00 AM");
+    expect(epoch.format("LLLL"), "Thursday, January 1, 1970 12:00 AM");
   });
 
   test("mn localization calendar test", () {
@@ -277,7 +277,7 @@ void main() {
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ 05:33");
     expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ 05:33");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ 05:33");
-    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ 05:33");
+    expect(yesterday.calendar(reference: today), "ᠥᠴᠦᠭᠡᠳᠦᠷ 05:33");
     expect(
         fridayOrDayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ 05:33");
     // B
@@ -286,14 +286,14 @@ void main() {
     expect(lastTuesday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠤᠯᠠᠭᠠᠨ");
     expect(lastWednesday.calendar(reference: today, omitHours: true),
-        "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠥᠯᠡᠮᠵᠢ");
-    expect(nextWednesday.calendar(reference: today, omitHours: true), "ᠥᠯᠡᠮᠵᠢ");
+        "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠦᠯᠡᠮᠵᠢ");
+    expect(nextWednesday.calendar(reference: today, omitHours: true), "ᠦᠯᠡᠮᠵᠢ");
     expect(nextThursday.calendar(reference: today, omitHours: true), "ᠭᠠᠳᠠᠰᠤ");
     expect(nextFriday.calendar(reference: today, omitHours: true), "ᠴᠣᠯᠮᠤᠨ");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"),
-        "ᠭᠠᠳᠠᠰᠤ ᠡᠳᠦᠷ, 1970 ᠣᠨ ᠤ 1 ᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ 1᠂ 00:00");
+        "ᠭᠠᠳᠠᠰᠤ ᠡᠳᠦᠷ᠂ 1970 ᠣᠨ\u180Eᠤ 1\u180Eᠳᠦᠭᠡᠷ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ 1᠂ 00:00");
   });
 
   test("mn (Traditional with numbers) localization calendar test", () {
@@ -303,7 +303,7 @@ void main() {
     expect(today.calendar(reference: today), "ᠥᠨᠦᠳᠦᠷ ᠐᠕:᠓᠓");
     expect(tomorrow.calendar(reference: today), "ᠮᠠᠷᠭᠠᠰᠢ ᠐᠕:᠓᠓");
     expect(tueOrDayAfterTomorrow.calendar(reference: today), "ᠨᠥᠭᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
-    expect(yesterday.calendar(reference: today), "ᠦᠴᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
+    expect(yesterday.calendar(reference: today), "ᠥᠴᠦᠭᠡᠳᠦᠷ ᠐᠕:᠓᠓");
     expect(
         fridayOrDayBeforeYesterday.calendar(reference: today), "ᠤᠷᠵᠢᠳᠤᠷ ᠐᠕:᠓᠓");
     // B
@@ -312,14 +312,14 @@ void main() {
     expect(lastTuesday.calendar(reference: today, omitHours: true),
         "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠤᠯᠠᠭᠠᠨ");
     expect(lastWednesday.calendar(reference: today, omitHours: true),
-        "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠥᠯᠡᠮᠵᠢ");
-    expect(nextWednesday.calendar(reference: today, omitHours: true), "ᠥᠯᠡᠮᠵᠢ");
+        "ᠥᠩᠭᠡᠷᠡᠭᠰᠡᠨ ᠦᠯᠡᠮᠵᠢ");
+    expect(nextWednesday.calendar(reference: today, omitHours: true), "ᠦᠯᠡᠮᠵᠢ");
     expect(nextThursday.calendar(reference: today, omitHours: true), "ᠭᠠᠳᠠᠰᠤ");
     expect(nextFriday.calendar(reference: today, omitHours: true), "ᠴᠣᠯᠮᠤᠨ");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
     expect(epoch.format("LLLL"),
-        "ᠭᠠᠳᠠᠰᠤ ᠡᠳᠦᠷ, ᠑᠙᠗᠐ ᠣᠨ ᠤ ᠑ ᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ ᠶᠢᠨ ᠑᠂ ᠐᠐:᠐᠐");
+        "ᠭᠠᠳᠠᠰᠤ ᠡᠳᠦᠷ᠂ ᠑᠙᠗᠐ ᠣᠨ\u180Eᠤ ᠑\u180Eᠳᠦᠭᠡᠷ ᠰᠠᠷ\u180Eᠠ\u180Eᠶᠢᠨ ᠑᠂ ᠐᠐:᠐᠐");
   });
 
   test("ko localization calendar test", () {
@@ -466,7 +466,7 @@ void main() {
     expect(nextFriday.calendar(reference: today, omitHours: true), "Пятница");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "Четверг, 1 Январь 1970 00:00");
+    expect(epoch.format("LLLL"), "четверг, 1 января 1970 00:00");
   });
 
   test("pl_PL localization calendar test", () {
@@ -475,8 +475,8 @@ void main() {
     // A
     expect(today.calendar(reference: today), "Dzisiaj o 05:33");
     expect(tomorrow.calendar(reference: today), "Jutro o 05:33");
-    expect(tueOrDayAfterTomorrow.calendar(reference: today),
-        "Pojutrze o 05:33");
+    expect(
+        tueOrDayAfterTomorrow.calendar(reference: today), "Pojutrze o 05:33");
     expect(yesterday.calendar(reference: today), "Wczoraj o 05:33");
     expect(
       fridayOrDayBeforeYesterday.calendar(reference: today),
@@ -485,15 +485,15 @@ void main() {
     // B
     expect(
       lastMonday.calendar(reference: today, omitHours: true),
-      "Ostatni poniedziałek",
+      "Zeszły poniedziałek",
     );
     expect(
       lastTuesday.calendar(reference: today, omitHours: true),
-      "Ostatni wtorek",
+      "Zeszły wtorek",
     );
     expect(
       lastWednesday.calendar(reference: today, omitHours: true),
-      "Ostatnia środa",
+      "Zeszła środa",
     );
     expect(
       nextWednesday.calendar(reference: today, omitHours: true),
@@ -506,6 +506,6 @@ void main() {
     expect(nextFriday.calendar(reference: today, omitHours: true), "Piątek");
     // C
     expect(epoch.calendar(reference: today, omitHours: true), epoch.format());
-    expect(epoch.format("LLLL"), "Czwartek, 1 stycznia 1970 00:00");
+    expect(epoch.format("LLLL"), "czwartek, 1 stycznia 1970 00:00");
   });
 }

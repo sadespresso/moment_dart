@@ -2,6 +2,9 @@
 // Author: Ultrate (https://github.com/Ultrate)
 
 import 'package:moment_dart/moment_dart.dart';
+import 'package:moment_dart/src/localizations/mixins/ar_PS/duration.dart';
+import 'package:moment_dart/src/localizations/mixins/ar_PS/relative.dart';
+import 'package:moment_dart/src/localizations/mixins/ar_PS/units.dart';
 import 'package:moment_dart/src/localizations/mixins/month_names.dart';
 import 'package:moment_dart/src/localizations/mixins/ordinal_numbers.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_duration.dart';
@@ -9,7 +12,6 @@ import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_relative.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Arabic
 /// Country: Palestine
@@ -18,8 +20,11 @@ class LocalizationArPs extends MomentLocalization
         Ordinal,
         MonthNames,
         SimpleUnits,
+        ArPsUnits,
         SimpleRelative,
+        ArPsRelative,
         SimpleDuration,
+        ArPsDuration,
         SimpleRange,
         WeekdayShortForms {
   static LocalizationArPs? _instance;
@@ -50,35 +55,24 @@ class LocalizationArPs extends MomentLocalization
 
   @override
   Map<int, String> get monthNames => {
-        1: "يناير",
-        2: "فبراير",
-        3: "مارس",
-        4: "أبريل",
-        5: "ماي",
-        6: "يونيو",
-        7: "يوليوز",
-        8: "غشت",
-        9: "شتنبر",
-        10: "أكتوبر",
-        11: "نونبر",
-        12: "دجنبر",
+        1: "كانون الثاني",
+        2: "شباط",
+        3: "آذار",
+        4: "نيسان",
+        5: "أيار",
+        6: "حزيران",
+        7: "تموز",
+        8: "آب",
+        9: "أيلول",
+        10: "تشرين الأول",
+        11: "تشرين الثاني",
+        12: "كانون الأول",
       };
 
+  // Levantine month names have no customary abbreviations (CLDR uses the full
+  // names for the abbreviated form too)
   @override
-  Map<int, String> get monthNamesShort => {
-        1: "ينا",
-        2: "فبر",
-        3: "مار",
-        4: "أبر",
-        5: "ماي",
-        6: "يون",
-        7: "يول",
-        8: "غشت",
-        9: "شتن",
-        10: "أكت",
-        11: "نون",
-        12: "دجن",
-      };
+  Map<int, String> get monthNamesShort => monthNames;
 
   @override
   Map<int, String> get weekdayName => {
@@ -93,13 +87,24 @@ class LocalizationArPs extends MomentLocalization
 
   @override
   Map<int, String> get weekdayNameShort => {
-        DateTime.monday: "إثن",
-        DateTime.tuesday: "ثلا",
-        DateTime.wednesday: "أرب",
-        DateTime.thursday: "خمي",
+        DateTime.monday: "إثنين",
+        DateTime.tuesday: "ثلاثاء",
+        DateTime.wednesday: "أربعاء",
+        DateTime.thursday: "خميس",
         DateTime.friday: "جمعة",
         DateTime.saturday: "سبت",
         DateTime.sunday: "أحد",
+      };
+
+  @override
+  Map<int, String> get weekdayNameMin => {
+        DateTime.monday: "ن",
+        DateTime.tuesday: "ث",
+        DateTime.wednesday: "ر",
+        DateTime.thursday: "خ",
+        DateTime.friday: "ج",
+        DateTime.saturday: "س",
+        DateTime.sunday: "ح",
       };
 
   @override
@@ -155,25 +160,6 @@ class LocalizationArPs extends MomentLocalization
 
   @override
   int get weekStart => DateTime.saturday;
-
-  @override
-  Map<DurationInterval, UnitString> get units => {
-        DurationInterval.lessThanASecond: UnitString.single("بضع ثوانٍ"),
-        DurationInterval.aSecond: UnitString.single("ثانية"),
-        DurationInterval.seconds: UnitString.single("$srDelta ثوانٍ"),
-        DurationInterval.aMinute: UnitString.single("دقيقة"),
-        DurationInterval.minutes: UnitString.single("$srDelta دقائق"),
-        DurationInterval.anHour: UnitString.single("ساعة"),
-        DurationInterval.hours: UnitString.single("$srDelta ساعات"),
-        DurationInterval.aDay: UnitString.single("يوم"),
-        DurationInterval.days: UnitString.single("$srDelta أيام"),
-        DurationInterval.aWeek: UnitString.single("أسبوع"),
-        DurationInterval.weeks: UnitString.single("$srDelta أسابيع"),
-        DurationInterval.aMonth: UnitString.single("شهر"),
-        DurationInterval.months: UnitString.single("$srDelta أشهر"),
-        DurationInterval.aYear: UnitString.single("عام"),
-        DurationInterval.years: UnitString.single("$srDelta أعوام"),
-      };
 
   @override
   SimpleRangeData get simpleRangeData => SimpleRangeData(

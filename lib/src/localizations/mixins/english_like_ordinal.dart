@@ -7,9 +7,9 @@ import 'package:moment_dart/moment_dart.dart';
 mixin EnglishLikeOrdinal on MomentLocalization {
   /// Ordinal suffixes in order:
   ///
-  /// 1, 2, 3, other
+  /// other, 1, 2, 3
   ///
-  /// For example: ["st", "nd", "rd", "th"]
+  /// For example: ["th", "st", "nd", "rd"]
   List<String> get ordinalSuffixes;
 
   /// Returns ordinal number string.

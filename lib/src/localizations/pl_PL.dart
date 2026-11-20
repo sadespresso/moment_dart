@@ -9,7 +9,6 @@ import 'package:moment_dart/src/localizations/mixins/pl_PL/units.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_range.dart';
 import 'package:moment_dart/src/localizations/mixins/simple_units.dart';
 import 'package:moment_dart/src/localizations/mixins/weekday_shortforms.dart';
-import 'package:moment_dart/src/types.dart';
 
 /// Language: Polish (Poland)
 /// Country: Poland
@@ -134,21 +133,29 @@ class LocalizationPlPl extends MomentLocalization
       ...formattersForMonthNames,
       // From [WeekdayShortForms] mixin
       ...formattersForWeekdayShortForms,
+      // The name maps are capitalized for standalone labels (calendar, range);
+      // inside a date Polish writes month and weekday names in lowercase.
+      FormatterToken.MMMM: (dateTime) =>
+          monthNames[dateTime.month]!.toLowerCase(),
+      FormatterToken.MMM: (dateTime) =>
+          monthNamesShort[dateTime.month]!.toLowerCase(),
+      FormatterToken.dddd: (dateTime) =>
+          weekdayName[dateTime.weekday]!.toLowerCase(),
       // Localization aware formats
       FormatterToken.L: (dateTime) => reformat(dateTime, "DD.MM.YYYY"),
       FormatterToken.l: (dateTime) => reformat(dateTime, "D.M.YYYY"),
       FormatterToken.LL: (dateTime) =>
           "${dateTime.day} ${_monthNamesGenitive[dateTime.month]} ${dateTime.year}",
       FormatterToken.ll: (dateTime) =>
-          "${dateTime.day} ${monthNamesShort[dateTime.month]} ${dateTime.year}",
+          "${dateTime.day} ${reformat(dateTime, "MMM")} ${dateTime.year}",
       FormatterToken.LLL: (dateTime) =>
           "${dateTime.day} ${_monthNamesGenitive[dateTime.month]} ${dateTime.year} ${reformat(dateTime, "HH:mm")}",
       FormatterToken.lll: (dateTime) =>
-          "${dateTime.day} ${monthNamesShort[dateTime.month]} ${dateTime.year} ${reformat(dateTime, "H:mm")}",
+          "${dateTime.day} ${reformat(dateTime, "MMM")} ${dateTime.year} ${reformat(dateTime, "H:mm")}",
       FormatterToken.LLLL: (dateTime) =>
-          "${weekdayName[dateTime.weekday]}, ${dateTime.day} ${_monthNamesGenitive[dateTime.month]} ${dateTime.year} ${reformat(dateTime, "HH:mm")}",
+          "${reformat(dateTime, "dddd")}, ${dateTime.day} ${_monthNamesGenitive[dateTime.month]} ${dateTime.year} ${reformat(dateTime, "HH:mm")}",
       FormatterToken.llll: (dateTime) =>
-          "${weekdayNameShort[dateTime.weekday]}, ${dateTime.day} ${monthNamesShort[dateTime.month]} ${dateTime.year} ${reformat(dateTime, "H:mm")}",
+          "${weekdayNameShort[dateTime.weekday]}, ${dateTime.day} ${reformat(dateTime, "MMM")} ${dateTime.year} ${reformat(dateTime, "H:mm")}",
       FormatterToken.LT: (dateTime) => reformat(dateTime, "HH:mm"),
       FormatterToken.LTS: (dateTime) => reformat(dateTime, "HH:mm:ss"),
     };
@@ -162,25 +169,44 @@ class LocalizationPlPl extends MomentLocalization
   @override
   CalendarLocalizationData get calendarData => calendarLocalizationDataPlPl;
 
-  /// Returns "Ostatni/Ostatnia/Ostatnie" based on grammatical gender
+  /// Returns "Zeszły/Zeszła" based on grammatical gender
   /// of the Polish weekday name.
   ///
   /// Masculine: Poniedziałek, Wtorek, Czwartek, Piątek
-  /// Feminine: Środa, Sobota
-  /// Neuter: (none in standard weekdays, but Niedziela is feminine)
+  /// Feminine: Środa, Sobota, Niedziela
   static String last(String weekday) {
     switch (weekday) {
       case "Środa":
       case "Sobota":
       case "Niedziela":
-        return "Ostatnia ${weekday.toLowerCase()}";
+        return "Zeszła ${weekday.toLowerCase()}";
       default:
         // Poniedziałek, Wtorek, Czwartek, Piątek
-        return "Ostatni ${weekday.toLowerCase()}";
+        return "Zeszły ${weekday.toLowerCase()}";
     }
   }
 
-  static String at(String date, String time) => "$date o $time";
+  // The base calendar hands `at` only the label it built ("Zeszła środa",
+  // "Środa"); with a time attached Polish needs the accusative phrase.
+  static const Map<String, String> _weekdayPhrases = {
+    "Zeszły poniedziałek": "W zeszły poniedziałek",
+    "Zeszły wtorek": "W zeszły wtorek",
+    "Zeszła środa": "W zeszłą środę",
+    "Zeszły czwartek": "W zeszły czwartek",
+    "Zeszły piątek": "W zeszły piątek",
+    "Zeszła sobota": "W zeszłą sobotę",
+    "Zeszła niedziela": "W zeszłą niedzielę",
+    "Poniedziałek": "W poniedziałek",
+    "Wtorek": "We wtorek",
+    "Środa": "W środę",
+    "Czwartek": "W czwartek",
+    "Piątek": "W piątek",
+    "Sobota": "W sobotę",
+    "Niedziela": "W niedzielę",
+  };
+
+  static String at(String date, String time) =>
+      "${_weekdayPhrases[date] ?? date} o $time";
 
   static const CalendarLocalizationData calendarLocalizationDataPlPl =
       CalendarLocalizationData(
@@ -197,11 +223,6 @@ class LocalizationPlPl extends MomentLocalization
     ),
   );
 
-  @Deprecated('Use calendarLocalizationDataPlPl instead')
-  // ignore: constant_identifier_names
-  static const CalendarLocalizationData calenderLocalizationDataPlPl =
-      calendarLocalizationDataPlPl;
-
   @override
   int get weekStart => DateTime.monday;
 
@@ -212,7 +233,7 @@ class LocalizationPlPl extends MomentLocalization
           anchor ??= Moment.now();
 
           if (useRelative && range.year == anchor.year) {
-            return "W tym roku";
+            return "Ten rok";
           }
 
           return "${range.year} rok";
@@ -222,7 +243,7 @@ class LocalizationPlPl extends MomentLocalization
 
           if (useRelative && anchor.year == range.year) {
             if (anchor.month == range.month) {
-              return "W tym miesiącu";
+              return "Ten miesiąc";
             }
 
             return monthNames[range.month]!;
@@ -232,6 +253,6 @@ class LocalizationPlPl extends MomentLocalization
         },
         allAfter: (formattedDate) => "Po $formattedDate",
         allBefore: (formattedDate) => "Przed $formattedDate",
-        customRangeAllTime: "Cały czas",
+        customRangeAllTime: "Cały okres",
       );
 }

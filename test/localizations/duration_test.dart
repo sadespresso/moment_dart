@@ -41,15 +41,15 @@ void main() {
     // --- Expectations adjusted for SimpleUnits/SimpleDuration limitations ---
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.none),
-      "خلال عام 2 أشهر", // Adjusted from وشهرين
+      "خلال عام وشهرين",
     );
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.semi),
-      "خلال عام 2 أشهر", // Adjusted from 1 عام وشهرين (SimpleUnits uses 'عام' for aYear)
+      "خلال عام وشهرين",
     );
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.full),
-      "خلال عام 2 أشهر", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال عام وشهرين",
     );
 
     expect(
@@ -67,15 +67,15 @@ void main() {
 
     expect(
       l10n.duration(_3mo_17d, form: Abbreviation.none),
-      "خلال 3 أشهر 17 أيام", // Adjusted plural for days > 10
+      "خلال 3 أشهر و17 يومًا",
     );
     expect(
       l10n.duration(_3mo_17d, form: Abbreviation.semi),
-      "خلال 3 أشهر 17 أيام", // Adjusted plural for days > 10
+      "خلال 3 أشهر و17 يومًا",
     );
     expect(
       l10n.duration(_3mo_17d, form: Abbreviation.full),
-      "خلال 3 أشهر 17 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 3 أشهر و17 يومًا",
     );
 
     expect(
@@ -97,7 +97,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "خلال 3 أسابيع 2 أيام", // Adjusted from ويومين
+      "خلال 3 أسابيع ويومين",
     );
     expect(
       l10n.duration(
@@ -105,7 +105,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "خلال 3 أسابيع 2 أيام", // Adjusted from ويومين
+      "خلال 3 أسابيع ويومين",
     );
     expect(
       l10n.duration(
@@ -113,20 +113,20 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "خلال 3 أسابيع 2 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 3 أسابيع ويومين",
     );
     // Without includeWeeks
     expect(
       l10n.duration(_3w_2d_or_23d, form: Abbreviation.none),
-      "خلال 23 أيام", // Adjusted plural for days > 10
+      "خلال 23 يومًا",
     );
     expect(
       l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
-      "خلال 23 أيام", // Adjusted plural for days > 10
+      "خلال 23 يومًا",
     );
     expect(
       l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
-      "خلال 23 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 23 يومًا",
     );
 
     expect(
@@ -156,28 +156,28 @@ void main() {
     // Without includeWeeks
     expect(
       l10n.duration(_4w_or_28d, form: Abbreviation.none),
-      "خلال 28 أيام", // Adjusted plural for days > 10
+      "خلال 28 يومًا",
     );
     expect(
       l10n.duration(_4w_or_28d, form: Abbreviation.semi),
-      "خلال 28 أيام", // Adjusted plural for days > 10
+      "خلال 28 يومًا",
     );
     expect(
       l10n.duration(_4w_or_28d, form: Abbreviation.full),
-      "خلال 28 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 28 يومًا",
     );
 
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.none),
-      "خلال 6 أيام 7 ساعات",
+      "خلال 6 أيام و7 ساعات",
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.semi),
-      "خلال 6 أيام 7 ساعات",
+      "خلال 6 أيام و7 ساعات",
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.full),
-      "خلال 6 أيام 7 ساعات", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 6 أيام و7 ساعات",
     );
 
     expect(
@@ -195,15 +195,15 @@ void main() {
 
     expect(
       l10n.duration(_8h_8m, form: Abbreviation.none),
-      "خلال 8 ساعات 8 دقائق",
+      "خلال 8 ساعات و8 دقائق",
     );
     expect(
       l10n.duration(_8h_8m, form: Abbreviation.semi),
-      "خلال 8 ساعات 8 دقائق",
+      "خلال 8 ساعات و8 دقائق",
     );
     expect(
       l10n.duration(_8h_8m, form: Abbreviation.full),
-      "خلال 8 ساعات 8 دقائق", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 8 ساعات و8 دقائق",
     );
 
     expect(
@@ -221,41 +221,41 @@ void main() {
 
     expect(
       l10n.duration(_48m_42s, form: Abbreviation.none),
-      "خلال 48 دقائق 42 ثوانٍ", // Adjusted plurals and tanween
+      "خلال 48 دقيقة و42 ثانية",
     );
     expect(
       l10n.duration(_48m_42s, form: Abbreviation.semi),
-      "خلال 48 دقائق 42 ثوانٍ", // Adjusted plurals and tanween
+      "خلال 48 دقيقة و42 ثانية",
     );
     expect(
       l10n.duration(_48m_42s, form: Abbreviation.full),
-      "خلال 48 دقائق 42 ثوانٍ", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 48 دقيقة و42 ثانية",
     );
 
     expect(
       l10n.duration(_35m, form: Abbreviation.none),
-      "خلال 35 دقائق", // Adjusted plural
+      "خلال 35 دقيقة",
     );
     expect(
       l10n.duration(_35m, form: Abbreviation.semi),
-      "خلال 35 دقائق", // Adjusted plural
+      "خلال 35 دقيقة",
     );
     expect(
       l10n.duration(_35m, form: Abbreviation.full),
-      "خلال 35 دقائق", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 35 دقيقة",
     );
 
     expect(
       l10n.duration(_42s, form: Abbreviation.none),
-      "خلال 42 ثوانٍ", // Adjusted plural and tanween
+      "خلال 42 ثانية",
     );
     expect(
       l10n.duration(_42s, form: Abbreviation.semi),
-      "خلال 42 ثوانٍ", // Adjusted plural and tanween
+      "خلال 42 ثانية",
     );
     expect(
       l10n.duration(_42s, form: Abbreviation.full),
-      "خلال 42 ثوانٍ", // Adjusted (SimpleUnits has no Abbreviations)
+      "خلال 42 ثانية",
     );
 
     expect(
@@ -278,15 +278,15 @@ void main() {
     // --- Expectations adjusted for SimpleUnits/SimpleDuration limitations ---
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "عام 2 أشهر", // Adjusted from وشهرين
+      "عام وشهران",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "عام 2 أشهر", // Adjusted from 1 عام وشهرين
+      "عام وشهران",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "عام 2 أشهر", // Adjusted (SimpleUnits has no Abbreviations)
+      "عام وشهران",
     );
 
     expect(
@@ -305,17 +305,17 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "3 أشهر 17 أيام", // Adjusted plural for days > 10
+      "3 أشهر و17 يومًا",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "3 أشهر 17 أيام", // Adjusted plural for days > 10
+      "3 أشهر و17 يومًا",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "3 أشهر 17 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "3 أشهر و17 يومًا",
     );
 
     expect(
@@ -338,7 +338,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "3 أسابيع 2 أيام", // Adjusted from ويومين
+      "3 أسابيع ويومان",
     );
     expect(
       l10n.duration(
@@ -347,7 +347,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "3 أسابيع 2 أيام", // Adjusted from ويومين
+      "3 أسابيع ويومان",
     );
     expect(
       l10n.duration(
@@ -356,23 +356,23 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "3 أسابيع 2 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "3 أسابيع ويومان",
     );
     // Without includeWeeks
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "23 أيام", // Adjusted plural for days > 10
+      "23 يومًا",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "23 أيام", // Adjusted plural for days > 10
+      "23 يومًا",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "23 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "23 يومًا",
     );
 
     expect(
@@ -406,30 +406,30 @@ void main() {
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "28 أيام", // Adjusted plural for days > 10
+      "28 يومًا",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "28 أيام", // Adjusted plural for days > 10
+      "28 يومًا",
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "28 أيام", // Adjusted (SimpleUnits has no Abbreviations)
+      "28 يومًا",
     );
 
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "6 أيام 7 ساعات",
+      "6 أيام و7 ساعات",
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "6 أيام 7 ساعات",
+      "6 أيام و7 ساعات",
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "6 أيام 7 ساعات", // Adjusted (SimpleUnits has no Abbreviations)
+      "6 أيام و7 ساعات",
     );
 
     expect(
@@ -447,15 +447,15 @@ void main() {
 
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "8 ساعات 8 دقائق",
+      "8 ساعات و8 دقائق",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "8 ساعات 8 دقائق",
+      "8 ساعات و8 دقائق",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "8 ساعات 8 دقائق", // Adjusted (SimpleUnits has no Abbreviations)
+      "8 ساعات و8 دقائق",
     );
 
     expect(
@@ -474,43 +474,43 @@ void main() {
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "48 دقائق 42 ثوانٍ", // Adjusted plurals and tanween
+      "48 دقيقة و42 ثانية",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "48 دقائق 42 ثوانٍ", // Adjusted plurals and tanween
+      "48 دقيقة و42 ثانية",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "48 دقائق 42 ثوانٍ", // Adjusted (SimpleUnits has no Abbreviations)
+      "48 دقيقة و42 ثانية",
     );
 
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "35 دقائق", // Adjusted plural
+      "35 دقيقة",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "35 دقائق", // Adjusted plural
+      "35 دقيقة",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "35 دقائق", // Adjusted (SimpleUnits has no Abbreviations)
+      "35 دقيقة",
     );
 
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "42 ثوانٍ", // Adjusted plural and tanween
+      "42 ثانية",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "42 ثوانٍ", // Adjusted plural and tanween
+      "42 ثانية",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "42 ثوانٍ", // Adjusted (SimpleUnits has no Abbreviations)
+      "42 ثانية",
     );
 
     expect(
@@ -532,7 +532,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.none),
-      "in einem Jahr 2 Monaten",
+      "in 1 Jahr 2 Monaten",
     );
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.semi),
@@ -766,7 +766,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "ein Jahr 2 Monate",
+      "1 Jahr 2 Monate",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -1017,7 +1017,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "un anno 2 mesi",
+      "1 anno 2 mesi",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -1268,7 +1268,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "un an 2 mois",
+      "1 an 2 mois",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -1519,15 +1519,15 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "um ano 2 mêses",
+      "1 ano 2 meses",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "1 ano 2 mêses",
+      "1 ano 2 meses",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "1 a 2 mê",
+      "1 a 2 meses",
     );
 
     expect(
@@ -1546,30 +1546,30 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "3 mêses 17 dias",
+      "3 meses 17 dias",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "3 mêses 17 dias",
+      "3 meses 17 dias",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "3 mê 17 d",
+      "3 meses 17 d",
     );
 
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "4 mêses",
+      "4 meses",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "4 mêses",
+      "4 meses",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "4 mê",
+      "4 meses",
     );
 
     expect(
@@ -1770,7 +1770,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "un año 2 meses",
+      "1 año 2 meses",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -2021,7 +2021,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "a year 2 months",
+      "1 year 2 months",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -2053,7 +2053,7 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "3 mo 17 day",
+      "3 mo 17 days",
     );
     expect(
       l10n.duration(_3mo_17d,
@@ -2090,7 +2090,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "3 wk 2 day",
+      "3 wk 2 days",
     );
     expect(
       l10n.duration(
@@ -2109,7 +2109,7 @@ void main() {
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "23 day",
+      "23 days",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
@@ -2152,7 +2152,7 @@ void main() {
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "28 day",
+      "28 days",
     );
     expect(
       l10n.duration(_4w_or_28d,
@@ -2166,7 +2166,7 @@ void main() {
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "6 day 7 hr",
+      "6 days 7 hr",
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2179,7 +2179,7 @@ void main() {
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "6 day",
+      "6 days",
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2523,15 +2523,15 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "1 ᠵᠢᠯ 2 ᠰᠠᠷ᠎ᠠ",
+      "1 ᠵᠢᠯ 2 ᠰᠠᠷ\u180Eᠠ",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "1 ᠵᠢᠯ 2 ᠰᠠ᠊᠍",
+      "1 ᠵᠢᠯ 2 ᠰᠠ᠊",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "1ᠵᠢᠯ 2ᠰᠠ᠊᠍",
+      "1ᠵᠢᠯ 2ᠰᠠ᠊",
     );
 
     expect(
@@ -2550,30 +2550,30 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "3 ᠰᠠᠷ᠎ᠠ 17 ᠡᠳᠦᠷ",
+      "3 ᠰᠠᠷ\u180Eᠠ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "3 ᠰᠠ᠊᠍ 17 ᠡᠳᠦᠷ",
+      "3 ᠰᠠ᠊ 17 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "3ᠰᠠ᠊᠍ 17ᠥ",
+      "3ᠰᠠ᠊ 17ᠥ",
     );
 
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "4 ᠰᠠᠷ᠎ᠠ",
+      "4 ᠰᠠᠷ\u180Eᠠ",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "4 ᠰᠠ᠊᠍",
+      "4 ᠰᠠ᠊",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "4ᠰᠠ᠊᠍",
+      "4ᠰᠠ᠊",
     );
 
     expect(
@@ -2583,7 +2583,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ 2 ᠡᠳᠦᠷ",
+      "3 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ 2 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2592,7 +2592,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "3 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ 2 ᠡᠳᠦᠷ",
+      "3 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊ 2 ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2601,7 +2601,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "3ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ 2ᠥ",
+      "3ᠳᠣ.ᠬᠣᠨ\u180B᠊ 2ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
@@ -2626,7 +2626,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
+      "4 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ",
     );
     expect(
       l10n.duration(
@@ -2635,7 +2635,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "4 ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
+      "4 ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊",
     );
     expect(
       l10n.duration(
@@ -2644,7 +2644,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "4ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
+      "4ᠳᠣ.ᠬᠣᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_4w_or_28d,
@@ -2690,11 +2690,11 @@ void main() {
 
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "8 ᠴᠠᠭ 8 ᠮᠢᠨᠦᠢᠲ",
+      "8 ᠴᠠᠭ 8 ᠮᠢᠨᠦ\u180Bᠲ",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "8 ᠴᠠᠭ 8 ᠮᠢᠨ᠊᠍",
+      "8 ᠴᠠᠭ 8 ᠮᠢᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2717,12 +2717,12 @@ void main() {
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "48 ᠮᠢᠨᠦᠢᠲ 42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "48 ᠮᠢᠨᠦ\u180Bᠲ 42 ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "48 ᠮᠢᠨ᠊᠍ 42 ᠰᠧᠻ᠍᠊᠍",
+      "48 ᠮᠢᠨ\u180B᠊ 42 ᠰᠧᠻ᠊",
     );
     expect(
       l10n.duration(_48m_42s,
@@ -2732,11 +2732,11 @@ void main() {
 
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "35 ᠮᠢᠨᠦᠢᠲ",
+      "35 ᠮᠢᠨᠦ\u180Bᠲ",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "35 ᠮᠢᠨ᠊᠍",
+      "35 ᠮᠢᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2745,11 +2745,11 @@ void main() {
 
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "42 ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "42 ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "42 ᠰᠧᠻ᠍᠊᠍",
+      "42 ᠰᠧᠻ᠊",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2774,15 +2774,15 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠑ ᠵᠢᠯ ᠒ ᠰᠠᠷ᠎ᠠ",
+      "᠑ ᠵᠢᠯ ᠒ ᠰᠠᠷ\u180Eᠠ",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠑ ᠵᠢᠯ ᠒ ᠰᠠ᠊᠍",
+      "᠑ ᠵᠢᠯ ᠒ ᠰᠠ᠊",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "᠑ᠵᠢᠯ ᠒ᠰᠠ᠊᠍",
+      "᠑ᠵᠢᠯ ᠒ᠰᠠ᠊",
     );
 
     expect(
@@ -2801,30 +2801,30 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠓ ᠰᠠᠷ᠎ᠠ ᠑᠗ ᠡᠳᠦᠷ",
+      "᠓ ᠰᠠᠷ\u180Eᠠ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠓ ᠰᠠ᠊᠍ ᠑᠗ ᠡᠳᠦᠷ",
+      "᠓ ᠰᠠ᠊ ᠑᠗ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "᠓ᠰᠠ᠊᠍ ᠑᠗ᠥ",
+      "᠓ᠰᠠ᠊ ᠑᠗ᠥ",
     );
 
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠔ ᠰᠠᠷ᠎ᠠ",
+      "᠔ ᠰᠠᠷ\u180Eᠠ",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠔ ᠰᠠ᠊᠍",
+      "᠔ ᠰᠠ᠊",
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      "᠔ᠰᠠ᠊᠍",
+      "᠔ᠰᠠ᠊",
     );
 
     expect(
@@ -2834,7 +2834,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ ᠒ ᠡᠳᠦᠷ",
+      "᠓ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ ᠒ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2843,7 +2843,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "᠓ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍ ᠒ ᠡᠳᠦᠷ",
+      "᠓ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊ ᠒ ᠡᠳᠦᠷ",
     );
     expect(
       l10n.duration(
@@ -2852,7 +2852,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "᠓ᠳᠣ.ᠬᠣᠨ᠍᠊᠍ ᠒ᠥ",
+      "᠓ᠳᠣ.ᠬᠣᠨ\u180B᠊ ᠒ᠥ",
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
@@ -2877,7 +2877,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.none,
       ),
-      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨᠤᠭ",
+      "᠔ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨᠤᠭ",
     );
     expect(
       l10n.duration(
@@ -2886,7 +2886,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      "᠔ ᠳᠣᠯᠤᠭ᠎ᠠ ᠬᠣᠨ᠍᠊᠍",
+      "᠔ ᠳᠣᠯᠤᠭ\u180Eᠠ ᠬᠣᠨ\u180B᠊",
     );
     expect(
       l10n.duration(
@@ -2895,7 +2895,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      "᠔ᠳᠣ.ᠬᠣᠨ᠍᠊᠍",
+      "᠔ᠳᠣ.ᠬᠣᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_4w_or_28d,
@@ -2941,11 +2941,11 @@ void main() {
 
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨᠦᠢᠲ",
+      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨᠦ\u180Bᠲ",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨ᠊᠍",
+      "᠘ ᠴᠠᠭ ᠘ ᠮᠢᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2968,12 +2968,12 @@ void main() {
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠔᠘ ᠮᠢᠨᠦᠢᠲ ᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "᠔᠘ ᠮᠢᠨᠦ\u180Bᠲ ᠔᠒ ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠔᠘ ᠮᠢᠨ᠊᠍ ᠔᠒ ᠰᠧᠻ᠍᠊᠍",
+      "᠔᠘ ᠮᠢᠨ\u180B᠊ ᠔᠒ ᠰᠧᠻ᠊",
     );
     expect(
       l10n.duration(_48m_42s,
@@ -2983,11 +2983,11 @@ void main() {
 
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠓᠕ ᠮᠢᠨᠦᠢᠲ",
+      "᠓᠕ ᠮᠢᠨᠦ\u180Bᠲ",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠓᠕ ᠮᠢᠨ᠊᠍",
+      "᠓᠕ ᠮᠢᠨ\u180B᠊",
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -2996,11 +2996,11 @@ void main() {
 
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "᠔᠒ ᠰᠧᠻᠦ᠋ᠨ᠍ᠳ᠋",
+      "᠔᠒ ᠰᠧᠻᠦ\u180Bᠨ\u180Bᠳ\u180B",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      "᠔᠒ ᠰᠧᠻ᠍᠊᠍",
+      "᠔᠒ ᠰᠧᠻ᠊",
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
@@ -3298,7 +3298,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      "bir yıl 2 ay",
+      "1 yıl 2 ay",
     );
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
@@ -3472,11 +3472,11 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.none),
-      'через год и 2 месяца',
+      'через 1 год и 2 месяца',
     );
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.semi),
-      'через 1г 2мес',
+      'через 1 г. 2 мес.',
     );
 
     expect(
@@ -3485,7 +3485,7 @@ void main() {
     );
     expect(
       l10n.duration(_3y, form: Abbreviation.full),
-      'через 3г.',
+      'через 3 г.',
     );
 
     expect(
@@ -3494,11 +3494,11 @@ void main() {
     );
     expect(
       l10n.duration(_3mo_17d, form: Abbreviation.semi),
-      'через 3мес 17дн',
+      'через 3 мес. 17 дн.',
     );
     expect(
       l10n.duration(_3mo_17d, form: Abbreviation.full),
-      'через 3мес 17дн',
+      'через 3 мес. 17 дн.',
     );
 
     expect(
@@ -3507,11 +3507,11 @@ void main() {
     );
     expect(
       l10n.duration(_4mo, form: Abbreviation.semi),
-      'через 4мес',
+      'через 4 мес.',
     );
     expect(
       l10n.duration(_4mo, form: Abbreviation.full),
-      'через 4мес',
+      'через 4 мес.',
     );
 
     expect(
@@ -3528,7 +3528,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      'через 3нед 2дн',
+      'через 3 нед. 2 дн.',
     );
     expect(
       l10n.duration(
@@ -3536,7 +3536,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      'через 3нед 2дн',
+      'через 3 нед. 2 дн.',
     );
     // Without includeWeeks
     expect(
@@ -3545,11 +3545,11 @@ void main() {
     );
     expect(
       l10n.duration(_3w_2d_or_23d, form: Abbreviation.semi),
-      'через 23дн',
+      'через 23 дн.',
     );
     expect(
       l10n.duration(_3w_2d_or_23d, form: Abbreviation.full),
-      'через 23дн',
+      'через 23 дн.',
     );
 
     expect(
@@ -3566,7 +3566,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      'через 4нед',
+      'через 4 нед.',
     );
     expect(
       l10n.duration(
@@ -3574,7 +3574,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      'через 4нед',
+      'через 4 нед.',
     );
     // Without includeWeeks
     expect(
@@ -3583,11 +3583,11 @@ void main() {
     );
     expect(
       l10n.duration(_4w_or_28d, form: Abbreviation.semi),
-      'через 28дн',
+      'через 28 дн.',
     );
     expect(
       l10n.duration(_4w_or_28d, form: Abbreviation.full),
-      'через 28дн',
+      'через 28 дн.',
     );
 
     expect(
@@ -3596,11 +3596,11 @@ void main() {
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.semi),
-      'через 6дн 7ч',
+      'через 6 дн. 7 ч',
     );
     expect(
       l10n.duration(_6d_7h, form: Abbreviation.full),
-      'через 6дн 7ч',
+      'через 6 дн. 7 ч',
     );
 
     expect(
@@ -3609,11 +3609,11 @@ void main() {
     );
     expect(
       l10n.duration(_6d, form: Abbreviation.semi),
-      'через 6дн',
+      'через 6 дн.',
     );
     expect(
       l10n.duration(_6d, form: Abbreviation.full),
-      'через 6дн',
+      'через 6 дн.',
     );
 
     expect(
@@ -3622,11 +3622,11 @@ void main() {
     );
     expect(
       l10n.duration(_8h_8m, form: Abbreviation.semi),
-      'через 8ч 8мин',
+      'через 8 ч 8 мин',
     );
     expect(
       l10n.duration(_8h_8m, form: Abbreviation.full),
-      'через 8ч 8мин',
+      'через 8 ч 8 мин',
     );
 
     expect(
@@ -3635,11 +3635,11 @@ void main() {
     );
     expect(
       l10n.duration(_8h, form: Abbreviation.semi),
-      'через 8ч',
+      'через 8 ч',
     );
     expect(
       l10n.duration(_8h, form: Abbreviation.full),
-      'через 8ч',
+      'через 8 ч',
     );
 
     expect(
@@ -3648,11 +3648,11 @@ void main() {
     );
     expect(
       l10n.duration(_48m_42s, form: Abbreviation.semi),
-      'через 48мин 42сек',
+      'через 48 мин 42 сек.',
     );
     expect(
       l10n.duration(_48m_42s, form: Abbreviation.full),
-      'через 48мин 42сек',
+      'через 48 мин 42 сек.',
     );
 
     expect(
@@ -3661,11 +3661,11 @@ void main() {
     );
     expect(
       l10n.duration(_35m, form: Abbreviation.semi),
-      'через 35мин',
+      'через 35 мин',
     );
     expect(
       l10n.duration(_35m, form: Abbreviation.full),
-      'через 35мин',
+      'через 35 мин',
     );
 
     expect(
@@ -3674,11 +3674,11 @@ void main() {
     );
     expect(
       l10n.duration(_42s, form: Abbreviation.semi),
-      'через 42сек',
+      'через 42 сек.',
     );
     expect(
       l10n.duration(_42s, form: Abbreviation.full),
-      'через 42сек',
+      'через 42 сек.',
     );
 
     expect(
@@ -3687,11 +3687,11 @@ void main() {
     );
     expect(
       l10n.duration(_zero, form: Abbreviation.semi),
-      'через неск. сек',
+      'через неск. сек.',
     );
     expect(
       l10n.duration(_zero, form: Abbreviation.full),
-      'через неск. сек',
+      'через неск. сек.',
     );
   });
 
@@ -3700,12 +3700,12 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      'год и 2 месяца',
+      '1 год и 2 месяца',
     );
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '1г 2мес',
+      '1 г. 2 мес.',
     );
 
     expect(
@@ -3714,11 +3714,11 @@ void main() {
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '3г.',
+      '3 г.',
     );
     expect(
       l10n.duration(_3y, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '3г.',
+      '3 г.',
     );
 
     expect(
@@ -3729,12 +3729,12 @@ void main() {
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '3мес 17дн',
+      '3 мес. 17 дн.',
     );
     expect(
       l10n.duration(_3mo_17d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '3мес 17дн',
+      '3 мес. 17 дн.',
     );
 
     expect(
@@ -3743,11 +3743,11 @@ void main() {
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '4мес',
+      '4 мес.',
     );
     expect(
       l10n.duration(_4mo, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '4мес',
+      '4 мес.',
     );
 
     expect(
@@ -3766,7 +3766,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      '3нед 2дн',
+      '3 нед. 2 дн.',
     );
     expect(
       l10n.duration(
@@ -3775,7 +3775,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      '3нед 2дн',
+      '3 нед. 2 дн.',
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
@@ -3785,12 +3785,12 @@ void main() {
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '23дн',
+      '23 дн.',
     );
     expect(
       l10n.duration(_3w_2d_or_23d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '23дн',
+      '23 дн.',
     );
 
     expect(
@@ -3809,7 +3809,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.semi,
       ),
-      '4нед',
+      '4 нед.',
     );
     expect(
       l10n.duration(
@@ -3818,7 +3818,7 @@ void main() {
         includeWeeks: true,
         form: Abbreviation.full,
       ),
-      '4нед',
+      '4 нед.',
     );
     expect(
       l10n.duration(_4w_or_28d,
@@ -3828,12 +3828,12 @@ void main() {
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '28дн',
+      '28 дн.',
     );
     expect(
       l10n.duration(_4w_or_28d,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '28дн',
+      '28 дн.',
     );
 
     expect(
@@ -3842,11 +3842,11 @@ void main() {
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '6дн 7ч',
+      '6 дн. 7 ч',
     );
     expect(
       l10n.duration(_6d_7h, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '6дн 7ч',
+      '6 дн. 7 ч',
     );
 
     expect(
@@ -3855,11 +3855,11 @@ void main() {
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '6дн',
+      '6 дн.',
     );
     expect(
       l10n.duration(_6d, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '6дн',
+      '6 дн.',
     );
 
     expect(
@@ -3868,11 +3868,11 @@ void main() {
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '8ч 8мин',
+      '8 ч 8 мин',
     );
     expect(
       l10n.duration(_8h_8m, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '8ч 8мин',
+      '8 ч 8 мин',
     );
 
     expect(
@@ -3881,11 +3881,11 @@ void main() {
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '8ч',
+      '8 ч',
     );
     expect(
       l10n.duration(_8h, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '8ч',
+      '8 ч',
     );
 
     expect(
@@ -3896,12 +3896,12 @@ void main() {
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '48мин 42сек',
+      '48 мин 42 сек.',
     );
     expect(
       l10n.duration(_48m_42s,
           dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '48мин 42сек',
+      '48 мин 42 сек.',
     );
 
     expect(
@@ -3910,11 +3910,11 @@ void main() {
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '35мин',
+      '35 мин',
     );
     expect(
       l10n.duration(_35m, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '35мин',
+      '35 мин',
     );
 
     expect(
@@ -3923,11 +3923,11 @@ void main() {
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      '42сек',
+      '42 сек.',
     );
     expect(
       l10n.duration(_42s, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      '42сек',
+      '42 сек.',
     );
 
     expect(
@@ -3936,11 +3936,11 @@ void main() {
     );
     expect(
       l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.semi),
-      'неск. сек',
+      'неск. сек.',
     );
     expect(
       l10n.duration(_zero, dropPrefixOrSuffix: true, form: Abbreviation.full),
-      'неск. сек',
+      'неск. сек.',
     );
   });
 
@@ -3949,7 +3949,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.none),
-      'za rok i 2 miesiące',
+      'za 1 rok i 2 miesiące',
     );
     expect(
       l10n.duration(_1y_2mo, form: Abbreviation.semi),
@@ -4177,7 +4177,7 @@ void main() {
 
     expect(
       l10n.duration(_1y_2mo, dropPrefixOrSuffix: true, form: Abbreviation.none),
-      'rok i 2 miesiące',
+      '1 rok i 2 miesiące',
     );
 
     expect(
@@ -4466,7 +4466,9 @@ void main() {
     // Also verify count=1 still uses singular (regression check)
     const Duration _1m = Duration(minutes: 1);
     expect(
-      l10n.duration(_1m, dropPrefixOrSuffix: true, form: Abbreviation.none,
+      l10n.duration(_1m,
+          dropPrefixOrSuffix: true,
+          form: Abbreviation.none,
           format: DurationFormat.ms),
       '1 minuta',
     );
